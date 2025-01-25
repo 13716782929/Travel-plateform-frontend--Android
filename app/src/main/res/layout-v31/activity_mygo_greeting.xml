@@ -1,0 +1,21 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/splash"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipToOutline="true"
+    android:background="@drawable/splash">
+
+    <!-- 将 View 添加到 RelativeLayout 并居中 -->
+    <TextView
+        android:id="@+id/welcome"
+        android:layout_width="170dp"
+        android:layout_height="45dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:text="@string/welcome"
+        android:textAppearance="@style/welcome"
+        android:gravity="center_horizontal|top"
+        />
+
+</RelativeLayout>

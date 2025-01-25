@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">MyGo</string>
+    <string name="title_activity_mygo_greeting">MygoGreeting</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="welcome">Welcome</string>
+    <string name="hi_huang">
+        Hi,
+        HUANG
+    </string>
+    <string name="attraction">
+        Attraction
+    </string>
+    <string name="hotel">
+        Hotel
+    </string>
+</resources>
