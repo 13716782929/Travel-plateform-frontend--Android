@@ -6,7 +6,7 @@
     <string name="welcome">Welcome</string>
     <string name="hi_huang">
         Hi,
-        HUANG
+          HUANG
     </string>
     <string name="attraction">
         Attraction
@@ -14,4 +14,16 @@
     <string name="hotel">
         Hotel
     </string>
+
+    <string name="attraction_recommend">
+        Attraction recommendation for you
+    </string>
+    <string name="mount_bromo">mount_bromo</string>
+    <string name="volcano_in">volcano_in_</string>
+    <string name="Mount_Bromo">Mount Bromo</string>
+    <string name="volcano_in_east_java">Volcano in East Java</string>
+    <string name="_4_9">4.9</string>
+    <string name="start_from">Start from</string>
+    <string name="book">Book</string>
+    <string name="flight">Flight</string>
 </resources>

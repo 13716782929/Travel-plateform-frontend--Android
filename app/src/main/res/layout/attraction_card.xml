@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rectangle_9"
+    android:layout_width="161dp"
+    android:layout_height="238dp"
+    android:layout_marginLeft="0dp"
+    android:layout_marginTop="-20dp"
+    android:background="@drawable/rectangle_9"
+    android:elevation="13dp"
+    android:clipToOutline="true">
+
+    <ImageView
+        android:id="@+id/attraction_image"
+        android:layout_width="179dp"
+        android:layout_height="175.11dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="-5dp"
+        android:layout_marginTop="-29dp"
+        android:src="@drawable/main1_image3"
+        android:scaleType="centerCrop" />
+
+
+
+    <TextView
+        android:id="@+id/attraction_name"
+        android:layout_width="92dp"
+        android:layout_height="17dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="127dp"
+        android:gravity="top"
+        android:text="@string/Mount_Bromo"
+        android:textColor="#336749"
+        android:textSize="14dp"
+        android:textAppearance="@style/inter_medium" />
+
+    <!-- Auto layout, variables, and unit scale are not yet supported -->
+    <TextView
+        android:id="@+id/attraction_location"
+        android:layout_width="87dp"
+        android:layout_height="11dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="146dp"
+        android:gravity="top"
+        android:text="@string/volcano_in_east_java"
+        android:textColor="#6C757D"
+        android:textSize="9sp"
+        android:fontFamily="@font/inter_18pt_medium"/>
+    <RelativeLayout
+        android:id="@+id/material_sy"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="162dp"
+        android:background="@drawable/material_symbols_star"
+        android:clipToOutline="true" />
+
+    <TextView
+        android:id="@+id/some_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="28dp"
+        android:layout_marginTop="161dp"
+        android:gravity="top"
+        android:text="@string/_4_9"
+        android:textColor="#6C757D"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/star_from"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="191dp"
+        android:gravity="top"
+        android:text="@string/start_from"
+        android:textColor="#6C757D"
+        android:textSize="10sp" />
+
+    <TextView
+        android:id="@+id/pax"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="8dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="210dp"
+        android:text="$ 150/pax"
+        android:fontFamily="@font/inter_18pt_medium"
+        android:gravity="top"
+        android:textColor="#336749"
+        />
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/status"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="95dp"
+        android:layout_marginTop="205dp"
+        android:background="@drawable/status"
+        android:clipToOutline="true">
+
+        <TextView
+            android:id="@+id/booking"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:text="@string/book"
+            android:fontFamily="@font/inter_18pt_medium"
+            android:lineSpacingExtra="6sp"
+            android:gravity="center_vertical"
+            android:textColor="#FFFFFF"
+            />
+
+    </RelativeLayout>
+</RelativeLayout>

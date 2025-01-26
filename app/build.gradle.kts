@@ -43,7 +43,8 @@ android {
 dependencies {
     // 添加 androidsvg 库
     implementation(libs.androidsvg)
-
+    implementation(libs.androidx.recyclerview)
+    implementation(libs.androidx.constraintlayout.v204)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
