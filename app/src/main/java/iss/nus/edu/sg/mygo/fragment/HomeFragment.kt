@@ -57,6 +57,12 @@ class HomeFragment : Fragment(R.layout.home_fragment) {
             departureTime = "10:00 AM",
             arrivalTime = "3:00 PM"
         )
+//        val mockData = FlightInfo(
+//            departureLocation = "Singapore",
+//            arrivalLocation = "Tokyo",
+//            departureTime = null,
+//            arrivalTime = "3:00 PM"
+//        )
 
         if (mockData.departureLocation.isNullOrEmpty() ||
             mockData.arrivalLocation.isNullOrEmpty() ||

@@ -1,5 +1,4 @@
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/main_1"
     android:layout_width="match_parent"
@@ -163,6 +162,7 @@
         </RelativeLayout>
 
     </RelativeLayout>
+
     <RelativeLayout
         android:id="@+id/main1_tickets_"
         android:layout_width="wrap_content"
@@ -404,142 +404,328 @@
         </RelativeLayout>
 
     </RelativeLayout>
-    <TextView
-        android:id="@+id/attraction_"
-        android:layout_width="271dp"
-        android:layout_height="19dp"
-        android:layout_alignParentLeft="true"
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/main1_tickets_"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="17dp"
-
-        android:gravity="top"
-        android:text="@string/attraction_recommend"
-        android:textAppearance="@style/Recommend_font" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view"
-        android:layout_width="381dp"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/attraction_"
-        android:layout_marginTop="10dp"
-        android:clipToPadding="false"
-        android:orientation="horizontal"
-        android:padding="16dp"
-        android:scrollbars="horizontal" />
-
-    <!-- Auto layout, variables, and unit scale are not yet supported -->
-    <TextView
-        android:id="@+id/hotels_reco_text"
-        android:layout_width="249dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="17dp"
-        android:layout_below="@+id/recycler_view"
-        android:layout_marginTop="10dp"
-        android:gravity="top"
-        android:text="@string/hotels_reco"
-        android:textAppearance="@style/Recommend_font"
-        android:textSize="16sp" />
-
-    <TextView
-        android:id="@+id/see_all_hotels"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/recycler_view"
-        android:layout_marginTop="12dp"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="17dp"
-        android:text="@string/see_all"
-        android:textAppearance="@style/inter_medium"
-        android:textSize="14sp"
-        android:textColor="#4C76EB"/>
-
-    <RelativeLayout
-        android:id="@+id/rectangle_8"
-        android:layout_width="375dp"
-        android:layout_height="105dp"
-        android:layout_below="@+id/hotels_reco_text"
-        android:layout_marginTop="7dp"
-        android:layout_centerHorizontal="true"
-        android:background="@drawable/main1_hotel_recommend_card"
-        android:elevation="13dp"
-        android:clipToOutline="true">
-        <ImageView
-            android:id="@+id/attraction_image"
-            android:layout_width="96dp"
-            android:layout_height="123dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginLeft="0dp"
-            android:layout_marginTop="0dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/main1_hotel_1" />
-        <TextView
-            android:id="@+id/swiss_belho"
-            android:layout_width="244dp"
+        >
+        <RelativeLayout
+            android:id="@+id/underMain"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="106dp"
-            android:layout_marginTop="13dp"
-            android:text="@string/swiss_belho"
-            android:textSize="16sp"
-            android:textColor="#4c76EB"
-            android:textAppearance="@style/inter_medium"
-            android:gravity="top"
-            />
+            >
+            <TextView
+                android:id="@+id/attraction_"
+                android:layout_width="271dp"
+                android:layout_height="19dp"
+                android:layout_alignParentLeft="true"
 
-        <TextView
-            android:id="@+id/jl_sunset_r"
-            android:layout_width="202dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="106dp"
-            android:layout_below="@+id/swiss_belho"
-            android:layout_marginTop="0dp"
-            android:text="@string/jl_sunset_r"
-            android:textSize="9sp"
-            android:textColor="#6C757D"
-            android:textAppearance="@style/inter_medium"
-            android:gravity="top"
-            />
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="17dp"
 
-        <ImageView
-            android:id="@+id/hotel_star_icon"
-            android:layout_width="15dp"
-            android:layout_height="15dp"
-            android:layout_below="@+id/jl_sunset_r"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="106dp"
-            android:background="@drawable/material_symbols_star"
-            />
-        <TextView
-            android:id="@+id/star_hotel"
-            android:layout_width="73dp"
-            android:layout_height="15dp"
-            android:layout_toEndOf="@+id/hotel_star_icon"
-            android:layout_marginStart="2dp"
-            android:layout_below="@+id/jl_sunset_r"
-            android:layout_marginTop="5dp"
-            android:text="@string/star_hotel"
-            android:textSize="12sp"
-            android:textColor="#6C757D"
-            android:textAppearance="@style/inter_medium"
-            android:gravity="top"
-            />
-        <TextView
-            android:id="@+id/night"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="10dp"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="10dp"
-            android:text="@string/night"
-            android:textSize="12sp"
-            android:textColor="#4C76EB"
-            android:textAppearance="@style/inter_medium"
-            android:gravity="top"
-            />
-    </RelativeLayout>
+                android:gravity="top"
+                android:text="@string/attraction_recommend"
+                android:textAppearance="@style/Recommend_font" />
 
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_view"
+                android:layout_width="381dp"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/attraction_"
+                android:layout_marginTop="10dp"
+                android:clipToPadding="false"
+                android:orientation="horizontal"
+                android:padding="16dp"
+                android:scrollbars="horizontal" />
 
+            <!-- Auto layout, variables, and unit scale are not yet supported -->
+            <TextView
+                android:id="@+id/hotels_reco_text"
+                android:layout_width="249dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="17dp"
+                android:layout_below="@+id/recycler_view"
+                android:layout_marginTop="10dp"
+                android:gravity="top"
+                android:text="@string/hotels_reco"
+                android:textAppearance="@style/Recommend_font"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/see_all_hotels"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/recycler_view"
+                android:layout_marginTop="12dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="17dp"
+                android:text="@string/see_all"
+                android:textAppearance="@style/inter_medium"
+                android:textSize="14sp"
+                android:textColor="#4C76EB"/>
+
+            <RelativeLayout
+                android:id="@+id/rectangle_8"
+                android:layout_width="375dp"
+                android:layout_height="105dp"
+                android:layout_below="@+id/hotels_reco_text"
+                android:layout_marginTop="7dp"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/main1_hotel_recommend_card"
+                android:elevation="13dp"
+                android:clipToOutline="true">
+                <ImageView
+                    android:id="@+id/hotel_image1"
+                    android:layout_width="96dp"
+                    android:layout_height="123dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginTop="0dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/main1_hotel_1" />
+                <TextView
+                    android:id="@+id/swiss_belho"
+                    android:layout_width="244dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="106dp"
+                    android:layout_marginTop="13dp"
+                    android:text="@string/swiss_belho"
+                    android:textSize="16sp"
+                    android:textColor="#4c76EB"
+                    android:textAppearance="@style/inter_medium"
+                    android:gravity="top"
+                    />
+
+                <TextView
+                    android:id="@+id/jl_sunset_r"
+                    android:layout_width="202dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="106dp"
+                    android:layout_below="@+id/swiss_belho"
+                    android:layout_marginTop="0dp"
+                    android:text="@string/jl_sunset_r"
+                    android:textSize="9sp"
+                    android:textColor="#6C757D"
+                    android:textAppearance="@style/inter_medium"
+                    android:gravity="top"
+                    />
+
+                <ImageView
+                    android:id="@+id/hotel_star_icon"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_below="@+id/jl_sunset_r"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="106dp"
+                    android:background="@drawable/material_symbols_star"
+                    />
+                <TextView
+                    android:id="@+id/star_hotel"
+                    android:layout_width="73dp"
+                    android:layout_height="15dp"
+                    android:layout_toEndOf="@+id/hotel_star_icon"
+                    android:layout_marginStart="2dp"
+                    android:layout_below="@+id/jl_sunset_r"
+                    android:layout_marginTop="5dp"
+                    android:text="@string/star_hotel"
+                    android:textSize="12sp"
+                    android:textColor="#6C757D"
+                    android:textAppearance="@style/inter_medium"
+                    android:gravity="top"
+                    />
+                <TextView
+                    android:id="@+id/night"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="10dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="10dp"
+                    android:text="@string/night"
+                    android:textSize="12sp"
+                    android:textColor="#4C76EB"
+                    android:textAppearance="@style/inter_medium"
+                    android:gravity="top"
+                    />
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/rectangle_9"
+                android:layout_width="375dp"
+                android:layout_height="105dp"
+                android:layout_below="@+id/rectangle_8"
+                android:layout_marginTop="12dp"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/main1_hotel_recommend_card"
+                android:elevation="13dp"
+                android:clipToOutline="true">
+
+                <ImageView
+                    android:id="@+id/hotel_image2"
+                    android:layout_width="96dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginStart="1dp"
+                    android:layout_marginBottom="0dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/main1_hotel_2" />
+
+                <TextView
+                    android:id="@+id/hotel_reco_name1"
+                    android:layout_width="244dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="106dp"
+                    android:layout_marginTop="13dp"
+                    android:text="@string/coeurdes_alpes"
+                    android:textSize="16sp"
+                    android:textColor="#4c76EB"
+                    android:textAppearance="@style/inter_medium"
+                    android:gravity="top"
+                    />
+
+                <TextView
+                    android:id="@+id/hotel_descrip2"
+                    android:layout_width="202dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="106dp"
+                    android:layout_below="@+id/hotel_reco_name1"
+                    android:layout_marginTop="0dp"
+                    android:text="@string/jl_sunset_r"
+                    android:textSize="9sp"
+                    android:textColor="#6C757D"
+                    android:textAppearance="@style/inter_medium"
+                    android:gravity="top"
+                    />
+
+                <ImageView
+                    android:id="@+id/hotel_star_icon2"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_below="@+id/hotel_descrip2"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="106dp"
+                    android:background="@drawable/material_symbols_star"
+                    />
+                <TextView
+                    android:id="@+id/star_hotel2"
+                    android:layout_width="73dp"
+                    android:layout_height="15dp"
+                    android:layout_toEndOf="@+id/hotel_star_icon2"
+                    android:layout_marginStart="2dp"
+                    android:layout_below="@+id/hotel_descrip2"
+                    android:layout_marginTop="5dp"
+                    android:text="@string/star_hotel"
+                    android:textSize="12sp"
+                    android:textColor="#6C757D"
+                    android:textAppearance="@style/inter_medium"
+                    android:gravity="top"
+                    />
+                <TextView
+                    android:id="@+id/night2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="10dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="10dp"
+                    android:text="@string/night"
+                    android:textSize="12sp"
+                    android:textColor="#4C76EB"
+                    android:textAppearance="@style/inter_medium"
+                    android:gravity="top"
+                    />
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/rectangle_10"
+                android:layout_width="375dp"
+                android:layout_height="105dp"
+                android:layout_below="@+id/rectangle_9"
+                android:layout_marginTop="12dp"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/main1_hotel_recommend_card"
+                android:elevation="13dp"
+                android:clipToOutline="true">
+
+                <ImageView
+                    android:id="@+id/hotel_image3"
+                    android:layout_width="96dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginStart="1dp"
+                    android:layout_marginBottom="0dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/main1_hotel_3" />
+
+                <TextView
+                    android:id="@+id/hotel_reco_name3"
+                    android:layout_width="244dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="106dp"
+                    android:layout_marginTop="13dp"
+                    android:text="@string/discover_extraordinary_comfort_in_hotels"
+                    android:textSize="15sp"
+                    android:textColor="#4c76EB"
+                    android:textAppearance="@style/inter_medium"
+                    android:gravity="top"
+                    />
+
+                <TextView
+                    android:id="@+id/hotel_descrip3"
+                    android:layout_width="202dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="106dp"
+                    android:layout_below="@+id/hotel_reco_name3"
+                    android:layout_marginTop="0dp"
+                    android:text="@string/jl_sunset_r"
+                    android:textSize="9sp"
+                    android:textColor="#6C757D"
+                    android:textAppearance="@style/inter_medium"
+                    android:gravity="top"
+                    />
+
+                <ImageView
+                    android:id="@+id/hotel_star_icon3"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_below="@+id/hotel_descrip3"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="106dp"
+                    android:background="@drawable/material_symbols_star"
+                    />
+                <TextView
+                    android:id="@+id/star_hotel3"
+                    android:layout_width="73dp"
+                    android:layout_height="15dp"
+                    android:layout_toEndOf="@+id/hotel_star_icon3"
+                    android:layout_marginStart="2dp"
+                    android:layout_below="@+id/hotel_descrip3"
+                    android:layout_marginTop="5dp"
+                    android:text="@string/star_hotel"
+                    android:textSize="12sp"
+                    android:textColor="#6C757D"
+                    android:textAppearance="@style/inter_medium"
+                    android:gravity="top"
+                    />
+                <TextView
+                    android:id="@+id/night3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="10dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="10dp"
+                    android:text="@string/night"
+                    android:textSize="12sp"
+                    android:textColor="#4C76EB"
+                    android:textAppearance="@style/inter_medium"
+                    android:gravity="top"
+                    />
+            </RelativeLayout>
+        </RelativeLayout>
+
+    </androidx.core.widget.NestedScrollView>
 </RelativeLayout>
+
