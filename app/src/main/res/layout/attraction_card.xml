@@ -10,18 +10,17 @@
     android:elevation="13dp"
     android:clipToOutline="true">
 
+
     <ImageView
         android:id="@+id/attraction_image"
         android:layout_width="179dp"
         android:layout_height="175.11dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginLeft="-5dp"
-        android:layout_marginTop="-29dp"
-        android:src="@drawable/main1_image3"
-        android:scaleType="centerCrop" />
-
-
+        android:layout_marginLeft="-8dp"
+        android:layout_marginTop="-53dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/main1_image3" />
 
     <TextView
         android:id="@+id/attraction_name"
@@ -98,7 +97,7 @@
         android:textColor="#336749"
         />
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <RelativeLayout
         android:id="@+id/status"
         android:layout_width="60dp"
         android:layout_height="wrap_content"

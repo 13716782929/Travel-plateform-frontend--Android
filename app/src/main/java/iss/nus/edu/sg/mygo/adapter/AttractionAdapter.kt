@@ -10,6 +10,10 @@ import androidx.recyclerview.widget.RecyclerView
 import iss.nus.edu.sg.mygo.R
 import iss.nus.edu.sg.mygo.models.Attraction
 
+/***
+ * author: Wang Chang
+ * date: 25\1-25
+ * */
 class AttractionAdapter(
     private val attractions: List<Attraction>,
     private val onItemClick: (Int) -> Unit // 点击事件

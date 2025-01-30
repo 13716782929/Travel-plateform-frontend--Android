@@ -26,4 +26,20 @@
     <string name="start_from">Start from</string>
     <string name="book">Book</string>
     <string name="flight">Flight</string>
+
+    <string name="hotels_reco">
+        Hotels recommendation for you</string>
+    <string name="see_all">see all</string>
+    <string name="swiss_belho">Swiss-Belhotel Rainforest Kuta</string>
+    <string name="jl_sunset_r"><![CDATA[Jl. Sunset Road No. 101, Kuta, Bali , Indonesia]]></string>
+    <string name="star_hotel">4-star hotel</string>
+    <string name="night">$ 50/night</string>
+    <string name="booking_id">Booking ID</string>
+    <string name="sentosa_air">Sentosa Air · Economy · Direct</string>
+    <string name="cgk">CGK</string>
+    <string name="_05_30">05:30</string>
+    <string name="dps">DPS</string>
+    <string name="_06_30">06:30</string>
+    <string name="upcoming">Upcoming</string>
+    <string name="_24_march_2024">24 March 2024</string>
 </resources>

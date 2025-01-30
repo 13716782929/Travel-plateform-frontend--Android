@@ -41,6 +41,7 @@ android {
 }
 
 dependencies {
+    implementation(libs.material.v1120)
     // 添加 androidsvg 库
     implementation(libs.androidsvg)
     implementation(libs.androidx.recyclerview)

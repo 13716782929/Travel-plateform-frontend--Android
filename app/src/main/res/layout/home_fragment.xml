@@ -1,0 +1,545 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main_1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/main_1">
+
+    <RelativeLayout
+        android:id="@+id/main_head"
+        android:layout_width="match_parent"
+        android:layout_height="270dp"
+        android:background="@drawable/main_head">
+
+        <ImageView
+            android:id="@+id/main_head_01"
+            android:layout_width="194dp"
+            android:layout_height="150dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="21dp"
+            android:layout_marginTop="-67dp" />
+
+        <ImageView
+            android:id="@+id/main_head_02"
+            android:layout_width="168dp"
+            android:layout_height="157dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="243dp"
+            android:layout_marginTop="-54dp" />
+        <!-- Auto layout, variables, and unit scale are not yet supported -->
+
+        <ImageView
+            android:id="@+id/ellipse_3"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="298dp"
+            android:layout_marginTop="85dp"
+            android:src="@drawable/main1_rectangle"
+            android:scaleType="centerCrop"
+            android:background="@drawable/circle_background"
+            android:clipToOutline="true" />
+
+        <TextView
+            android:id="@+id/logo_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="40dp"
+            android:gravity="top"
+            android:text="MyGo!"
+            android:textSize="30sp"
+            android:textColor="#ffffff"
+            android:textAppearance="@style/joti_one_regular" />
+
+        <TextView
+            android:id="@+id/hi_huang"
+            android:layout_width="140.62dp"
+            android:layout_height="74dp"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="80dp"
+            android:gravity="top"
+            android:text="@string/hi_huang"
+            android:textAppearance="@style/hi_huang" />
+
+        <RelativeLayout
+            android:id="@+id/selection"
+            android:layout_width="368dp"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="185dp">
+
+            <RelativeLayout
+                android:id="@+id/attractions"
+                android:layout_width="110dp"
+                android:layout_height="58dp"
+                android:background="@drawable/select_item"
+                android:elevation="10dp" >
+
+                <RelativeLayout
+                    android:id="@+id/fork_icon"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginStart="12dp"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/main1_fork"
+                    android:clipToOutline="true" />
+                <!-- Auto layout, variables, and unit scale are not yet supported -->
+                <TextView
+                    android:id="@+id/attractions_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@+id/fork_icon"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="5dp"
+                    android:lineSpacingExtra="-2sp"
+                    android:text="@string/attraction"
+                    android:textAppearance="@style/select_item" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/hotels"
+                android:layout_width="90dp"
+                android:layout_height="58dp"
+                android:layout_toEndOf="@id/attractions"
+                android:layout_marginStart="30dp"
+                android:background="@drawable/select_item"
+                android:elevation="10dp">
+                <RelativeLayout
+                    android:id="@+id/home_icon"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginStart="12dp"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/main1_home"
+                    android:clipToOutline="true" />
+                <!-- Auto layout, variables, and unit scale are not yet supported -->
+                <TextView
+                    android:id="@+id/hotel_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toEndOf="@+id/home_icon"
+                    android:layout_marginStart="5dp"
+                    android:lineSpacingExtra="-2sp"
+                    android:text="@string/hotel"
+                    android:textAppearance="@style/select_item" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/flight"
+                android:layout_width="100dp"
+                android:layout_height="58dp"
+                android:layout_marginLeft="260dp"
+                android:background="@drawable/select_item"
+                android:elevation="10dp">
+                <RelativeLayout
+                    android:id="@+id/flight_icon"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/main1_flight"
+                    android:clipToOutline="true" />
+                <!-- Auto layout, variables, and unit scale are not yet supported -->
+                <TextView
+                    android:id="@+id/flight_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="40dp"
+                    android:lineSpacingExtra="-2sp"
+                    android:text="@string/flight"
+                    android:textAppearance="@style/select_item" />
+
+            </RelativeLayout>
+        </RelativeLayout>
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/main1_tickets_"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="260dp"
+        android:background="@drawable/subtract"
+        android:elevation="20dp"
+        >
+        <RelativeLayout
+            android:id="@+id/layout_controller_tickets"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:visibility="gone"
+            >
+            <RelativeLayout
+                android:id="@+id/subtract"
+                android:layout_width="375dp"
+                android:layout_height="183dp"
+                >
+
+                <RelativeLayout
+                    android:id="@+id/shape_tickets"
+                    android:layout_width="375dp"
+                    android:layout_height="183dp"
+                    android:background="@drawable/shape_ticket1"
+                    android:elevation="20dp"
+                    >
+
+                    <RelativeLayout
+                        android:id="@+id/upcoming_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginStart="25dp"
+                        android:background="@drawable/status"
+                        android:clipToOutline="true">
+
+                        <TextView
+                            android:id="@+id/upcoming"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_centerHorizontal="true"
+                            android:text="@string/upcoming"
+                            android:textSize="12sp"
+                            android:lineSpacingExtra="6sp"
+                            android:gravity="center_vertical"
+                            android:textColor="#FFFFFF"
+                            />
+                    </RelativeLayout>
+                    <TextView
+                        android:id="@+id/upcoming_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="18dp"
+                        android:layout_toEndOf="@+id/upcoming_icon"
+                        android:layout_marginStart="5dp"
+                        android:text="@string/_24_march_2024"
+                        android:textSize="12sp"
+                        android:lineSpacingExtra="6sp"
+                        android:textColor="#4B5563"
+                        />
+
+                    <ImageView
+                        android:id="@+id/ticket_shadow1"
+                        android:layout_width="32.44dp"
+                        android:layout_height="17dp"
+                        android:layout_marginStart="-20dp"
+                        android:layout_marginTop="134dp"
+                        android:background="@drawable/rectangle_4" />
+
+                    <ImageView
+                        android:id="@+id/ticket_shadow2"
+                        android:layout_width="32.44dp"
+                        android:layout_height="17dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginTop="134dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="-20dp"
+                        android:background="@drawable/rectangle_4" />
+
+
+                    <RelativeLayout
+                        android:id="@+id/destination"
+                        android:layout_width="322dp"
+                        android:layout_height="47dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="55dp">
+
+
+                        <RelativeLayout
+                            android:id="@+id/start_location"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="2dp">
+
+                            <TextView
+                                android:id="@+id/departure_location"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center_vertical"
+                                android:lineSpacingExtra="6sp"
+                                android:text="@string/cgk"
+                                android:textAppearance="@style/inter_medium"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:id="@+id/departure_time"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/departure_location"
+                                android:gravity="center_vertical"
+                                android:lineSpacingExtra="6sp"
+                                android:text="@string/_05_30"
+                                android:textAppearance="@style/inter_medium"
+                                android:textColor="#6B7280"
+                                android:textSize="12sp" />
+                        </RelativeLayout>
+
+                        <ImageView
+                            android:id="@+id/takeoff_icon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="2dp"
+                            android:layout_toEndOf="@+id/start_location"
+                            android:background="@drawable/flight_takeoff" />
+
+                        <View
+                            android:id="@+id/line_57"
+                            android:layout_width="wrap_content"
+                            android:layout_height="10dp"
+                            android:layout_margin="5dp"
+                            android:layout_centerHorizontal="true"
+                            android:layout_toStartOf="@+id/land_icon"
+                            android:layout_toEndOf="@+id/takeoff_icon"
+                            android:background="@drawable/line_arrow" />
+
+                        <RelativeLayout
+                            android:id="@+id/end_location"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginEnd="2dp">
+
+                            <TextView
+                                android:id="@+id/arrival_location"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center_vertical"
+                                android:lineSpacingExtra="6sp"
+                                android:text="@string/dps"
+                                android:textAppearance="@style/inter_medium"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:id="@+id/arrival_time"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/arrival_location"
+                                android:gravity="center_vertical"
+                                android:lineSpacingExtra="6sp"
+                                android:text="@string/_06_30"
+                                android:textAppearance="@style/inter_medium"
+                                android:textColor="#6B7280"
+                                android:textSize="12sp" />
+                        </RelativeLayout>
+
+                        <ImageView
+                            android:id="@+id/land_icon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="2dp"
+                            android:layout_toStartOf="@+id/end_location"
+                            android:background="@drawable/flight_land" />
+
+                    </RelativeLayout>
+
+                    <TextView
+                        android:id="@+id/ad_flight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="19dp"
+                        android:layout_marginTop="118dp"
+                        android:text="@string/sentosa_air"
+                        android:textSize="12sp"
+                        android:textColor="#4B5563"
+                        android:lineSpacingExtra="6sp"
+                        android:translationY="-2.94sp"
+                        android:gravity="top"
+                        />
+
+                    <View
+                        android:id="@+id/line_58"
+                        android:layout_width="338.75dp"
+                        android:layout_height="1dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginTop="142dp"
+                        android:background="@drawable/line_58"
+                        />
+
+                    <TextView
+                        android:id="@+id/booking_id_title"
+                        android:layout_width="90dp"
+                        android:layout_height="24dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="148dp"
+                        android:gravity="center_vertical"
+                        android:lineSpacingExtra="7sp"
+                        android:text="@string/booking_id"
+                        android:textAppearance="@style/inter_medium"
+                        android:textColor="#4B5563"
+                        android:textSize="14sp" />
+                    <TextView
+                        android:id="@+id/bookingID"
+                        android:layout_width="64dp"
+                        android:layout_height="24dp"
+                        android:textSize="14sp"
+                        android:textColor="#4B5563"
+                        android:layout_marginTop="148dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="16dp"
+                        android:text="ZEEBAW"
+                        android:textAppearance="@style/inter_medium"
+                        android:lineSpacingExtra="7sp"
+                        android:gravity="center_vertical"
+                        />
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+    <TextView
+        android:id="@+id/attraction_"
+        android:layout_width="271dp"
+        android:layout_height="19dp"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/main1_tickets_"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="17dp"
+
+        android:gravity="top"
+        android:text="@string/attraction_recommend"
+        android:textAppearance="@style/Recommend_font" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="381dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/attraction_"
+        android:layout_marginTop="10dp"
+        android:clipToPadding="false"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        android:scrollbars="horizontal" />
+
+    <!-- Auto layout, variables, and unit scale are not yet supported -->
+    <TextView
+        android:id="@+id/hotels_reco_text"
+        android:layout_width="249dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="17dp"
+        android:layout_below="@+id/recycler_view"
+        android:layout_marginTop="10dp"
+        android:gravity="top"
+        android:text="@string/hotels_reco"
+        android:textAppearance="@style/Recommend_font"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/see_all_hotels"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/recycler_view"
+        android:layout_marginTop="12dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="17dp"
+        android:text="@string/see_all"
+        android:textAppearance="@style/inter_medium"
+        android:textSize="14sp"
+        android:textColor="#4C76EB"/>
+
+    <RelativeLayout
+        android:id="@+id/rectangle_8"
+        android:layout_width="375dp"
+        android:layout_height="105dp"
+        android:layout_below="@+id/hotels_reco_text"
+        android:layout_marginTop="7dp"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/main1_hotel_recommend_card"
+        android:elevation="13dp"
+        android:clipToOutline="true">
+        <ImageView
+            android:id="@+id/attraction_image"
+            android:layout_width="96dp"
+            android:layout_height="123dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="0dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/main1_hotel_1" />
+        <TextView
+            android:id="@+id/swiss_belho"
+            android:layout_width="244dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="106dp"
+            android:layout_marginTop="13dp"
+            android:text="@string/swiss_belho"
+            android:textSize="16sp"
+            android:textColor="#4c76EB"
+            android:textAppearance="@style/inter_medium"
+            android:gravity="top"
+            />
+
+        <TextView
+            android:id="@+id/jl_sunset_r"
+            android:layout_width="202dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="106dp"
+            android:layout_below="@+id/swiss_belho"
+            android:layout_marginTop="0dp"
+            android:text="@string/jl_sunset_r"
+            android:textSize="9sp"
+            android:textColor="#6C757D"
+            android:textAppearance="@style/inter_medium"
+            android:gravity="top"
+            />
+
+        <ImageView
+            android:id="@+id/hotel_star_icon"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_below="@+id/jl_sunset_r"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="106dp"
+            android:background="@drawable/material_symbols_star"
+            />
+        <TextView
+            android:id="@+id/star_hotel"
+            android:layout_width="73dp"
+            android:layout_height="15dp"
+            android:layout_toEndOf="@+id/hotel_star_icon"
+            android:layout_marginStart="2dp"
+            android:layout_below="@+id/jl_sunset_r"
+            android:layout_marginTop="5dp"
+            android:text="@string/star_hotel"
+            android:textSize="12sp"
+            android:textColor="#6C757D"
+            android:textAppearance="@style/inter_medium"
+            android:gravity="top"
+            />
+        <TextView
+            android:id="@+id/night"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="10dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="10dp"
+            android:text="@string/night"
+            android:textSize="12sp"
+            android:textColor="#4C76EB"
+            android:textAppearance="@style/inter_medium"
+            android:gravity="top"
+            />
+    </RelativeLayout>
+
+
+</RelativeLayout>
