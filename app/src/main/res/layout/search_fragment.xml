@@ -3,10 +3,43 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!-- Fragment 容器 -->
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/fragment_container"
+    <RelativeLayout
+        android:id="@+id/main_head"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="270dp"
+        android:background="@drawable/main_head">
+
+        <LinearLayout
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="60dp"
+            android:orientation="horizontal"
+            android:padding="8dp">
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/search_background">
+                <ImageView
+                    android:id="@+id/search_icon"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="6dp"
+                    android:background="@drawable/search_icon"
+                    />
+                <EditText
+                    android:id="@+id/search_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@+id/search_icon"
+                    android:hint="Input"
+                    android:inputType="text"
+                    android:background="null"
+                    android:padding="8dp">
+                </EditText>
+            </RelativeLayout>
+        </LinearLayout>
+    </RelativeLayout>
 
 </RelativeLayout>
