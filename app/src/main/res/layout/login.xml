@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context="com.example.registernewuser.LoginActivity">
 
     <!-- Vertical Centering Guideline -->
     <androidx.constraintlayout.widget.Guideline
@@ -16,16 +16,20 @@
         android:orientation="horizontal" />
 
     <!-- Singapore image -->
+    <!-- Welcome Text -->
+
+    <!-- Description Text -->
     <ImageView
         android:id="@+id/topImage"
         android:layout_width="match_parent"
         android:layout_height="210dp"
         android:scaleType="centerCrop"
         android:src="@drawable/gradient_overlay"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-    <!-- Welcome Text -->
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/welcomeText"
         android:layout_width="wrap_content"
@@ -34,11 +38,11 @@
         android:textColor="#000"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintTop_toTopOf="@id/verticalCenterGuideline"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toTopOf="@id/verticalCenterGuideline" />
 
-    <!-- Description Text -->
     <TextView
         android:id="@+id/descriptionText"
         android:layout_width="wrap_content"
@@ -190,6 +194,7 @@
         android:layout_height="48dp"
         android:text="Login"
         android:background="@drawable/rounded_button"
+        app:backgroundTint="#4D63F2"
         android:textColor="#FFFFFF"
         android:textSize="16sp"
         app:layout_constraintTop_toBottomOf="@id/rememberForgetLayout"

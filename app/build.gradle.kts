@@ -7,6 +7,7 @@ android {
     namespace = "com.example.registernewuser"
     compileSdk = 35
 
+
     defaultConfig {
         applicationId = "com.example.registernewuser"
         minSdk = 29
@@ -17,6 +18,9 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    buildFeatures {
+        viewBinding = true
+    }
     buildTypes {
         release {
             isMinifyEnabled = false
