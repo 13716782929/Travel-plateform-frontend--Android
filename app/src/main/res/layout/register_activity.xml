@@ -32,7 +32,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Login"
-            app:backgroundTint="#4D63F2"
+            app:backgroundTint="#D3E3FE"
             android:textColor="#FFFFFF" />
 
         <com.google.android.material.button.MaterialButton
@@ -40,7 +40,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Register"
-            app:backgroundTint="#D3E3FE"
+            app:backgroundTint="#4D63F2"
             android:textColor="#4D63F2" />
     </com.google.android.material.button.MaterialButtonToggleGroup>
 
@@ -142,6 +142,7 @@
         android:text="Register"
         android:layout_marginTop="16dp"
         android:background="@drawable/rounded_button_selected"
+        app:backgroundTint="#4D63F2"
         android:padding="12dp" />
 
     <!-- Terms and Privacy -->
