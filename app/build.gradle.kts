@@ -7,6 +7,10 @@ android {
     namespace = "com.example.registeruser"
     compileSdk = 35
 
+    buildFeatures {
+        viewBinding = true
+    }
+
     defaultConfig {
         applicationId = "com.example.registeruser"
         minSdk = 29

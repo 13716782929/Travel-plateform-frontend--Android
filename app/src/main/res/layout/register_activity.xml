@@ -97,6 +97,7 @@
 
     <!-- Username -->
     <EditText
+        android:id="@+id/usernameField"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Create your username"
@@ -106,6 +107,7 @@
 
     <!-- Email Address -->
     <EditText
+        android:id="@+id/emailField"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Enter your Email Address"
@@ -116,6 +118,7 @@
 
     <!-- Password -->
     <EditText
+        android:id="@+id/passwordField"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Enter your Password"
@@ -126,6 +129,7 @@
 
     <!-- Confirm Password -->
     <EditText
+        android:id="@+id/confirmPasswordField"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Confirm your Password"
