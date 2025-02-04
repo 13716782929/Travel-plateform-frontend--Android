@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:text="Login"
             app:backgroundTint="#D3E3FE"
-            android:textColor="#FFFFFF" />
+            android:textColor="#4D63F2" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/registerToggle"
@@ -41,7 +41,7 @@
             android:layout_height="wrap_content"
             android:text="Register"
             app:backgroundTint="#4D63F2"
-            android:textColor="#4D63F2" />
+            android:textColor="#FFFFFF" />
     </com.google.android.material.button.MaterialButtonToggleGroup>
 
 
