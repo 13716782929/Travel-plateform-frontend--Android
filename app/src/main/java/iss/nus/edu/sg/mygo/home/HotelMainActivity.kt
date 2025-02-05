@@ -10,11 +10,11 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import iss.nus.edu.sg.mygo.R
 
-class MainActivity : AppCompatActivity() {
+class HotelMainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_hotel_main)
 
         // 处理窗口边距
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.container_hotel)) { v, insets ->
@@ -36,8 +36,8 @@ class MainActivity : AppCompatActivity() {
             val nights = nightsInput.text.toString()
             val priceFilter = priceFilterInput.text.toString()
 
-            // 创建 Intent 传递数据到 SearchActivity
-            val intent = Intent(this, SearchActivity::class.java).apply {
+            // 创建 Intent 传递数据到 HotelSearchActivity
+            val intent = Intent(this, HotelSearchActivity::class.java).apply {
                 putExtra("destination", destination)
                 putExtra("checkInDate", checkInDate)
                 putExtra("nights", nights)
@@ -46,20 +46,20 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        // 监听 container_frame（Explore Aspen）点击事件
+        // 监听 hotel_container_frame（Explore Aspen）点击事件
         findViewById<LinearLayout>(R.id.container_frame).setOnClickListener {
             val intent = Intent(this, HotelDetailActivity::class.java).apply {
                 putExtra("hotelName", "Explore Aspen")
-                putExtra("hotelImage", R.drawable.image_rectangle)
+                putExtra("hotelImage", R.drawable.hotel_image_rectangle)
             }
             startActivity(intent)
         }
 
-        // 监听 container_frame4（Luxurious Aspen）点击事件
+        // 监听 hotel_container_frame4（Luxurious Aspen）点击事件
         findViewById<LinearLayout>(R.id.container_frame4).setOnClickListener {
             val intent = Intent(this, HotelDetailActivity::class.java).apply {
                 putExtra("hotelName", "Luxurious Aspen")
-                putExtra("hotelImage", R.drawable.image_rectangle1)
+                putExtra("hotelImage", R.drawable.hotel_image_rectangle1)
             }
             startActivity(intent)
         }

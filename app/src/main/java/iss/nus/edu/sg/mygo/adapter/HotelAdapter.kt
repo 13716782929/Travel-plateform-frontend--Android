@@ -62,12 +62,12 @@ class HotelAdapter(
         if (imageUrl.isNotEmpty()) {
             Glide.with(holder.itemView.context)
                 .load(glideUrl)
-                .error(R.drawable.image_rectangle1) // 加载失败显示默认图
+                .error(R.drawable.hotel_image_rectangle1) // 加载失败显示默认图
                 .into(holder.ImageView)
         } else if (hotel.imageResId != null) {
             holder.ImageView.setImageResource(hotel.imageResId)
         } else {
-            holder.ImageView.setImageResource(R.drawable.image_rectangle1) // 再次兜底
+            holder.ImageView.setImageResource(R.drawable.hotel_image_rectangle1) // 再次兜底
         }
 
 //        // 加载图片

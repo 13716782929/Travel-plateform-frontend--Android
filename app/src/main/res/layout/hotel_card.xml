@@ -15,7 +15,7 @@
         android:layout_width="380dp"
         android:layout_height="105dp"
         android:layout_gravity="left"
-        android:background="@drawable/image_rectangle"
+        android:background="@drawable/hotel_image_rectangle"
         android:scaleType="centerCrop" />
 
     <TextView
@@ -39,7 +39,7 @@
         android:layout_width="94.47dp"
         android:layout_height="105dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/container_mask_group" />
+        android:src="@drawable/hotel_container_mask_group" />
 
     <TextView
         android:id="@+id/text_hotel_name"
@@ -67,7 +67,7 @@
         android:layout_marginBottom="41dp"
         android:layout_gravity="left"
         android:scaleType="centerInside"
-        android:src="@drawable/image_star" />
+        android:src="@drawable/hotel_image_star" />
 
     <TextView
         android:id="@+id/text_star_rating"

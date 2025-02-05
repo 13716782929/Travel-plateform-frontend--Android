@@ -1,4 +1,4 @@
-<!-- res/drawable/container_border.xml -->
+<!-- res/drawable/hotel_container_border.xml -->
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
     <solid android:color="@android:color/white" /> <!-- 背景颜色 -->
     <stroke android:width="2dp" android:color="@android:color/black" /> <!-- 黑色边框 -->

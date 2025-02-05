@@ -6,7 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/container_hotel"
+    android:background="@drawable/hotel_container_hotel"
     android:fillViewport="true">
 
     <ScrollView
@@ -34,7 +34,7 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="70dp"
                 android:layout_gravity="top|left"
-                android:src="@drawable/container_arrow"
+                android:src="@drawable/hotel_container_arrow"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:scaleType="centerInside"/>
 
@@ -91,7 +91,7 @@
                         android:layout_height="16dp"
                         android:layout_gravity="top|left"
                         android:scaleType="centerInside"
-                        android:src="@drawable/img_review_star" />
+                        android:src="@drawable/hotel_img_review_star" />
 
                     <TextView
                         android:id="@+id/txt_review_count"
@@ -149,7 +149,7 @@
             android:layout_height="56dp"
             android:layout_marginLeft="20dp"
             android:layout_marginBottom="25dp"
-            android:background="@drawable/container_book"
+            android:background="@drawable/hotel_container_book"
             android:layout_alignParentBottom="true">
 
             <RelativeLayout
@@ -161,11 +161,13 @@
 
                 <TextView
                     android:id="@+id/txt_price"
-                    android:layout_width="32.12dp"
-                    android:layout_height="16dp"
+                    android:layout_width="92.12dp"
+                    android:layout_height="36dp"
+                    android:layout_marginTop="-3dp"
                     android:text="Price"
                     android:textColor="#FF232323"
-                    android:textSize="12dp" />
+                    android:textSize="18dp" />
+
 
                 <TextView
                     android:id="@+id/txt_price_value"
@@ -181,7 +183,7 @@
                 android:id="@+id/container_cta"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/container_cta"
+                android:background="@drawable/hotel_container_cta"
                 android:gravity="center"
                 android:layout_marginLeft="170dp"
                 android:orientation="horizontal"
@@ -192,7 +194,7 @@
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:scaleType="centerInside"
-                    android:src="@drawable/img_cta_arrow_right" />
+                    android:src="@drawable/hotel_img_cta_arrow_right" />
 
                 <TextView
                     android:id="@+id/txt_cta_book_now"
@@ -213,7 +215,7 @@
             android:layout_marginLeft="343dp"
             android:layout_marginTop="353dp"
             android:scaleType="centerInside"
-            android:src="@drawable/img_heart_icon" />
+            android:src="@drawable/hotel_img_heart_icon" />
 
 
 

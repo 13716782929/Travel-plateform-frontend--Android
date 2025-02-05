@@ -7,7 +7,7 @@
     android:id="@+id/container_hoteldetail"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/container_hotel">
+    android:background="@drawable/hotel_container_hotel">
 
     <TextView
         android:id="@+id/textView"
@@ -19,7 +19,7 @@
         android:id="@+id/container_main_head"
         android:layout_width="411dp"
         android:layout_height="273dp"
-        android:background="@drawable/container_main_head">
+        android:background="@drawable/hotel_container_main_head">
 
         <ImageView
             android:id="@+id/image_main_head"
@@ -29,7 +29,7 @@
             android:layout_marginLeft="232dp"
             android:layout_marginTop="-127dp"
             android:scaleType="centerInside"
-            android:src="@drawable/image_main_head" />
+            android:src="@drawable/hotel_image_main_head" />
 
         <ImageView
             android:id="@+id/image_main_head1"
@@ -39,7 +39,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginTop="-104dp"
             android:scaleType="centerInside"
-            android:src="@drawable/image_main_head1" />
+            android:src="@drawable/hotel_image_main_head1" />
 
 
         <TextView
@@ -68,7 +68,7 @@
             android:layout_marginTop="51dp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:scaleType="centerInside"
-            android:src="@drawable/container_arrow" />
+            android:src="@drawable/hotel_container_arrow" />
 
 
         <RelativeLayout
@@ -79,7 +79,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginTop="109.2dp"
             android:layout_marginBottom="120.12dp"
-            android:background="@drawable/container_search_bar">
+            android:background="@drawable/hotel_container_search_bar">
 
             <ImageButton
                 android:id="@+id/image_search_rectangle"
@@ -88,7 +88,7 @@
                 android:layout_marginLeft="20dp"
                 android:layout_gravity="center_horizontal"
                 android:alpha="0.10000000149011612"
-                android:background="@drawable/image_search_rectangle"
+                android:background="@drawable/hotel_image_search_rectangle"
                 android:scaleType="centerInside" />
 
             <ImageView
@@ -99,7 +99,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="11dp"
                 android:scaleType="centerInside"
-                android:src="@drawable/image_search_icon" />
+                android:src="@drawable/hotel_image_search_icon" />
 
             <EditText
                 android:id="@+id/text_search_hotels"
@@ -125,7 +125,7 @@
             android:layout_height="46dp"
             android:layout_gravity="top|left"
             android:layout_marginTop="172dp"
-            android:background="@drawable/container_edit_search"
+            android:background="@drawable/hotel_container_edit_search"
             android:gravity="left|top"
             android:orientation="vertical">
 
@@ -171,7 +171,7 @@
                                 android:layout_marginRight="2dp"
                                 android:layout_marginBottom="2dp"
                                 android:scaleType="centerInside"
-                                android:src="@drawable/container_checkin_icon" />
+                                android:src="@drawable/hotel_container_checkin_icon" />
                         </LinearLayout>
 
                         <TextView
@@ -194,7 +194,7 @@
                         android:layout_height="match_parent"
                         android:layout_marginTop="8dp"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/image_checkin_divider" />
+                        android:src="@drawable/hotel_image_checkin_divider" />
                 </LinearLayout>
                 <!-- I168:1625;76:21151:space-view0 Content_space_view0 space-view -->
                 <View
@@ -234,7 +234,7 @@
                                 android:layout_marginRight="2dp"
                                 android:layout_marginBottom="2dp"
                                 android:scaleType="centerInside"
-                                android:src="@drawable/container_duration_icon" />
+                                android:src="@drawable/hotel_container_duration_icon" />
                         </LinearLayout>
 
                         <TextView
@@ -257,7 +257,7 @@
                         android:layout_height="0dp"
                         android:layout_marginTop="8dp"
                         android:scaleType="centerInside"
-                        android:src="@drawable/image_duration_divider" />
+                        android:src="@drawable/hotel_image_duration_divider" />
                 </LinearLayout>
                 <!-- I168:1625;76:21151:space-view1 Content_space_view1 space-view -->
 
@@ -271,7 +271,7 @@
                     android:id="@+id/container_button_reverse"
                     android:layout_width="wrap_content"
                     android:layout_height="24dp"
-                    android:background="@drawable/container_button_reverse"
+                    android:background="@drawable/hotel_container_button_reverse"
                     android:gravity="center"
                     android:orientation="horizontal"
                     android:paddingLeft="4dp"
@@ -288,7 +288,7 @@
                         android:layout_marginRight="1.33dp"
                         android:layout_marginBottom="1.33dp"
                         android:scaleType="centerInside"
-                        android:src="@drawable/container_button_icon" />
+                        android:src="@drawable/hotel_container_button_icon" />
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
@@ -299,7 +299,7 @@
             android:layout_height="56dp"
             android:layout_gravity="top|left"
             android:layout_marginTop="217dp"
-            android:background="@drawable/container_filter_sort"
+            android:background="@drawable/hotel_container_filter_sort"
             android:gravity="left|top"
             android:orientation="horizontal"
             android:paddingLeft="16dp"
@@ -311,7 +311,7 @@
                 android:id="@+id/container_chip"
                 android:layout_width="wrap_content"
                 android:layout_height="32dp"
-                android:background="@drawable/container_chip"
+                android:background="@drawable/hotel_container_chip"
                 android:clipToPadding="false"
                 android:gravity="left|center_vertical"
                 android:orientation="horizontal"
@@ -329,7 +329,7 @@
                     android:layout_marginRight="1.67dp"
                     android:layout_marginBottom="1.67dp"
                     android:scaleType="centerInside"
-                    android:src="@drawable/container_chip_icon" />
+                    android:src="@drawable/hotel_container_chip_icon" />
 
                 <TextView
                     android:id="@+id/container_chip_content"
@@ -354,7 +354,7 @@
                 android:id="@+id/container_chip1"
                 android:layout_width="wrap_content"
                 android:layout_height="32dp"
-                android:background="@drawable/container_chip1"
+                android:background="@drawable/hotel_container_chip1"
                 android:clipToPadding="false"
                 android:gravity="left|center_vertical"
                 android:orientation="horizontal"
@@ -372,7 +372,7 @@
                     android:layout_marginRight="1.67dp"
                     android:layout_marginBottom="1.67dp"
                     android:scaleType="centerInside"
-                    android:src="@drawable/container_chip_action_sort" />
+                    android:src="@drawable/hotel_container_chip_action_sort" />
 
                 <TextView
                     android:id="@+id/container_chip_content2"

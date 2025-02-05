@@ -4,16 +4,14 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.EditText
 import android.widget.ImageButton
-import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import iss.nus.edu.sg.mygo.R
 import iss.nus.edu.sg.mygo.adapter.HotelAdapter
-import iss.nus.edu.sg.mygo.adapter.SpaceItemDecoration
+import iss.nus.edu.sg.mygo.adapter.HotelSpaceItemDecoration
 import iss.nus.edu.sg.mygo.api.AccommodationApiService
 import iss.nus.edu.sg.mygo.models.AccommodationImageResponse
 import iss.nus.edu.sg.mygo.models.AccommodationResponse
@@ -24,7 +22,7 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class SearchActivity : AppCompatActivity() {
+class HotelSearchActivity : AppCompatActivity() {
 
     private lateinit var hotelAdapter: HotelAdapter
     private lateinit var recyclerViewHotels: RecyclerView
@@ -33,7 +31,7 @@ class SearchActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_search)
+        setContentView(R.layout.activity_hotel_search)
 
         // 获取 UI 组件
         val checkInDateTextView = findViewById<TextView>(R.id.text_check_in_date)
@@ -57,7 +55,7 @@ class SearchActivity : AppCompatActivity() {
         // 初始化 RecyclerView
         recyclerViewHotels = findViewById(R.id.recyclerView_hotels)
         recyclerViewHotels.layoutManager = LinearLayoutManager(this)
-        recyclerViewHotels.addItemDecoration(SpaceItemDecoration(16))
+        recyclerViewHotels.addItemDecoration(HotelSpaceItemDecoration(16))
         hotelAdapter = HotelAdapter(emptyList()) // 初始为空列表
         recyclerViewHotels.adapter = hotelAdapter
 
@@ -135,12 +133,12 @@ class SearchActivity : AppCompatActivity() {
                         }
                     }
                 } else {
-                    Toast.makeText(this@SearchActivity, "搜索失败，请重试", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@HotelSearchActivity, "搜索失败，请重试", Toast.LENGTH_SHORT).show()
                 }
             }
 
             override fun onFailure(call: Call<AccommodationResponse>, t: Throwable) {
-                Toast.makeText(this@SearchActivity, "网络错误：" + t.message, Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@HotelSearchActivity, "网络错误：" + t.message, Toast.LENGTH_SHORT).show()
             }
         })
     }

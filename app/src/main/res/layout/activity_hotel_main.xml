@@ -7,14 +7,14 @@
     android:id="@+id/container_hotel"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/container_hotel">
+    android:background="@drawable/hotel_container_hotel">
 
 
     <RelativeLayout
         android:id="@+id/container_main_head"
         android:layout_width="411dp"
         android:layout_height="250dp"
-        android:background="@drawable/container_main_head">
+        android:background="@drawable/hotel_container_main_head">
 
         <ImageView
             android:id="@+id/image"
@@ -24,7 +24,7 @@
             android:layout_marginTop="-127dp"
             android:layout_gravity="top|left"
             android:scaleType="centerInside"
-            android:src="@drawable/image" />
+            android:src="@drawable/hotel_image" />
 
         <ImageView
             android:id="@+id/image1"
@@ -34,7 +34,7 @@
             android:layout_marginTop="-104dp"
             android:layout_gravity="top|left"
             android:scaleType="centerInside"
-            android:src="@drawable/image1" />
+            android:src="@drawable/hotel_image1" />
 
 
         <TextView
@@ -60,7 +60,7 @@
             android:layout_marginTop="51dp"
             android:layout_gravity="top|left"
             android:scaleType="centerInside"
-            android:src="@drawable/container_arrow" />
+            android:src="@drawable/hotel_container_arrow" />
     </RelativeLayout>
 
     <LinearLayout
@@ -79,7 +79,7 @@
             android:id="@+id/container_section_content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/container_border"
+            android:background="@drawable/hotel_container_border"
             android:gravity="left|top"
             android:orientation="vertical"
             android:paddingBottom="16dp"
@@ -109,7 +109,7 @@
                         android:layout_marginTop="2dp"
                         android:layout_marginBottom="2dp"
                         android:scaleType="centerInside"
-                        android:src="@drawable/drawable_image" />
+                        android:src="@drawable/hotel_drawable_image" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -176,7 +176,7 @@
                         android:id="@+id/container_button_neutral"
                         android:layout_width="wrap_content"
                         android:layout_height="24dp"
-                        android:background="@drawable/container_button_neutral"
+                        android:background="@drawable/hotel_container_button_neutral"
                         android:gravity="center"
                         android:orientation="horizontal"
                         android:paddingBottom="4dp"
@@ -192,7 +192,7 @@
                             android:layout_marginTop="1.33dp"
                             android:layout_marginBottom="1.33dp"
                             android:scaleType="centerInside"
-                            android:src="@drawable/drawable_image_1" />
+                            android:src="@drawable/hotel_drawable_image_1" />
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
@@ -203,7 +203,7 @@
                 android:layout_height="1dp"
                 android:layout_marginTop="8dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/image_divider3" />
+                android:src="@drawable/hotel_image_divider3" />
 
             <LinearLayout
                 android:id="@+id/container_check_duration1"
@@ -229,7 +229,7 @@
                         android:layout_marginTop="2dp"
                         android:layout_marginBottom="2dp"
                         android:scaleType="centerInside"
-                        android:src="@drawable/drawable_image_2" />
+                        android:src="@drawable/hotel_drawable_image_2" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -278,7 +278,7 @@
                         android:id="@+id/container_wrapper5"
                         android:layout_width="130dp"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/container_wrapper5"
+                        android:background="@drawable/hotel_container_wrapper5"
                         android:gravity="left|top"
                         android:orientation="vertical"
                         android:paddingTop="8dp">
@@ -368,7 +368,7 @@
                         android:layout_marginTop="2dp"
                         android:layout_marginBottom="2dp"
                         android:scaleType="centerInside"
-                        android:src="@drawable/drawable_image_3" />
+                        android:src="@drawable/hotel_drawable_image_3" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -407,7 +407,7 @@
                         android:layout_marginTop="2dp"
                         android:layout_marginBottom="2dp"
                         android:scaleType="centerInside"
-                        android:src="@drawable/drawable_image_4" />
+                        android:src="@drawable/hotel_drawable_image_4" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -459,14 +459,14 @@
                 android:layout_height="match_parent"
                 android:layout_marginTop="8dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/image_divider3" />
+                android:src="@drawable/hotel_image_divider3" />
 
             <LinearLayout
                 android:id="@+id/button_search"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:layout_marginTop="16dp"
-                android:background="@drawable/container_button_brand"
+                android:background="@drawable/hotel_container_button_brand"
                 android:gravity="center"
                 android:orientation="horizontal"
                 android:padding="8dp"
@@ -492,7 +492,7 @@
         android:layout_marginLeft="24dp"
         android:layout_marginTop="601dp"
         android:layout_gravity="top|left"
-        android:background="@drawable/container_recommended">
+        android:background="@drawable/hotel_container_recommended">
 
         <TextView
             android:id="@+id/text_recommended"
@@ -513,7 +513,7 @@
             android:layout_height="match_parent"
             android:layout_marginTop="34dp"
             android:layout_gravity="left"
-            android:background="@drawable/container_frame"
+            android:background="@drawable/hotel_container_frame"
             android:gravity="left|top"
             android:orientation="vertical"
             android:paddingBottom="4dp"
@@ -525,14 +525,14 @@
                 android:id="@+id/container_group1"
                 android:layout_width="166dp"
                 android:layout_height="96dp"
-                android:background="@drawable/container_group1">
+                android:background="@drawable/hotel_container_group1">
 
                 <ImageView
                     android:id="@+id/image_rectangle"
                     android:layout_width="match_parent"
                     android:layout_height="91dp"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/image_rectangle1" />
+                    android:src="@drawable/hotel_image_rectangle1" />
             </RelativeLayout>
 
             <TextView
@@ -567,7 +567,7 @@
                     android:layout_width="12dp"
                     android:layout_height="12dp"
                     android:scaleType="centerInside"
-                    android:src="@drawable/image_swm_trending_up" />
+                    android:src="@drawable/hotel_image_swm_trending_up" />
 
                 <TextView
                     android:id="@+id/text_hot_deal"
@@ -592,7 +592,7 @@
             android:layout_height="match_parent"
             android:layout_marginLeft="190dp"
             android:layout_marginTop="34dp"
-            android:background="@drawable/container_frame4"
+            android:background="@drawable/hotel_container_frame4"
             android:gravity="left|top"
             android:orientation="vertical"
             android:paddingBottom="4dp"
@@ -604,14 +604,14 @@
                 android:id="@+id/container_group2"
                 android:layout_width="166dp"
                 android:layout_height="96dp"
-                android:background="@drawable/container_group2">
+                android:background="@drawable/hotel_container_group2">
 
                 <ImageView
                     android:id="@+id/image_rectangle1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/image_rectangle1" />
+                    android:src="@drawable/hotel_image_rectangle1" />
             </RelativeLayout>
 
             <TextView
@@ -646,7 +646,7 @@
                     android:layout_width="12dp"
                     android:layout_height="12dp"
                     android:scaleType="centerInside"
-                    android:src="@drawable/image_swm_trending_up1" />
+                    android:src="@drawable/hotel_image_swm_trending_up1" />
 
                 <TextView
                     android:id="@+id/text_hot_deal1"

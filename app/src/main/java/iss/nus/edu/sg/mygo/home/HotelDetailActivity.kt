@@ -57,7 +57,7 @@ class HotelDetailActivity : AppCompatActivity() {
         // 设置返回按钮的点击事件
         val backButton: ImageButton = findViewById(R.id.button_back)
         backButton.setOnClickListener {
-            finish()  // 关闭当前 Activity，返回到 MainActivity
+            finish()  // 关闭当前 Activity，返回到 HotelMainActivity
         }
 
         // 获取从 Intent 传递的 UUID
@@ -148,7 +148,7 @@ class HotelDetailActivity : AppCompatActivity() {
                 runOnUiThread {
                     Glide.with(this@HotelDetailActivity)
                         .load(imageUrl)
-                        .placeholder(R.drawable.container_product_image)
+                        .placeholder(R.drawable.hotel_container_product_image)
                         .into(hotelImageView)
                 }
             }
@@ -156,7 +156,7 @@ class HotelDetailActivity : AppCompatActivity() {
             override fun onFailure(call: Call<AccommodationImageResponse>, t: Throwable) {
                 Toast.makeText(
                     this@HotelDetailActivity,
-                    "Failed to load hotel image",
+                    "Failed to load hotel hotel_image",
                     Toast.LENGTH_SHORT
                 ).show()
             }
