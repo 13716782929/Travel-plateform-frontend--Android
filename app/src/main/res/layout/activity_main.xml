@@ -1,40 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<FrameLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/container_hotel"
     android:layout_width="match_parent"
-    android:layout_height="823dp"
+    android:layout_height="match_parent"
     android:background="@drawable/container_hotel">
 
-    <LinearLayout
-        android:id="@+id/container_additional_info"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:clipToPadding="false"
-        android:gravity="left|top"
-        android:orientation="horizontal">
 
-        <EditText
-            android:id="@+id/edit_text_destination"
-            android:layout_width="wrap_content"
-            android:layout_height="21dp"
-            android:background="@android:color/transparent"
-            android:gravity="start|center_vertical"
-            android:includeFontPadding="false"
-            android:maxLines="1"
-            android:textColor="#FF27272A"
-            android:textSize="14sp" />
-    </LinearLayout>
-
-    <FrameLayout
+    <RelativeLayout
         android:id="@+id/container_main_head"
         android:layout_width="411dp"
         android:layout_height="250dp"
-        android:layout_gravity="top|left"
         android:background="@drawable/container_main_head">
 
         <ImageView
@@ -57,15 +36,6 @@
             android:scaleType="centerInside"
             android:src="@drawable/image1" />
 
-        <FrameLayout
-            android:id="@+id/container_status_bar"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="top|left">
-
-
-
-        </FrameLayout>
 
         <TextView
             android:id="@+id/container_group"
@@ -76,7 +46,6 @@
             android:layout_marginBottom="-4dp"
             android:layout_gravity="top|left"
             android:gravity="center_horizontal|center_vertical"
-            android:includeFontPadding="false"
             android:maxLines="1"
 
             android:text="Hotels"
@@ -92,7 +61,7 @@
             android:layout_gravity="top|left"
             android:scaleType="centerInside"
             android:src="@drawable/container_arrow" />
-    </FrameLayout>
+    </RelativeLayout>
 
     <LinearLayout
         android:id="@+id/container_section"
@@ -110,7 +79,7 @@
             android:id="@+id/container_section_content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/container_section_content"
+            android:background="@drawable/container_border"
             android:gravity="left|top"
             android:orientation="vertical"
             android:paddingBottom="16dp"
@@ -516,7 +485,7 @@
         </LinearLayout>
     </LinearLayout>
 
-    <FrameLayout
+    <RelativeLayout
         android:id="@+id/container_recommended"
         android:layout_width="364dp"
         android:layout_height="170dp"
@@ -552,7 +521,7 @@
             android:paddingRight="4dp"
             android:paddingTop="4dp">
 
-            <FrameLayout
+            <RelativeLayout
                 android:id="@+id/container_group1"
                 android:layout_width="166dp"
                 android:layout_height="96dp"
@@ -563,8 +532,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="91dp"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/image_rectangle" />
-            </FrameLayout>
+                    android:src="@drawable/image_rectangle1" />
+            </RelativeLayout>
 
             <TextView
                 android:id="@+id/container_frame2"
@@ -631,7 +600,7 @@
             android:paddingRight="4dp"
             android:paddingTop="4dp">
 
-            <FrameLayout
+            <RelativeLayout
                 android:id="@+id/container_group2"
                 android:layout_width="166dp"
                 android:layout_height="96dp"
@@ -643,7 +612,7 @@
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop"
                     android:src="@drawable/image_rectangle1" />
-            </FrameLayout>
+            </RelativeLayout>
 
             <TextView
                 android:id="@+id/container_frame6"
@@ -695,7 +664,7 @@
                     android:textSize="10dp" />
             </LinearLayout>
         </LinearLayout>
-    </FrameLayout>
+    </RelativeLayout>
 
     <LinearLayout
         android:id="@+id/container_rating_display"
@@ -707,78 +676,78 @@
         android:gravity="left|top"
         android:orientation="horizontal">
 
-        <FrameLayout
+        <RelativeLayout
             android:id="@+id/container_rating_unit"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1">
 
-            <FrameLayout
+            <RelativeLayout
                 android:id="@+id/image_star"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-            </FrameLayout>
-        </FrameLayout>
+            </RelativeLayout>
+        </RelativeLayout>
 
-        <FrameLayout
+        <RelativeLayout
             android:id="@+id/container_rating_unit1"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1">
 
-            <FrameLayout
+            <RelativeLayout
                 android:id="@+id/image_star1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
 
-            </FrameLayout>
-        </FrameLayout>
+            </RelativeLayout>
+        </RelativeLayout>
 
-        <FrameLayout
+        <RelativeLayout
             android:id="@+id/container_rating_unit2"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1">
 
-            <FrameLayout
+            <RelativeLayout
                 android:id="@+id/image_star2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
 
-            </FrameLayout>
-        </FrameLayout>
+            </RelativeLayout>
+        </RelativeLayout>
 
-        <FrameLayout
+        <RelativeLayout
             android:id="@+id/container_rating_unit3"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1">
 
-            <FrameLayout
+            <RelativeLayout
                 android:id="@+id/image_star3"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-            </FrameLayout>
-        </FrameLayout>
+            </RelativeLayout>
+        </RelativeLayout>
 
-        <FrameLayout
+        <RelativeLayout
             android:id="@+id/container_rating_unit4"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1">
 
-            <FrameLayout
+            <RelativeLayout
                 android:id="@+id/image_star4"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
 
-            </FrameLayout>
-        </FrameLayout>
+            </RelativeLayout>
+        </RelativeLayout>
     </LinearLayout>
 
     <LinearLayout
@@ -791,87 +760,65 @@
         android:gravity="left|top"
         android:orientation="horizontal">
 
-        <FrameLayout
+        <RelativeLayout
             android:id="@+id/container_rating_unit5"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1">
 
-            <FrameLayout
+            <RelativeLayout
                 android:id="@+id/image_star5"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
 
-            </FrameLayout>
-        </FrameLayout>
+            </RelativeLayout>
+        </RelativeLayout>
 
-        <FrameLayout
+        <RelativeLayout
             android:id="@+id/container_rating_unit6"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1">
 
-            <FrameLayout
+            <RelativeLayout
                 android:id="@+id/image_star6"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
 
-            </FrameLayout>
-        </FrameLayout>
+            </RelativeLayout>
+        </RelativeLayout>
 
-        <FrameLayout
+        <RelativeLayout
             android:id="@+id/container_rating_unit7"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1">
 
-            <FrameLayout
+            <RelativeLayout
                 android:id="@+id/image_star7"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
 
-            </FrameLayout>
-        </FrameLayout>
+            </RelativeLayout>
+        </RelativeLayout>
 
-        <FrameLayout
+        <RelativeLayout
             android:id="@+id/container_rating_unit8"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1">
 
-            <FrameLayout
+            <RelativeLayout
                 android:id="@+id/image_star8"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
 
-            </FrameLayout>
-        </FrameLayout>
+            </RelativeLayout>
+        </RelativeLayout>
 
-        <FrameLayout
-            android:id="@+id/container_rating_unit9"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
-
-            <FrameLayout
-                android:id="@+id/image_star9"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <ImageView
-                    android:layout_width="13.33dp"
-                    android:layout_height="13.33dp"
-                    android:layout_marginLeft="1.33dp"
-                    android:layout_marginRight="1.33dp"
-                    android:layout_marginTop="1.33dp"
-                    android:layout_marginBottom="1.34dp"
-                    android:scaleType="centerInside"
-                    android:src="@drawable/drawable_image_14" />
-            </FrameLayout>
-        </FrameLayout>
     </LinearLayout>
-</FrameLayout>
+</RelativeLayout>

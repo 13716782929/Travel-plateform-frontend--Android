@@ -1,7 +1,6 @@
-package iss.nus.edu.sg.mygo
+package iss.nus.edu.sg.mygo.home
 
 import android.os.Bundle
-import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
@@ -9,6 +8,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import iss.nus.edu.sg.mygo.R
 
 class HotelDetailActivity : AppCompatActivity() {
 

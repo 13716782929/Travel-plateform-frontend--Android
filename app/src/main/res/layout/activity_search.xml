@@ -1,28 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<FrameLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/container_hoteldetail"
     android:layout_width="match_parent"
-    android:layout_height="823dp"
+    android:layout_height="match_parent"
     android:background="@drawable/container_hotel">
 
-    <FrameLayout
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="AppCompatImageView" />
+
+    <RelativeLayout
         android:id="@+id/container_main_head"
         android:layout_width="411dp"
         android:layout_height="273dp"
-        android:layout_gravity="top|left"
         android:background="@drawable/container_main_head">
 
         <ImageView
             android:id="@+id/image_main_head"
             android:layout_width="251.91dp"
             android:layout_height="226.6dp"
+            android:layout_gravity="top|left"
             android:layout_marginLeft="232dp"
             android:layout_marginTop="-127dp"
-            android:layout_gravity="top|left"
             android:scaleType="centerInside"
             android:src="@drawable/image_main_head" />
 
@@ -30,72 +35,21 @@
             android:id="@+id/image_main_head1"
             android:layout_width="185.65dp"
             android:layout_height="166.55dp"
+            android:layout_gravity="top|left"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="-104dp"
-            android:layout_gravity="top|left"
             android:scaleType="centerInside"
             android:src="@drawable/image_main_head1" />
 
-        <FrameLayout
-            android:id="@+id/container_status_bar"
-            android:layout_width="411dp"
-            android:layout_height="48dp"
-            android:layout_gravity="top|left">
-
-            <TextView
-                android:id="@+id/container_time_style"
-                android:layout_width="wrap_content"
-                android:layout_height="20dp"
-                android:layout_marginLeft="21dp"
-                android:layout_marginTop="12dp"
-                android:layout_gravity="top|left"
-                android:gravity="center_horizontal|center_vertical"
-                android:includeFontPadding="false"
-                android:maxLines="1"
-                android:singleLine="true"
-                android:text="09:42"
-                android:textColor="#FFFFFFFF"
-                android:textSize="15dp" />
-
-            <ImageView
-                android:id="@+id/image_cellular_connection"
-                android:layout_width="16.31dp"
-                android:layout_height="10.67dp"
-                android:layout_marginRight="69.48dp"
-                android:layout_marginTop="20dp"
-                android:layout_gravity="top|right"
-                android:scaleType="centerInside"
-                android:src="@drawable/image_cellular_connection" />
-
-            <ImageView
-                android:id="@+id/image_wifi"
-                android:layout_width="14.71dp"
-                android:layout_height="11dp"
-                android:layout_marginRight="49.14dp"
-                android:layout_marginTop="20dp"
-                android:layout_gravity="top|right"
-                android:scaleType="centerInside"
-                android:src="@drawable/image_wifi" />
-
-            <ImageView
-                android:id="@+id/image_battery"
-                android:layout_width="24.33dp"
-                android:layout_height="11.33dp"
-                android:layout_marginRight="18.67dp"
-                android:layout_marginTop="20dp"
-                android:layout_gravity="top|right"
-                android:scaleType="centerInside"
-                android:src="@drawable/image_battery" />
-        </FrameLayout>
 
         <TextView
             android:id="@+id/container_group"
             android:layout_width="wrap_content"
             android:layout_height="30dp"
+            android:layout_gravity="top|left"
             android:layout_marginLeft="165dp"
             android:layout_marginTop="49dp"
             android:layout_marginBottom="-4dp"
-            android:layout_gravity="top|left"
             android:gravity="center_horizontal|center_vertical"
             android:includeFontPadding="false"
             android:maxLines="1"
@@ -109,28 +63,29 @@
             android:id="@+id/button_back"
             android:layout_width="24dp"
             android:layout_height="24dp"
+            android:layout_gravity="top|left"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="51dp"
-            android:layout_gravity="top|left"
-            android:src="@drawable/container_arrow"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:scaleType="centerInside"/>
+            android:scaleType="centerInside"
+            android:src="@drawable/container_arrow" />
 
 
-        <FrameLayout
+        <RelativeLayout
             android:id="@+id/container_search_bar"
             android:layout_width="370dp"
             android:layout_height="43.68dp"
-            android:layout_marginLeft="0.5dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="20dp"
             android:layout_marginTop="109.2dp"
             android:layout_marginBottom="120.12dp"
-            android:layout_gravity="center_horizontal"
             android:background="@drawable/container_search_bar">
 
-            <ImageView
+            <ImageButton
                 android:id="@+id/image_search_rectangle"
                 android:layout_width="370dp"
                 android:layout_height="43.68dp"
+                android:layout_marginLeft="20dp"
                 android:layout_gravity="center_horizontal"
                 android:alpha="0.10000000149011612"
                 android:background="@drawable/image_search_rectangle"
@@ -140,35 +95,36 @@
                 android:id="@+id/image_search_icon"
                 android:layout_width="18dp"
                 android:layout_height="18dp"
+                android:layout_gravity="top|left"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="11dp"
-                android:layout_gravity="top|left"
                 android:scaleType="centerInside"
                 android:src="@drawable/image_search_icon" />
 
             <EditText
                 android:id="@+id/text_search_hotels"
-                android:layout_width="wrap_content"
+                android:layout_width="300dp"
                 android:layout_height="22dp"
+                android:layout_gravity="top|left"
                 android:layout_marginLeft="35dp"
                 android:layout_marginTop="9dp"
-                android:layout_gravity="top|left"
+                android:background="@null"
                 android:gravity="left|center_vertical"
+                android:hint="Hotels"
                 android:includeFontPadding="false"
                 android:maxLines="1"
                 android:singleLine="true"
-                android:hint="Hotels"
                 android:textColor="#FFCCCCCC"
-                android:background="@null"
-                android:textSize="14dp" />
-        </FrameLayout>
+                android:textSize="14dp"
+                android:imeOptions="actionSearch"/>
+        </RelativeLayout>
 
         <LinearLayout
             android:id="@+id/container_edit_search"
             android:layout_width="411dp"
             android:layout_height="46dp"
-            android:layout_marginTop="172dp"
             android:layout_gravity="top|left"
+            android:layout_marginTop="172dp"
             android:background="@drawable/container_edit_search"
             android:gravity="left|top"
             android:orientation="vertical">
@@ -211,8 +167,8 @@
                                 android:layout_width="20dp"
                                 android:layout_height="20dp"
                                 android:layout_marginLeft="2dp"
-                                android:layout_marginRight="2dp"
                                 android:layout_marginTop="2dp"
+                                android:layout_marginRight="2dp"
                                 android:layout_marginBottom="2dp"
                                 android:scaleType="centerInside"
                                 android:src="@drawable/container_checkin_icon" />
@@ -274,8 +230,8 @@
                                 android:layout_width="20dp"
                                 android:layout_height="20dp"
                                 android:layout_marginLeft="2dp"
-                                android:layout_marginRight="2dp"
                                 android:layout_marginTop="2dp"
+                                android:layout_marginRight="2dp"
                                 android:layout_marginBottom="2dp"
                                 android:scaleType="centerInside"
                                 android:src="@drawable/container_duration_icon" />
@@ -318,18 +274,18 @@
                     android:background="@drawable/container_button_reverse"
                     android:gravity="center"
                     android:orientation="horizontal"
-                    android:paddingBottom="4dp"
                     android:paddingLeft="4dp"
+                    android:paddingTop="4dp"
                     android:paddingRight="4dp"
-                    android:paddingTop="4dp">
+                    android:paddingBottom="4dp">
 
                     <ImageView
                         android:id="@+id/container_button_icon"
                         android:layout_width="13.33dp"
                         android:layout_height="13.33dp"
                         android:layout_marginLeft="1.33dp"
-                        android:layout_marginRight="1.33dp"
                         android:layout_marginTop="1.33dp"
+                        android:layout_marginRight="1.33dp"
                         android:layout_marginBottom="1.33dp"
                         android:scaleType="centerInside"
                         android:src="@drawable/container_button_icon" />
@@ -341,15 +297,15 @@
             android:id="@+id/container_filter_sort"
             android:layout_width="411dp"
             android:layout_height="56dp"
-            android:layout_marginTop="217dp"
             android:layout_gravity="top|left"
+            android:layout_marginTop="217dp"
             android:background="@drawable/container_filter_sort"
             android:gravity="left|top"
             android:orientation="horizontal"
-            android:paddingBottom="12dp"
             android:paddingLeft="16dp"
+            android:paddingTop="12dp"
             android:paddingRight="16dp"
-            android:paddingTop="12dp">
+            android:paddingBottom="12dp">
 
             <LinearLayout
                 android:id="@+id/container_chip"
@@ -359,18 +315,18 @@
                 android:clipToPadding="false"
                 android:gravity="left|center_vertical"
                 android:orientation="horizontal"
-                android:paddingBottom="4dp"
                 android:paddingLeft="8dp"
+                android:paddingTop="4dp"
                 android:paddingRight="8dp"
-                android:paddingTop="4dp">
+                android:paddingBottom="4dp">
 
                 <ImageView
                     android:id="@+id/container_chip_icon"
                     android:layout_width="16.67dp"
                     android:layout_height="16.67dp"
                     android:layout_marginLeft="5.67dp"
-                    android:layout_marginRight="1.67dp"
                     android:layout_marginTop="1.67dp"
+                    android:layout_marginRight="1.67dp"
                     android:layout_marginBottom="1.67dp"
                     android:scaleType="centerInside"
                     android:src="@drawable/container_chip_icon" />
@@ -402,18 +358,18 @@
                 android:clipToPadding="false"
                 android:gravity="left|center_vertical"
                 android:orientation="horizontal"
-                android:paddingBottom="4dp"
                 android:paddingLeft="4dp"
+                android:paddingTop="4dp"
                 android:paddingRight="8dp"
-                android:paddingTop="4dp">
+                android:paddingBottom="4dp">
 
                 <ImageView
                     android:id="@+id/container_chip_action_sort"
                     android:layout_width="16.67dp"
                     android:layout_height="16.67dp"
                     android:layout_marginLeft="5.67dp"
-                    android:layout_marginRight="1.67dp"
                     android:layout_marginTop="1.67dp"
+                    android:layout_marginRight="1.67dp"
                     android:layout_marginBottom="1.67dp"
                     android:scaleType="centerInside"
                     android:src="@drawable/container_chip_action_sort" />
@@ -432,5 +388,14 @@
                     android:textSize="14dp" />
             </LinearLayout>
         </LinearLayout>
-    </FrameLayout>
-</FrameLayout>
+    </RelativeLayout>
+    <!-- 添加 RecyclerView 用于展示 hotel_card -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView_hotels"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/container_main_head"
+        android:layout_marginTop="-10dp"
+        android:padding="16dp"
+        android:scrollbars="vertical"/>
+</RelativeLayout>

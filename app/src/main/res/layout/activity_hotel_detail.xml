@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<FrameLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/container_hoteldetail"
     android:layout_width="match_parent"
-    android:layout_height="823dp"
+    android:layout_height="match_parent"
     android:background="@drawable/container_hotel">
 
     <ImageView
@@ -30,7 +30,7 @@
 
 
 
-    <FrameLayout
+    <RelativeLayout
         android:id="@+id/container_product_info"
         android:layout_width="380dp"
         android:layout_height="159dp"
@@ -78,7 +78,7 @@
             android:scaleType="centerInside"
             android:src="@drawable/img_product_info_down" />
 
-        <FrameLayout
+        <RelativeLayout
             android:id="@+id/container_review_group"
             android:layout_width="114dp"
             android:layout_height="17.5dp"
@@ -111,7 +111,7 @@
                 android:text="4.5 (355 Reviews)"
                 android:textColor="#FF606060"
                 android:textSize="12dp" />
-        </FrameLayout>
+        </RelativeLayout>
 
         <TextView
             android:id="@+id/txt_hotel_name"
@@ -126,7 +126,7 @@
             android:text="Coeurdes Alpes"
             android:textColor="#FF232323"
             android:textSize="24dp" />
-    </FrameLayout>
+    </RelativeLayout>
 
     <LinearLayout
         android:id="@+id/container_info"
@@ -306,7 +306,7 @@
         </LinearLayout>
     </LinearLayout>
 
-    <FrameLayout
+    <RelativeLayout
         android:id="@+id/container_book"
         android:layout_width="371dp"
         android:layout_height="56dp"
@@ -315,7 +315,7 @@
         android:layout_gravity="top|left"
         android:background="@drawable/container_book">
 
-        <FrameLayout
+        <RelativeLayout
             android:id="@+id/container_price_group"
             android:layout_width="62.02dp"
             android:layout_height="match_parent"
@@ -351,7 +351,7 @@
                 android:text="$199"
                 android:textColor="#FF2DD7A4"
                 android:textSize="24dp" />
-        </FrameLayout>
+        </RelativeLayout>
 
         <LinearLayout
             android:id="@+id/container_cta"
@@ -388,7 +388,7 @@
                 android:textColor="#FFFFFFFF"
                 android:textSize="16dp" />
         </LinearLayout>
-    </FrameLayout>
+    </RelativeLayout>
 
     <ImageView
         android:id="@+id/img_heart_icon"
@@ -513,4 +513,4 @@
         android:layout_gravity="top|left"
         android:scaleType="centerInside"
         android:src="@drawable/container_arrow" />
-</FrameLayout>
+</RelativeLayout>
