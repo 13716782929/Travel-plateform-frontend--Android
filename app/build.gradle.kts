@@ -42,8 +42,11 @@ android {
 
 dependencies {
     implementation(libs.material.v1120)
-    // 添加 androidsvg 库
+
+    implementation(libs.okhttp3.okhttp)
+    implementation(libs.google.gson)
     implementation(libs.androidsvg)
+
     implementation(libs.androidx.recyclerview)
     implementation(libs.androidx.constraintlayout.v204)
     implementation(libs.androidx.core.ktx)

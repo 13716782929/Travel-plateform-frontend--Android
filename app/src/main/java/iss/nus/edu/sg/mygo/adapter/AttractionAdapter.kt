@@ -27,15 +27,14 @@ class AttractionAdapter(
 
     override fun onBindViewHolder(holder: AttractionViewHolder, position: Int) {
         val attraction = attractions[position]
-        Log.d("AttractionAdapter", "Binding attraction: ${attraction.name}")
-        holder.nameTextView.text = attraction.name
+        Log.d("AttractionAdapter", "Binding attraction: ${attraction.attractionName}")
+        holder.nameTextView.text = attraction.attractionName
         holder.locationTextView.text = attraction.location
         holder.imageView.setImageResource(attraction.imageResId)
         holder.itemView.setOnClickListener {
             onItemClick(position)
         }
     }
-
 
     override fun getItemCount(): Int {
         return attractions.size
