@@ -110,6 +110,7 @@ class SearchActivity : AppCompatActivity() {
 
                         getImageUrl(firstImageUuid, apiService) { imageUrl ->
                             val hotel = Hotel(
+                                uuid = accommodation.uuid,
                                 name = accommodation.name,
                                 address = listOfNotNull(
                                     accommodation.address.block,

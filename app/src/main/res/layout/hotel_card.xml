@@ -6,19 +6,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/container_hotels_recomendation_card"
     android:layout_width="380dp"
-    android:layout_height="105dp">
+    android:layout_height="105dp"
+    android:clickable="true"
+    android:focusable="true">
 
-    <ImageButton
+    <ImageView
         android:id="@+id/image_rectangle"
         android:layout_width="380dp"
-        android:layout_height="match_parent"
+        android:layout_height="105dp"
         android:layout_gravity="left"
         android:background="@drawable/image_rectangle"
         android:scaleType="centerCrop" />
 
     <TextView
         android:id="@+id/text_address"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="13dp"
         android:layout_marginLeft="106dp"
         android:layout_marginRight="71dp"
@@ -32,16 +34,16 @@
         android:textColor="#FF6C757D"
         android:textSize="9sp" />
 
-    <ImageButton
+    <ImageView
         android:id="@+id/container_mask_group"
         android:layout_width="94.47dp"
-        android:layout_height="match_parent"
+        android:layout_height="105dp"
         android:scaleType="centerCrop"
         android:src="@drawable/container_mask_group" />
 
     <TextView
         android:id="@+id/text_hotel_name"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="21dp"
         android:layout_marginLeft="106dp"
         android:layout_marginRight="29dp"
@@ -85,7 +87,7 @@
 
     <TextView
         android:id="@+id/text_price_per_night"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="16dp"
         android:layout_marginLeft="268dp"
         android:layout_marginTop="79.5dp"

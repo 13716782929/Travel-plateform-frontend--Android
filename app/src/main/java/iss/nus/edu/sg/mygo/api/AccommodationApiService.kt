@@ -18,6 +18,14 @@ interface AccommodationApiService {
         @Query("searchValues") searchValues: String // 搜索关键字
     ): Call<AccommodationResponse>
 
+    @GET("content/accommodation/v2/search")
+    fun searchAccommodationByUUID(
+        @Header("X-API-Key") apiKey: String,  // API Key 作为请求头
+        @Header("X-Content-Language") language: String = "en", // 默认英语
+        @Query("searchType") searchType: String = "uuids", // 搜索类型
+        @Query("searchValues") searchValues: String // 搜索关键字
+    ): Call<AccommodationResponse>
+
     @GET("media/libraries/v2/details/{uuid}")
     fun getMediaDetails(
         @Header("X-API-Key") apiKey: String,  // API Key 作为请求头
