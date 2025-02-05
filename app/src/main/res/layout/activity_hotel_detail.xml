@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/hotel_container_hotel"
+    android:fillViewport="true">
+
+    <ScrollView
+        android:id="@+id/container_hoteldetail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:id="@+id/container_hoteldetail1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/container_product_image"
+                android:layout_width="411dp"
+                android:layout_height="386dp"
+                android:layout_gravity="top|left"
+                android:scaleType="centerInside"/>
+
+            <!-- 返回按钮 -->
+            <ImageButton
+                android:id="@+id/button_back"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="70dp"
+                android:layout_gravity="top|left"
+                android:src="@drawable/hotel_container_arrow"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:scaleType="centerInside"/>
+
+            <RelativeLayout
+                android:id="@+id/container_product_info"
+                android:layout_width="380dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="17dp"
+                android:layout_marginTop="354dp"
+                android:layout_gravity="top|left">
+
+                <TextView
+                    android:id="@+id/txt_hotel_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:gravity="left|top"
+                    android:layout_marginTop="7dp"
+                    android:includeFontPadding="false"
+                    android:lineHeight="21dp"
+                    android:text="Aspenk"
+                    android:textColor="#FF232323"
+                    android:textSize="14dp"
+                    android:layout_below="@id/container_review_group"/>
+
+                <TextView
+                    android:id="@+id/txt_product_info_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="9dp"
+                    android:layout_marginBottom="19dp"
+                    android:gravity="left|top"
+                    android:includeFontPadding="false"
+                    android:lineHeight="21dp"
+                    android:text="Aspen is as close as one can get to a storybook alpine town in America. The choose-your-own-adventure possibilities—skiing, hiking, dining shopping and ...."
+                    android:textColor="#FF3A544F"
+                    android:textSize="14dp"
+                    android:layout_below="@id/txt_hotel_address"/>
+
+                <RelativeLayout
+                    android:id="@+id/container_review_group"
+                    android:layout_width="114dp"
+                    android:layout_height="17.5dp"
+                    android:layout_marginLeft="6.33dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginBottom="-0.5dp"
+                    android:layout_gravity="top|left"
+                    android:clipToPadding="false"
+                    android:paddingBottom="0.5dp"
+                    android:layout_below="@id/txt_hotel_name">
+
+                    <ImageView
+                        android:id="@+id/img_review_star"
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:layout_gravity="top|left"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/hotel_img_review_star" />
+
+                    <TextView
+                        android:id="@+id/txt_review_count"
+                        android:layout_width="match_parent"
+                        android:layout_height="16dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="3dp"
+                        android:layout_marginBottom="-0.5dp"
+                        android:gravity="left|center_vertical"
+                        android:includeFontPadding="false"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:text="4.5 (355 Reviews)"
+                        android:textColor="#FF606060"
+                        android:textSize="12dp" />
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/txt_hotel_name"
+                    android:layout_width="299.91dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="3dp"
+                    android:layout_gravity="top|left"
+                    android:gravity="left|center_vertical"
+                    android:includeFontPadding="false"
+                    android:maxLines="2"
+                    android:text="Coeurdes Alpes"
+                    android:textColor="#FF232323"
+                    android:textSize="24dp" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/container_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="vertical"
+                android:padding="10dp"
+                android:gravity="start"
+                android:layout_below="@id/container_product_info">
+
+                <LinearLayout
+                    android:id="@+id/word_list_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="5dp"/>
+            </LinearLayout>
+        </RelativeLayout>
+    </ScrollView>
+
+        <RelativeLayout
+            android:id="@+id/container_book"
+            android:layout_width="371dp"
+            android:layout_height="56dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="25dp"
+            android:background="@drawable/hotel_container_book"
+            android:layout_alignParentBottom="true">
+
+            <RelativeLayout
+                android:id="@+id/container_price_group"
+                android:layout_width="262.02dp"
+                android:layout_height="match_parent"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp">
+
+                <TextView
+                    android:id="@+id/txt_price"
+                    android:layout_width="92.12dp"
+                    android:layout_height="36dp"
+                    android:layout_marginTop="-3dp"
+                    android:text="Price"
+                    android:textColor="#FF232323"
+                    android:textSize="18dp" />
+
+
+                <TextView
+                    android:id="@+id/txt_price_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="18.5dp"
+                    android:text="$199"
+                    android:textColor="#FF2DD7A4"
+                    android:textSize="24dp" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/container_cta"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/hotel_container_cta"
+                android:gravity="center"
+                android:layout_marginLeft="170dp"
+                android:orientation="horizontal"
+                android:padding="16dp">
+
+                <ImageView
+                    android:id="@+id/img_cta_arrow_right"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/hotel_img_cta_arrow_right" />
+
+                <TextView
+                    android:id="@+id/txt_cta_book_now"
+                    android:layout_width="wrap_content"
+                    android:layout_height="24dp"
+                    android:layout_marginLeft="10dp"
+                    android:text="Book Now"
+                    android:textColor="#FFFFFFFF"
+                    android:textSize="16dp" />
+            </LinearLayout>
+        </RelativeLayout>
+
+
+        <ImageView
+            android:id="@+id/img_heart_icon"
+            android:layout_width="52dp"
+            android:layout_height="45dp"
+            android:layout_marginLeft="343dp"
+            android:layout_marginTop="353dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/hotel_img_heart_icon" />
+
+
+
+</RelativeLayout>

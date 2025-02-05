@@ -1,0 +1,401 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container_hoteldetail"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/hotel_container_hotel">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="AppCompatImageView" />
+
+    <RelativeLayout
+        android:id="@+id/container_main_head"
+        android:layout_width="411dp"
+        android:layout_height="273dp"
+        android:background="@drawable/hotel_container_main_head">
+
+        <ImageView
+            android:id="@+id/image_main_head"
+            android:layout_width="251.91dp"
+            android:layout_height="226.6dp"
+            android:layout_gravity="top|left"
+            android:layout_marginLeft="232dp"
+            android:layout_marginTop="-127dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/hotel_image_main_head" />
+
+        <ImageView
+            android:id="@+id/image_main_head1"
+            android:layout_width="185.65dp"
+            android:layout_height="166.55dp"
+            android:layout_gravity="top|left"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="-104dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/hotel_image_main_head1" />
+
+
+        <TextView
+            android:id="@+id/container_group"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_gravity="top|left"
+            android:layout_marginLeft="165dp"
+            android:layout_marginTop="49dp"
+            android:layout_marginBottom="-4dp"
+            android:gravity="center_horizontal|center_vertical"
+            android:includeFontPadding="false"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:text="Hotels"
+            android:textColor="#FFFFFFFF"
+            android:textSize="24dp" />
+
+
+        <ImageButton
+            android:id="@+id/button_back"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_gravity="top|left"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="51dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:scaleType="centerInside"
+            android:src="@drawable/hotel_container_arrow" />
+
+
+        <RelativeLayout
+            android:id="@+id/container_search_bar"
+            android:layout_width="370dp"
+            android:layout_height="43.68dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="109.2dp"
+            android:layout_marginBottom="120.12dp"
+            android:background="@drawable/hotel_container_search_bar">
+
+            <ImageButton
+                android:id="@+id/image_search_rectangle"
+                android:layout_width="370dp"
+                android:layout_height="43.68dp"
+                android:layout_marginLeft="20dp"
+                android:layout_gravity="center_horizontal"
+                android:alpha="0.10000000149011612"
+                android:background="@drawable/hotel_image_search_rectangle"
+                android:scaleType="centerInside" />
+
+            <ImageView
+                android:id="@+id/image_search_icon"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_gravity="top|left"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="11dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/hotel_image_search_icon" />
+
+            <EditText
+                android:id="@+id/text_search_hotels"
+                android:layout_width="300dp"
+                android:layout_height="22dp"
+                android:layout_gravity="top|left"
+                android:layout_marginLeft="35dp"
+                android:layout_marginTop="9dp"
+                android:background="@null"
+                android:gravity="left|center_vertical"
+                android:hint="Hotels"
+                android:includeFontPadding="false"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:textColor="#FFCCCCCC"
+                android:textSize="14dp"
+                android:imeOptions="actionSearch"/>
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/container_edit_search"
+            android:layout_width="411dp"
+            android:layout_height="46dp"
+            android:layout_gravity="top|left"
+            android:layout_marginTop="172dp"
+            android:background="@drawable/hotel_container_edit_search"
+            android:gravity="left|top"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:id="@+id/container_edit_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left|center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="64dp"
+                android:paddingRight="16dp">
+
+                <LinearLayout
+                    android:id="@+id/container_checkin_bundle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="left|top"
+                    android:orientation="vertical"
+                    android:paddingTop="8dp">
+
+                    <LinearLayout
+                        android:id="@+id/container_checkin_wrapper"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:clipToPadding="false"
+                        android:gravity="left|center_vertical"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:id="@+id/container_checkin_prefix"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="left|top"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:id="@+id/container_checkin_icon"
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_marginLeft="2dp"
+                                android:layout_marginTop="2dp"
+                                android:layout_marginRight="2dp"
+                                android:layout_marginBottom="2dp"
+                                android:scaleType="centerInside"
+                                android:src="@drawable/hotel_container_checkin_icon" />
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/text_check_in_date"
+                            android:layout_width="wrap_content"
+                            android:layout_height="21dp"
+                            android:layout_marginLeft="4dp"
+                            android:gravity="left|center_vertical"
+                            android:includeFontPadding="false"
+                            android:maxLines="1"
+                            android:singleLine="true"
+                            android:text=""
+                            android:textColor="#FFFFFFFF"
+                            android:textSize="14dp" />
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/image_checkin_divider"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="8dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/hotel_image_checkin_divider" />
+                </LinearLayout>
+                <!-- I168:1625;76:21151:space-view0 Content_space_view0 space-view -->
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1" />
+
+                <LinearLayout
+                    android:id="@+id/container_duration_bundle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="left|top"
+                    android:orientation="vertical"
+                    android:paddingTop="8dp">
+
+                    <LinearLayout
+                        android:id="@+id/container_duration_wrapper"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:clipToPadding="false"
+                        android:gravity="left|center_vertical"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:id="@+id/container_duration_prefix"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="left|top"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:id="@+id/container_duration_icon"
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_marginLeft="2dp"
+                                android:layout_marginTop="2dp"
+                                android:layout_marginRight="2dp"
+                                android:layout_marginBottom="2dp"
+                                android:scaleType="centerInside"
+                                android:src="@drawable/hotel_container_duration_icon" />
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/text_nights"
+                            android:layout_width="wrap_content"
+                            android:layout_height="21dp"
+                            android:layout_marginLeft="4dp"
+                            android:gravity="left|center_vertical"
+                            android:includeFontPadding="false"
+                            android:maxLines="1"
+                            android:singleLine="true"
+                            android:text=""
+                            android:textColor="#FFFFFFFF"
+                            android:textSize="14dp" />
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/image_duration_divider"
+                        android:layout_width="37dp"
+                        android:layout_height="0dp"
+                        android:layout_marginTop="8dp"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/hotel_image_duration_divider" />
+                </LinearLayout>
+                <!-- I168:1625;76:21151:space-view1 Content_space_view1 space-view -->
+
+                <!-- I168:1625;76:21151:space-view3 Content_space_view3 space-view -->
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1" />
+
+                <LinearLayout
+                    android:id="@+id/container_button_reverse"
+                    android:layout_width="wrap_content"
+                    android:layout_height="24dp"
+                    android:background="@drawable/hotel_container_button_reverse"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:paddingLeft="4dp"
+                    android:paddingTop="4dp"
+                    android:paddingRight="4dp"
+                    android:paddingBottom="4dp">
+
+                    <ImageView
+                        android:id="@+id/container_button_icon"
+                        android:layout_width="13.33dp"
+                        android:layout_height="13.33dp"
+                        android:layout_marginLeft="1.33dp"
+                        android:layout_marginTop="1.33dp"
+                        android:layout_marginRight="1.33dp"
+                        android:layout_marginBottom="1.33dp"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/hotel_container_button_icon" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/container_filter_sort"
+            android:layout_width="411dp"
+            android:layout_height="56dp"
+            android:layout_gravity="top|left"
+            android:layout_marginTop="217dp"
+            android:background="@drawable/hotel_container_filter_sort"
+            android:gravity="left|top"
+            android:orientation="horizontal"
+            android:paddingLeft="16dp"
+            android:paddingTop="12dp"
+            android:paddingRight="16dp"
+            android:paddingBottom="12dp">
+
+            <LinearLayout
+                android:id="@+id/container_chip"
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:background="@drawable/hotel_container_chip"
+                android:clipToPadding="false"
+                android:gravity="left|center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="8dp"
+                android:paddingTop="4dp"
+                android:paddingRight="8dp"
+                android:paddingBottom="4dp">
+
+                <ImageView
+                    android:id="@+id/container_chip_icon"
+                    android:layout_width="16.67dp"
+                    android:layout_height="16.67dp"
+                    android:layout_marginLeft="5.67dp"
+                    android:layout_marginTop="1.67dp"
+                    android:layout_marginRight="1.67dp"
+                    android:layout_marginBottom="1.67dp"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/hotel_container_chip_icon" />
+
+                <TextView
+                    android:id="@+id/container_chip_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="21dp"
+                    android:layout_marginLeft="4dp"
+                    android:gravity="center"
+                    android:includeFontPadding="false"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:text="Filter"
+                    android:textColor="#FF27272A"
+                    android:textSize="14dp" />
+            </LinearLayout>
+            <!-- 168:1626:space-view0 Filter & Sort - Section_space_view0 space-view -->
+            <View
+                android:layout_width="0dp"
+                android:layout_height="32dp"
+                android:layout_weight="1" />
+
+            <LinearLayout
+                android:id="@+id/container_chip1"
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:background="@drawable/hotel_container_chip1"
+                android:clipToPadding="false"
+                android:gravity="left|center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="4dp"
+                android:paddingTop="4dp"
+                android:paddingRight="8dp"
+                android:paddingBottom="4dp">
+
+                <ImageView
+                    android:id="@+id/container_chip_action_sort"
+                    android:layout_width="16.67dp"
+                    android:layout_height="16.67dp"
+                    android:layout_marginLeft="5.67dp"
+                    android:layout_marginTop="1.67dp"
+                    android:layout_marginRight="1.67dp"
+                    android:layout_marginBottom="1.67dp"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/hotel_container_chip_action_sort" />
+
+                <TextView
+                    android:id="@+id/container_chip_content2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="21dp"
+                    android:layout_marginLeft="4dp"
+                    android:gravity="center"
+                    android:includeFontPadding="false"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:text="Sorting"
+                    android:textColor="#FF1A94FF"
+                    android:textSize="14dp" />
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+    <!-- 添加 RecyclerView 用于展示 hotel_card -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView_hotels"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/container_main_head"
+        android:layout_marginTop="-10dp"
+        android:padding="16dp"
+        android:scrollbars="vertical"/>
+</RelativeLayout>
