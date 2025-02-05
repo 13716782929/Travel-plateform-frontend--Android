@@ -7,6 +7,10 @@
         android:id="@+id/main_head"
         android:layout_width="match_parent"
         android:layout_height="270dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="0dp"
         android:background="@drawable/main_head">
 
         <ImageView
@@ -32,34 +36,36 @@
         <LinearLayout
             android:layout_width="350dp"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="60dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="50dp"
+            android:layout_marginEnd="31dp"
             android:orientation="vertical"
             android:padding="8dp">
+
             <RelativeLayout
                 android:id="@+id/search_bar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/search_background">
+
                 <ImageView
                     android:id="@+id/search_icon"
                     android:layout_width="25dp"
                     android:layout_height="25dp"
                     android:layout_centerVertical="true"
                     android:layout_marginStart="6dp"
-                    android:background="@drawable/search_icon"
-                    />
+                    android:background="@drawable/search_icon" />
+
                 <EditText
                     android:id="@+id/search_input"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
                     android:layout_toEndOf="@+id/search_icon"
-                    android:hint="@string/input"
-                    android:textColorHint="#ffffff"
-                    android:inputType="text"
                     android:background="@null"
-                    android:padding="8dp">
-                </EditText>
+                    android:hint="@string/input"
+                    android:inputType="text"
+                    android:padding="8dp"
+                    android:textColorHint="#ffffff"></EditText>
             </RelativeLayout>
 
             <RelativeLayout
@@ -68,41 +74,41 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/search_bar"
                 android:layout_marginTop="20dp">
+
                 <TextView
                     android:id="@+id/search_attractions_category_txt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/attractions"
-                    android:textSize="14sp"
-                    android:textColor="#ffffff"
-                    android:textAppearance="@style/inter_medium"
                     android:layout_marginStart="10dp"
                     android:gravity="top"
-                    />
+                    android:text="@string/attractions"
+                    android:textAppearance="@style/inter_medium"
+                    android:textColor="#ffffff"
+                    android:textSize="14sp" />
+
                 <TextView
                     android:id="@+id/search_flights_category_txt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_toEndOf="@+id/search_attractions_category_txt"
+                    android:gravity="top"
                     android:text="@string/flights"
                     android:textAppearance="@style/inter_medium"
-                    android:textSize="14sp"
                     android:textColor="#ffffff"
-                    android:layout_toEndOf="@+id/search_attractions_category_txt"
-                    android:layout_marginStart="15dp"
-                    android:gravity="top"
-                    />
+                    android:textSize="14sp" />
+
                 <TextView
                     android:id="@+id/search_hotels_category_txt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/hotels"
-                    android:textSize="14sp"
-                    android:textColor="#ffffff"
-                    android:textAppearance="@style/inter_medium"
-                    android:layout_toEndOf="@id/search_flights_category_txt"
                     android:layout_marginStart="15dp"
+                    android:layout_toEndOf="@id/search_flights_category_txt"
                     android:gravity="top"
-                    />
+                    android:text="@string/hotels"
+                    android:textAppearance="@style/inter_medium"
+                    android:textColor="#ffffff"
+                    android:textSize="14sp" />
 
             </RelativeLayout>
 
@@ -110,6 +116,7 @@
         <!-- Auto layout, variables, and unit scale are not yet supported -->
 
     </RelativeLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvResults"
         android:layout_width="match_parent"

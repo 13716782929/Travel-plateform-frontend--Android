@@ -8,6 +8,8 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import iss.nus.edu.sg.mygo.R
 import iss.nus.edu.sg.mygo.fragment.HomeFragment
+import iss.nus.edu.sg.mygo.fragment.NotificationFragment
+import iss.nus.edu.sg.mygo.fragment.ProfileFragment
 import iss.nus.edu.sg.mygo.fragment.SearchFragment
 
 class Main1 : AppCompatActivity() {
@@ -32,6 +34,12 @@ class Main1 : AppCompatActivity() {
                 }
                 R.id.nav_search -> {
                     SearchFragment() // 切换到SearchFragment
+                }
+                R.id.nav_notifications -> {
+                    NotificationFragment()
+                }
+                R.id.nav_profile ->{
+                    ProfileFragment()
                 }
                 else -> HomeFragment() // 默认Fragment
             }

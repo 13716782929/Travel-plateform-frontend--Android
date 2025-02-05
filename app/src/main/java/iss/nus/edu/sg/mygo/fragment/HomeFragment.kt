@@ -1,6 +1,4 @@
 package iss.nus.edu.sg.mygo.fragment
-import android.graphics.drawable.PictureDrawable
-import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
 import android.widget.Toast
@@ -10,11 +8,10 @@ import iss.nus.edu.sg.mygo.adapter.AttractionAdapter
 import iss.nus.edu.sg.mygo.adapter.SpaceItemDecoration
 import iss.nus.edu.sg.mygo.models.FlightInfo
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import iss.nus.edu.sg.mygo.R
+import iss.nus.edu.sg.mygo.enum.TicketType
 import iss.nus.edu.sg.mygo.models.Attraction
 
 class HomeFragment : Fragment(R.layout.home_fragment) {
@@ -34,7 +31,7 @@ class HomeFragment : Fragment(R.layout.home_fragment) {
         val items = getAttractionData()
 
         adapter = AttractionAdapter(items) { position ->
-            Toast.makeText(requireContext(), "选中了：${items[position].name}", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), "选中了：${items[position].attractionName}", Toast.LENGTH_SHORT).show()
         }
 
         recyclerView.adapter = adapter
@@ -80,9 +77,30 @@ class HomeFragment : Fragment(R.layout.home_fragment) {
 
     private fun getAttractionData(): List<Attraction> {
         return listOf(
-            Attraction("Mount Bromo", "East Java", R.drawable.main1_image1),
-            Attraction("Labengki Sombori", "Islands in Sulawesi", R.drawable.main1_image2),
-            Attraction("Sailing Komodo", "Labuan Bajo", R.drawable.main1_image3)
+            Attraction(
+                "1", "Mount Bromo", "East Java",
+                "demo1",
+                "09:00",
+                true,
+                TicketType.TYPE1,
+                R.drawable.main1_image1
+            ),
+            Attraction(
+                "2", "Labengki Sombori", "Islands in Sulawesi",
+                "demo2",
+                "09:30",
+                true,
+                TicketType.TYPE2,
+                R.drawable.main1_image2
+            ),
+            Attraction(
+                "3", "Sailing Komodo", "Labuan Bajo",
+                "demo3",
+                "07:00",
+                true,
+                TicketType.TYPE2,
+                R.drawable.main1_image3
+            )
         )
     }
 

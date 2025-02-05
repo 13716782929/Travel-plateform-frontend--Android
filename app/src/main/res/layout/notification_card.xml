@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- notification_card.xml -->
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginBottom="0dp"
+    app:cardElevation="0dp"
+    app:cardBackgroundColor="@android:color/transparent">
+
+    <RelativeLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/notification_rectangle"
+        >
+        <View
+            android:id="@+id/line_card"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="-15dp"
+            android:background="@drawable/line"
+            android:alpha="0.36"
+            />
+
+        <TextView
+            android:id="@+id/notificationTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/line_card"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            android:text="@string/upcoming_flight"
+            android:textAppearance="@style/joti_one_regular"
+            android:textSize="16sp"
+            android:textColor="#FFBC2A"
+            android:gravity="top"
+            />
+
+        <TextView
+            android:id="@+id/notificationContent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/notificationTitle"
+            android:layout_marginStart="20dp"
+            android:text="@string/notication_card_description"
+            android:textSize="12sp"
+            android:layout_marginTop="8dp"/>
+
+        <ImageView
+            android:id="@+id/notification_emergency_star_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/material_symbols_star"
+            android:layout_below="@+id/notificationContent"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"/>
+
+        <TextView
+            android:id="@+id/some_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/some_id"
+            android:textAppearance="@style/inter_medium"
+            android:layout_toEndOf="@+id/notification_emergency_star_icon"
+            android:layout_below="@+id/notificationContent"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="5dp"
+            android:textSize="12sp"
+            android:textColor="#6C757D"
+            android:gravity="top"
+            />
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

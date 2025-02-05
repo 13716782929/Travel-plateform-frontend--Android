@@ -13,6 +13,19 @@
         <item name="android:fontFamily">@font/joti_one_regular</item>
     </style>
 
+    
+    <style name="anek_gurmukhi_regular">
+        <item name="android:fontFamily">@font/anek_gurmukhi_regular</item>
+    </style>
+
+    <style name="anek_gurmukhi_medium">
+        <item name="android:fontFamily">@font/anek_gurmukhi_medium</item>
+    </style>
+
+    <style name="anek_gurmukhi_bold">
+        <item name="android:fontFamily">@font/anek_gurmukhi_bold</item>
+    </style>
+
 
     <style name="welcome">
         <item name="android:textSize">40sp</item>
@@ -43,6 +56,14 @@
 
     <style name="inter_thin">
         <item name="android:fontFamily">@font/inter_18pt_thin</item>
+    </style>
+
+    <style name="inter_regular">
+        <item name="android:fontFamily">@font/inter_18pt_regular</item>
+    </style>
+
+    <style name="inter_semibold">
+        <item name="android:fontFamily">@font/inter_18pt_semibold</item>
     </style>
 
 </resources>
