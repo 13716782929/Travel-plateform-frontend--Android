@@ -1,11 +1,10 @@
 package com.example.registernewuser
 
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.registernewuser.databinding.ActivityAttractionBinding
+import com.example.registernewuser.models.Attraction
 
 class AttractionActivity : AppCompatActivity() {
 
@@ -19,20 +18,41 @@ class AttractionActivity : AppCompatActivity() {
 
         // Sample data
         val attractions = listOf(
-            Attraction("Singapore Zoo", "80, Mandai Lake Rd, Singapore", "An unforgettable wildlife adventure at Mandai awaits!", 830, 10, Tourist, 49, R.drawable.singapore_zoo)
+            Attraction(
+                "Singapore Zoo",
+                "80 Mandai Lake Rd",
+                "Amazing wildlife adventure awaits!",
+                830,
+                10,
+                "Tourist",
+                49,
+                R.drawable.singapore_zoo),
         )
 
+        // Set up RecyclerView with Adapter
         attractionsAdapter = AttractionsAdapter(attractions) { attraction ->
-            val intent = Intent(this, AttractionDetailsActivity::class.java).apply {
-                putExtra("attraction_name", attraction.name)
-                putExtra("attraction_location", attraction.location)
-                putExtra("attraction_rating", attraction.rating)
-                putExtra("attraction_price", attraction.price)
-                putExtra("attraction_image", attraction.imageResId)
+            // Navigate to AttractionDetailsFragment or AttractionDetailsActivity
+            val fragment = AttractionDetailsFragment().apply {
+                arguments = Bundle().apply {
+                    putString("attraction_name", attraction.name)
+                    putString("attraction_location", attraction.location)
+                    putString("attraction_description", attraction.description)
+                    putInt("attraction_openTime", attraction.openTime)
+                    putInt("attraction_ticketAvailability", attraction.ticketAvailability)
+                    putString("attraction_ticketType", attraction.ticketType)
+                    putInt("attraction_price", attraction.price)
+                    putInt("attraction_image", attraction.imageResId)
+                }
             }
-            startActivity(intent)
+
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, fragment)
+                .addToBackStack(null)
+                .commit()
         }
-        binding.recyclerView.adapter = attractionsAdapter
+
+        // Attach adapter to RecyclerView
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
+        binding.recyclerView.adapter = attractionsAdapter
     }
 }

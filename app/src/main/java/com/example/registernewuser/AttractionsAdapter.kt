@@ -1,30 +1,39 @@
 package com.example.registernewuser
 
+import android.view.LayoutInflater
+import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
+import com.example.registernewuser.databinding.ItemAttractionBinding
+import com.example.registernewuser.models.Attraction
+
 class AttractionsAdapter(
     private val attractions: List<Attraction>,
-    private val onItemClick: (Attraction) -> Unit
-) : RecyclerView.Adapter<AttractionsAdapter.AttractionViewHolder>() {
+    private val onClick: (Attraction) -> Unit
+) : RecyclerView.Adapter<AttractionsAdapter.ViewHolder>() {
 
-    inner class AttractionViewHolder(private val binding: ItemAttractionBinding) : RecyclerView.ViewHolder(binding.root) {
+    // ViewHolder for holding view references
+    inner class ViewHolder(private val binding: ItemAttractionBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(attraction: Attraction) {
             binding.attractionName.text = attraction.name
             binding.attractionLocation.text = attraction.location
-            binding.attractionRating.text = attraction.rating.toString()
-            binding.attractionPrice.text = attraction.price
+            binding.attractionPrice.text = "From $${attraction.price}/pax"
             binding.attractionImage.setImageResource(attraction.imageResId)
 
-            binding.root.setOnClickListener { onItemClick(attraction) }
+            // Set click listener
+            binding.root.setOnClickListener {
+                onClick(attraction)
+            }
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AttractionViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = ItemAttractionBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return AttractionViewHolder(binding)
+        return ViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: AttractionViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(attractions[position])
     }
 
-    override fun getItemCount() = attractions.size
+    override fun getItemCount(): Int = attractions.size
 }

@@ -5,15 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!-- Large Image -->
     <ImageView
         android:id="@+id/attractionImage"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:scaleType="centerCrop"
-        app:layout_constraintTop_toTopOf="parent"/>
+        android:layout_height="200dp"
+        android:scaleType="centerCrop" />
 
-    <!-- Name -->
     <TextView
         android:id="@+id/attractionName"
         android:layout_width="wrap_content"
@@ -23,30 +20,25 @@
         app:layout_constraintTop_toBottomOf="@id/attractionImage"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp"/>
+        android:layout_margin="8dp" />
 
-    <!-- Description -->
     <TextView
-        android:id="@+id/attractionDescription"
+        android:id="@+id/attractionLocation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="16sp"
         app:layout_constraintTop_toBottomOf="@id/attractionName"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="8dp"/>
+        android:layout_margin="8dp" />
 
-    <!-- Booking Button -->
-    <Button
-        android:id="@+id/bookingButton"
-        android:layout_width="wrap_content"
+    <TextView
+        android:id="@+id/attractionDescription"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Booking Right Now"
-        android:background="@drawable/rounded_button"
-        android:textColor="#FFFFFF"
-        app:layout_constraintTop_toBottomOf="@id/attractionDescription"
+        android:layout_margin="16dp"
+        app:layout_constraintTop_toBottomOf="@id/attractionLocation"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp"/>
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
