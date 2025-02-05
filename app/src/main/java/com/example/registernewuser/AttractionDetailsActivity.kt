@@ -15,7 +15,7 @@ class AttractionDetailsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityAttractionDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+br
         // Get data from Intent
         val name = intent.getStringExtra("name")
         val location = intent.getStringExtra("location")
