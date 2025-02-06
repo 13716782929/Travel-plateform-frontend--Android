@@ -24,40 +24,44 @@
 
     <TextView
         android:id="@+id/attraction_name"
-        android:layout_width="92dp"
-        android:layout_height="17dp"
-        android:layout_alignParentLeft="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxHeight="40dp"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="8dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="8dp"
         android:layout_alignParentTop="true"
-        android:layout_marginLeft="8dp"
         android:layout_marginTop="127dp"
         android:gravity="top"
         android:text="@string/Mount_Bromo"
         android:textColor="#336749"
-        android:textSize="14dp"
+        android:textSize="14sp"
         android:textAppearance="@style/inter_medium" />
 
     <!-- Auto layout, variables, and unit scale are not yet supported -->
     <TextView
         android:id="@+id/attraction_location"
-        android:layout_width="87dp"
-        android:layout_height="11dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="146dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_below="@+id/attraction_name"
+        android:layout_marginTop="5dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="38dp"
         android:gravity="top"
         android:text="@string/volcano_in_east_java"
         android:textColor="#6C757D"
         android:textSize="9sp"
         android:fontFamily="@font/inter_18pt_medium"/>
     <RelativeLayout
-        android:id="@+id/material_sy"
+        android:id="@+id/attraction_star"
         android:layout_width="15dp"
         android:layout_height="15dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="162dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="10dp"
         android:background="@drawable/material_symbols_star"
         android:clipToOutline="true" />
 
@@ -65,37 +69,39 @@
         android:id="@+id/some_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="28dp"
-        android:layout_marginTop="161dp"
+        android:layout_toEndOf="@+id/attraction_star"
+        android:layout_marginStart="5dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="8dp"
         android:gravity="top"
         android:text="@string/_4_9"
         android:textColor="#6C757D"
         android:textSize="12sp" />
 
-    <TextView
-        android:id="@+id/star_from"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="191dp"
-        android:gravity="top"
-        android:text="@string/start_from"
-        android:textColor="#6C757D"
-        android:textSize="10sp" />
+<!--    <TextView-->
+<!--        android:id="@+id/star_from"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginLeft="8dp"-->
+<!--        android:layout_marginTop="191dp"-->
+<!--        android:gravity="top"-->
+<!--        android:text="@string/start_from"-->
+<!--        android:textColor="#6C757D"-->
+<!--        android:textSize="10sp" />-->
 
-    <TextView
-        android:id="@+id/pax"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_marginLeft="8dp"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="210dp"
-        android:text="$ 150/pax"
-        android:fontFamily="@font/inter_18pt_medium"
-        android:gravity="top"
-        android:textColor="#336749"
-        />
+<!--    <TextView-->
+<!--        android:id="@+id/pax"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_alignParentLeft="true"-->
+<!--        android:layout_marginLeft="8dp"-->
+<!--        android:layout_alignParentTop="true"-->
+<!--        android:layout_marginTop="210dp"-->
+<!--        android:text="$ 150/pax"-->
+<!--        android:fontFamily="@font/inter_18pt_medium"-->
+<!--        android:gravity="top"-->
+<!--        android:textColor="#336749"-->
+<!--        />-->
 
     <RelativeLayout
         android:id="@+id/status"
