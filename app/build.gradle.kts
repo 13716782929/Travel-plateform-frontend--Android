@@ -45,14 +45,14 @@ android {
 
 dependencies {
     implementation(libs.material.v1120)
-
+    implementation(libs.material.v160)
     implementation(libs.okhttp3.okhttp)
     implementation(libs.google.gson)
     implementation(libs.androidsvg)
 
     implementation(libs.androidx.recyclerview)
-//    implementation(libs.androidx.constraintlayout.v204)
-    implementation(libs.androidx.constraintlayout)
+    implementation(libs.androidx.constraintlayout.v204)
+//    implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
