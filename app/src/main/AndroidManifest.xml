@@ -14,7 +14,6 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.MyGo"
         android:usesCleartextTraffic="true"
         android:networkSecurityConfig="@xml/network_security_config"
         tools:targetApi="31">
@@ -48,16 +47,21 @@
 
         <activity
             android:name=".home.LoginActivity"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/Material3.Theme.MyGo">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity android:name=".home.RegisterActivity"
             android:exported="true">
         </activity>
-        <activity android:name=".home.HotelSearchActivity" />
+
+        <activity
+            android:name=".home.HotelSearchActivity"
+            android:theme="@style/"/>
         <activity android:name=".home.HotelDetailActivity" />
     </application>
 
