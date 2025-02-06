@@ -46,10 +46,11 @@ android {
 dependencies {
     implementation(libs.material.v1120)
     implementation(libs.material.v160)
+
     implementation(libs.okhttp3.okhttp)
     implementation(libs.google.gson)
     implementation(libs.androidsvg)
-
+    implementation(libs.picasso)
     implementation(libs.androidx.recyclerview)
     implementation(libs.androidx.constraintlayout.v204)
 //    implementation(libs.androidx.constraintlayout)
@@ -73,6 +74,7 @@ dependencies {
     implementation(libs.retrofit.gson)
     implementation(libs.okhttp.logging)
     implementation(libs.glide)
+    annotationProcessor(libs.compiler.v4120)
     kapt(libs.glide.compiler)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.ui.test.junit4)

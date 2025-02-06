@@ -1,7 +1,6 @@
 package iss.nus.edu.sg.mygo.network
 
-import iss.nus.edu.sg.mygo.api.AccommodationApiService
-import okhttp3.Interceptor
+import iss.nus.edu.sg.mygo.api.service.AccommodationApiService
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit

@@ -1,4 +1,4 @@
-package iss.nus.edu.sg.mygo.models
+package iss.nus.edu.sg.mygo.api.models
 
 data class AccommodationImageResponse(
     val status: Status1,
