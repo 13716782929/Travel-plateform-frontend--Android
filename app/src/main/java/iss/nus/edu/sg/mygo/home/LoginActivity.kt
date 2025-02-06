@@ -12,6 +12,13 @@ class LoginActivity : AppCompatActivity() {
     // ViewBinding
     private lateinit var binding: LoginActivityBinding
 
+    // 模拟的用户数据
+    private val fakeUsers = mapOf(
+        "admin" to "1234",
+        "user1" to "password1",
+        "user2" to "password2"
+    )
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -22,14 +29,6 @@ class LoginActivity : AppCompatActivity() {
         binding = LoginActivityBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Handle window insets for edge-to-edge layout
-        // Commenting out this part for now to avoid the NullPointerException
-        // ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-        //     val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-        //     v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-        //     insets
-        // }
-
         // Handle login button click
         binding.loginActionButton.setOnClickListener {
             val username = binding.usernameField.text.toString().trim()
@@ -39,16 +38,20 @@ class LoginActivity : AppCompatActivity() {
             // Validate Inputs
             if (username.isEmpty() || password.isEmpty()) {
                 Toast.makeText(this, "Please fill in all fields", Toast.LENGTH_SHORT).show()
-            } else if (username == "admin" && password == "1234") {
+            } else if (fakeUsers[username] == password) {
                 // Login Successful
                 if (rememberMeChecked) {
                     // Save "Remember Me" state in SharedPreferences
                     saveRememberMeState(username)
                 }
 
+                saveLoginState() // Save login state
+
                 Toast.makeText(this, "Login Successful!", Toast.LENGTH_SHORT).show()
-                // Navigate to another activity
-                // You can implement navigation here if required
+                // Navigate to MainActivity
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+                finish() // End LoginActivity to prevent returning to it
             } else {
                 // Login Failed
                 Toast.makeText(this, "Invalid username or password", Toast.LENGTH_SHORT).show()
@@ -75,6 +78,14 @@ class LoginActivity : AppCompatActivity() {
         val editor = sharedPreferences.edit()
         editor.putString("SavedUsername", username)
         editor.putBoolean("RememberMe", true)
+        editor.apply()
+    }
+
+    // Save login state in SharedPreferences
+    private fun saveLoginState() {
+        val sharedPreferences = getSharedPreferences("user_prefs", MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.putBoolean("is_logged_in", true)
         editor.apply()
     }
 

@@ -1,5 +1,7 @@
 package iss.nus.edu.sg.mygo.home
 
+import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -11,12 +13,17 @@ import iss.nus.edu.sg.mygo.fragment.NotificationFragment
 import iss.nus.edu.sg.mygo.fragment.ProfileFragment
 import iss.nus.edu.sg.mygo.fragment.SearchFragment
 
-class Main : AppCompatActivity() {
+class MainActivity : AppCompatActivity() {
+
+    private lateinit var sharedPreferences: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.ui_activity)
         enableEdgeToEdge() // 确保此行代码执行
+
+        sharedPreferences = getSharedPreferences("user_prefs", MODE_PRIVATE) // 获取SharedPreferences
+
         if (savedInstanceState == null) {
             loadFragment(HomeFragment()) // 默认加载HomeFragment
         }
@@ -35,10 +42,15 @@ class Main : AppCompatActivity() {
                     SearchFragment() // 切换到SearchFragment
                 }
                 R.id.nav_notifications -> {
-                    NotificationFragment()
+                    NotificationFragment() // 切换到NotificationFragment
                 }
-                R.id.nav_profile ->{
-                    ProfileFragment()
+                R.id.nav_profile -> {
+                    if (isUserLoggedIn()) {
+                        ProfileFragment() // 如果已登录，加载ProfileFragment
+                    } else {
+                        navigateToLoginActivity() // 如果未登录，跳转到LoginActivity
+                        return@setOnItemSelectedListener false // 取消继续处理导航
+                    }
                 }
                 else -> HomeFragment() // 默认Fragment
             }
@@ -47,9 +59,21 @@ class Main : AppCompatActivity() {
         }
     }
 
+    // 检查用户是否已登录
+    private fun isUserLoggedIn(): Boolean {
+        return sharedPreferences.getBoolean("is_logged_in", false)
+    }
+
+    // 跳转到 LoginActivity
+    private fun navigateToLoginActivity() {
+        val intent = Intent(this, LoginActivity::class.java)
+        startActivity(intent)
+    }
+
     private fun loadFragment(fragment: Fragment) {
         supportFragmentManager.beginTransaction()
             .replace(R.id.fragment_container, fragment) // 替换container中的Fragment
             .commit()
     }
 }
+

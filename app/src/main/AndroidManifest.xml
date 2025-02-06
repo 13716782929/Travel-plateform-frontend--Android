@@ -20,49 +20,56 @@
 
         <!-- Default Activity (Main) -->
         <activity
-            android:name=".home.Main"
+            android:name=".home.MainActivity"
             android:exported="true"
             android:theme="@style/Theme.MyGo">
 
         </activity>
 
-        <activity
-            android:name=".home.HotelMainActivity"
-            android:exported="true">
-        </activity>
-
         <!-- MygoGreeting activity -->
         <activity
-            android:name=".home.MygoGreeting"
+            android:name=".home.MyGoGreeting"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:exported="true"
             android:label="@string/title_activity_mygo_greeting"
             android:theme="@style/Theme.MyGo.Fullscreen">
-            <!-- 这里不需要 intent-filter 如果它不作为启动页面 -->
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
-        </activity>
-
-        <activity
-            android:name=".home.LoginActivity"
-            android:exported="true"
-            android:theme="@style/Material3.Theme.MyGo">
+<!--             这里不需要 intent-filter 如果它不作为启动页面 -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".home.RegisterActivity"
-            android:exported="true">
+<!--login-->
+        <activity
+            android:name=".home.LoginActivity"
+            android:exported="true"
+            android:theme="@style/Material3.Theme.MyGo">
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
         </activity>
-
+<!--hotel_main-->
+        <activity
+            android:name=".home.HotelMainActivity"
+            android:exported="true"
+            android:theme="@style/Material3.Theme.MyGo">
+        </activity>
+<!--register-->
+        <activity android:name=".home.RegisterActivity"
+            android:exported="true"
+            android:theme="@style/Material3.Theme.MyGo">
+        </activity>
+<!--hotel_search-->
         <activity
             android:name=".home.HotelSearchActivity"
-            android:theme="@style/"/>
-        <activity android:name=".home.HotelDetailActivity" />
+            android:theme="@style/Material3.Theme.MyGo">
+        </activity>
+<!--hotel_detail-->
+        <activity android:name=".home.HotelDetailActivity"
+            android:theme="@style/Material3.Theme.MyGo"
+            >
+        </activity>
     </application>
 
 </manifest>
