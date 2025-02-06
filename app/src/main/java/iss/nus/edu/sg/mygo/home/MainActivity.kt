@@ -20,9 +20,10 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.ui_activity)
-        enableEdgeToEdge() // 确保此行代码执行
+        enableEdgeToEdge()
 
         sharedPreferences = getSharedPreferences("user_prefs", MODE_PRIVATE) // 获取SharedPreferences
+
 
         if (savedInstanceState == null) {
             loadFragment(HomeFragment()) // 默认加载HomeFragment
@@ -75,5 +76,5 @@ class MainActivity : AppCompatActivity() {
             .replace(R.id.fragment_container, fragment) // 替换container中的Fragment
             .commit()
     }
-}
 
+}
