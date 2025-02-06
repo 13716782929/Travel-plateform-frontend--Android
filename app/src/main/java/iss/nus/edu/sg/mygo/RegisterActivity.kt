@@ -1,9 +1,9 @@
-package iss.mygo.edu.sg.mygo
+package iss.nus.edu.sg.mygo
 
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.nus.registeruser.databinding.RegisterActivityBinding
+import iss.nus.edu.sg.mygo.databinding.RegisterActivityBinding
 
 class RegisterActivity : AppCompatActivity() {
 
@@ -34,11 +34,6 @@ class RegisterActivity : AppCompatActivity() {
                 //RegistrationLogic (eg save user data to a database
                 Toast.makeText(this, "Registration successful", Toast.LENGTH_SHORT).show()
             }
-
-
         }
-
-
-
     }
 }

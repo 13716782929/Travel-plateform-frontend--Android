@@ -1,24 +1,24 @@
-package iss.mygo.edu.sg.mygo
+package iss.nus.edu.sg.mygo
 
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.nus.registernewuser.databinding.LoginBinding
+import iss.nus.edu.sg.mygo.databinding.LoginActivityBinding
 
 class LoginActivity : AppCompatActivity() {
 
-    //viewBinding
-    private lateinit var binding: LoginBinding
+    // ViewBinding
+    private lateinit var binding: LoginActivityBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        //initialise binding
-        binding = LoginBinding.inflate(layoutInflater)
+        // Initialize binding
+        binding = LoginActivityBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        //handle login button click
+        // Handle login button click
         binding.loginActionButton.setOnClickListener {
             val username = binding.usernameField.text.toString().trim()
             val password = binding.passwordField.text.toString().trim()
@@ -35,8 +35,8 @@ class LoginActivity : AppCompatActivity() {
                 }
 
                 Toast.makeText(this, "Login Successful!", Toast.LENGTH_SHORT).show()
-                // Navigate to another activity (e.g., dashboard)
-                val intent = Intent(this, MainActivity::class.java)
+                // Navigate to the login_activity layout
+                val intent = Intent(this, LoginActivity::class.java)
                 startActivity(intent)
                 finish()
             } else {
@@ -78,4 +78,3 @@ class LoginActivity : AppCompatActivity() {
         loadRememberMeState()
     }
 }
-

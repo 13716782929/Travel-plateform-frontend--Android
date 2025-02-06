@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.registernewuser"
+    namespace = "iss.nus.edu.sg.mygo"
     compileSdk = 35
 
     buildFeatures {
@@ -12,7 +12,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.example.registernewuser"
+        applicationId = "iss.nus.edu.sg.mygo"
         minSdk = 29
         targetSdk = 35
         versionCode = 1

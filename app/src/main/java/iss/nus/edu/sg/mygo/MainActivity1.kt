@@ -1,4 +1,4 @@
-package iss.mygo.edu.sg.mygo
+package iss.nus.edu.sg.mygo
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
