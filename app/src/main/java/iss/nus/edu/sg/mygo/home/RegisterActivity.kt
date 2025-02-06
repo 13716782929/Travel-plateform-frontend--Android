@@ -1,4 +1,4 @@
-package iss.nus.edu.sg.mygo
+package iss.nus.edu.sg.mygo.home
 
 import android.content.Intent
 import android.os.Bundle

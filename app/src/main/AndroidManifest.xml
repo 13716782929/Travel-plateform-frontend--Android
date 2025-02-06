@@ -19,15 +19,12 @@
         android:networkSecurityConfig="@xml/network_security_config"
         tools:targetApi="31">
 
-        <!-- Default Activity (Main1) -->
+        <!-- Default Activity (Main) -->
         <activity
-            android:name=".home.Main1"
+            android:name=".home.Main"
             android:exported="true"
             android:theme="@style/Theme.MyGo">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+
         </activity>
 
         <activity
@@ -50,10 +47,14 @@
         </activity>
 
         <activity
-            android:name=".LoginActivity"
+            android:name=".home.LoginActivity"
             android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
-        <activity android:name=".RegisterActivity"
+        <activity android:name=".home.RegisterActivity"
             android:exported="true">
         </activity>
         <activity android:name=".home.HotelSearchActivity" />

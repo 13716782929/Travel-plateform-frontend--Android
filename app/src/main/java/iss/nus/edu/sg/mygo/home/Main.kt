@@ -1,7 +1,6 @@
 package iss.nus.edu.sg.mygo.home
 
 import android.os.Bundle
-import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -12,7 +11,7 @@ import iss.nus.edu.sg.mygo.fragment.NotificationFragment
 import iss.nus.edu.sg.mygo.fragment.ProfileFragment
 import iss.nus.edu.sg.mygo.fragment.SearchFragment
 
-class Main1 : AppCompatActivity() {
+class Main : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
