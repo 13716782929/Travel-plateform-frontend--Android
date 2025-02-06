@@ -19,5 +19,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "RegisterNewUser"
+rootProject.name = "MyGo"
 include(":app")
