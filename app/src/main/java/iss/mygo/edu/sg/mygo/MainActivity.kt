@@ -1,4 +1,4 @@
-package com.example.registernewuser
+package iss.mygo.edu.sg.mygo
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

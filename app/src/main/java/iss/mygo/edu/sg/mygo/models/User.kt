@@ -1,4 +1,4 @@
-package com.example.registernewuser.models
+package iss.mygo.edu.sg.mygo.models
 
 class User (
     val userId: Int? = null,

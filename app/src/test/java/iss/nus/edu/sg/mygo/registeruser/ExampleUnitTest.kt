@@ -1,4 +1,4 @@
-package com.example.registernewuser
+package iss.nus.edu.sg.mygo.registeruser
 
 import org.junit.Test
 

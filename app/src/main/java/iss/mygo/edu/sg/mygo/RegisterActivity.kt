@@ -1,10 +1,9 @@
-package com.example.registeruser
+package iss.mygo.edu.sg.mygo
 
-import android.app.Activity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.registeruser.databinding.RegisterActivityBinding
+import com.nus.registeruser.databinding.RegisterActivityBinding
 
 class RegisterActivity : AppCompatActivity() {
 

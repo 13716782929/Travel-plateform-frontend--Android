@@ -1,4 +1,4 @@
-package com.example.registeruser
+package iss.mygo.edu.sg.mygo
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge

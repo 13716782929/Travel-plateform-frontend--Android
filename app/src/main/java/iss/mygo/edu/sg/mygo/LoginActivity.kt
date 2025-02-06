@@ -1,11 +1,10 @@
-package com.example.registernewuser
+package iss.mygo.edu.sg.mygo
 
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.registernewuser.R
-import com.example.registernewuser.databinding.LoginBinding
+import com.nus.registernewuser.databinding.LoginBinding
 
 class LoginActivity : AppCompatActivity() {
 
