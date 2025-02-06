@@ -1,90 +1,79 @@
 package iss.nus.edu.sg.mygo.fragment
-import android.widget.RelativeLayout
-import android.widget.TextView
+
+import android.content.Intent
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import iss.nus.edu.sg.mygo.adapter.AttractionAdapter
-import iss.nus.edu.sg.mygo.adapter.SpaceItemDecoration
-import iss.nus.edu.sg.mygo.models.FlightInfo
-import android.os.Bundle
-import android.util.Log
-import android.view.View
 import androidx.fragment.app.Fragment
+import android.os.Bundle
+import android.view.View
 import androidx.lifecycle.lifecycleScope
 import iss.nus.edu.sg.mygo.R
+import iss.nus.edu.sg.mygo.adapter.AttractionAdapter
+import iss.nus.edu.sg.mygo.adapter.SpaceItemDecoration
 import iss.nus.edu.sg.mygo.api.service.AttractionApiService
 import iss.nus.edu.sg.mygo.api.models.AttractionData
-import iss.nus.edu.sg.mygo.api.models.BusinessHour
 import iss.nus.edu.sg.mygo.api.service.MediaApiService
+import iss.nus.edu.sg.mygo.databinding.ActivityAttractionDetailBinding
+import iss.nus.edu.sg.mygo.databinding.HomeFragmentBinding
+import iss.nus.edu.sg.mygo.home.AttractionDetailActivity
+import iss.nus.edu.sg.mygo.home.HotelDetailActivity
+import iss.nus.edu.sg.mygo.home.HotelMainActivity
 import iss.nus.edu.sg.mygo.models.Attraction
 import kotlinx.coroutines.launch
 
 class HomeFragment : Fragment(R.layout.home_fragment) {
 
-    private lateinit var recyclerView: RecyclerView
+    private var _binding: HomeFragmentBinding? = null
+    private val binding get() = _binding!!
+
     private lateinit var adapter: AttractionAdapter
     private lateinit var apiService: AttractionApiService  // 使用 AttractionApiService
-    private lateinit var mediaApiService : MediaApiService // 使用 MediaApiService 获取图片
+    private lateinit var mediaApiService: MediaApiService  // 使用 MediaApiService 获取图片
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // 确保 Service 在这里正确初始化
+        // ✅ 初始化 API 服务
         apiService = AttractionApiService.create()
         mediaApiService = MediaApiService.create()
+        _binding = HomeFragmentBinding.bind(view) // ✅ 启用 ViewBinding
 
-        setupRecyclerView(view)  // 初始化 RecyclerView
-        setupFlightInfoLayout(view)  // 设置航班信息的布局
-
-        // 调用 API 获取数据
-        fetchAttractions()
+        setupRecyclerView()  // 初始化 RecyclerView
+        setupClickListeners() // ✅ 统一管理点击事件
+        fetchAttractions()    // 调用 API 获取数据
     }
 
-    private fun setupRecyclerView(view: View) {
-        recyclerView = view.findViewById(R.id.recycler_view)
-        recyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+    /**
+     * ✅ 设置 RecyclerView 及点击事件
+     */
+    private fun setupRecyclerView() {
+        binding.recyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        binding.recyclerView.addItemDecoration(SpaceItemDecoration(dpToPx(20)))
 
-        val spaceItemDecoration = SpaceItemDecoration(dpToPx(20))  // 20dp的间隔
-        recyclerView.addItemDecoration(spaceItemDecoration)
-
-        // 初始化 Adapter，避免 RecyclerView 报错
-        adapter = AttractionAdapter(emptyList()) { position ->
-            Toast.makeText(requireContext(), "选中了：${position}", Toast.LENGTH_SHORT).show()
+        // ✅ 初始化 Adapter
+        adapter = AttractionAdapter(mutableListOf()) { position ->
+            adapter.getItem(position)?.let { selectedAttraction ->
+                val intent = Intent(requireContext(), AttractionDetailActivity::class.java).apply {
+                    putExtra("attraction_uuid", selectedAttraction.uuid)  // 传递 UUID
+                }
+                startActivity(intent)
+            }
         }
-        recyclerView.adapter = adapter
+        binding.recyclerView.adapter = adapter
     }
 
-
-    private fun setupFlightInfoLayout(view: View) {
-        val flightInfoLayout: RelativeLayout = view.findViewById(R.id.layout_controller_tickets)
-        val departureTextView: TextView = view.findViewById(R.id.departure_location)
-        val arrivalTextView: TextView = view.findViewById(R.id.arrival_location)
-        val departureTimeTextView: TextView = view.findViewById(R.id.departure_time)
-        val arrivalTimeTextView: TextView = view.findViewById(R.id.arrival_time)
-
-        val mockData = FlightInfo(
-            departureLocation = "Singapore",
-            arrivalLocation = "Tokyo",
-            departureTime = "10:00 AM",
-            arrivalTime = "3:00 PM"
-        )
-
-        if (mockData.departureLocation.isNullOrEmpty() ||
-            mockData.arrivalLocation.isNullOrEmpty() ||
-            mockData.departureTime.isNullOrEmpty() ||
-            mockData.arrivalTime.isNullOrEmpty()) {
-            flightInfoLayout.visibility = View.GONE
-        } else {
-            flightInfoLayout.visibility = View.VISIBLE
-            departureTextView.text = mockData.departureLocation
-            arrivalTextView.text = mockData.arrivalLocation
-            departureTimeTextView.text = mockData.departureTime
-            arrivalTimeTextView.text = mockData.arrivalTime
+    /**
+     * ✅ 处理 Home 页面按钮点击事件
+     */
+    private fun setupClickListeners() {
+        binding.hotels.setOnClickListener {
+            startActivity(Intent(requireContext(), HotelMainActivity::class.java))
         }
     }
 
-    // 获取 AttractionData 数据并映射为 Attraction 类型
+    /**
+     * ✅ 获取 `Attraction` 数据并映射到 `RecyclerView`
+     */
     private fun fetchAttractions() {
         val apiKey = "6IBB6PFfArqu7dvgOJaXFZKyqAN9uJAC"
         val contentLanguage = "en"
@@ -96,12 +85,7 @@ class HomeFragment : Fragment(R.layout.home_fragment) {
                     val attractionResponse = response.body()
                     attractionResponse?.let {
                         val attractionList = mapAttractionDataToAttractionList(it.data)
-
-                        // ✅ 不再需要获取 `imageUrl`
-                        adapter = AttractionAdapter(attractionList) { position ->
-                            Toast.makeText(requireContext(), "选中了：${attractionList[position].name}", Toast.LENGTH_SHORT).show()
-                        }
-                        recyclerView.adapter = adapter
+                        adapter.updateData(attractionList)  // ✅ 更新 Adapter 数据
                     }
                 } else {
                     Toast.makeText(requireContext(), "Failed to load attractions", Toast.LENGTH_SHORT).show()
@@ -112,41 +96,27 @@ class HomeFragment : Fragment(R.layout.home_fragment) {
         }
     }
 
-    // 将 AttractionData 转换为 Attraction 类
+
+    /**
+     * ✅ 将 API `AttractionData` 转换为 `Attraction`
+     */
     private fun mapAttractionDataToAttractionList(attractionDataList: List<AttractionData>): List<Attraction> {
         return attractionDataList.map { attractionData ->
-            mapAttractionDataToAttraction(attractionData)
+            Attraction(
+                uuid = attractionData.uuid,
+                name = attractionData.name ?: "Unknown Attraction",
+                address = attractionData.address.formattedAddress(),
+                description = attractionData.description ?: "No description available",
+                rate = attractionData.rating ?: 0.0,
+                imageUuid = attractionData.thumbnails.firstOrNull()?.uuid ?: ""
+            )
         }
     }
 
-    // 将单个 AttractionData 转换为 Attraction
-    private fun mapAttractionDataToAttraction(attractionData: AttractionData): Attraction {
-        return Attraction(
-            uuid = attractionData.uuid,
-            name = attractionData.name ?: "Unknown Attraction",
-            address = attractionData.address.formattedAddress(),
-            latitude = attractionData.location?.latitude ?: 0.0,
-            longitude = attractionData.location?.longitude ?: 0.0,
-            description = attractionData.description ?: "No description available",
-            price = attractionData.pricing.formattedPrice(),
-            openTime = formatBusinessHours(attractionData.businessHour),
-            ticketAvailability = attractionData.ticketed == "yes",
-            imageUuid = if (attractionData.thumbnails.isNotEmpty()) attractionData.thumbnails[0].uuid else ""
-        )
-    }
-
-
-
-    // 格式化 business hour
-    private fun formatBusinessHours(businessHours: List<BusinessHour>): String {
-        return businessHours.joinToString { "${it.day}: ${it.openTime} - ${it.closeTime}" }
-    }
-
-
+    /**
+     * ✅ `dp` 转 `px`
+     */
     private fun dpToPx(dp: Int): Int {
-        val density = resources.displayMetrics.density
-        return (dp * density).toInt()
+        return (dp * resources.displayMetrics.density).toInt()
     }
 }
-
-

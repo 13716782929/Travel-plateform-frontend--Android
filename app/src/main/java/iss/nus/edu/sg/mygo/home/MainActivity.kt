@@ -46,12 +46,7 @@ class MainActivity : AppCompatActivity() {
                     NotificationFragment() // 切换到NotificationFragment
                 }
                 R.id.nav_profile -> {
-                    if (isUserLoggedIn()) {
-                        ProfileFragment() // 如果已登录，加载ProfileFragment
-                    } else {
-                        navigateToLoginActivity() // 如果未登录，跳转到LoginActivity
-                        return@setOnItemSelectedListener false // 取消继续处理导航
-                    }
+                    ProfileFragment() // 如果已登录，加载ProfileFragment
                 }
                 else -> HomeFragment() // 默认Fragment
             }
