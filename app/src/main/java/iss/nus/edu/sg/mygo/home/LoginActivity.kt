@@ -1,107 +1,123 @@
 package iss.nus.edu.sg.mygo.home
 
+import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
+import iss.nus.edu.sg.mygo.api.service.UserApiService
+import iss.nus.edu.sg.mygo.api.models.LoginRequest
 import iss.nus.edu.sg.mygo.databinding.LoginActivityBinding
+import kotlinx.coroutines.launch
 
 class LoginActivity : AppCompatActivity() {
 
-    // ViewBinding
     private lateinit var binding: LoginActivityBinding
     private lateinit var sharedPreferences: SharedPreferences
+    private val apiService = UserApiService.create() //  初始化 API 服务
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // Enable edge-to-edge display
         enableEdgeToEdge()
-
-        // Initialize the binding
         binding = LoginActivityBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Get SharedPreferences
-        sharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE)
+        sharedPreferences = getSharedPreferences("UserPrefs", Context.MODE_PRIVATE)
 
-        // Handle login button click
+        // 监听登录按钮点击事件
         binding.loginActionButton.setOnClickListener {
-            val username = binding.usernameField.text.toString().trim()
+            val email = binding.usernameField.text.toString().trim()
             val password = binding.passwordField.text.toString().trim()
             val rememberMeChecked = binding.rememberMeCheckBox.isChecked
 
-            // Validate Inputs
-            if (username.isEmpty() || password.isEmpty()) {
-                Toast.makeText(this, "Please fill in all fields", Toast.LENGTH_SHORT).show()
+            if (email.isEmpty() || password.isEmpty()) {
+                Toast.makeText(this, "Please enter email and password", Toast.LENGTH_SHORT).show()
             } else {
-                // Get saved user data from SharedPreferences
-                val savedUsername = sharedPreferences.getString("Username", null)
-                val savedPassword = sharedPreferences.getString("Password", null)
-
-                // Check if the entered username and password match the saved ones
-                if (username == savedUsername && password == savedPassword) {
-                    // Login Successful
-                    if (rememberMeChecked) {
-                        // Save "Remember Me" state in SharedPreferences
-                        saveRememberMeState(username)
-                    }
-
-                    saveLoginState() // Save login state
-
-                    Toast.makeText(this, "Login Successful!", Toast.LENGTH_SHORT).show()
-                    // Navigate to MainActivity
-                    val intent = Intent(this, MainActivity::class.java)
-                    startActivity(intent)
-                    finish() // End LoginActivity to prevent returning to it
-                } else {
-                    // Login Failed
-                    Toast.makeText(this, "Invalid username or password", Toast.LENGTH_SHORT).show()
-                }
+                loginUser(email, password, rememberMeChecked) // 调用 API 进行身份验证
             }
         }
 
-        // Handle Forgot Password Click
+        // 忘记密码点击事件
         binding.forgetPassword.setOnClickListener {
             Toast.makeText(this, "Forgot Password clicked!", Toast.LENGTH_SHORT).show()
-            // Implement Forgot Password logic here
+            // 实现忘记密码功能
         }
 
-        // Handle Register Button Click
+        // 注册按钮点击事件
         binding.registerToggle.setOnClickListener {
-            // Navigate to Register Activity
-            val intent = Intent(this, RegisterActivity::class.java)
-            startActivity(intent)
+            startActivity(Intent(this, RegisterActivity::class.java))
         }
     }
 
-    // Save "Remember Me" State in SharedPreferences
-    private fun saveRememberMeState(username: String) {
-        val sharedPreferences = getSharedPreferences("LoginPrefs", MODE_PRIVATE)
+    /**
+     * 通过 API 进行登录，并存储 Token
+     * login by API and store Token
+     */
+    private fun loginUser(email: String, password: String, rememberMe: Boolean) {
+        lifecycleScope.launch {
+            try {
+                val response = apiService.login(LoginRequest(email, password))
+                if (response.isSuccessful) {
+                    val loginResponse = response.body()
+                    loginResponse?.let {
+                        saveToken(it.token) //  存储 Token
+                        if (rememberMe) saveRememberMeState(email) // 记住用户
+                        saveLoginState() // 记录已登录状态
+
+                        Toast.makeText(this@LoginActivity, "Login Successful!", Toast.LENGTH_SHORT).show()
+                        startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+                        finish()
+                    }
+                } else {
+                    Toast.makeText(this@LoginActivity, "Login Failed: Invalid credentials", Toast.LENGTH_SHORT).show()
+                }
+            } catch (e: Exception) {
+                Toast.makeText(this@LoginActivity, "Network Error: ${e.message}", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    /**
+     * 存储 JWT Token 以便后续 API 请求使用
+     * store JWT Token for API usage
+     */
+    private fun saveToken(token: String) {
+        sharedPreferences.edit().putString("auth_token", token).apply()
+    }
+
+    /**
+     * 记住用户（不存储密码，只存储 email）
+     * remember user with email
+     */
+    private fun saveRememberMeState(email: String) {
         val editor = sharedPreferences.edit()
-        editor.putString("SavedUsername", username)
+        editor.putString("SavedEmail", email)
         editor.putBoolean("RememberMe", true)
         editor.apply()
     }
 
-    // Save login state in SharedPreferences
+    /**
+     * 记录用户已登录状态
+     * record user login status
+     */
     private fun saveLoginState() {
-        val sharedPreferences = getSharedPreferences("user_prefs", MODE_PRIVATE)
-        val editor = sharedPreferences.edit()
-        editor.putBoolean("is_logged_in", true)
-        editor.apply()
+        sharedPreferences.edit().putBoolean("is_logged_in", true).apply()
     }
 
-    // Load "Remember Me" State from SharedPreferences
+    /**
+     * 加载 "Remember Me" 状态
+     * load Remember Me status
+     */
     private fun loadRememberMeState() {
-        val sharedPreferences = getSharedPreferences("LoginPrefs", MODE_PRIVATE)
-        val rememberedUsername = sharedPreferences.getString("SavedUsername", "")
+        val rememberedEmail = sharedPreferences.getString("SavedEmail", "")
         val isRemembered = sharedPreferences.getBoolean("RememberMe", false)
 
         if (isRemembered) {
-            binding.usernameField.setText(rememberedUsername)
+            binding.usernameField.setText(rememberedEmail)
             binding.rememberMeCheckBox.isChecked = true
         }
     }

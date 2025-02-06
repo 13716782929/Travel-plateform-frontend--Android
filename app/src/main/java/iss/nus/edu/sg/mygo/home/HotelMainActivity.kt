@@ -3,6 +3,7 @@ package iss.nus.edu.sg.mygo.home
 import android.content.Intent
 import android.os.Bundle
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -44,6 +45,10 @@ class HotelMainActivity : AppCompatActivity() {
                 putExtra("priceFilter", priceFilter)
             }
             startActivity(intent)
+        }
+
+        findViewById<ImageView>(R.id.container_arrow).setOnClickListener{
+            finish()
         }
 
         // 监听 hotel_container_frame（Explore Aspen）点击事件

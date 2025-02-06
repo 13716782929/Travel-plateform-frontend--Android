@@ -35,20 +35,20 @@
             android:label="@string/title_activity_mygo_greeting"
             android:theme="@style/Theme.MyGo.Fullscreen">
 <!--             这里不需要 intent-filter 如果它不作为启动页面 -->
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
         </activity>
 <!--login-->
         <activity
             android:name=".home.LoginActivity"
             android:exported="true"
             android:theme="@style/Material3.Theme.MyGo">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
 <!--hotel_main-->
         <activity
@@ -71,6 +71,10 @@
             android:theme="@style/Material3.Theme.MyGo"
             >
         </activity>
+
+        <activity android:name=".home.AttractionDetailActivity"
+            android:theme="@style/Material3.Theme.MyGo"/>
+
     </application>
 
 </manifest>

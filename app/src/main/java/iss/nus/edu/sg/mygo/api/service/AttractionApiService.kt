@@ -1,6 +1,7 @@
 package iss.nus.edu.sg.mygo.api.service
 
 import iss.nus.edu.sg.mygo.api.models.AttractionResponse
+import iss.nus.edu.sg.mygo.models.Attraction
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -24,7 +25,11 @@ interface AttractionApiService {
         @Header("X-Content-Language") contentLanguage: String = "en"
     ): Response<AttractionResponse>
 
-//    @POST("api/attractions/save")
+    @POST("/api/attractions") // ✅ 直接调用 JPA 默认 `save()` 方法
+    suspend fun saveAttraction(@Body attraction: Attraction): Response<Void>
+
+
+    //    @POST("api/attractions/save")
 //    suspend fun sendTransformedAttractionData(
 //        @Body attractions: List<Attraction>
 //    ): Response<SaveResponse>
