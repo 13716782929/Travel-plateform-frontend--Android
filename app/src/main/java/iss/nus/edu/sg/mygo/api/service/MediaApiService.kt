@@ -6,7 +6,7 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 
 interface MediaApiService {
-    @GET("proxy/media/{uuid}")
+    @GET("/proxy/media/{uuid}")
     suspend fun getImageUrl(@Path("uuid") uuid: String): String
 
     companion object {

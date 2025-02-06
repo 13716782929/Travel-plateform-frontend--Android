@@ -29,21 +29,20 @@ class AttractionAdapter(
     override fun onBindViewHolder(holder: AttractionViewHolder, position: Int) {
         val attraction = attractions[position]
         Log.d("AttractionAdapter", "Binding attraction: ${attraction.name}")
+        Log.d("AttractionAdapter", "Binding attraction: ${attraction.imageUuid}")
 
         holder.nameTextView.text = attraction.name
         holder.locationTextView.text = attraction.address
 //        holder.priceTextView.text = attraction.price
 
-        // 使用 Glide 加载图片 use Glide to load image
-        if (attraction.imageUrls.isNotEmpty()) {
-            Glide.with(holder.itemView.context)
-                .load(attraction.imageUrls[0]) // 只加载第一张图片
-                .placeholder(R.drawable.attraction_placeholder_image) // 加载中显示的占位图
-                .error(R.drawable.attraction_placeholder_image) // 失败时显示的图片
-                .into(holder.imageView)
-        } else {
-            holder.imageView.setImageResource(R.drawable.attraction_placeholder_image) // 没有图片时使用默认占位图
-        }
+        // ✅ 直接使用 `/proxy/media/{uuid}` 访问后端二进制数据
+        val imageUrl = "http://10.0.2.2:8080/proxy/media/${attraction.imageUuid}?fileType=Small%20Thumbnail"
+
+        Glide.with(holder.itemView.context)
+            .load(imageUrl)
+            .placeholder(R.drawable.attraction_placeholder_image) // 占位图
+            .error(R.drawable.attraction_placeholder_image) // 加载失败的默认图片
+            .into(holder.imageView)
 
         holder.itemView.setOnClickListener {
             onItemClick(position)

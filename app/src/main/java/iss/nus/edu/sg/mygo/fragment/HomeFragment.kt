@@ -97,12 +97,7 @@ class HomeFragment : Fragment(R.layout.home_fragment) {
                     attractionResponse?.let {
                         val attractionList = mapAttractionDataToAttractionList(it.data)
 
-                        // 🔹 遍历 Attraction 列表，获取每个景点的 imageUrl
-                        attractionList.forEach { attraction ->
-                            attraction.imageUrls = fetchImageUrls(attraction.uuid) // 获取图片 URL
-                        }
-
-                        // 🔹 传递 `imageUrls` 给 Adapter
+                        // ✅ 不再需要获取 `imageUrl`
                         adapter = AttractionAdapter(attractionList) { position ->
                             Toast.makeText(requireContext(), "选中了：${attractionList[position].name}", Toast.LENGTH_SHORT).show()
                         }
@@ -117,18 +112,6 @@ class HomeFragment : Fragment(R.layout.home_fragment) {
         }
     }
 
-    private suspend fun fetchImageUrls(uuid: String): List<String> {
-        return try {
-            val imageUrl = mediaApiService.getImageUrl(uuid) // 获取图片 URL
-            listOf(imageUrl) // 返回单个 URL 列表
-        } catch (e: Exception) {
-            Log.e("ImageFetchError", "Error fetching image URL: ${e.message}")
-            emptyList() // 返回空列表，避免崩溃
-        }
-    }
-
-
-
     // 将 AttractionData 转换为 Attraction 类
     private fun mapAttractionDataToAttractionList(attractionDataList: List<AttractionData>): List<Attraction> {
         return attractionDataList.map { attractionData ->
@@ -141,16 +124,17 @@ class HomeFragment : Fragment(R.layout.home_fragment) {
         return Attraction(
             uuid = attractionData.uuid,
             name = attractionData.name ?: "Unknown Attraction",
-            address = attractionData.address.formattedAddress(), // 格式化地址
-            latitude = attractionData.location.latitude ?: 0.0, // 假设 Location 可能为 null
-            longitude = attractionData.location.longitude ?: 0.0, // 假设 Location 可能为 null
+            address = attractionData.address.formattedAddress(),
+            latitude = attractionData.location?.latitude ?: 0.0,
+            longitude = attractionData.location?.longitude ?: 0.0,
             description = attractionData.description ?: "No description available",
-            price = attractionData.pricing.formattedPrice() , // 格式化价格
-            openTime = formatBusinessHours(attractionData.businessHour), // 格式化开放时间
-            ticketAvailability = attractionData.ticketed == "yes", // 根据 ticketed 字段判断
-            imageUrls = attractionData.thumbnails.mapNotNull { it.url } // 过滤掉可能的 null 值
+            price = attractionData.pricing.formattedPrice(),
+            openTime = formatBusinessHours(attractionData.businessHour),
+            ticketAvailability = attractionData.ticketed == "yes",
+            imageUuid = if (attractionData.thumbnails.isNotEmpty()) attractionData.thumbnails[0].uuid else ""
         )
     }
+
 
 
     // 格式化 business hour
