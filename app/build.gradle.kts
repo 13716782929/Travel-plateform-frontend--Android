@@ -1,4 +1,3 @@
-
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -36,6 +35,8 @@ android {
     kotlinOptions {
         jvmTarget = "11"
     }
+
+
     buildFeatures {
         compose = true
         viewBinding = true
@@ -50,7 +51,8 @@ dependencies {
     implementation(libs.androidsvg)
 
     implementation(libs.androidx.recyclerview)
-    implementation(libs.androidx.constraintlayout.v204)
+//    implementation(libs.androidx.constraintlayout.v204)
+    implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
