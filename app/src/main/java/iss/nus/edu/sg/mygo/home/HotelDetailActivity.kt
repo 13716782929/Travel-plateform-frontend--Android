@@ -85,7 +85,7 @@ class HotelDetailActivity : AppCompatActivity() {
                         runOnUiThread {
                             hotelNameTextView.text = hotelData.name
                             hotelDescriptionTextView.text = hotelData.description
-                            hotelRatingTextView.text = hotelData.rating.toString()
+                            hotelRatingTextView.text = if (hotelData.rating == 0.0) "No Rating" else hotelData.rating.toString()
                             hotelAddressTextView.text = listOfNotNull(
                                 hotelData.address.block,
                                 hotelData.address.streetName,
@@ -95,12 +95,11 @@ class HotelDetailActivity : AppCompatActivity() {
                                 hotelData.address.buildingName,
                                 hotelData.address.postalCode
                             ).joinToString(" ").ifEmpty { "Unknown Location" }
-//                            hotelFacilitiesTextView.text = hotelData.amenities?.joinToString(", ") ?: "No facilities listed"
                             hotelPriceTextView.text = hotelData.leadInRoomRates ?: "Price not available"
 
-                            val firstImageUuid = hotelData.thumbnails?.firstOrNull()?.libraryUuid
+                            val firstImageUuid = hotelData.thumbnails?.firstOrNull()?.uuid
                             if (firstImageUuid != null) {
-                                fetchHotelImage(firstImageUuid, apiService)
+                                fetchHotelImage(firstImageUuid)
                             }
 
                             // 清空已有的设施列表，防止重复添加
@@ -136,32 +135,21 @@ class HotelDetailActivity : AppCompatActivity() {
         })
     }
 
-    private fun fetchHotelImage(uuid: String, apiService: AccommodationApiService) {
-        val apiKey = "pRUJyzyyzpRd557ynCs7JRZtoKYr6PPC"
-        val imageCall = apiService.getMediaDetails(apiKey, uuid)
-        imageCall.enqueue(object : Callback<AccommodationImageResponse> {
-            override fun onResponse(
-                call: Call<AccommodationImageResponse>,
-                response: Response<AccommodationImageResponse>
-            ) {
-                val imageUrl = response.body()?.data?.firstOrNull()?.url
-                runOnUiThread {
-                    Glide.with(this@HotelDetailActivity)
-                        .load(imageUrl)
-                        .placeholder(R.drawable.hotel_container_product_image)
-                        .into(hotelImageView)
-                }
-            }
+    private fun fetchHotelImage(uuid: String) {
+        // 定义一个私有函数 fetchHotelImage，它接受 uuid 作为参数
 
-            override fun onFailure(call: Call<AccommodationImageResponse>, t: Throwable) {
-                Toast.makeText(
-                    this@HotelDetailActivity,
-                    "Failed to load hotel hotel_image",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
-        })
+        val imageUrl = "http://10.0.2.2:8080/proxy/media/$uuid?fileType=Small%20Thumbnail"
+        // 直接拼接本地代理服务器的 URL，替换 {uuid} 为实际的 uuid
+
+        runOnUiThread {
+            Glide.with(this@HotelDetailActivity)
+                .load(imageUrl)
+                .placeholder(R.drawable.hotel_container_product_image)
+                .into(hotelImageView)
+        }
+        // 在 UI 线程上运行 Glide 加载图片，并设置占位图
     }
+
 
 
 

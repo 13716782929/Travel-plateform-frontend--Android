@@ -1,6 +1,7 @@
 package iss.nus.edu.sg.mygo.network
 
 import iss.nus.edu.sg.mygo.api.AccommodationApiService
+import iss.nus.edu.sg.mygo.api.AccommodationMediaImageService
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -10,6 +11,7 @@ import java.util.concurrent.TimeUnit
 
 object RetrofitClient {
     private const val BASE_URL = "https://api.stb.gov.sg/"  // API 基础 URL
+    private const val BACKEND_URL = "http://10.0.2.2:8080"
 
     // 添加日志拦截器（可选）
     private val loggingInterceptor = HttpLoggingInterceptor().apply {
@@ -32,8 +34,20 @@ object RetrofitClient {
             .build()
     }
 
-    // 提供 API 接口实例
+    private val mediaRetrofit: Retrofit by lazy {
+        Retrofit.Builder()
+            .baseUrl(BACKEND_URL)
+            .client(client)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+    }
+
     val accommodationApiService: AccommodationApiService by lazy {
         retrofit.create(AccommodationApiService::class.java)
     }
+
+    val mediaImageService: AccommodationMediaImageService by lazy {
+        mediaRetrofit.create(AccommodationMediaImageService::class.java)
+    }
+
 }
