@@ -11,9 +11,6 @@ data class AccommodationResponse(
     @SerializedName("retrievedRecords") val retrievedRecords: Int
 )
 
-// 状态信息
-// import DuplicateDataStructure.kt
-
 // 住宿信息
 data class Accommodation(
     @SerializedName("uuid") val uuid: String,
@@ -48,14 +45,8 @@ data class Accommodation(
     @SerializedName("links") val links: List<ApiLink>?
 )
 
-// 地址
-// in duplicate class : DuplicateDataStructure.kt
 
-// 位置
-// in duplicate class : DuplicateDataStructure.kt
 
-// 图片
-// in duplicate class : DuplicateDataStructure.kt
 
 // 视频
 data class Video(
@@ -69,8 +60,6 @@ data class Document(
     @SerializedName("url") val url: String?
 )
 
-// 联系信息
-// in duplicate class : DuplicateDataStructure.kt
 
 // API 相关链接
 data class ApiLink(
@@ -79,14 +68,8 @@ data class ApiLink(
     @SerializedName("method") val method: String
 )
 
-// 元数据 Metadata
-// in duplicate class : DuplicateDataStructure.kt
-
-// 分页链接 PaginationLinks
-// in duplicate class : DuplicateDataStructure.kt
 
 // 评价（如果 API 未来有评价数据）
-// in duplicate class : DuplicateDataStructure.kt
 data class Review(
     @SerializedName("author") val author: String?,
     @SerializedName("content") val content: String?,

@@ -3,7 +3,7 @@ package iss.nus.edu.sg.mygo.home
 import android.content.Intent
 import android.os.Bundle
 import android.widget.EditText
-import android.widget.ImageView
+import android.widget.ImageButton
 import android.widget.LinearLayout
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -26,30 +26,19 @@ class HotelMainActivity : AppCompatActivity() {
 
         // 获取用户输入的 EditText
         val destinationInput = findViewById<EditText>(R.id.text_value_destination)
-        val checkInInput = findViewById<EditText>(R.id.container_additional_info1)
-        val nightsInput = findViewById<EditText>(R.id.container_additional_info2)
-        val priceFilterInput = findViewById<EditText>(R.id.container_additional_info6)
+        val backButton = findViewById<ImageButton>(R.id.button_back)
 
         // 监听搜索按钮
         findViewById<LinearLayout>(R.id.button_search).setOnClickListener {
             val destination = destinationInput.text.toString()
-            val checkInDate = checkInInput.text.toString()
-            val nights = nightsInput.text.toString()
-            val priceFilter = priceFilterInput.text.toString()
 
             // 创建 Intent 传递数据到 HotelSearchActivity
             val intent = Intent(this, HotelSearchActivity::class.java).apply {
                 putExtra("destination", destination)
-                putExtra("checkInDate", checkInDate)
-                putExtra("nights", nights)
-                putExtra("priceFilter", priceFilter)
             }
             startActivity(intent)
         }
 
-        findViewById<ImageView>(R.id.container_arrow).setOnClickListener{
-            finish()
-        }
 
         // 监听 hotel_container_frame（Explore Aspen）点击事件
         findViewById<LinearLayout>(R.id.container_frame).setOnClickListener {
@@ -68,5 +57,11 @@ class HotelMainActivity : AppCompatActivity() {
             }
             startActivity(intent)
         }
+
+        // 监听返回按钮点击事件
+        backButton.setOnClickListener {
+            finish()
+        }
+
     }
 }

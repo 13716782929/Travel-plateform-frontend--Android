@@ -1,6 +1,5 @@
-package iss.nus.edu.sg.mygo.api.service
+package iss.nus.edu.sg.mygo.api
 
-import iss.nus.edu.sg.mygo.api.models.AccommodationImageResponse
 import iss.nus.edu.sg.mygo.api.models.AccommodationResponse
 import retrofit2.Call
 import retrofit2.http.GET
@@ -26,11 +25,6 @@ interface AccommodationApiService {
         @Query("searchValues") searchValues: String // 搜索关键字
     ): Call<AccommodationResponse>
 
-    @GET("media/libraries/v2/details/{uuid}")
-    fun getMediaDetails(
-        @Header("X-API-Key") apiKey: String,  // API Key 作为请求头
-        @Path("uuid") uuid: String
-    ): Call<AccommodationImageResponse>
 
 
 //    @GET("content/common/v2/search")
