@@ -95,6 +95,7 @@ class HotelDetailActivity : AppCompatActivity() {
                                 hotelData.address.buildingName,
                                 hotelData.address.postalCode
                             ).joinToString(" ").ifEmpty { "Unknown Location" }
+//                            hotelFacilitiesTextView.text = hotelData.amenities?.joinToString(", ") ?: "No facilities listed"
                             hotelPriceTextView.text = hotelData.leadInRoomRates ?: "Price not available"
 
                             val firstImageUuid = hotelData.thumbnails?.firstOrNull()?.uuid

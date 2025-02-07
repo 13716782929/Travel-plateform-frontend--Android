@@ -1,4 +1,4 @@
-package iss.nus.edu.sg.mygo.api.service
+package iss.nus.edu.sg.mygo.api
 
 import iss.nus.edu.sg.mygo.api.models.AccommodationResponse
 import retrofit2.Call

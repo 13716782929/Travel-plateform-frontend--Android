@@ -10,7 +10,7 @@ data class AttractionResponse(
     @SerializedName("retrievedRecords") val retrievedRecords: Int
 )
 
-
+// import DuplicateDataStructure.kt
 
 // attraction detail data
 data class AttractionData(
