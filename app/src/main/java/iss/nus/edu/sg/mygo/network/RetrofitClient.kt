@@ -1,8 +1,6 @@
 package iss.nus.edu.sg.mygo.network
 
-import iss.nus.edu.sg.mygo.api.AccommodationApiService
-import iss.nus.edu.sg.mygo.api.AccommodationMediaImageService
-import okhttp3.Interceptor
+import iss.nus.edu.sg.mygo.api.service.AccommodationApiService
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -46,8 +44,5 @@ object RetrofitClient {
         retrofit.create(AccommodationApiService::class.java)
     }
 
-    val mediaImageService: AccommodationMediaImageService by lazy {
-        mediaRetrofit.create(AccommodationMediaImageService::class.java)
-    }
 
 }

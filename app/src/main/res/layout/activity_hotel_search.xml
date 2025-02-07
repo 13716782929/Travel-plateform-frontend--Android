@@ -68,7 +68,7 @@
             android:layout_marginTop="51dp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:scaleType="centerInside"
-            android:src="@drawable/hotel_container_arrow" />
+            app:srcCompat="@drawable/hotel_ic_arrow_back" />
 
 
         <RelativeLayout

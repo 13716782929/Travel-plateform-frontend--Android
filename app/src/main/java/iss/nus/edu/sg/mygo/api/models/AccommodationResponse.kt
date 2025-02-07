@@ -1,4 +1,4 @@
-package iss.nus.edu.sg.mygo.models
+package iss.nus.edu.sg.mygo.api.models
 
 import com.google.gson.annotations.SerializedName
 
@@ -9,13 +9,6 @@ data class AccommodationResponse(
     @SerializedName("paginationLinks") val paginationLinks: PaginationLinks?,
     @SerializedName("totalRecords") val totalRecords: Int,
     @SerializedName("retrievedRecords") val retrievedRecords: Int
-)
-
-// 状态信息
-data class Status(
-    @SerializedName("code") val code: Int,
-    @SerializedName("name") val name: String,
-    @SerializedName("message") val message: String
 )
 
 // 住宿信息
@@ -52,29 +45,8 @@ data class Accommodation(
     @SerializedName("links") val links: List<ApiLink>?
 )
 
-// 地址
-data class Address(
-    @SerializedName("block") val block: String?,
-    @SerializedName("streetName") val streetName: String?,
-    @SerializedName("floorNumber") val floorNumber: String?,
-    @SerializedName("unitNumber") val unitNumber: String?,
-    @SerializedName("buildingName") val buildingName: String?,
-    @SerializedName("postalCode") val postalCode: String?
-)
 
-// 位置
-data class Location(
-    @SerializedName("latitude") val latitude: Double,
-    @SerializedName("longitude") val longitude: Double
-)
 
-// 图片
-data class Image(
-    @SerializedName("uuid") val uuid: String,
-    @SerializedName("url") val url: String?,
-    @SerializedName("libraryUuid") val libraryUuid: String?,
-    @SerializedName("primaryFileMediumUuid") val primaryFileMediumUuid: String?
-)
 
 // 视频
 data class Video(
@@ -88,11 +60,6 @@ data class Document(
     @SerializedName("url") val url: String?
 )
 
-// 联系信息
-data class Contact(
-    @SerializedName("primaryContactNo") val primaryContactNo: String?,
-    @SerializedName("secondaryContactNo") val secondaryContactNo: String?
-)
 
 // API 相关链接
 data class ApiLink(
@@ -101,18 +68,6 @@ data class ApiLink(
     @SerializedName("method") val method: String
 )
 
-// 元数据
-data class Metadata(
-    @SerializedName("updatedDate") val updatedDate: String,
-    @SerializedName("createdDate") val createdDate: String
-)
-
-// 分页链接
-data class PaginationLinks(
-    @SerializedName("self") val self: String?,
-    @SerializedName("first") val first: String?,
-    @SerializedName("next") val next: String?
-)
 
 // 评价（如果 API 未来有评价数据）
 data class Review(

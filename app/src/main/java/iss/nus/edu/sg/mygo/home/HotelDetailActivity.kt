@@ -14,9 +14,8 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.bumptech.glide.Glide
 import iss.nus.edu.sg.mygo.R
-import iss.nus.edu.sg.mygo.api.AccommodationApiService
-import iss.nus.edu.sg.mygo.models.AccommodationImageResponse
-import iss.nus.edu.sg.mygo.models.AccommodationResponse
+import iss.nus.edu.sg.mygo.api.service.AccommodationApiService
+import iss.nus.edu.sg.mygo.api.models.AccommodationResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -32,6 +31,7 @@ class HotelDetailActivity : AppCompatActivity() {
     private lateinit var wordListContainer: LinearLayout
     private lateinit var hotelPriceTextView: TextView
     private lateinit var hotelRatingTextView: TextView
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -138,7 +138,7 @@ class HotelDetailActivity : AppCompatActivity() {
     private fun fetchHotelImage(uuid: String) {
         // 定义一个私有函数 fetchHotelImage，它接受 uuid 作为参数
 
-        val imageUrl = "http://10.0.2.2:8080/proxy/media/$uuid?fileType=Small%20Thumbnail"
+        val imageUrl = "http://10.0.2.2:8080/proxy/media/$uuid?fileType=Thumbnail%201080h"
         // 直接拼接本地代理服务器的 URL，替换 {uuid} 为实际的 uuid
 
         runOnUiThread {
