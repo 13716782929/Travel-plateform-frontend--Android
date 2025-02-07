@@ -89,7 +89,7 @@ class AttractionDetailActivity : AppCompatActivity() {
                             attractionAddressTextView.text = attractionData.address.formattedAddress()
                             attractionPriceTextView.text = attractionData.pricing?.others ?: "Price not available"
 
-                            // ✅ 加载景点图片
+                            //  加载景点图片
                             val imageUrl = "http://10.0.2.2:8080/proxy/media/${attractionData.images?.firstOrNull()?.uuid}"
                             Glide.with(this@AttractionDetailActivity)
                                 .load(imageUrl)
@@ -97,10 +97,10 @@ class AttractionDetailActivity : AppCompatActivity() {
                                 .error(R.drawable.attraction_placeholder_image)
                                 .into(attractionImageView)
 
-                            // ✅ 清空已有的设施列表，防止重复添加
+                            // 清空已有的设施列表，防止重复添加
                             wordListContainer.removeAllViews()
 
-                            // ✅ 添加 "Tags" 标题
+                            //  添加 "Tags" 标题
                             val tagsTitle = TextView(this@AttractionDetailActivity).apply {
                                 text = "Tags"
                                 textSize = 18f
@@ -109,7 +109,7 @@ class AttractionDetailActivity : AppCompatActivity() {
                             }
                             wordListContainer.addView(tagsTitle)
 
-                            // ✅ 解析标签并动态添加
+                            //  解析标签并动态添加
                             attractionData.tags?.forEach { tag ->
                                 val wordTextView = TextView(this@AttractionDetailActivity).apply {
                                     text = "· $tag"
