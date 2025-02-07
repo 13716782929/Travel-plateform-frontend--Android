@@ -15,6 +15,7 @@ import androidx.core.view.WindowInsetsCompat
 import com.bumptech.glide.Glide
 import iss.nus.edu.sg.mygo.R
 import iss.nus.edu.sg.mygo.api.service.AccommodationApiService
+
 import iss.nus.edu.sg.mygo.api.models.AccommodationResponse
 import retrofit2.Call
 import retrofit2.Callback
