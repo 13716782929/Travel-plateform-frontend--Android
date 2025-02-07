@@ -1,5 +1,9 @@
 package iss.nus.edu.sg.mygo.home
-
+/*
+Author: Siti Alifah Binte Yahya
+StudentID: A0295324B
+Date: 28/1/2025
+*/
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle

@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView
 import iss.nus.edu.sg.mygo.R
 import iss.nus.edu.sg.mygo.adapter.HotelAdapter
 import iss.nus.edu.sg.mygo.adapter.HotelSpaceItemDecoration
-import iss.nus.edu.sg.mygo.api.AccommodationApiService
 import iss.nus.edu.sg.mygo.models.AccommodationImageResponse
 import iss.nus.edu.sg.mygo.models.AccommodationResponse
 import iss.nus.edu.sg.mygo.models.Hotel

@@ -49,7 +49,9 @@ dependencies {
     implementation(libs.okhttp3.okhttp)
     implementation(libs.google.gson)
     implementation(libs.androidsvg)
-
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation("com.github.bumptech.glide:glide:4.15.1")
     implementation(libs.androidx.recyclerview)
     implementation(libs.androidx.constraintlayout.v204)
 //    implementation(libs.androidx.constraintlayout)
