@@ -11,6 +11,7 @@ import androidx.lifecycle.lifecycleScope
 import iss.nus.edu.sg.mygo.api.service.UserApiService
 import iss.nus.edu.sg.mygo.api.models.LoginRequest
 import iss.nus.edu.sg.mygo.databinding.LoginActivityBinding
+import iss.nus.edu.sg.mygo.sessions.SessionManager
 import kotlinx.coroutines.launch
 
 class LoginActivity : AppCompatActivity() {
@@ -18,6 +19,8 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var binding: LoginActivityBinding
     private lateinit var sharedPreferences: SharedPreferences
     private val apiService = UserApiService.create() //  初始化 API 服务
+    private val sessionManager by lazy { SessionManager(this) } // using SessionManager doing authentication
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

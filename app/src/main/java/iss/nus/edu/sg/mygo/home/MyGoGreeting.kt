@@ -34,7 +34,7 @@ class MyGoGreeting : AppCompatActivity() {
             startActivity(intent)
             // 结束当前 Activity，避免返回到该页面
             finish()
-        }, 3000) // 3000 毫秒 = 3 秒
+        }, 1500) // 1000 = 1 秒
     }
 
     // 清除登录状态

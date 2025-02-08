@@ -3,6 +3,8 @@ package iss.nus.edu.sg.mygo.home
 import android.graphics.Color
 import android.graphics.Typeface
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.LinearLayout
@@ -48,18 +50,12 @@ class AttractionDetailActivity : AppCompatActivity() {
 
         // 获取 UI 组件
         attractionNameTextView = findViewById(R.id.txt_hotel_name)
-        attractionDescriptionTextView = findViewById(R.id.txt_product_info_description)
-        attractionImageView = findViewById(R.id.container_product_image)
-        attractionAddressTextView = findViewById(R.id.txt_hotel_address)
+        attractionDescriptionTextView = findViewById(R.id.txt_attraction_info_description)
+        attractionImageView = findViewById(R.id.container_attraction_image)
+        attractionAddressTextView = findViewById(R.id.txt_attraction_address)
         wordListContainer = findViewById(R.id.word_list_container)
         attractionPriceTextView = findViewById(R.id.txt_price_value)
         attractionRatingTextView = findViewById(R.id.txt_review_count)
-
-        // 设置返回按钮的点击事件
-        val backButton: ImageButton = findViewById(R.id.button_back)
-        backButton.setOnClickListener {
-            finish()  // 关闭当前 Activity，返回上一个页面
-        }
 
         // 初始化 API Service
         apiService = AttractionApiService.create()
@@ -69,7 +65,15 @@ class AttractionDetailActivity : AppCompatActivity() {
         if (attractionUuid != null) {
             fetchAttractionDetails(attractionUuid)
         }
+
+        val backButton: ImageButton = findViewById(R.id.button_back)
+        backButton.setOnClickListener {
+            // 关闭 Activity
+            finish()
+        }
+
     }
+
 
     private fun fetchAttractionDetails(uuid: String) {
         val apiKey = "6IBB6PFfArqu7dvgOJaXFZKyqAN9uJAC" // 替换为你的 API Key
@@ -89,13 +93,25 @@ class AttractionDetailActivity : AppCompatActivity() {
                             attractionAddressTextView.text = attractionData.address.formattedAddress()
                             attractionPriceTextView.text = attractionData.pricing?.others ?: "Price not available"
 
-                            //  加载景点图片
-                            val imageUrl = "http://10.0.2.2:8080/proxy/media/${attractionData.images?.firstOrNull()?.uuid}"
-                            Glide.with(this@AttractionDetailActivity)
-                                .load(imageUrl)
-                                .placeholder(R.drawable.attraction_placeholder_image)
-                                .error(R.drawable.attraction_placeholder_image)
-                                .into(attractionImageView)
+                            /**
+                             * todo image switching
+                             */
+                            // 加载景点图片，最多加载 5 张
+                            val imageUrls = attractionData.images?.take(5)?.map { image ->
+                                "http://10.0.2.2:8080/proxy/media/${image.uuid}"
+                            } ?: emptyList()
+
+                            // 设置图片切换功能
+                            startImageSlideshow(imageUrls)
+
+////                              加载景点图片
+//                            val imageUrl = "http://10.0.2.2:8080/proxy/media/${attractionData.images?.firstOrNull()?.uuid}"
+//
+//                            Glide.with(this@AttractionDetailActivity)
+//                                .load(imageUrl)
+//                                .placeholder(R.drawable.attraction_placeholder_image)
+//                                .error(R.drawable.attraction_placeholder_image)
+//                                .into(attractionImageView)
 
                             // 清空已有的设施列表，防止重复添加
                             wordListContainer.removeAllViews()
@@ -131,5 +147,47 @@ class AttractionDetailActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    private var currentImageIndex = 0
+    private var imageUrls: List<String> = emptyList()
+
+    // image switching
+    private val handler = Handler(Looper.getMainLooper()) // ✅ 只用一个 handler 进行管理
+
+    private fun startImageSlideshow(urls: List<String>) {
+        imageUrls = urls
+        if (imageUrls.isNotEmpty()) {
+            if (!isDestroyed && !isFinishing) { // ✅ 确保 Activity 仍然存活
+                Glide.with(this)
+                    .load(imageUrls[currentImageIndex])
+                    .placeholder(R.drawable.attraction_placeholder_image)
+                    .error(R.drawable.attraction_placeholder_image)
+                    .into(attractionImageView)
+            }
+
+            // 启动定时器切换图片
+            handler.postDelayed(object : Runnable {
+                override fun run() {
+                    if (!isDestroyed && !isFinishing && imageUrls.isNotEmpty()) { // ✅ Activity 未销毁时才运行
+                        currentImageIndex = (currentImageIndex + 1) % imageUrls.size
+                        Glide.with(this@AttractionDetailActivity)
+                            .load(imageUrls[currentImageIndex])
+                            .placeholder(R.drawable.attraction_placeholder_image)
+                            .error(R.drawable.attraction_placeholder_image)
+                            .into(attractionImageView)
+
+                        handler.postDelayed(this, 2000) // ✅ 继续切换
+                    }
+                }
+            }, 2000) // ✅ 启动轮播
+        }
+    }
+
+
+    override fun onDestroy() {
+        super.onDestroy()
+        handler.removeCallbacksAndMessages(null) // ✅ 防止定时任务继续执行
+        Glide.with(applicationContext).clear(attractionImageView) // ✅ 清理 Glide 加载任务
     }
 }
