@@ -6,6 +6,7 @@ data class Hotel(
     val address: String,
     val rating: String,
     val price: String,
-    val imageUrl: String? = null, // 新增字段：图片 URL
+    val description: String? = null,
+    val imageUrl: String? = null, // 新增字段：图片media uuid
     val imageResId: Int? = null  // 允许本地资源 ID 作为备用
 )

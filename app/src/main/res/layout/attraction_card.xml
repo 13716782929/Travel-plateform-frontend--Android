@@ -5,7 +5,7 @@
     android:layout_width="161dp"
     android:layout_height="238dp"
     android:layout_marginLeft="0dp"
-    android:layout_marginTop="-20dp"
+    android:layout_marginTop="0dp"
     android:background="@drawable/rectangle_9"
     android:elevation="13dp"
     android:clipToOutline="true">
@@ -26,11 +26,10 @@
         android:id="@+id/attraction_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:maxWidth="120dp"
         android:maxHeight="40dp"
         android:layout_alignParentStart="true"
         android:layout_marginStart="8dp"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="8dp"
         android:layout_alignParentTop="true"
         android:layout_marginTop="127dp"
         android:gravity="top"
@@ -58,10 +57,10 @@
         android:id="@+id/attraction_star"
         android:layout_width="15dp"
         android:layout_height="15dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="8dp"
-        android:layout_marginBottom="10dp"
+        android:layout_below="@+id/attraction_image"
+        android:layout_marginTop="5dp"
+        android:layout_toLeftOf="@+id/attraction_rate"
+        android:layout_marginEnd="5dp"
         android:background="@drawable/material_symbols_star"
         android:clipToOutline="true" />
 
@@ -69,10 +68,10 @@
         android:id="@+id/attraction_rate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toEndOf="@+id/attraction_star"
-        android:layout_marginStart="5dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="8dp"
+        android:layout_below="@+id/attraction_image"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="5dp"
         android:gravity="top"
         android:text="@string/_4_9"
         android:textColor="#6C757D"
@@ -89,19 +88,23 @@
 <!--        android:textColor="#6C757D"-->
 <!--        android:textSize="10sp" />-->
 
-<!--    <TextView-->
-<!--        android:id="@+id/pax"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_alignParentLeft="true"-->
-<!--        android:layout_marginLeft="8dp"-->
-<!--        android:layout_alignParentTop="true"-->
-<!--        android:layout_marginTop="210dp"-->
-<!--        android:text="$ 150/pax"-->
-<!--        android:fontFamily="@font/inter_18pt_medium"-->
-<!--        android:gravity="top"-->
-<!--        android:textColor="#336749"-->
-<!--        />-->
+    <TextView
+        android:id="@+id/attraction_price"
+        android:layout_width="wrap_content"
+        android:maxWidth="80dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="8dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="10dp"
+        android:text="$ 150/pax"
+        android:fontFamily="@font/inter_18pt_medium"
+        android:gravity="top"
+        android:textColor="#336749"
+        android:maxLines="1"
+        android:ellipsize="end"
+        />
+
 
     <RelativeLayout
         android:id="@+id/status"

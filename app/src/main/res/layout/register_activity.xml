@@ -103,6 +103,8 @@
         android:hint="Create your username"
         android:layout_marginTop="16dp"
         android:background="@drawable/rounded_edittext"
+        android:maxLines="1"
+        android:singleLine="true"
         android:padding="12dp" />
 
     <!-- Email Address -->
@@ -113,6 +115,8 @@
         android:hint="Enter your Email Address"
         android:layout_marginTop="12dp"
         android:background="@drawable/rounded_edittext"
+        android:maxLines="1"
+        android:singleLine="true"
         android:padding="12dp"
         android:inputType="textEmailAddress" />
 
@@ -124,6 +128,8 @@
         android:hint="Enter your Password"
         android:layout_marginTop="12dp"
         android:background="@drawable/rounded_edittext"
+        android:maxLines="1"
+        android:singleLine="true"
         android:padding="12dp"
         android:inputType="textPassword" />
 
@@ -135,6 +141,8 @@
         android:hint="Confirm your Password"
         android:layout_marginTop="12dp"
         android:background="@drawable/rounded_edittext"
+        android:maxLines="1"
+        android:singleLine="true"
         android:padding="12dp"
         android:inputType="textPassword" />
 

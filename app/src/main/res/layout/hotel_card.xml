@@ -8,106 +8,116 @@
     android:layout_width="380dp"
     android:layout_height="105dp"
     android:clickable="true"
-    android:focusable="true">
+    android:focusable="true"
+    >
 
-    <ImageView
+    <RelativeLayout
         android:id="@+id/image_rectangle"
-        android:layout_width="380dp"
-        android:layout_height="105dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_gravity="left"
         android:background="@drawable/hotel_image_rectangle"
-        android:scaleType="centerCrop" />
-
-    <ImageView
-        android:layout_width="10dp"
-        android:layout_height="10dp"
-        android:layout_marginLeft="107dp"
-        android:layout_marginRight="71dp"
-        android:layout_marginTop="33dp"
-        android:layout_marginBottom="-1dp"
-        android:scaleType="centerInside"
-        android:src="@drawable/hotel_drawable_image" />
-
-    <TextView
-        android:id="@+id/text_address"
-        android:layout_width="wrap_content"
-        android:layout_height="13dp"
-        android:layout_marginLeft="119dp"
-        android:layout_marginRight="71dp"
-        android:layout_marginTop="33dp"
-        android:layout_marginBottom="-1dp"
-        android:layout_gravity="top"
-        android:includeFontPadding="false"
-        android:maxLines="1"
-        android:singleLine="true"
-        android:text="Jl. Sunset Road No. 101, Kuta, Bali , Indonesia"
-        android:textColor="#FF6C757D"
-        android:textSize="9sp" />
-
-    <ImageView
-        android:id="@+id/container_mask_group"
-        android:layout_marginTop="3dp"
-        android:layout_marginLeft="2dp"
-        android:layout_width="99dp"
-        android:layout_height="99dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/hotel_container_mask_group" />
+        android:clipToOutline="true">
 
-    <TextView
-        android:id="@+id/text_hotel_name"
-        android:layout_width="wrap_content"
-        android:layout_height="21dp"
-        android:layout_marginLeft="109dp"
-        android:layout_marginRight="29dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginBottom="-1dp"
-        android:layout_gravity="top"
-        android:gravity="left|center_vertical"
-        android:includeFontPadding="false"
-        android:maxLines="1"
-        android:singleLine="true"
-        android:text="Swiss-Belhotel Rainforest Kuta"
-        android:textColor="#FF4C76EB"
-        android:textSize="16dp" />
+        <ImageView
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_marginLeft="107dp"
+            android:layout_marginRight="71dp"
+            android:layout_marginTop="33dp"
+            android:layout_marginBottom="-1dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/hotel_drawable_image" />
 
-    <ImageView
-        android:id="@+id/image_star"
-        android:layout_width="14.31dp"
-        android:layout_height="15dp"
-        android:layout_marginLeft="109.01dp"
-        android:layout_marginTop="49dp"
-        android:layout_marginBottom="41dp"
-        android:layout_gravity="left"
-        android:scaleType="centerInside"
-        android:src="@drawable/hotel_image_star" />
+        <TextView
+            android:id="@+id/text_address"
+            android:layout_width="wrap_content"
+            android:maxWidth="200dp"
+            android:layout_height="13dp"
+            android:layout_marginLeft="119dp"
+            android:layout_marginRight="71dp"
+            android:layout_marginTop="33dp"
+            android:layout_marginBottom="-1dp"
+            android:layout_gravity="top"
+            android:includeFontPadding="false"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:text="Jl. Sunset Road No. 101, Kuta, Bali , Indonesia"
+            android:textColor="#FF6C757D"
+            android:textSize="9sp" />
 
-    <TextView
-        android:id="@+id/text_star_rating"
-        android:layout_width="73dp"
-        android:layout_height="16dp"
-        android:layout_marginLeft="124dp"
-        android:layout_marginTop="48.5dp"
-        android:layout_marginBottom="40.5dp"
-        android:layout_gravity="left"
-        android:gravity="left|center_vertical"
-        android:includeFontPadding="false"
-        android:maxLines="1"
-        android:singleLine="true"
-        android:text="no rating"
-        android:textColor="#FF6C757D"
-        android:textSize="12sp" />
+        <ImageView
+            android:id="@+id/container_mask_group"
+            android:layout_width="100dp"
+            android:layout_height="110dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="3dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/hotel_container_mask_group" />
 
-    <TextView
-        android:id="@+id/text_price_per_night"
-        android:layout_width="wrap_content"
-        android:layout_height="16dp"
-        android:layout_marginLeft="268dp"
-        android:layout_marginTop="79.5dp"
-        android:layout_marginBottom="9.5dp"
-        android:includeFontPadding="false"
-        android:maxLines="1"
-        android:singleLine="true"
-        android:text="$ 50/night"
-        android:textColor="#FF4C76EB"
-        android:textSize="12sp" />
+        <TextView
+            android:id="@+id/text_hotel_name"
+            android:layout_width="wrap_content"
+            android:layout_height="21dp"
+            android:layout_marginLeft="109dp"
+            android:layout_marginRight="29dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="-1dp"
+            android:layout_gravity="top"
+            android:gravity="left|center_vertical"
+            android:includeFontPadding="false"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:text="Swiss-Belhotel Rainforest Kuta"
+            android:textColor="#FF4C76EB"
+            android:textSize="16dp" />
+
+        <ImageView
+            android:id="@+id/image_star"
+            android:layout_width="14.31dp"
+            android:layout_height="15dp"
+            android:layout_marginLeft="109.01dp"
+            android:layout_marginTop="49dp"
+            android:layout_marginBottom="41dp"
+            android:layout_gravity="left"
+            android:scaleType="centerInside"
+            android:src="@drawable/hotel_image_star" />
+
+        <TextView
+            android:id="@+id/text_star_rating"
+            android:layout_width="wrap_content"
+            android:layout_height="16dp"
+            android:layout_marginLeft="124dp"
+            android:layout_marginTop="48.5dp"
+            android:layout_marginBottom="40.5dp"
+            android:layout_gravity="left"
+            android:gravity="left|center_vertical"
+            android:includeFontPadding="false"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:text="no rating"
+            android:textColor="#FF6C757D"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/text_price_per_night"
+            android:layout_width="wrap_content"
+            android:maxWidth="180dp"
+            android:layout_height="16dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="10dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="9.5dp"
+            android:includeFontPadding="false"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:text="$ 50/night"
+            android:ellipsize="end"
+            android:textColor="#FF4C76EB"
+            android:textSize="12sp" />
+    </RelativeLayout>
+
+
 </RelativeLayout>

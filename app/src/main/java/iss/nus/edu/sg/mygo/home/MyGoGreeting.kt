@@ -30,7 +30,7 @@ class MyGoGreeting : AppCompatActivity() {
         // 使用 Handler 与 Looper.getMainLooper() 来延迟 3 秒后跳转到主页面
         Handler(Looper.getMainLooper()).postDelayed({
             // 创建一个 Intent 跳转到主页（假设主页面为 MainActivity）
-            val intent = Intent(this, MainActivity::class.java)
+            val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
             // 结束当前 Activity，避免返回到该页面
             finish()

@@ -34,7 +34,7 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="41dp"
                 android:layout_gravity="top|left"
-                app:srcCompat="@drawable/ic_arrow_back_white"
+                app:srcCompat="@drawable/hotel_ic_arrow_back"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:scaleType="centerInside"/>
 

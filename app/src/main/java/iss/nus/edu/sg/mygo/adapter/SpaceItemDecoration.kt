@@ -7,7 +7,22 @@ import androidx.recyclerview.widget.RecyclerView
 class SpaceItemDecoration(private val space: Int) : RecyclerView.ItemDecoration() {
     override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
         super.getItemOffsets(outRect, view, parent, state)
-        // 设置每个item的右边距
+        // 设置上下左右的间距
+        outRect.left = space
         outRect.right = space
+        outRect.top = space
+        outRect.bottom = space
     }
 }
+
+
+//class SpaceItemDecoration(private val space_l: Int,private val space_r: Int,private val space_t: Int,private val space_b: Int) : RecyclerView.ItemDecoration() {
+//    override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
+//        super.getItemOffsets(outRect, view, parent, state)
+//        // 设置上下左右的间距
+//        outRect.left = space_l
+//        outRect.right = space_r
+//        outRect.top = space_t
+//        outRect.bottom = space_b
+//    }
+//}
