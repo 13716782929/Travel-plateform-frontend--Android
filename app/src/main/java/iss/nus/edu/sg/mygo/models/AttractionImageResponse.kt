@@ -16,5 +16,6 @@ data class AttractionImageResponse(
     val openTime: String,
     val ticketAvailability: Boolean,
     val ticketType: TicketType,
+    val ticketPrice: TicketPrice,
     val imageResId: Int
 )

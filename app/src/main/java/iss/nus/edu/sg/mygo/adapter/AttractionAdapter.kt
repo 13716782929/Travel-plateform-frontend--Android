@@ -9,26 +9,35 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import iss.nus.edu.sg.mygo.R
-import iss.nus.edu.sg.mygo.models.Attraction
+import iss.nus.edu.sg.mygo.databinding.ItemAttractionDetailsBinding
+import iss.nus.edu.sg.mygo.models.AttractionImageResponse
 import iss.nus.edu.sg.mygo.models.AttractionItem
 
 /***
  * author: Wang Chang & Siti Alifah Binte Yahya
  * StudentID:  & A0295324B
- * date: 25\1-25
+ * date: 25 Jan 2025
  * */
 class AttractionAdapter(
-    private val attractions: List<Attraction>,
-    private val onItemClick: (Int) -> Unit // 点击事件
-) : RecyclerView.Adapter<AttractionAdapter.AttractionViewHolder>() {
 
-    inner class ViewHolder(private val binding: ItemAttractionBinding) : RecyclerView.ViewHolder(binding.root) {
+    private val attractions: List<AttractionItem>,
+    private val onItemClick: (Int) -> Unit // 点击事件 Click listener for item clicks
+
+) : RecyclerView.Adapter<AttractionAdapter.AttractionViewHolder>() {
+    class AttractionViewHolder {
+
+    }
+
+
+}
+    class ViewHolder(private val binding: ItemAttractionDetailsBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(attraction: AttractionItem) {
             binding.attractionName.text = attraction.name
-            binding.attractionLocation.text = attraction.address ?: "No Address Provided"
+            binding.attractionLocation.text = attraction.location
+            binding.attractionPrice.text = "From $${attraction.ticketPrice}/pax"
 
-            // Load first image from the API
-            attraction.images?.firstOrNull()?.url?.let { imageUrl ->
+            // Load first image from the back-end
+            attraction.imageResId?.firstOrNull()?.url?.let { imageUrl ->
                 Glide.with(binding.root.context).load(imageUrl).into(binding.attractionImage)
             }
 
@@ -36,26 +45,27 @@ class AttractionAdapter(
                 onItemClick(attraction)
             }
         }
-    }
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AttractionViewHolder {
+    // Create new views (invoked by the LayoutManager)
+    fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AttractionViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.attraction_card, parent, false)
         return AttractionViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: AttractionViewHolder, position: Int) {
+
+    // Replace the contents of a view (invoked by the LayoutManager)
+     fun onBindViewHolder(holder: AttractionViewHolder, position: Int) {
         val attraction = attractions[position]
-        Log.d("AttractionAdapter", "Binding attraction: ${attraction.attractionName}")
-        holder.nameTextView.text = attraction.attractionName
-        holder.locationTextView.text = attraction.location
+        Log.d("AttractionAdapter", "Binding attraction: ${attraction.name}")
+        holder.nameTextView.text = attraction.name
+        holder.locationTextView.text = attraction.location.toString()
         holder.imageView.setImageResource(attraction.imageResId)
         holder.itemView.setOnClickListener {
             onItemClick(position)
         }
     }
 
-    override fun getItemCount(): Int {
+     fun getItemCount(): Int {
         return attractions.size
     }
 

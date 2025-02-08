@@ -2,13 +2,13 @@ package iss.nus.edu.sg.mygo.home
 /*
 Author: Siti Alifah Binte Yahya
 StudentID: A0295324B
-Date: 7/2/25
+Date: 7 Feb 25
  */
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import iss.nus.edu.sg.mygo.network.RetrofitClient
+import com.example.registernewuser.api.RetrofitClient
 import iss.nus.edu.sg.mygo.adapter.AttractionAdapter
 import iss.nus.edu.sg.mygo.models.AttractionResponse
 import retrofit2.Call
@@ -31,16 +31,21 @@ class AttractionActivity : AppCompatActivity() {
 
     private fun fetchAttractions() {
         val apiKey = "pnJuxp8vZLSQSLWGR0XYGUnA7PDRGPHr"
-        RetrofitClient.apiService.getAttractions(apiKey).enqueue(object : Callback<AttractionResponse> {
-            override fun onResponse(call: Call<AttractionResponse>, response: Response<AttractionResponse>) {
+
+        val call = RetrofitClient.api.getAttractions(apiKey)
+        call.enqueue(object : Callback<AttractionResponse> {
+            override fun onResponse(
+                call: Call<AttractionResponse>,
+                response: Response<AttractionResponse>
+            ) {
                 if (response.isSuccessful) {
-                    val attractions = response.body()?.data ?: emptyList()
-                    attractionsAdapter = AttractionAdapter(attractions) { attraction ->
-                        // Open AttractionDetailsActivity on click
+                    val attractions = response.body()?.data
+                    attractions?.let {
+                        // Use the attractions list in RecyclerView
+                        Log.d("Attractions", it.toString())
                     }
-                    binding.recyclerView.adapter = attractionsAdapter
                 } else {
-                    Log.e("API_ERROR", "Response failed: ${response.code()}")
+                    Log.e("API Error", response.errorBody()?.string().orEmpty())
                 }
             }
 
