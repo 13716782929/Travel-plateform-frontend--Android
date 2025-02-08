@@ -5,6 +5,7 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.fragment.app.Fragment
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.lifecycle.lifecycleScope
 import iss.nus.edu.sg.mygo.R
@@ -136,14 +137,15 @@ class HomeFragment : Fragment(R.layout.home_fragment) {
 
         lifecycleScope.launch {
             try {
-                val response = apiService2.fetchHotel(0, 7, "attractions", apiKey, contentLanguage)
+                val response = apiService2.fetchHotel(0, 7, "accommodation", apiKey, contentLanguage)
                 if (response.isSuccessful) {
-                    val attractionResponse = response.body()
-                    attractionResponse?.let {
+                    val hotelResponse = response.body()
+                    hotelResponse?.let {
                         val hotelList = mapAccommoationDataToHotelList(it.data)
                         hotelAdapter.updateData(hotelList)  // ✅ 更新 Adapter 数据
                     }
                 } else {
+                    Log.e("HomeFragment", "Failed response: ${response.errorBody()?.string()}")
                     Toast.makeText(requireContext(), "Failed to load hotels", Toast.LENGTH_SHORT).show()
                 }
             } catch (e: Exception) {

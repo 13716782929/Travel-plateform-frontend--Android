@@ -32,6 +32,7 @@ class HotelAdapter2(
         val ratingTextView: TextView = itemView.findViewById(R.id.text_star_rating)
         val priceTextView: TextView = itemView.findViewById(R.id.text_price_per_night)
         val ImageView: ImageView = itemView.findViewById(R.id.container_mask_group)
+        val hotelCard: RelativeLayout = itemView.findViewById(R.id.container_hotels_recomendation_card)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HotelViewHolder2 {
@@ -42,7 +43,7 @@ class HotelAdapter2(
 
     override fun onBindViewHolder(holder: HotelViewHolder2, position: Int) {
         val hotel = hotels[position]
-        Log.d("AttractionAdapter", "Binding hotel: ${hotel.name}, UUID: ${hotel.imageUrl}")
+        Log.d("HotelAdapter", "Binding hotel: ${hotel.name}, UUID: ${hotel.imageUrl}")
 
         holder.nameTextView.text = hotel.name
         holder.addressTextView.text = hotel.address
@@ -55,14 +56,17 @@ class HotelAdapter2(
 
         // 使用 Glide 加载图片
         Glide.with(holder.itemView.context)
-            .load(hotel.imageUrl)
+            .load(imageUrl)
             .placeholder(R.drawable.hotel_image_rectangle) // 加载中的占位图
             .error(R.drawable.hotel_image_rectangle1) // 加载失败时的图片
             .diskCacheStrategy(DiskCacheStrategy.ALL) // 启用缓存
             .into(holder.ImageView)
 
         // **添加点击事件，传递 `uuid` 到 `HotelDetailActivity.kt`**
-        holder.itemView.setOnClickListener { onItemClick(position) }
+        holder.hotelCard.setOnClickListener {
+            val intent = Intent(holder.itemView.context, HotelDetailActivity::class.java)
+            intent.putExtra("hotel_uuid", hotel.uuid)
+            holder.itemView.context.startActivity(intent) }
 
     }
 

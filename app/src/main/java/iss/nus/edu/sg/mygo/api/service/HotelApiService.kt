@@ -17,7 +17,7 @@ interface HotelApiService {
     suspend fun fetchHotel(
         @Query("offset") offset: Int = 0, // default offset = 0
         @Query("limit") limit: Int = 6, // default limit = 6
-        @Query("dataset") dataset: String = "accommodations",
+        @Query("dataset") dataset: String = "accommodation",
         @Header("X-API-Key") apiKey: String,
         @Header("X-Content-Language") contentLanguage: String = "en"
     ): Response<AccommodationResponse>
@@ -33,7 +33,7 @@ interface HotelApiService {
     @GET("content/common/v2/search")
     suspend fun fetchHotelByKeyword(
         @Query("keyword") keyword: String,
-        @Query("dataset") dataset: String = "attractions", // 默认查询 attractions 数据集
+        @Query("dataset") dataset: String = "accommodation", // 默认查询 accommodation 数据集
         @Query("offset") offset: Int = 0, // 用于分页
         @Query("limit") limit: Int = 7, // 每次加载条目数量
         @Header("X-API-Key") apiKey: String,
