@@ -78,6 +78,12 @@
         <activity android:name=".home.AttractionMainActivity"
             android:theme="@style/Material3.Theme.MyGo"/>
 
+        <activity
+            android:name=".home.FlightMainActivity"
+            android:exported="true"
+            android:theme="@style/Material3.Theme.MyGo">
+        </activity>
+
     </application>
 
 </manifest>
