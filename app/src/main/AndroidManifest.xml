@@ -71,6 +71,10 @@
             android:theme="@style/Material3.Theme.MyGo"
             >
         </activity>
+        <activity android:name=".home.AttractionSearchActivity"
+            android:theme="@style/Material3.Theme.MyGo"
+            >
+        </activity>
 
         <activity android:name=".home.AttractionDetailActivity"
             android:theme="@style/Material3.Theme.MyGo"/>
