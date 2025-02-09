@@ -13,6 +13,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.DecodeFormat
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import iss.nus.edu.sg.mygo.R
 import iss.nus.edu.sg.mygo.api.service.AccommodationApiService
 
@@ -141,11 +143,17 @@ class HotelDetailActivity : AppCompatActivity() {
         // 定义一个私有函数 fetchHotelImage，它接受 uuid 作为参数
 
         val imageUrl = "http://10.0.2.2:8080/proxy/media/$uuid?fileType=Thumbnail%201080h"
+//        Thumbnail%201080h
+//        Small%20Thumbnail
         // 直接拼接本地代理服务器的 URL，替换 {uuid} 为实际的 uuid
 
         runOnUiThread {
             Glide.with(this@HotelDetailActivity)
                 .load(imageUrl)
+                .override(411, 339)
+                .dontTransform() // 避免额外的图片变换
+                .diskCacheStrategy(DiskCacheStrategy.ALL) // 确保缓存高质量图片
+                .format(DecodeFormat.PREFER_ARGB_8888) // 避免 Glide 降低颜色深度
                 .placeholder(R.drawable.hotel_container_product_image)
                 .into(hotelImageView)
         }
