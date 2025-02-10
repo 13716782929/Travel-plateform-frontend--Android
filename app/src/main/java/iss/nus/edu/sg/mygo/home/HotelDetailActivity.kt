@@ -98,7 +98,7 @@ class HotelDetailActivity : AppCompatActivity() {
 //                            hotelFacilitiesTextView.text = hotelData.amenities?.joinToString(", ") ?: "No facilities listed"
                             hotelPriceTextView.text = hotelData.leadInRoomRates ?: "Price not available"
 
-                            val firstImageUuid = hotelData.thumbnails?.firstOrNull()?.uuid
+                            val firstImageUuid = hotelData.images?.firstOrNull()?.uuid
                             if (firstImageUuid != null) {
                                 fetchHotelImage(firstImageUuid)
                             }
@@ -139,7 +139,7 @@ class HotelDetailActivity : AppCompatActivity() {
     private fun fetchHotelImage(uuid: String) {
         // 定义一个私有函数 fetchHotelImage，它接受 uuid 作为参数
 
-        val imageUrl = "http://10.0.2.2:8080/proxy/media/$uuid?fileType=Thumbnail%201080h"
+        val imageUrl = "http://10.0.2.2:8080/proxy/media/$uuid"
         // 直接拼接本地代理服务器的 URL，替换 {uuid} 为实际的 uuid
 
         runOnUiThread {

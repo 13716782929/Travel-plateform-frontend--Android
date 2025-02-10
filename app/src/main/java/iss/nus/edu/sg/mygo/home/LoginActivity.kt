@@ -67,9 +67,9 @@ class LoginActivity : AppCompatActivity() {
                 if (response.isSuccessful) {
                     val loginResponse = response.body()
                     loginResponse?.let {
-                        saveToken(it.token) //  存储 Token
-                        if (rememberMe) saveRememberMeState(email) // 记住用户
-                        saveLoginState() // 记录已登录状态
+                        saveToken(it.token, it.userId) // **存 JWT Token & userId**
+                        if (rememberMe) saveRememberMeState(email)
+                        saveLoginState()
 
                         Toast.makeText(this@LoginActivity, "Login Successful!", Toast.LENGTH_SHORT).show()
                         startActivity(Intent(this@LoginActivity, MainActivity::class.java))
@@ -88,9 +88,13 @@ class LoginActivity : AppCompatActivity() {
      * 存储 JWT Token 以便后续 API 请求使用
      * store JWT Token for API usage
      */
-    private fun saveToken(token: String) {
-        sharedPreferences.edit().putString("auth_token", token).apply()
+    private fun saveToken(token: String, userId: String) {
+        val editor = sharedPreferences.edit()
+        editor.putString("auth_token", token) // 存 JWT Token
+        editor.putString("user_id", userId) // 存 userId
+        editor.apply()
     }
+
 
     /**
      * 记住用户（不存储密码，只存储 email）

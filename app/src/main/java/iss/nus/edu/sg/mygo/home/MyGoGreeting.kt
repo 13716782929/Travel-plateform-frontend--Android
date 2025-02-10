@@ -8,10 +8,12 @@ import android.os.Looper
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import iss.nus.edu.sg.mygo.R
+import iss.nus.edu.sg.mygo.sessions.SessionManager
 
 class MyGoGreeting : AppCompatActivity() {
 
-    private lateinit var welcomeTextView: TextView // 用于引用 TextView
+    private lateinit var welcomeTextView: TextView
+    private lateinit var sessionManager: SessionManager
     private lateinit var sharedPreferences: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,26 +23,26 @@ class MyGoGreeting : AppCompatActivity() {
 
         welcomeTextView = findViewById(R.id.welcome)
 
-        // 获取SharedPreferences
-        sharedPreferences = getSharedPreferences("user_prefs", MODE_PRIVATE)
+        // 获取 SharedPreferences
+        sharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE)
+        sessionManager = SessionManager(this)
 
-        // 清除登录状态
+        // **清除登录相关信息**
         clearLoginState()
 
-        // 使用 Handler 与 Looper.getMainLooper() 来延迟 3 秒后跳转到主页面
+        // 1.5 秒后跳转到 `MainActivity`
         Handler(Looper.getMainLooper()).postDelayed({
-            // 创建一个 Intent 跳转到主页（假设主页面为 MainActivity）
-            val intent = Intent(this, LoginActivity::class.java)
+            val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
-            // 结束当前 Activity，避免返回到该页面
-            finish()
-        }, 1500) // 1000 = 1 秒
+            finish() // **结束当前 Activity，避免返回**
+        }, 1500)
     }
 
-    // 清除登录状态
+    // **清除用户的登录状态**
     private fun clearLoginState() {
-        val editor = sharedPreferences.edit()
-        editor.remove("is_logged_in") // 移除登录状态
-        editor.apply()
+        sessionManager.logout() // ✅ 清除 `auth_token`
+
+        // ✅ 只移除 `is_logged_in`，不影响 `RememberMe` 相关数据
+        sharedPreferences.edit().remove("is_logged_in").apply()
     }
 }
