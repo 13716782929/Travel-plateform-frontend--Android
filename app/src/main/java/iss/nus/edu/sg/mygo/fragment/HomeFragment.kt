@@ -23,6 +23,7 @@ import iss.nus.edu.sg.mygo.databinding.ActivityAttractionDetailBinding
 import iss.nus.edu.sg.mygo.databinding.HomeFragmentBinding
 import iss.nus.edu.sg.mygo.home.AttractionDetailActivity
 import iss.nus.edu.sg.mygo.home.AttractionMainActivity
+import iss.nus.edu.sg.mygo.home.FlightMainActivity
 import iss.nus.edu.sg.mygo.home.HotelDetailActivity
 import iss.nus.edu.sg.mygo.home.HotelMainActivity
 import iss.nus.edu.sg.mygo.models.Attraction
@@ -99,7 +100,9 @@ class HomeFragment : Fragment(R.layout.home_fragment) {
         }
         binding.attractions.setOnClickListener{
             startActivity(Intent(requireContext(), AttractionMainActivity::class.java))
-
+        }
+        binding.flight.setOnClickListener{
+            startActivity(Intent(requireContext(), FlightMainActivity::class.java))
         }
     }
 

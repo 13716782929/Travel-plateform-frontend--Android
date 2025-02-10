@@ -47,7 +47,7 @@
             android:layout_width="wrap_content"
             android:layout_height="30dp"
             android:layout_gravity="top|left"
-            android:layout_marginLeft="165dp"
+            android:layout_marginLeft="175dp"
             android:layout_marginTop="49dp"
             android:layout_marginBottom="-4dp"
             android:gravity="center_horizontal|center_vertical"
@@ -56,7 +56,8 @@
             android:singleLine="true"
             android:text="Hotels"
             android:textColor="#FFFFFFFF"
-            android:textSize="24dp" />
+            android:textSize="24dp"
+            android:fontFamily="@font/joti_one_regular"/>
 
 
         <ImageButton

@@ -1,0 +1,516 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container_flights"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/hotel_container_hotel">
+
+    <RelativeLayout
+        android:id="@+id/container_main_head"
+        android:layout_width="411dp"
+        android:layout_height="250dp"
+        android:layout_gravity="top|left"
+        android:background="@drawable/main_head">
+
+        <ImageView
+            android:id="@+id/image_main_head"
+            android:layout_width="251.91dp"
+            android:layout_height="226.6dp"
+            android:layout_marginLeft="232dp"
+            android:layout_marginTop="-127dp"
+            android:layout_gravity="top|left"
+            android:scaleType="centerInside"
+            android:src="@drawable/hotel_image" />
+
+        <ImageView
+            android:id="@+id/image_main_head1"
+            android:layout_width="185.65dp"
+            android:layout_height="166.55dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="-104dp"
+            android:layout_gravity="top|left"
+            android:scaleType="centerInside"
+            android:src="@drawable/hotel_image1" />
+
+        <RelativeLayout
+            android:id="@+id/container_group"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginLeft="152dp"
+            android:layout_marginTop="14dp"
+            android:layout_gravity="top|left">
+
+            <TextView
+                android:id="@+id/text_flights"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginLeft="7dp"
+                android:layout_marginTop="35dp"
+                android:layout_marginBottom="35dp"
+                android:layout_gravity="left"
+                android:gravity="center_horizontal|center_vertical"
+                android:includeFontPadding="false"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:text="Flights"
+                android:textColor="#FFFFFFFF"
+                android:textSize="24dp"
+                android:fontFamily="@font/joti_one_regular"/>
+
+            <ImageView
+                android:id="@+id/image_frame"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop" />
+        </RelativeLayout>
+
+        <ImageButton
+            android:id="@+id/button_back"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_gravity="top|left"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="51dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:scaleType="centerInside"
+            app:srcCompat="@drawable/hotel_ic_arrow_back" />
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/image_main_rec"
+        android:layout_width="313dp"
+        android:layout_height="385dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="157dp"
+        android:layout_gravity="top|center_horizontal"
+        android:background="@drawable/hotel_container_border"
+        android:scaleType="centerInside" />
+
+    <LinearLayout
+        android:id="@+id/container_search_button"
+        android:layout_width="279dp"
+        android:layout_height="37dp"
+        android:layout_marginLeft="64dp"
+        android:layout_marginTop="488dp"
+        android:layout_gravity="top|left"
+        android:background="@drawable/hotel_container_button_brand">
+
+
+        <TextView
+            android:id="@+id/text_search_button"
+            android:layout_width="match_parent"
+            android:layout_height="21dp"
+            android:layout_marginLeft="108dp"
+            android:layout_marginRight="107dp"
+            android:layout_marginTop="8.5dp"
+            android:layout_marginBottom="7.5dp"
+            android:gravity="left|center_vertical"
+            android:includeFontPadding="false"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:text="Search"
+            android:textColor="#FFFFFFFF"
+            android:textSize="16dp"
+            android:textStyle="bold"/>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/container_class"
+        android:layout_width="135.09dp"
+        android:layout_height="62dp"
+        android:layout_marginLeft="212dp"
+        android:layout_marginTop="413dp"
+        android:layout_gravity="top|left">
+
+        <ImageView
+            android:id="@+id/image_rectangle_class"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="6.64dp"
+            android:layout_marginBottom="0dp"
+            android:background="@drawable/flight_image_rectangle_class"
+            android:scaleType="centerCrop" />
+
+        <ImageView
+            android:id="@+id/image_rectangle_class1"
+            android:layout_width="40dp"
+            android:layout_height="18dp"
+            android:layout_marginLeft="23dp"
+            android:layout_gravity="top|left"
+            android:background="@drawable/flight_image_rectangle_class1"
+            android:scaleType="centerInside" />
+
+        <TextView
+            android:id="@+id/text_economy"
+            android:layout_width="match_parent"
+            android:layout_height="21.04dp"
+            android:layout_marginLeft="26dp"
+            android:layout_marginRight="12.73dp"
+            android:layout_marginTop="26dp"
+            android:layout_marginBottom="14.96dp"
+            android:gravity="left|center_vertical"
+            android:includeFontPadding="false"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:text="Economy"
+            android:textColor="#FF000000"
+            android:textSize="12dp" />
+
+        <TextView
+            android:id="@+id/text_class"
+            android:layout_width="63.99dp"
+            android:layout_height="17dp"
+            android:layout_marginLeft="25.59dp"
+            android:layout_gravity="top|left"
+            android:gravity="left|center_vertical"
+            android:includeFontPadding="false"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:text="Class"
+            android:textColor="#FF757272"
+            android:textSize="12dp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/container_traveller"
+        android:layout_width="135.09dp"
+        android:layout_height="62dp"
+        android:layout_marginLeft="68dp"
+        android:layout_marginTop="413dp"
+        android:layout_gravity="top|left">
+
+        <ImageView
+            android:id="@+id/image_rectangle_traveller"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="6.64dp"
+            android:layout_marginBottom="0dp"
+            android:background="@drawable/flight_image_rectangle_class"
+            android:scaleType="centerCrop" />
+
+        <ImageView
+            android:id="@+id/image_rectangle_traveller1"
+            android:layout_width="62dp"
+            android:layout_height="18dp"
+            android:layout_marginLeft="23dp"
+            android:layout_gravity="top|left"
+            android:background="@drawable/flight_image_rectangle_class1"
+            android:scaleType="centerInside" />
+
+        <TextView
+            android:id="@+id/text_adult"
+            android:layout_width="match_parent"
+            android:layout_height="21.04dp"
+            android:layout_marginLeft="28dp"
+            android:layout_marginRight="10.73dp"
+            android:layout_marginTop="26dp"
+            android:layout_marginBottom="14.96dp"
+            android:gravity="left|center_vertical"
+            android:includeFontPadding="false"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:text="1 Adult"
+            android:textColor="#FF000000"
+            android:textSize="12dp" />
+
+        <TextView
+            android:id="@+id/text_traveller"
+            android:layout_width="63.99dp"
+            android:layout_height="17dp"
+            android:layout_marginLeft="25.59dp"
+            android:layout_gravity="top|left"
+            android:gravity="left|center_vertical"
+            android:includeFontPadding="false"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:text="Traveller"
+            android:textColor="#FF757272"
+            android:textSize="12dp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/container_return"
+        android:layout_width="145.35dp"
+        android:layout_height="62dp"
+        android:layout_marginLeft="212dp"
+        android:layout_marginTop="338dp"
+        android:layout_gravity="top|left">
+
+        <ImageView
+            android:id="@+id/image_rectangle_return"
+            android:layout_width="135.09dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="6.64dp"
+            android:layout_marginBottom="0dp"
+            android:layout_gravity="left"
+            android:background="@drawable/flight_image_rectangle_class"
+            android:scaleType="centerCrop" />
+
+        <ImageView
+            android:id="@+id/image_rectangle_return1"
+            android:layout_width="62dp"
+            android:layout_height="18dp"
+            android:layout_marginLeft="23dp"
+            android:layout_gravity="top|left"
+            android:background="@drawable/flight_image_rectangle_class1"
+            android:scaleType="centerInside" />
+
+        <TextView
+            android:id="@+id/text_add_return"
+            android:layout_width="match_parent"
+            android:layout_height="21.04dp"
+            android:layout_marginLeft="49dp"
+            android:layout_marginTop="26dp"
+            android:layout_marginBottom="14.96dp"
+            android:gravity="left|center_vertical"
+            android:includeFontPadding="false"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:text="Add Return"
+            android:textColor="#FF000000"
+            android:textSize="12dp" />
+
+        <TextView
+            android:id="@+id/text_return"
+            android:layout_width="63.99dp"
+            android:layout_height="17dp"
+            android:layout_marginLeft="25.59dp"
+            android:layout_gravity="top|left"
+            android:gravity="left|center_vertical"
+            android:includeFontPadding="false"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:text="Return"
+            android:textColor="#FF757272"
+            android:textSize="12dp" />
+
+        <ImageView
+            android:id="@+id/image_plus_math"
+            android:layout_width="17dp"
+            android:layout_height="17dp"
+            android:layout_marginLeft="28dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginBottom="20dp"
+            android:layout_gravity="left"
+            android:scaleType="centerInside"
+            android:src="@drawable/flight_image_plus_math" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/container_departure"
+        android:layout_width="147dp"
+        android:layout_height="62dp"
+        android:layout_marginLeft="68dp"
+        android:layout_marginTop="338dp"
+        android:layout_gravity="top|left">
+
+        <ImageView
+            android:id="@+id/image_rectangle_departure"
+            android:layout_width="135.09dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="6.64dp"
+            android:layout_marginBottom="0dp"
+            android:layout_gravity="left"
+            android:background="@drawable/flight_image_rectangle_class"
+            android:scaleType="centerCrop" />
+
+        <ImageView
+            android:id="@+id/image_rectangle_departure1"
+            android:layout_width="62dp"
+            android:layout_height="18dp"
+            android:layout_marginLeft="23dp"
+            android:layout_gravity="top|left"
+            android:background="@drawable/flight_image_rectangle_class1"
+            android:scaleType="centerInside" />
+
+        <EditText
+            android:id="@+id/text_select_date"
+            android:layout_width="match_parent"
+            android:layout_height="21.04dp"
+            android:layout_marginLeft="50.65dp"
+            android:layout_marginTop="26dp"
+            android:layout_marginBottom="14.96dp"
+            android:gravity="left|center_vertical"
+            android:includeFontPadding="false"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:text="Slelect Date"
+            android:textColor="#FF000000"
+            android:textSize="12dp"
+            android:background="@null"/>
+
+        <TextView
+            android:id="@+id/text_departure"
+            android:layout_width="63.99dp"
+            android:layout_height="17dp"
+            android:layout_marginLeft="25.59dp"
+            android:layout_gravity="top|left"
+            android:gravity="left|center_vertical"
+            android:includeFontPadding="false"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:text="Departure"
+            android:textColor="#FF757272"
+            android:textSize="12dp" />
+
+        <ImageView
+            android:id="@+id/image_departure_icon"
+            android:layout_width="17dp"
+            android:layout_height="17dp"
+            android:layout_marginLeft="28dp"
+            android:layout_marginTop="26dp"
+            android:layout_marginBottom="19dp"
+            android:layout_gravity="left"
+            android:scaleType="centerInside"
+            android:src="@drawable/flight_image_departure_icon" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/container_to"
+        android:layout_width="312dp"
+        android:layout_height="62dp"
+        android:layout_marginLeft="68dp"
+        android:layout_marginTop="256dp"
+        android:layout_gravity="top|left">
+
+        <ImageView
+            android:id="@+id/image_rectangle_to"
+            android:layout_width="279dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="6.64dp"
+            android:layout_marginBottom="0dp"
+            android:layout_gravity="left"
+            android:background="@drawable/flight_image_rectangle_class"
+            android:scaleType="centerCrop" />
+
+        <ImageView
+            android:id="@+id/image_airplane_landing"
+            android:layout_width="17dp"
+            android:layout_height="17dp"
+            android:layout_marginLeft="28dp"
+            android:layout_marginTop="23dp"
+            android:layout_marginBottom="22dp"
+            android:layout_gravity="left"
+            android:scaleType="centerInside"
+            android:src="@drawable/flight_image_airplane_landing" />
+
+        <ImageView
+            android:id="@+id/image_rectangle_to1"
+            android:layout_width="22dp"
+            android:layout_height="18dp"
+            android:layout_marginLeft="23dp"
+            android:layout_gravity="top|left"
+            android:background="@drawable/flight_image_rectangle_class1"
+            android:scaleType="centerInside" />
+
+        <EditText
+            android:id="@+id/text_karachi"
+            android:layout_width="199dp"
+            android:layout_height="21.04dp"
+            android:layout_marginLeft="56dp"
+            android:layout_marginTop="22.57dp"
+            android:layout_marginBottom="18.39dp"
+            android:layout_gravity="left"
+            android:gravity="left|center_vertical"
+            android:includeFontPadding="false"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:text="Karachi"
+            android:textColor="#FF000000"
+            android:textSize="14dp"
+            android:background="@null"/>
+
+
+        <TextView
+            android:id="@+id/text_to"
+            android:layout_width="41dp"
+            android:layout_height="16.61dp"
+            android:layout_marginLeft="27dp"
+            android:layout_gravity="top|left"
+            android:gravity="left|center_vertical"
+            android:includeFontPadding="false"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:text="To"
+            android:textColor="#FF757272"
+            android:textSize="12dp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/container_from"
+        android:layout_width="312dp"
+        android:layout_height="62dp"
+        android:layout_marginLeft="68dp"
+        android:layout_marginTop="174dp"
+        android:layout_gravity="top|left">
+
+        <ImageView
+            android:id="@+id/image_rectangle_from"
+            android:layout_width="279dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="6.64dp"
+            android:layout_marginBottom="0dp"
+            android:layout_gravity="left"
+            android:background="@drawable/flight_image_rectangle_class"
+            android:scaleType="centerCrop" />
+
+        <ImageView
+            android:id="@+id/image_rectangle_from1"
+            android:layout_width="42dp"
+            android:layout_height="17.71dp"
+            android:layout_marginLeft="23dp"
+            android:layout_gravity="top|left"
+            android:background="@drawable/flight_image_rectangle_class1"
+            android:scaleType="centerInside" />
+
+        <EditText
+            android:id="@+id/text_lahore"
+            android:layout_width="199dp"
+            android:layout_height="21.04dp"
+            android:layout_marginLeft="56dp"
+            android:layout_marginTop="22.57dp"
+            android:layout_marginBottom="18.39dp"
+            android:layout_gravity="left"
+            android:gravity="left|center_vertical"
+            android:includeFontPadding="false"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:text="Lahore"
+            android:textColor="#FF000000"
+            android:textSize="14dp"
+            android:background="@null"/>
+
+
+
+
+        <TextView
+            android:id="@+id/text_from"
+            android:layout_width="41dp"
+            android:layout_height="16.61dp"
+            android:layout_marginLeft="27dp"
+            android:layout_gravity="top|left"
+            android:gravity="left|center_vertical"
+            android:includeFontPadding="false"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:text="From"
+            android:textColor="#FF757272"
+            android:textSize="12dp" />
+
+        <ImageView
+            android:id="@+id/image_from_icon"
+            android:layout_width="17dp"
+            android:layout_height="17dp"
+            android:layout_marginLeft="28dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginBottom="20dp"
+            android:layout_gravity="left"
+            android:scaleType="centerInside"
+            android:src="@drawable/flight_image_from_icon" />
+    </RelativeLayout>
+
+</RelativeLayout>

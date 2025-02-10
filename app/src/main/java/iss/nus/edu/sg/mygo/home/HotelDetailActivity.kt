@@ -3,6 +3,8 @@ package iss.nus.edu.sg.mygo.home
 import android.graphics.Color
 import android.graphics.Typeface
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.LinearLayout
@@ -98,10 +100,18 @@ class HotelDetailActivity : AppCompatActivity() {
 //                            hotelFacilitiesTextView.text = hotelData.amenities?.joinToString(", ") ?: "No facilities listed"
                             hotelPriceTextView.text = hotelData.leadInRoomRates ?: "Price not available"
 
-                            val firstImageUuid = hotelData.images?.firstOrNull()?.uuid
-                            if (firstImageUuid != null) {
-                                fetchHotelImage(firstImageUuid)
-                            }
+//                            val firstImageUuid = hotelData.thumbnails?.firstOrNull()?.uuid
+//                            if (firstImageUuid != null) {
+//                                fetchHotelImage(firstImageUuid)
+//                            }
+
+                            // 加载景点图片，最多加载 5 张
+                            val imageUrls = hotelData.images?.take(5)?.map { image ->
+                                "http://10.0.2.2:8080/proxy/media/${image.uuid}"
+                            } ?: emptyList()
+
+                            // 设置图片切换功能
+                            startImageSlideshow(imageUrls)
 
                             // 清空已有的设施列表，防止重复添加
                             wordListContainer.removeAllViews()
@@ -136,20 +146,45 @@ class HotelDetailActivity : AppCompatActivity() {
         })
     }
 
-    private fun fetchHotelImage(uuid: String) {
-        // 定义一个私有函数 fetchHotelImage，它接受 uuid 作为参数
+    private var currentImageIndex = 0
+    private var imageUrls: List<String> = emptyList()
 
-        val imageUrl = "http://10.0.2.2:8080/proxy/media/$uuid"
-        // 直接拼接本地代理服务器的 URL，替换 {uuid} 为实际的 uuid
+    // image switching
+    private val handler = Handler(Looper.getMainLooper()) // ✅ 只用一个 handler 进行管理
 
-        runOnUiThread {
-            Glide.with(this@HotelDetailActivity)
-                .load(imageUrl)
-                .placeholder(R.drawable.hotel_container_product_image)
-                .into(hotelImageView)
+    private fun startImageSlideshow(urls: List<String>) {
+        imageUrls = urls
+        if (imageUrls.isNotEmpty()) {
+            if (!isDestroyed && !isFinishing) { // ✅ 确保 Activity 仍然存活
+                Glide.with(this)
+                    .load(imageUrls[currentImageIndex])
+                    .placeholder(R.drawable.attraction_placeholder_image)
+                    .error(R.drawable.attraction_placeholder_image)
+                    .into(hotelImageView)
+            }
+
+            // 启动定时器切换图片
+            handler.postDelayed(object : Runnable {
+                override fun run() {
+                    if (!isDestroyed && !isFinishing && imageUrls.isNotEmpty()) { // ✅ Activity 未销毁时才运行
+                        currentImageIndex = (currentImageIndex + 1) % imageUrls.size
+                        Glide.with(this@HotelDetailActivity)
+                            .load(imageUrls[currentImageIndex])
+                            .placeholder(R.drawable.attraction_placeholder_image)
+                            .error(R.drawable.attraction_placeholder_image)
+                            .into(hotelImageView)
+
+                        handler.postDelayed(this, 2000) // ✅ 继续切换
+                    }
+                }
+            }, 2000) // ✅ 启动轮播
         }
-        // 在 UI 线程上运行 Glide 加载图片，并设置占位图
     }
 
 
+    override fun onDestroy() {
+        super.onDestroy()
+        handler.removeCallbacksAndMessages(null) // ✅ 防止定时任务继续执行
+        Glide.with(applicationContext).clear(hotelImageView) // ✅ 清理 Glide 加载任务
+    }
 }

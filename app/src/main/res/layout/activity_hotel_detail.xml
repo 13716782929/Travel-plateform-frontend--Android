@@ -25,10 +25,9 @@
             <ImageView
                 android:id="@+id/container_product_image"
                 android:layout_width="411dp"
-                android:layout_height="339dp"
-                android:scaleType="centerCrop"
-                android:adjustViewBounds="false"
-                android:layout_gravity="top|left" />
+                android:layout_height="346dp"
+                android:layout_gravity="top|left"
+                android:scaleType="centerInside"/>
 
             <!-- 返回按钮 -->
             <ImageButton
