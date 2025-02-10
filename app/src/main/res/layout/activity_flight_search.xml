@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/hotel_container_hotel">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/main_head"
+        tools:ignore="MissingConstraints" />
+
+    <!-- Back Arrow -->
+    <ImageView
+        android:id="@+id/backArrow"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:src="@drawable/ic_arrow_back"
+        android:contentDescription="Back"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp" />
+
+    <!-- Header Title-->
+    <TextView
+        android:id="@+id/tvHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Flights"
+        android:textSize="24sp"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@id/backArrow"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp" />
+
+
+    <!-- Where From -->
+    <EditText
+        android:id="@+id/etWhereFrom"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Where from?"
+        android:background="@drawable/edit_text_background"
+        android:padding="12dp"
+        android:drawableStart="@drawable/flight_takeoff"
+        android:drawablePadding="8dp"
+        app:layout_constraintTop_toBottomOf="@id/tvHeader"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/swapIcon"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="24dp" />
+
+    <!-- Swap Icon -->
+    <ImageView
+        android:id="@+id/swapIcon"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:src="@drawable/swap_icon"
+        android:contentDescription="Swap"
+        android:background="@drawable/circle_background"
+        app:layout_constraintTop_toBottomOf="@id/tvHeader"
+        app:layout_constraintStart_toEndOf="@id/etWhereFrom"
+        app:layout_constraintEnd_toStartOf="@id/etWhereTo"
+        android:layout_marginTop="24dp" />
+
+    <!-- Where To -->
+    <EditText
+        android:id="@+id/etWhereTo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Where to?"
+        android:background="@drawable/edit_text_background"
+        android:padding="12dp"
+        android:drawableStart="@drawable/flight_land"
+        android:drawablePadding="8dp"
+        app:layout_constraintTop_toBottomOf="@id/tvHeader"
+        app:layout_constraintStart_toEndOf="@id/swapIcon"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="24dp" />
+    <!-- Date Selection -->
+    <TextView
+        android:id="@+id/tvDateSelection"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Select your travel dates"
+        android:background="@drawable/edit_text_background"
+        android:padding="12dp"
+        android:drawableStart="@drawable/ic_calendar"
+        android:drawablePadding="8dp"
+        android:textColor="@color/black"
+        app:layout_constraintTop_toBottomOf="@id/etWhereFrom"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="16dp" />
+
+    <!-- Passenger and Class Selection -->
+    <LinearLayout
+        android:id="@+id/passengerClassLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/tvDateSelection"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="16dp">
+
+        <!-- Passengers Dropdown -->
+        <TextView
+            android:id="@+id/tvPassengers"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableEnd="@drawable/ic_arrow_down"
+            android:drawablePadding="8dp"
+            android:text="1 Adult"
+            android:textSize="16sp"
+            android:gravity="center_vertical"
+            android:textColor="@color/black"
+            android:padding="12dp" />
+
+        <!-- Class Dropdown-->
+        <TextView
+            android:id="@+id/tvClass"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableEnd="@drawable/ic_arrow_down"
+            android:drawablePadding="8dp"
+            android:text="Economy"
+            android:textSize="16sp"
+            android:gravity="center_vertical"
+            android:textColor="@color/black"
+            android:padding="12dp"
+            android:layout_marginStart="8dp" />
+    </LinearLayout>
+
+    <!-- Search Flight Button -->
+    <Button
+        android:id="@+id/btnSearchFlights"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Search Flights"
+        android:background="@drawable/rounded_button"
+        android:drawableStart="@drawable/ic_search"
+        android:backgroundTint="@color/royal_blue"
+        android:textColor="@color/white"
+        android:padding="12dp"
+        android:textStyle="bold"
+        android:drawablePadding="8dp"
+        app:layout_constraintTop_toBottomOf="@id/passengerClassLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="16dp" />
+
+    <!-- Flight Results -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvFlightResults"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/btnSearchFlights"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="16dp" />
+</androidx.constraintlayout.widget.ConstraintLayout>
