@@ -105,7 +105,7 @@ class ScheduleFragment : Fragment() {
     private fun fetchUserBookings(userId: Int) {
         lifecycleScope.launch(Dispatchers.IO) {
             try {
-                val response = apiService.getUserBookings(userId)
+                val response = apiService.getUserAttractionBookings(userId)
                 if (response.isSuccessful) {
                     val bookings = response.body() ?: emptyList()
                     val bookingItems = mutableListOf<BookingItem>()

@@ -9,6 +9,7 @@ import iss.nus.edu.sg.mygo.api.models.ReviewRequest
 import iss.nus.edu.sg.mygo.models.Attraction
 import iss.nus.edu.sg.mygo.models.AttractionBooking
 import iss.nus.edu.sg.mygo.models.Booking
+import iss.nus.edu.sg.mygo.models.HotelBooking
 import iss.nus.edu.sg.mygo.models.Review
 import retrofit2.Response
 import retrofit2.Retrofit
@@ -28,11 +29,12 @@ interface UserApiService {
     @POST("api/auth/login")
     suspend fun login(@Body request: LoginRequest): Response<LoginResponse>
 
+    // attraction booking
     @POST("/api/attractions/booking")
     suspend fun createAttractionBooking(@Body request: AttractionBookingRequest): Response<AttractionBookingRequest>
 
     @GET("/api/attractions/bookings/{userId}")
-    suspend fun getUserBookings(@Path("userId") userId: Int): Response<List<AttractionBooking>>
+    suspend fun getUserAttractionBookings(@Path("userId") userId: Int): Response<List<AttractionBooking>>
 
     // 提交评论
     @POST("/api/reviews")
@@ -42,8 +44,12 @@ interface UserApiService {
 //    @DELETE("/api/attractions/bookings/{bookingId}")
 //    suspend fun deleteBooking(@Path("bookingId") bookingId: Int): Response<Unit>
 
+    // hotel booking
     @POST("/api/hotels/booking")
     suspend fun createHotelBooking(@Body request: HotelBookingRequest): Response<HotelBookingRequest>
+
+    @GET("/api/hotels/bookings/{userId}")
+    suspend fun getUserHotelBookings(@Path("userId") userId: Int): Response<List<HotelBooking>>
 
     companion object {
         private const val BASE_URL = "http://10.0.2.2:8080/"
