@@ -52,6 +52,7 @@ dependencies {
     implementation(libs.picasso)
     implementation(libs.androidx.recyclerview)
     implementation(libs.androidx.constraintlayout.v204)
+    implementation("androidx.cardview:cardview:1.0.0")
 //    implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)

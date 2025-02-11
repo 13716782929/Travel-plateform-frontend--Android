@@ -55,4 +55,9 @@
     <string name="notication_card_description">Your flight SQ12138 is out of data! \nTime of taking off at :  8:30 , 8th April</string>
     <string name="me">Me</string>
     <string name="huang">Huang</string>
+    <string name="upcoming_booking">Upcoming Booking</string>
+    <string name="travel_history">Travel History</string>
+    <string name="itineraries">Itineraries</string>
+    <string name="recent">Recent</string>
+    <string name="log_out">Log out</string>
 </resources>

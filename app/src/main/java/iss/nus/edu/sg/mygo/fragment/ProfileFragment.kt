@@ -33,6 +33,4 @@ class ProfileFragment : Fragment() {
 
         return inflater.inflate(R.layout.profile_fragment, container, false)
     }
-
 }
-
