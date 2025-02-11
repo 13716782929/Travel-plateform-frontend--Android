@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/item_attraction_booking_card"
+    android:layout_width="380dp"
+    android:layout_height="105dp"
+    android:clickable="true"
+    android:focusable="true"
+    >
+
+    <RelativeLayout
+        android:id="@+id/image_rectangle"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="left"
+        android:background="@drawable/hotel_image_rectangle"
+        android:scaleType="centerCrop"
+        android:clipToOutline="true">
+
+        <ImageView
+            android:id="@+id/attraction_booking_location_icon"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_marginStart="107dp"
+            android:layout_marginTop="33dp"
+            android:layout_marginBottom="-1dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/hotel_drawable_image" />
+
+        <TextView
+            android:id="@+id/text_location"
+            android:layout_width="wrap_content"
+            android:maxWidth="140dp"
+            android:layout_height="wrap_content"
+            android:text="Location: "
+            android:layout_toEndOf="@+id/attraction_booking_location_icon"
+            android:layout_below="@+id/text_attraction_name"
+            android:layout_marginStart="5dp"
+            android:maxLines="2"
+            android:ellipsize="end"
+            />
+
+        <TextView
+            android:id="@+id/item_attraction_booking_visit_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/item_attraction_booking_visit_time"
+            android:layout_marginBottom="5dp"
+            android:layout_toEndOf="@+id/attraction_booking_container_mask_group"
+            android:layout_marginStart="15dp"
+            android:text="Date: "
+            android:maxLines="1"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:fontFamily="@font/joti_one_regular"
+            />
+
+        <ImageView
+            android:id="@+id/attraction_booking_container_mask_group"
+            android:layout_width="100dp"
+            android:layout_height="110dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="3dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/hotel_container_mask_group" />
+
+        <TextView
+            android:id="@+id/text_attraction_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="109dp"
+            android:layout_marginEnd="29dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginBottom="-1dp"
+            android:text="@string/attraction_name"
+            android:fontFamily="@font/inter_18pt_regular"
+            android:textSize="18sp"
+            android:layout_gravity="top"
+            android:includeFontPadding="false"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:textColor="#FF4C76EB"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/item_attraction_booking_visit_time"
+            android:layout_width="wrap_content"
+            android:maxWidth="160dp"
+            android:layout_height="16dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="0dp"
+            android:layout_toEndOf="@id/attraction_booking_container_mask_group"
+            android:layout_marginStart="15dp"
+            android:fontFamily="@font/inter_18pt_semibold"
+            android:includeFontPadding="false"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:text="Time"
+            android:textColor="#FF6C757D"
+            android:textSize="12sp" />
+        <!-- "删除" 按钮 -->
+        <Button
+            android:id="@+id/btn_delete_attraction_booking"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:text="Delete"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="10dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="10dp"
+            android:backgroundTint="@android:color/holo_red_light"
+            android:textColor="@android:color/white"
+            android:padding="8dp"/>
+
+        <!-- "评论" 按钮 -->
+        <Button
+            android:id="@+id/btn_review_attraction_booking"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:text="Review"
+            android:layout_above="@+id/btn_delete_attraction_booking"
+
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="10dp"
+            android:backgroundTint="@android:color/holo_blue_light"
+            android:textColor="@android:color/white"
+            android:padding="8dp"/>
+    </RelativeLayout>
+
+
+</RelativeLayout>

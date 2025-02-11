@@ -1,7 +1,5 @@
 package iss.nus.edu.sg.mygo.models
 
-import iss.nus.edu.sg.mygo.enum.TicketType
-
 data class Attraction(
     val uuid: String,
     val name: String,

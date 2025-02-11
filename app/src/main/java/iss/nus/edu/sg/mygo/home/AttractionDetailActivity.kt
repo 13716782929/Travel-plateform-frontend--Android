@@ -89,8 +89,10 @@ class AttractionDetailActivity : AppCompatActivity() {
         containerCta.setOnClickListener {
             // todo check user login?
             if(!sessionManager.isLoggedIn()){
-                startActivity(Intent(this, LoginActivity::class.java))
-                finish()
+                val intent = Intent(this, LoginActivity::class.java)
+                intent.putExtra("from_activity", true) // 让 LoginActivity 知道是从哪里来的
+                startActivityForResult(intent, 1001)
+
             }
             // 弹出日期选择器
             showDatePickerDialog()
@@ -108,6 +110,14 @@ class AttractionDetailActivity : AppCompatActivity() {
             finish()
         }
 
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == 1001 && resultCode == RESULT_OK) {
+            // 处理登录成功后的逻辑，比如刷新界面
+            recreate() // 重新加载当前页面
+        }
     }
 
 

@@ -27,6 +27,11 @@ class SessionManager(context: Context) {
         sharedPreferences.edit().remove("auth_token").apply()
     }
 
+    fun getUserIdFromPrefs(): String? {
+        return sharedPreferences.getString("user_id", null)
+    }
+
+
     private fun isTokenExpired(token: String): Boolean {
         return try {
             val parts = token.split(".")

@@ -12,6 +12,7 @@ import iss.nus.edu.sg.mygo.fragment.HomeFragment
 import iss.nus.edu.sg.mygo.fragment.NotificationFragment
 import iss.nus.edu.sg.mygo.fragment.ProfileFragment
 import iss.nus.edu.sg.mygo.fragment.SearchFragment
+import iss.nus.edu.sg.mygo.fragment.ScheduleFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -47,6 +48,9 @@ class MainActivity : AppCompatActivity() {
                 }
                 R.id.nav_profile -> {
                     ProfileFragment() // 如果已登录，加载ProfileFragment
+                }
+                R.id.nav_calendar -> {
+                    ScheduleFragment()
                 }
                 else -> HomeFragment() // 默认Fragment
             }

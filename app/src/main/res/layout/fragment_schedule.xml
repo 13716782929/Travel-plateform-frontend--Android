@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:id="@+id/calendarHead"
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:background="@drawable/main_head"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:ignore="MissingConstraints">
+
+        <ImageView
+            android:id="@+id/image_main_head"
+            android:layout_width="251.91dp"
+            android:layout_height="226.6dp"
+            android:layout_marginLeft="232dp"
+            android:layout_marginTop="-127dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/hotel_image_main_head" />
+        <ImageView
+            android:id="@+id/image_main_head1"
+            android:layout_width="185.65dp"
+            android:layout_height="166.55dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="-104dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/hotel_image_main_head1" />
+
+        <TextView
+            android:id="@+id/container_group"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="top|center"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="-4dp"
+            android:fontFamily="@font/joti_one_regular"
+            android:gravity="center_horizontal|center_vertical"
+            android:includeFontPadding="false"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:text="Schedule"
+            android:textColor="#FFFFFFFF"
+            android:textSize="24dp" />
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/control_scroll_range"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/calendarHead">
+<!--        <ScrollView-->
+<!--            android:id="@+id/schedule_scroll_range"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent">-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="0dp"
+            android:padding="16dp">
+            <!-- 日期选择器 -->
+            <CalendarView
+                android:id="@+id/calendarView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <!-- 预约信息列表 -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewBookings"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/calendarView"
+                android:layout_marginTop="0dp"
+                android:layout_marginBottom="10dp"/>
+
+         </RelativeLayout>
+<!--        </ScrollView>-->
+    </RelativeLayout>
+</RelativeLayout>

@@ -55,4 +55,5 @@
     <string name="notication_card_description">Your flight SQ12138 is out of data! \nTime of taking off at :  8:30 , 8th April</string>
     <string name="me">Me</string>
     <string name="huang">Huang</string>
+    <string name="attraction_name">Attraction Name</string>
 </resources>

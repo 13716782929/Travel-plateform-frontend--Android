@@ -4,12 +4,20 @@ import iss.nus.edu.sg.mygo.api.models.AttractionBookingRequest
 import iss.nus.edu.sg.mygo.api.models.LoginRequest
 import iss.nus.edu.sg.mygo.api.models.LoginResponse
 import iss.nus.edu.sg.mygo.api.models.RegisterRequest
+import iss.nus.edu.sg.mygo.api.models.ReviewRequest
+import iss.nus.edu.sg.mygo.models.Attraction
+import iss.nus.edu.sg.mygo.models.AttractionBooking
+import iss.nus.edu.sg.mygo.models.Booking
+import iss.nus.edu.sg.mygo.models.Review
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.Body
+import retrofit2.http.DELETE
+import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.POST
+import retrofit2.http.Path
 
 interface UserApiService {
 
@@ -21,6 +29,20 @@ interface UserApiService {
 
     @POST("/api/attractions/booking")
     suspend fun createAttractionBooking(@Body request: AttractionBookingRequest): Response<AttractionBookingRequest>
+
+//    @GET("/api/bookings/{userId}")
+//    suspend fun getUserBookings(@Path("userId") userId: Int): Response<List<Booking>>
+
+    @GET("/api/attractions/bookings/{userId}")
+    suspend fun getUserBookings(@Path("userId") userId: Int): Response<List<AttractionBooking>>
+
+    // 提交评论
+    @POST("/api/reviews")
+    suspend fun postReview(@Body request: ReviewRequest): Response<Review>
+
+//    // 删除预约
+//    @DELETE("/api/attractions/bookings/{bookingId}")
+//    suspend fun deleteBooking(@Path("bookingId") bookingId: Int): Response<Unit>
 
     companion object {
         private const val BASE_URL = "http://10.0.2.2:8080/"

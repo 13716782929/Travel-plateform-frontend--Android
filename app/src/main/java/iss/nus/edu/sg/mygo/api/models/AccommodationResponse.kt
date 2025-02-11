@@ -68,10 +68,3 @@ data class ApiLink(
     @SerializedName("method") val method: String
 )
 
-
-// 评价（如果 API 未来有评价数据）
-data class Review(
-    @SerializedName("author") val author: String?,
-    @SerializedName("content") val content: String?,
-    @SerializedName("rating") val rating: Double?
-)

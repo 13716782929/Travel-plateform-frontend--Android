@@ -72,8 +72,16 @@ class LoginActivity : AppCompatActivity() {
                         saveLoginState()
 
                         Toast.makeText(this@LoginActivity, "Login Successful!", Toast.LENGTH_SHORT).show()
-                        startActivity(Intent(this@LoginActivity, MainActivity::class.java))
-                        finish()
+
+                        // 🔹 判断是否是从别的 Activity 跳转过来的
+                        if (intent.hasExtra("from_activity")) {
+                            setResult(RESULT_OK) // 让前一个页面知道登录成功了
+                            finish() // 直接回到上一个页面
+                        } else {
+                            // 否则跳转到主页面
+                            startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+                            finish()
+                        }
                     }
                 } else {
                     Toast.makeText(this@LoginActivity, "Login Failed: Invalid credentials", Toast.LENGTH_SHORT).show()
@@ -83,6 +91,7 @@ class LoginActivity : AppCompatActivity() {
             }
         }
     }
+
 
     /**
      * 存储 JWT Token 以便后续 API 请求使用
