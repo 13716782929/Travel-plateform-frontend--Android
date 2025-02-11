@@ -78,24 +78,35 @@ class HotelSearchActivity : AppCompatActivity() {
 
                     accommodations.forEach { accommodation ->
                         val firstImageUuid = accommodation.thumbnails?.firstOrNull()?.uuid
-                        Log.d("UUID_CHECK", "First Image UUID: $firstImageUuid")
+                        if (firstImageUuid.isNullOrEmpty()) {
+                            Log.d("FILTER", "过滤无图片的酒店: ${accommodation.name}")
+                            return@forEach
+                        }
+
+                        if (accommodation.leadInRoomRates == null) {
+                            Log.d("FILTER", "过滤无价格的酒店: ${accommodation.name}")
+                            return@forEach
+                        }
+
+                        val addressParts = listOfNotNull(
+                            accommodation.address.block,
+                            accommodation.address.streetName,
+                            accommodation.address.floorNumber?.let { floor ->
+                                accommodation.address.unitNumber?.let { unit -> "$floor-$unit" } ?: floor
+                            },
+                            accommodation.address.buildingName,
+                            accommodation.address.postalCode
+                        )
+
 
                         getImageUrl(firstImageUuid) { imageUrl ->
                             val hotel = Hotel(
                                 uuid = accommodation.uuid,
                                 name = accommodation.name,
-                                address = listOfNotNull(
-                                    accommodation.address.block,
-                                    accommodation.address.streetName,
-                                    accommodation.address.floorNumber?.let { floor ->
-                                        accommodation.address.unitNumber?.let { unit -> "$floor-$unit" } ?: floor
-                                    },
-                                    accommodation.address.buildingName,
-                                    accommodation.address.postalCode
-                                ).joinToString(" ").ifEmpty { "Unknown Location" },
-                                rating = if (accommodation.rating == 0.0) "No Rating" else accommodation.rating.toString(),
-                                price = accommodation.leadInRoomRates ?: "Price Unavailable",
-                                imageUrl = imageUrl // 直接获取后端 API 提供的图片
+                                address = addressParts.joinToString(" "),
+                                rating = accommodation.rating.toString(),
+                                price = accommodation.leadInRoomRates ?: "价格不可用",
+                                imageUrl = imageUrl
                             )
 
                             hotels.add(hotel)

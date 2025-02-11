@@ -151,8 +151,239 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:layout_marginTop="5dp"/>
+
+                <LinearLayout
+                    android:id="@+id/container_hotel_info"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="10dp"
+                    android:layout_below="@id/container_product_info">
+
+                    <!-- 最近的 MRT 站 -->
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="🚇 Nearest MRT Station: "
+                        android:textColor="#FF232323"
+                        android:textSize="16dp"
+                        android:textStyle="bold"
+                        android:layout_marginTop="10dp"/>
+
+                    <TextView
+                        android:id="@+id/txt_mrt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="Nothing"
+                        android:textColor="#FF3A544F"
+                        android:textSize="14dp"/>
+
+
+                    <!-- 联系方式 -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:paddingTop="10dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Contact Information"
+                            android:textColor="#FF232323"
+                            android:textSize="16dp"
+                            android:textStyle="bold"
+                            android:layout_marginTop="10dp"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="📧 Email: "
+                                android:textColor="#FF232323"
+                                android:textSize="14dp"/>
+
+                            <TextView
+                                android:id="@+id/txt_email"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="wrap_content"
+                                android:hint="Nothing"
+                                android:textColor="#FF3A544F"
+                                android:textSize="14dp"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="🌐 Website: "
+                                android:textColor="#FF232323"
+                                android:textSize="14dp"/>
+
+                            <TextView
+                                android:id="@+id/txt_website"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="wrap_content"
+                                android:hint="Nothing"
+                                android:textColor="#0066CC"
+                                android:textSize="14dp"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="📞 Phone: "
+                                android:textColor="#FF232323"
+                                android:textSize="14dp"/>
+
+                            <TextView
+                                android:id="@+id/txt_phone"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="wrap_content"
+                                android:hint="Nothing"
+                                android:textColor="#FF3A544F"
+                                android:textSize="14dp"/>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <!-- 额外信息 -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:paddingTop="10dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Additional Information"
+                            android:textColor="#FF232323"
+                            android:textSize="16dp"
+                            android:textStyle="bold"
+                            android:layout_marginTop="10dp"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="🏨 Company: "
+                                android:textColor="#FF232323"
+                                android:textSize="14dp"/>
+
+                            <TextView
+                                android:id="@+id/txt_company"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="wrap_content"
+                                android:hint="Nothing"
+                                android:textColor="#FF3A544F"
+                                android:textSize="14dp"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="🏨 Type: "
+                                android:textColor="#FF232323"
+                                android:textSize="14dp"/>
+
+                            <TextView
+                                android:id="@+id/txt_type"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="wrap_content"
+                                android:hint="Nothing"
+                                android:textColor="#FF3A544F"
+                                android:textSize="14dp"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="🚦 Temporarily Closed: "
+                                android:textColor="#FF232323"
+                                android:textSize="14dp"/>
+
+                            <TextView
+                                android:id="@+id/txt_temporarily_closed"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="wrap_content"
+                                android:hint="No"
+                                android:textColor="#FF3A544F"
+                                android:textSize="14dp"/>
+                        </LinearLayout>
+                    </LinearLayout>
+
+
+
+                    <!-- 评论区 -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:paddingTop="10dp">
+
+                        <TextView
+                            android:id="@+id/recent_reviews"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Recent Reviews"
+                            android:textColor="#FF232323"
+                            android:textSize="16dp"
+                            android:textStyle="bold"
+                            android:layout_marginTop="30dp"/>
+
+                        <TextView
+                            android:id="@+id/txt_reviews"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="No Reviews"
+                            android:textColor="#FF3A544F"
+                            android:textSize="14dp"/>
+                    </LinearLayout>
+
+                </LinearLayout>
             </LinearLayout>
-        </RelativeLayout>
+
+    </RelativeLayout>
     </ScrollView>
 
         <RelativeLayout

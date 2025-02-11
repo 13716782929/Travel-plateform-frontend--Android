@@ -1,6 +1,7 @@
 package iss.nus.edu.sg.mygo.api.service
 
 import iss.nus.edu.sg.mygo.api.models.AttractionBookingRequest
+import iss.nus.edu.sg.mygo.api.models.HotelBookingRequest
 import iss.nus.edu.sg.mygo.api.models.LoginRequest
 import iss.nus.edu.sg.mygo.api.models.LoginResponse
 import iss.nus.edu.sg.mygo.api.models.RegisterRequest
@@ -21,6 +22,11 @@ interface UserApiService {
 
     @POST("/api/attractions/booking")
     suspend fun createAttractionBooking(@Body request: AttractionBookingRequest): Response<AttractionBookingRequest>
+
+    @POST("/api/hotels/booking")
+    suspend fun createHotelBooking(@Body request: HotelBookingRequest): Response<HotelBookingRequest>
+
+
 
     companion object {
         private const val BASE_URL = "http://10.0.2.2:8080/"
