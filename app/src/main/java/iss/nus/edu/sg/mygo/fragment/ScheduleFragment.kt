@@ -21,15 +21,20 @@ import iss.nus.edu.sg.mygo.adapter.BookingAdapter
 import iss.nus.edu.sg.mygo.api.models.AttractionData
 import iss.nus.edu.sg.mygo.api.models.ReviewRequest
 import iss.nus.edu.sg.mygo.api.service.AttractionApiService
+import iss.nus.edu.sg.mygo.api.service.HotelApiService
 import iss.nus.edu.sg.mygo.api.service.UserApiService
+import iss.nus.edu.sg.mygo.enum.RoomType
 import iss.nus.edu.sg.mygo.home.LoginActivity
 import iss.nus.edu.sg.mygo.models.Attraction
 import iss.nus.edu.sg.mygo.models.AttractionBooking
 import iss.nus.edu.sg.mygo.models.Booking
 import iss.nus.edu.sg.mygo.models.BookingItem
+import iss.nus.edu.sg.mygo.models.Hotel
+import iss.nus.edu.sg.mygo.models.HotelBooking
 import iss.nus.edu.sg.mygo.sessions.SessionManager
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.selects.select
 import kotlinx.coroutines.withContext
 import java.math.BigDecimal
 
@@ -39,19 +44,19 @@ class ScheduleFragment : Fragment() {
     private lateinit var calendarView: CalendarView
     private lateinit var recyclerView: RecyclerView
     private lateinit var bookingAdapter: BookingAdapter
-    private val bookings = mutableListOf<Booking>()
-    private val attractionBookings = mutableListOf<AttractionBooking>()
-    private val attractionDetails = mutableMapOf<Int, Attraction>()
 
     private val apiService = UserApiService.create()
     private val sessionManager by lazy { SessionManager(requireContext()) }
     private val attractionApiService = AttractionApiService.create()
+    private val hotelApiService = HotelApiService.create()
 
     private var selectedDate: String = ""
     private var allBookings: List<BookingItem> = emptyList() // 用户所有booking的信息
     private var filteredBookings: List<BookingItem> = emptyList() // 日期筛选后的bookings
     // Attraction 缓存，避免重复请求
+
     private val attractionCache = mutableMapOf<String, Attraction>()
+    private val hotelCache = mutableMapOf<String, Hotel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -61,7 +66,7 @@ class ScheduleFragment : Fragment() {
         showToast("🔍 DEBUG: isLoggedIn = $isLoggedIn") // ✅ 打印登录状态
 
         if (!isLoggedIn) {
-            println("🔍 DEBUG: User not logged in, redirecting to LoginActivity")
+            showToast("🔍 DEBUG: User not logged in, redirecting to LoginActivity")
             val intent = Intent(requireContext(), LoginActivity::class.java)
             startActivity(intent)
             requireActivity().finish()
@@ -69,10 +74,8 @@ class ScheduleFragment : Fragment() {
         }
 
         val view = inflater.inflate(R.layout.fragment_schedule, container, false)
-
         calendarView = view.findViewById(R.id.calendarView)
         recyclerView = view.findViewById(R.id.recyclerViewBookings)
-
         setupRecyclerView()
 
         val userId = sessionManager.getUserIdFromPrefs()
@@ -105,38 +108,20 @@ class ScheduleFragment : Fragment() {
     private fun fetchUserBookings(userId: Int) {
         lifecycleScope.launch(Dispatchers.IO) {
             try {
-                val response = apiService.getUserAttractionBookings(userId)
-                if (response.isSuccessful) {
-                    val bookings = response.body() ?: emptyList()
-                    val bookingItems = mutableListOf<BookingItem>()
+                val attractionBookings = fetchAttractionBookings(userId)
+                val hotelBookings = fetchHotelBookings(userId)
+                Log.d("ScheduleFragment", "Fetched Hotel Bookings: $hotelBookings") // ✅ 这里检查 HotelBooking 是否有数据
 
-                    for (booking in bookings) {
-                        val attraction = fetchAttraction(booking.attractionUuid)
 
-                        // 生成 BookingItem，并修正 `visitTime` 格式
-                        bookingItems.add(
-                            BookingItem.AttractionBookingItem(
-                                booking.copy(
-                                    attractionName = attraction?.name ?: "Unknown",
-                                    location = attraction?.address ?: "Unknown Location",
-                                    attractionImageUuid = attraction?.imageUuid ?: "" // ✅ 赋值景点图片 UUID
-                                )
-                            )
-                        )
-                    }
+                withContext(Dispatchers.Main) {
+                    // ✅  合并所有的 bookings
+                    allBookings = attractionBookings + hotelBookings
 
-                    withContext(Dispatchers.Main) {
-                        allBookings = bookingItems
-
-                        // ✅ 获取当前日历选中的日期，并筛选
-                        val calendarDate = getSelectedCalendarDate()
-                        filterBookingsByDate(calendarDate)
-                    }
-                } else {
-                    withContext(Dispatchers.Main) {
-                        Toast.makeText(requireContext(), "Failed to fetch bookings!", Toast.LENGTH_SHORT).show()
-                    }
+                    Log.d("ScheduleFragment", "All Bookings: $allBookings")
+                    // ✅  获取当前日历选中的日期，并筛选
+                    filterBookingsByDate(getSelectedCalendarDate())
                 }
+
             } catch (e: Exception) {
                 withContext(Dispatchers.Main) {
                     Toast.makeText(requireContext(), "Error: ${e.message}", Toast.LENGTH_SHORT).show()
@@ -145,7 +130,74 @@ class ScheduleFragment : Fragment() {
         }
     }
 
+    /**
+     * 通过userId从后端获取attractionBooking的信息
+     * 包含：attractionName 、 location 、 attractionImageUuid
+     */
+    private suspend fun fetchAttractionBookings(userId: Int): List<BookingItem.AttractionBookingItem> {
+        return try {
+            val response = apiService.getUserAttractionBookings(userId)
+            if (response.isSuccessful) {
+                val bookings = response.body() ?: emptyList()
+                bookings.map { booking ->
+                    val attraction = fetchAttraction(booking.attractionUuid)
+                    BookingItem.AttractionBookingItem(
+                        booking.copy(
+                            attractionName = attraction?.name ?: "Unknown",
+                            location = attraction?.address ?: "Unknown Location",
+                            attractionImageUuid = attraction?.imageUuid ?: ""
+                        )
+                    )
+                }
 
+            } else {
+                emptyList()
+            }
+        } catch (e: Exception) {
+            emptyList()
+        }
+    }
+
+    private suspend fun fetchHotelBookings(userId: Int): List<BookingItem.HotelBookingItem> {
+        return try {
+            val response = apiService.getUserHotelBookings(userId)
+            Log.d("ScheduleFragment", "Hotel Booking API Response: ${response.code()} ${response.message()}")
+
+            if (response.isSuccessful) {
+                // 先直接打印 response.body()
+                Log.d("ScheduleFragment", "Raw Response Body: ${response.body()}")
+
+                val bookings = response.body() ?: emptyList()
+
+                val processedBookings = bookings.map { booking ->
+                    val hotel = fetchHotel(booking.hotelUuid)
+                    BookingItem.HotelBookingItem(
+                        HotelBooking(
+                            hotelBookingId = booking.bookingId,
+                            bookingId = booking.bookingId,
+                            hotelUuid = booking.hotelUuid,
+                            hotelName = hotel?.name ?: "Unknown",
+                            location = hotel?.address ?: "Unknown Location",
+                            checkInDate = booking.checkInDate,
+                            checkOutDate = booking.checkOutDate,
+                            roomType = booking.roomType ?: "未知房型",
+                            guests = booking.guests,
+                            totalAmount = booking.totalAmount,
+                            hotelImageUuid = hotel?.imageUrl ?: "",
+                            hotelId = booking.hotelId
+                        )
+                    )
+                }
+                Log.d("ScheduleFragment", "Processed Hotel Bookings: $processedBookings")
+                processedBookings
+            } else {
+                emptyList()
+            }
+        } catch (e: Exception) {
+            Log.e("ScheduleFragment", "Error fetching hotel bookings: ${e.message}", e)
+            emptyList()
+        }
+    }
 
     private suspend fun fetchAttraction(uuid: String?): Attraction? {
         if (uuid.isNullOrEmpty()) return null
@@ -187,10 +239,41 @@ class ScheduleFragment : Fragment() {
         }
     }
 
+    private suspend fun fetchHotel(uuid: String?): Hotel? {
+        if (uuid.isNullOrEmpty()) return null
+        if (hotelCache.containsKey(uuid)) return hotelCache[uuid]
+
+        return try {
+            val response = hotelApiService.fetchHotelByUUID(
+                uuid = uuid,
+                apiKey = "6IBB6PFfArqu7dvgOJaXFZKyqAN9uJAC",
+                contentLanguage = "en"
+            )
+
+            if (response.isSuccessful) {
+                val hotelDataList = response.body()?.data ?: emptyList()
+                val hotel = hotelDataList.firstOrNull()?.let { hotelData ->
+                    Hotel(
+                        uuid = hotelData.uuid,
+                        name = hotelData.name ?: "Unknown Attraction",
+                        address = hotelData.address?.formattedAddress() ?: "Unknown Location",
+                        description = "",
+                        rating = 0.0.toString(),
+                        price = "",
+                        imageUrl = hotelData.thumbnails?.firstOrNull()?.uuid ?: "" // ✅ 确保有图片
+                    )
+                }
+                hotel
+            } else null
+        } catch (e: Exception) {
+            null
+        }
+    }
+
     /**
      * 💬 处理提交评论 (Post Review)
      */
-    private fun postReview(bookingItem: BookingItem.AttractionBookingItem) {
+    private fun postReview(bookingItem: BookingItem) {
         showReviewDialog(bookingItem)
     }
 
@@ -199,20 +282,23 @@ class ScheduleFragment : Fragment() {
      * 🗑 处理删除预约 (Delete Booking)
      */
     @SuppressLint("NotifyDataSetChanged")
-    private fun deleteBooking(bookingItem: BookingItem.AttractionBookingItem) {
-        val bookingId = bookingItem.attractionBooking.bookingId
-
+    private fun deleteBooking(bookingItem: BookingItem) {
+        val bookingId = when (bookingItem) {
+            is BookingItem.AttractionBookingItem -> bookingItem.attractionBooking.bookingId
+            is BookingItem.HotelBookingItem -> bookingItem.hotelBooking.bookingId
+            else -> {}
+        }
         lifecycleScope.launch(Dispatchers.Main) {
-            // 先从 `allBookings` 里删除该 `Booking`
             allBookings = allBookings.filterNot {
-                it is BookingItem.AttractionBookingItem && it.attractionBooking.bookingId == bookingId
+                when (it) {
+                    is BookingItem.AttractionBookingItem -> it.attractionBooking.bookingId == bookingId
+                    is BookingItem.HotelBookingItem -> it.hotelBooking.bookingId == bookingId
+                    else -> false
+                }
             }
 
-
             filterBookingsByDate(selectedDate)
-
             bookingAdapter.updateBookings(filteredBookings)
-
             recyclerView.post {
                 bookingAdapter.notifyDataSetChanged()
             }
@@ -224,14 +310,30 @@ class ScheduleFragment : Fragment() {
     /**
      * 💬 处理提交评论
      */
-    private fun showReviewDialog(bookingItem: BookingItem.AttractionBookingItem) {
+    private fun showReviewDialog(bookingItem: BookingItem) {
         val userId = sessionManager.getUserIdFromPrefs()?.toInt() ?: return
-        val bookingId = bookingItem.attractionBooking.bookingId
-        val attractionId = bookingItem.attractionBooking.attractionId // ✅ 修复: 确保获取 attractionId
 
         val dialogView = LayoutInflater.from(requireContext()).inflate(R.layout.dialog_review, null)
         val ratingBar = dialogView.findViewById<RatingBar>(R.id.review_rating_bar)
         val editTextReview = dialogView.findViewById<EditText>(R.id.review_comment)
+
+        // **根据 BookingItem 类型，确定 itemId 和 itemType**
+        val (itemId, bookingId, itemType) = when (bookingItem) {
+            is BookingItem.AttractionBookingItem -> Triple(
+                bookingItem.attractionBooking.attractionId,
+                bookingItem.attractionBooking.bookingId,
+                "Attraction"
+            )
+            is BookingItem.HotelBookingItem -> Triple(
+                bookingItem.hotelBooking.hotelBookingId,
+                bookingItem.hotelBooking.bookingId,
+                "Hotel"
+            )
+            else -> {
+                showToast("Invalid booking type for review!")
+                return
+            }
+        }
 
         AlertDialog.Builder(requireContext())
             .setTitle("Leave a Review")
@@ -241,7 +343,7 @@ class ScheduleFragment : Fragment() {
                 val reviewText = editTextReview.text.toString()
 
                 if (reviewText.isNotEmpty() && rating > 0) {
-                    submitReview(attractionId, bookingId, reviewText, rating)
+                    submitReview(itemId, bookingId, itemType, reviewText, rating)
                 } else {
                     showToast("Review cannot be empty and rating must be greater than 0!")
                 }
@@ -253,7 +355,7 @@ class ScheduleFragment : Fragment() {
     /**
      * ✅ 提交评论到后端
      */
-    private fun submitReview(itemId: Int, bookingId: Int, commentText: String, rating: Float) {
+    private fun submitReview(itemId: Int, bookingId: Int, itemType: String, commentText: String, rating: Float) {
         val userId = sessionManager.getUserIdFromPrefs()?.toIntOrNull()
         if (userId == null) {
             showToast("User not logged in!")
@@ -263,7 +365,7 @@ class ScheduleFragment : Fragment() {
         val reviewRequest = ReviewRequest(
             userId = userId,
             itemId = itemId, // ✅ 关联的 Attraction ID
-            itemType = "Attraction",
+            itemType = itemType,
             bookingId = bookingId, // ✅ 关联的 Booking ID
             rating = BigDecimal.valueOf(rating.toDouble()),
             comment = commentText
@@ -299,7 +401,7 @@ class ScheduleFragment : Fragment() {
             when (it) {
                 is BookingItem.AttractionBookingItem -> it.attractionBooking.visitDate == selectedDate
 //                is BookingItem.FlightBookingItem ->
-//                is BookingItem.HotelBookingItem ->
+                is BookingItem.HotelBookingItem -> it.hotelBooking.checkInDate == selectedDate
                 else -> false
             }
         }

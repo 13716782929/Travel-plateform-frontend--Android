@@ -4,7 +4,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/item_attraction_booking_card"
     android:layout_width="380dp"
-    android:layout_height="105dp"
+    android:layout_height="135dp"
     android:clickable="true"
     android:focusable="true"
     >
@@ -19,7 +19,7 @@
         android:clipToOutline="true">
 
         <ImageView
-            android:id="@+id/attraction_booking_location_icon"
+            android:id="@+id/item_hotel_booking_location_icon"
             android:layout_width="15dp"
             android:layout_height="15dp"
             android:layout_marginStart="107dp"
@@ -29,48 +29,65 @@
             android:src="@drawable/hotel_drawable_image" />
 
         <TextView
-            android:id="@+id/text_location"
+            android:id="@+id/item_hotel_booking_location"
             android:layout_width="wrap_content"
             android:maxWidth="140dp"
             android:layout_height="wrap_content"
             android:text="Location: "
-            android:layout_toEndOf="@+id/attraction_booking_location_icon"
-            android:layout_below="@+id/text_attraction_name"
+            android:layout_toEndOf="@+id/item_hotel_booking_location_icon"
+            android:layout_below="@+id/item_hotel_booking_name"
             android:layout_marginStart="5dp"
+            android:fontFamily="@font/inter_18pt_semibold"
             android:maxLines="2"
             android:ellipsize="end"
             />
 
         <TextView
-            android:id="@+id/item_attraction_booking_visit_date"
+            android:id="@+id/item_hotel_booking_check_out_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/item_attraction_booking_visit_time"
-            android:layout_marginBottom="5dp"
-            android:layout_toEndOf="@+id/attraction_booking_container_mask_group"
+            android:layout_above="@+id/item_hotel_booking_room_type"
+            android:layout_marginBottom="4dp"
+            android:layout_toEndOf="@+id/hotel_booking_container_mask_group"
             android:layout_marginStart="15dp"
-            android:text="Date: "
+            android:text="Check out: "
             android:maxLines="1"
             android:singleLine="true"
             android:ellipsize="end"
             android:fontFamily="@font/joti_one_regular"
+            android:textSize="14dp"
+            />
+        <TextView
+            android:id="@+id/item_hotel_booking_check_in_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/item_hotel_booking_check_out_date"
+            android:layout_marginBottom="4dp"
+            android:layout_toEndOf="@+id/hotel_booking_container_mask_group"
+            android:layout_marginStart="15dp"
+            android:text="Check in: "
+            android:maxLines="1"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:fontFamily="@font/joti_one_regular"
+            android:textSize="14dp"
             />
 
         <ImageView
-            android:id="@+id/attraction_booking_container_mask_group"
+            android:id="@+id/hotel_booking_container_mask_group"
             android:layout_width="100dp"
-            android:layout_height="110dp"
+            android:layout_height="130dp"
             android:layout_marginLeft="0dp"
             android:layout_marginTop="3dp"
             android:scaleType="centerCrop"
             android:src="@drawable/hotel_container_mask_group" />
 
         <TextView
-            android:id="@+id/text_attraction_name"
+            android:id="@+id/item_hotel_booking_name"
             android:layout_width="wrap_content"
+            android:maxWidth="180dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="109dp"
-            android:layout_marginEnd="29dp"
             android:layout_marginTop="6dp"
             android:layout_marginBottom="-1dp"
             android:text="@string/attraction_name"
@@ -84,28 +101,42 @@
             android:textStyle="bold"/>
 
         <TextView
-            android:id="@+id/item_attraction_booking_visit_time"
+            android:id="@+id/item_hotel_booking_room_type"
             android:layout_width="wrap_content"
             android:maxWidth="160dp"
             android:layout_height="16dp"
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="5dp"
             android:layout_marginTop="0dp"
-            android:layout_toEndOf="@id/attraction_booking_container_mask_group"
+            android:layout_toEndOf="@id/hotel_booking_container_mask_group"
             android:layout_marginStart="15dp"
             android:fontFamily="@font/inter_18pt_semibold"
             android:includeFontPadding="false"
             android:maxLines="1"
             android:singleLine="true"
-            android:text="Time"
+            android:text="RoomType:"
             android:textColor="#FF6C757D"
-            android:textSize="12sp" />
+            android:textSize="14sp" />
 
+        <TextView
+            android:id="@+id/item_hotel_booking_guest"
+            android:layout_width="wrap_content"
+            android:layout_height="16dp"
+            android:layout_marginTop="10dp"
+            android:layout_toEndOf="@id/item_hotel_booking_name"
+            android:layout_marginStart="8dp"
+            android:fontFamily="@font/inter_18pt_semibold"
+            android:includeFontPadding="false"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:text="guestNum:"
+            android:textColor="#FF6C757D"
+            android:textSize="14sp" />
         <!-- "删除" 按钮 -->
         <Button
-            android:id="@+id/btn_delete_attraction_booking"
+            android:id="@+id/btn_delete_hotel_booking"
             android:layout_width="80dp"
-            android:layout_height="40dp"
+            android:layout_height="45dp"
             android:text="Delete"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="10dp"
@@ -117,12 +148,11 @@
 
         <!-- "评论" 按钮 -->
         <Button
-            android:id="@+id/btn_review_attraction_booking"
+            android:id="@+id/btn_review_hotel_booking"
             android:layout_width="80dp"
-            android:layout_height="40dp"
+            android:layout_height="45dp"
             android:text="Review"
-            android:layout_above="@+id/btn_delete_attraction_booking"
-
+            android:layout_above="@+id/btn_delete_hotel_booking"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="10dp"
             android:backgroundTint="@android:color/holo_blue_light"

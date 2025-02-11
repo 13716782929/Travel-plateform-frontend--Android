@@ -19,9 +19,9 @@ import java.util.Locale
 
 class BookingAdapter(
     private var bookings: List<BookingItem>,
-    private val onDeleteClick: (BookingItem.AttractionBookingItem) -> Unit,
-    private val onCommentClick: (BookingItem.AttractionBookingItem) -> Unit
-) : RecyclerView.Adapter<BookingAdapter.AttractionViewHolder>() {
+    private val onDeleteClick: (BookingItem) -> Unit,
+    private val onCommentClick: (BookingItem) -> Unit
+) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     companion object {
         private const val TYPE_ATTRACTION = 1
@@ -33,11 +33,12 @@ class BookingAdapter(
         return when (bookings[position]) {
             is BookingItem.AttractionBookingItem -> TYPE_ATTRACTION
             is BookingItem.HotelBookingItem -> TYPE_HOTEL
-            is BookingItem.FlightBookingItem -> TYPE_FLIGHT
+//            is BookingItem.FlightBookingItem -> TYPE_FLIGHT
+            else -> throw IllegalArgumentException("Invalid booking type")
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AttractionViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
             TYPE_ATTRACTION -> {
                 val view = LayoutInflater.from(parent.context)
@@ -47,10 +48,10 @@ class BookingAdapter(
 
                 AttractionViewHolder(view)
             }
-//            TYPE_HOTEL -> {
-//                val view = LayoutInflater.from(parent.context).inflate(R.layout.item_hotel_booking, parent, false)
-//                HotelViewHolder(view)
-//            }
+            TYPE_HOTEL -> {
+                val view = LayoutInflater.from(parent.context).inflate(R.layout.item_hotel_booking, parent, false)
+                HotelViewHolder(view)
+            }
 //            TYPE_FLIGHT -> {
 //                val view = LayoutInflater.from(parent.context).inflate(R.layout.item_flight_booking, parent, false)
 //                FlightViewHolder(view)
@@ -59,9 +60,12 @@ class BookingAdapter(
         }
     }
 
-    override fun onBindViewHolder(holder: AttractionViewHolder, position: Int) {
-        val bookingItem = bookings[position] as BookingItem.AttractionBookingItem
-        holder.bind(bookingItem, onDeleteClick, onCommentClick)
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        when (val bookingItem = bookings[position]) {
+            is BookingItem.AttractionBookingItem -> (holder as AttractionViewHolder).bind(bookingItem, onDeleteClick, onCommentClick)
+            is BookingItem.HotelBookingItem -> (holder as HotelViewHolder).bind(bookingItem, onDeleteClick, onCommentClick)
+            else -> {}
+        }
     }
 
     override fun getItemCount(): Int = bookings.size
@@ -72,6 +76,49 @@ class BookingAdapter(
         notifyDataSetChanged()
     }
 
+    /**
+     * Hotel 视图展示
+     */
+    class HotelViewHolder(
+        itemView: View
+    ) : RecyclerView.ViewHolder(itemView) {
+        private val hotelName: TextView = itemView.findViewById(R.id.item_hotel_booking_name)
+        private val location: TextView = itemView.findViewById(R.id.item_hotel_booking_location)
+        private val checkInDate: TextView = itemView.findViewById(R.id.item_hotel_booking_check_in_date)
+        private val checkOutDate: TextView = itemView.findViewById(R.id.item_hotel_booking_check_out_date)
+        private val roomType: TextView = itemView.findViewById(R.id.item_hotel_booking_room_type)
+        private val guestNumber: TextView = itemView.findViewById(R.id.item_hotel_booking_guest)
+        private val hotelImage: ImageView = itemView.findViewById(R.id.hotel_booking_container_mask_group)
+        private val deleteButton: Button = itemView.findViewById(R.id.btn_delete_hotel_booking)
+        private val commentButton: Button = itemView.findViewById(R.id.btn_review_hotel_booking)
+
+        fun bind(
+            bookingItem: BookingItem.HotelBookingItem,
+            onDeleteClick: (BookingItem) -> Unit,
+            onCommentClick: (BookingItem) -> Unit
+        ) {
+            hotelName.text = bookingItem.hotelBooking.hotelName
+            location.text = "Location: ${bookingItem.hotelBooking.location}"
+            checkInDate.text = "Check-in: ${bookingItem.hotelBooking.checkInDate}"
+            checkOutDate.text = "Check-out: ${bookingItem.hotelBooking.checkOutDate}"
+            roomType.text = "RoomType: ${bookingItem.hotelBooking.roomType}"
+            guestNumber.text = "Guests: ${bookingItem.hotelBooking.guests}"
+
+            val imageUrl = "http://10.0.2.2:8080/proxy/media/${bookingItem.hotelBooking.hotelImageUuid}"
+            Glide.with(itemView.context)
+                .load(imageUrl)
+                .placeholder(R.drawable.attraction_placeholder_image)
+                .error(R.drawable.attraction_placeholder_image)
+                .into(hotelImage)
+
+            deleteButton.setOnClickListener { onDeleteClick(bookingItem) }
+            commentButton.setOnClickListener { onCommentClick(bookingItem) }
+        }
+    }
+
+    /**
+     * Attraction 视图展示
+     */
     class AttractionViewHolder(
         itemView: View
     ) : RecyclerView.ViewHolder(itemView) {
