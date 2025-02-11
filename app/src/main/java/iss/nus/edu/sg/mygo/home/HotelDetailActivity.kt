@@ -40,6 +40,15 @@ import java.util.Calendar
 import java.util.Date
 import java.util.Locale
 
+/**
+ * @ClassName HotelDetailActivity
+ * @Description
+ * @Author YAO YIYANG
+ * @StudentID A0294873L
+ * @Date 2025/2/11
+ * @Version 1.0
+ */
+
 class HotelDetailActivity : AppCompatActivity() {
 
     private lateinit var hotelNameTextView: TextView

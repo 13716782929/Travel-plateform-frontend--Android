@@ -22,6 +22,15 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
+/**
+ * @ClassName AttractionMainActivity
+ * @Description
+ * @Author WANG CHANG & YAO YIYANG
+ * @StudentID A0294873L
+ * @Date 2025/2/11
+ * @Version 1.0
+ */
+
 class AttractionMainActivity : AppCompatActivity() {
 
     private lateinit var attractionAdapter: AttractionAdapter

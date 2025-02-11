@@ -18,6 +18,15 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
+/**
+ * @ClassName HotelSearchActivity
+ * @Description
+ * @Author YAO YIYANG
+ * @StudentID A0294873L
+ * @Date 2025/2/11
+ * @Version 1.0
+ */
+
 class HotelSearchActivity : AppCompatActivity() {
 
     private lateinit var hotelAdapter: HotelAdapter

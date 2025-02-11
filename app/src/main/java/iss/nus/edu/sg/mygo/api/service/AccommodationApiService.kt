@@ -12,6 +12,15 @@ import retrofit2.http.POST
 import retrofit2.http.Path
 import retrofit2.http.Query
 
+/**
+ * @ClassName AccommodationApiService
+ * @Description
+ * @Author YAO YIYANG
+ * @StudentID A0294873L
+ * @Date 2025/2/11
+ * @Version 1.0
+ */
+
 interface AccommodationApiService {
 
     @GET("content/accommodation/v2/search")
