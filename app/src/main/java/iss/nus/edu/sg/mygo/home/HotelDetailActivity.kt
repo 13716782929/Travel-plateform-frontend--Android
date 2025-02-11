@@ -69,6 +69,7 @@ class HotelDetailActivity : AppCompatActivity() {
 
     private lateinit var userApiService: UserApiService
     private  lateinit var sessionManager: SessionManager
+    private var leadInPrice: String? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -159,8 +160,8 @@ class HotelDetailActivity : AppCompatActivity() {
                                 hotelData.address.buildingName,
                                 hotelData.address.postalCode
                             ).joinToString(" ").ifEmpty { "Unknown Location" }
-//                            hotelFacilitiesTextView.text = hotelData.amenities?.joinToString(", ") ?: "No facilities listed"
-                            hotelPriceTextView.text = hotelData.leadInRoomRates ?: "Price not available"
+                            leadInPrice = hotelData.leadInRoomRates
+                            hotelPriceTextView.text = leadInPrice ?: "Price not available"
 
                             nearestMrtTextView.text = hotelData.nearestMrtStation ?: "Nothing"
                             emailTextView.text = hotelData.officialEmail ?: "Nothing"
@@ -305,14 +306,16 @@ class HotelDetailActivity : AppCompatActivity() {
         }
 
         builder.setPositiveButton("下一步") { _, _ ->
-            showGuestNumberInput(checkInDate, checkOutDate, selectedRoomType)
+            val calculatedPrice = calculatePrice(selectedRoomType)
+            Toast.makeText(this, "已选择${selectedRoomType}, 价格: $calculatedPrice", Toast.LENGTH_LONG).show()
+            showGuestNumberInput(checkInDate, checkOutDate, selectedRoomType, calculatedPrice)
         }
         builder.setNegativeButton("取消") { dialog, _ -> dialog.dismiss() }
 
         builder.create().show()
     }
 
-    private fun showGuestNumberInput(checkInDate: Long, checkOutDate: Long, roomType: String) {
+    private fun showGuestNumberInput(checkInDate: Long, checkOutDate: Long, roomType: String, calculatedPrice: String) {
         val input = EditText(this)
         input.inputType = InputType.TYPE_CLASS_NUMBER
         input.hint = "输入入住人数"
@@ -328,7 +331,7 @@ class HotelDetailActivity : AppCompatActivity() {
                 return@setPositiveButton
             }
             val guests = guestsInput.toIntOrNull() ?: 1
-            sendBookingRequest(checkInDate, checkOutDate, roomType, guests)
+            sendBookingRequest(checkInDate, checkOutDate, roomType, guests, calculatedPrice)
         }
 
         builder.setNegativeButton("取消") { dialog, _ -> dialog.dismiss() }
@@ -336,7 +339,7 @@ class HotelDetailActivity : AppCompatActivity() {
         builder.create().show()
     }
 
-    private fun sendBookingRequest(checkInDate: Long, checkOutDate: Long, roomType: String, guests: Int) {
+    private fun sendBookingRequest(checkInDate: Long, checkOutDate: Long, roomType: String, guests: Int, calculatedPrice: String) {
         val userId = getUserId() ?: run {
             Toast.makeText(this, "请先登录", Toast.LENGTH_SHORT).show()
             return
@@ -357,12 +360,10 @@ class HotelDetailActivity : AppCompatActivity() {
             checkOutDate = formattedCheckOut,
             roomType = roomType,
             guests = guests,
-            price = "66.66"
+            price = calculatedPrice
         )
 
         println("📌 Booking Request: $request")
-
-        val price = calculatePrice(roomType, guests) // 计算价格
 
         CoroutineScope(Dispatchers.IO).launch {
             try {
@@ -393,12 +394,24 @@ class HotelDetailActivity : AppCompatActivity() {
         }
     }
 
-    private fun calculatePrice(roomType: String, guests: Int): String {
-        return when (roomType) {
-            "标准房" -> (100 * guests).toString() // 假设标准房 100 元/人
-            "大房" -> (150 * guests).toString() // 假设大房 150 元/人
-            else -> "0"
-        }
+    private fun calculatePrice(roomType: String): String {
+        leadInPrice?.let {
+            val priceNumbers = it.replace("S$", "").split("-").map { price -> price.trim().toIntOrNull() }
+            return when {
+                priceNumbers.size == 1 -> "${priceNumbers[0]}" // 单个价格
+                priceNumbers.size == 2 && priceNumbers[0] != null && priceNumbers[1] != null -> {
+                    val minPrice = priceNumbers[0]!!
+                    val maxPrice = priceNumbers[1]!!
+                    when (roomType) {
+                        "标准间" -> "$minPrice"
+                        "豪华间" -> "${(minPrice + maxPrice) / 2}"
+                        "套房" -> "$maxPrice"
+                        else -> "价格不可用"
+                    }
+                }
+                else -> "价格不可用"
+            }
+        } ?: return "价格不可用"
     }
 
     private fun formatDateToBackendFormat(timestamp: Long): String {
