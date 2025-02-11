@@ -1,16 +1,23 @@
 package iss.nus.edu.sg.mygo.home
 
+import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.Typeface
+import android.icu.text.SimpleDateFormat
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.text.InputType
+import android.widget.CalendarView
+import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -18,11 +25,29 @@ import com.bumptech.glide.Glide
 import iss.nus.edu.sg.mygo.R
 import iss.nus.edu.sg.mygo.api.service.AccommodationApiService
 import iss.nus.edu.sg.mygo.api.models.AccommodationResponse
+import iss.nus.edu.sg.mygo.api.models.HotelBookingRequest
+import iss.nus.edu.sg.mygo.api.service.UserApiService
+import iss.nus.edu.sg.mygo.sessions.SessionManager
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.Calendar
+import java.util.Date
+import java.util.Locale
+
+/**
+ * @ClassName HotelDetailActivity
+ * @Description
+ * @Author YAO YIYANG
+ * @StudentID A0294873L
+ * @Date 2025/2/11
+ * @Version 1.0
+ */
 
 class HotelDetailActivity : AppCompatActivity() {
 
@@ -33,6 +58,18 @@ class HotelDetailActivity : AppCompatActivity() {
     private lateinit var wordListContainer: LinearLayout
     private lateinit var hotelPriceTextView: TextView
     private lateinit var hotelRatingTextView: TextView
+    private lateinit var nearestMrtTextView: TextView
+    private lateinit var emailTextView: TextView
+    private lateinit var websiteTextView: TextView
+    private lateinit var phoneTextView: TextView
+    private lateinit var companyTextView: TextView
+    private lateinit var typeTextView: TextView
+    private lateinit var temporarilyClosedTextView: TextView
+    private lateinit var reviewTextView: TextView
+
+    private lateinit var userApiService: UserApiService
+    private  lateinit var sessionManager: SessionManager
+    private var leadInPrice: String? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -56,11 +93,37 @@ class HotelDetailActivity : AppCompatActivity() {
         hotelPriceTextView = findViewById(R.id.txt_price_value)
         hotelRatingTextView = findViewById(R.id.txt_review_count)
 
+        nearestMrtTextView = findViewById(R.id.txt_mrt)
+        emailTextView = findViewById(R.id.txt_email)
+        websiteTextView = findViewById(R.id.txt_website)
+        phoneTextView = findViewById(R.id.txt_phone)
+        companyTextView = findViewById(R.id.txt_company)
+        typeTextView = findViewById(R.id.txt_type)
+        temporarilyClosedTextView = findViewById(R.id.txt_temporarily_closed)
+        reviewTextView = findViewById(R.id.txt_reviews)
+
+        sessionManager = SessionManager(this)
+        userApiService = UserApiService.create()
+
         // 设置返回按钮的点击事件
         val backButton: ImageButton = findViewById(R.id.button_back)
         backButton.setOnClickListener {
             finish()  // 关闭当前 Activity，返回到 HotelMainActivity
         }
+
+        // 添加预订按钮点击事件
+        val bookButton: LinearLayout = findViewById(R.id.container_cta)
+        // 设置点击事件显示日历
+        bookButton.setOnClickListener {
+            // todo check user login?
+            if(!sessionManager.isLoggedIn()){
+                startActivity(Intent(this, LoginActivity::class.java))
+                finish()
+            }
+            // 弹出日期选择器
+            showCheckInDatePicker()
+        }
+
 
         // 获取从 Intent 传递的 UUID
         val hotelUuid = intent.getStringExtra("hotel_uuid")
@@ -97,13 +160,17 @@ class HotelDetailActivity : AppCompatActivity() {
                                 hotelData.address.buildingName,
                                 hotelData.address.postalCode
                             ).joinToString(" ").ifEmpty { "Unknown Location" }
-//                            hotelFacilitiesTextView.text = hotelData.amenities?.joinToString(", ") ?: "No facilities listed"
-                            hotelPriceTextView.text = hotelData.leadInRoomRates ?: "Price not available"
+                            leadInPrice = hotelData.leadInRoomRates
+                            hotelPriceTextView.text = leadInPrice ?: "Price not available"
 
-//                            val firstImageUuid = hotelData.thumbnails?.firstOrNull()?.uuid
-//                            if (firstImageUuid != null) {
-//                                fetchHotelImage(firstImageUuid)
-//                            }
+                            nearestMrtTextView.text = hotelData.nearestMrtStation ?: "Nothing"
+                            emailTextView.text = hotelData.officialEmail ?: "Nothing"
+                            websiteTextView.text = hotelData.officialWebsite ?: "Nothing"
+                            phoneTextView.text = hotelData.contact?.primaryContactNo ?: "Nothing"
+                            companyTextView.text = hotelData.companyDisplayName ?: "Nothing"
+                            typeTextView.text = hotelData.type ?: "Nothing"
+                            temporarilyClosedTextView.text = hotelData.temporarilyClosed ?: "Nothing"
+
 
                             // 加载景点图片，最多加载 5 张
                             val imageUrls = hotelData.images?.take(5)?.map { image ->
@@ -132,7 +199,7 @@ class HotelDetailActivity : AppCompatActivity() {
                                     textSize = 16f
                                     setTextColor(Color.BLACK)
                                 }
-                                wordListContainer.addView(wordTextView)
+                                this@HotelDetailActivity.wordListContainer.addView(wordTextView)
                             }
 
                         }
@@ -180,6 +247,197 @@ class HotelDetailActivity : AppCompatActivity() {
             }, 2000) // ✅ 启动轮播
         }
     }
+
+    private fun showCheckInDatePicker() {
+        val datePicker = CalendarView(this)
+
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("选择入住日期")
+        builder.setView(datePicker)
+
+        datePicker.minDate = System.currentTimeMillis() // 不能选择过去的日期
+
+        var selectedCheckInDate = System.currentTimeMillis() // 记录选择的入住日期
+
+        datePicker.setOnDateChangeListener { _, year, month, dayOfMonth ->
+            selectedCheckInDate = parseDateToTimestamp(year, month, dayOfMonth)
+        }
+
+        builder.setPositiveButton("下一步") { _, _ ->
+            showCheckOutDatePicker(selectedCheckInDate)
+        }
+        builder.setNegativeButton("取消") { dialog, _ -> dialog.dismiss() }
+
+        builder.create().show()
+    }
+
+    private fun showCheckOutDatePicker(checkInDate: Long) {
+        val datePicker = CalendarView(this)
+
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("选择退房日期")
+        builder.setView(datePicker)
+
+        datePicker.minDate = checkInDate + (24 * 60 * 60 * 1000) // 退房日期必须大于入住日期
+
+        var selectedCheckOutDate = checkInDate + (24 * 60 * 60 * 1000)
+
+        datePicker.setOnDateChangeListener { _, year, month, dayOfMonth ->
+            selectedCheckOutDate = parseDateToTimestamp(year, month, dayOfMonth)
+        }
+
+        builder.setPositiveButton("下一步") { _, _ ->
+            showRoomTypeSelection(checkInDate, selectedCheckOutDate)
+        }
+        builder.setNegativeButton("取消") { dialog, _ -> dialog.dismiss() }
+
+        builder.create().show()
+    }
+
+    private fun showRoomTypeSelection(checkInDate: Long, checkOutDate: Long) {
+        val roomTypes = arrayOf("标准间", "豪华间", "套房")
+        var selectedRoomType = roomTypes[0] // 默认选择标准房
+
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("选择房型")
+
+        builder.setSingleChoiceItems(roomTypes, 0) { _, which ->
+            selectedRoomType = roomTypes[which]
+        }
+
+        builder.setPositiveButton("下一步") { _, _ ->
+            val calculatedPrice = calculatePrice(selectedRoomType)
+            Toast.makeText(this, "已选择${selectedRoomType}, 价格: $calculatedPrice", Toast.LENGTH_LONG).show()
+            showGuestNumberInput(checkInDate, checkOutDate, selectedRoomType, calculatedPrice)
+        }
+        builder.setNegativeButton("取消") { dialog, _ -> dialog.dismiss() }
+
+        builder.create().show()
+    }
+
+    private fun showGuestNumberInput(checkInDate: Long, checkOutDate: Long, roomType: String, calculatedPrice: String) {
+        val input = EditText(this)
+        input.inputType = InputType.TYPE_CLASS_NUMBER
+        input.hint = "输入入住人数"
+
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("输入入住人数")
+        builder.setView(input)
+
+        builder.setPositiveButton("确认预订") { _, _ ->
+            val guestsInput = input.text.toString()
+            if (guestsInput.isBlank()) {
+                Toast.makeText(this, "请输入正确的入住人数", Toast.LENGTH_SHORT).show()
+                return@setPositiveButton
+            }
+            val guests = guestsInput.toIntOrNull() ?: 1
+            sendBookingRequest(checkInDate, checkOutDate, roomType, guests, calculatedPrice)
+        }
+
+        builder.setNegativeButton("取消") { dialog, _ -> dialog.dismiss() }
+
+        builder.create().show()
+    }
+
+    private fun sendBookingRequest(checkInDate: Long, checkOutDate: Long, roomType: String, guests: Int, calculatedPrice: String) {
+        val userId = getUserId() ?: run {
+            Toast.makeText(this, "请先登录", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        val hotelUuid = intent.getStringExtra("hotel_uuid") ?: run {
+            Toast.makeText(this, "缺少酒店信息", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        val formattedCheckIn = formatDateToBackendFormat(checkInDate)
+        val formattedCheckOut = formatDateToBackendFormat(checkOutDate)
+
+        val request = HotelBookingRequest(
+            uuid = hotelUuid,
+            userId = userId.toInt(),
+            checkInDate = formattedCheckIn,
+            checkOutDate = formattedCheckOut,
+            roomType = roomType,
+            guests = guests,
+            price = calculatedPrice
+        )
+
+        println("📌 Booking Request: $request")
+
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                val response = userApiService.createHotelBooking(request)
+
+                if (response.isSuccessful) {
+                    val bookingResponse = response.body()
+                    println("✅ 预订成功: $bookingResponse")
+
+                    runOnUiThread {
+                        Toast.makeText(this@HotelDetailActivity, "预订成功！", Toast.LENGTH_SHORT).show()
+                    }
+                } else {
+                    val errorBody = response.errorBody()?.string()
+                    println("🚨 预订失败: ${response.code()} - $errorBody")
+
+                    runOnUiThread {
+                        Toast.makeText(this@HotelDetailActivity, "预订失败: $errorBody", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            } catch (e: Exception) {
+                println("🚨 预订异常: ${e.message}")
+
+                runOnUiThread {
+                    Toast.makeText(this@HotelDetailActivity, "网络错误: ${e.message}", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+    }
+
+    private fun calculatePrice(roomType: String): String {
+        leadInPrice?.let {
+            val priceNumbers = it.replace("S$", "").split("-").map { price -> price.trim().toIntOrNull() }
+            return when {
+                priceNumbers.size == 1 -> "${priceNumbers[0]}" // 单个价格
+                priceNumbers.size == 2 && priceNumbers[0] != null && priceNumbers[1] != null -> {
+                    val minPrice = priceNumbers[0]!!
+                    val maxPrice = priceNumbers[1]!!
+                    when (roomType) {
+                        "标准间" -> "$minPrice"
+                        "豪华间" -> "${(minPrice + maxPrice) / 2}"
+                        "套房" -> "$maxPrice"
+                        else -> "价格不可用"
+                    }
+                }
+                else -> "价格不可用"
+            }
+        } ?: return "价格不可用"
+    }
+
+    private fun formatDateToBackendFormat(timestamp: Long): String {
+        val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+        return dateFormat.format(Date(timestamp))
+    }
+
+    private fun getUserId(): String? {
+        val sharedPreferences = getSharedPreferences("UserPrefs", Context.MODE_PRIVATE)
+        return sharedPreferences.getString("user_id", null) // 读取 userId
+    }
+
+    private fun parseDateToTimestamp(year: Int, month: Int, day: Int): Long {
+        val calendar = Calendar.getInstance()
+        calendar.set(year, month, day, 0, 0, 0) // 设为 00:00:00 确保匹配
+        calendar.set(Calendar.MILLISECOND, 0)
+
+        val timestamp = calendar.timeInMillis
+
+        // ✅ 调试打印，确保 selectedTime 正确
+        val debugDate = java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()).format(timestamp)
+        println("Selected Date Timestamp: $debugDate ($timestamp)")
+
+        return timestamp
+    }
+
 
 
     override fun onDestroy() {

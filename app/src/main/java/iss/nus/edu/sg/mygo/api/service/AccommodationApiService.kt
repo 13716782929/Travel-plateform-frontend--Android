@@ -1,11 +1,25 @@
 package iss.nus.edu.sg.mygo.api.service
 
 import iss.nus.edu.sg.mygo.api.models.AccommodationResponse
+import iss.nus.edu.sg.mygo.models.Attraction
+import iss.nus.edu.sg.mygo.models.Hotel
 import retrofit2.Call
+import retrofit2.Response
+import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.Header
+import retrofit2.http.POST
 import retrofit2.http.Path
 import retrofit2.http.Query
+
+/**
+ * @ClassName AccommodationApiService
+ * @Description
+ * @Author YAO YIYANG
+ * @StudentID A0294873L
+ * @Date 2025/2/11
+ * @Version 1.0
+ */
 
 interface AccommodationApiService {
 
@@ -33,5 +47,6 @@ interface AccommodationApiService {
 //        @Header("X-Content-Language") language: String = "en", // 默认英语
 //        @Query("dataset") dataset: String = "accommodation", // 搜索类型
 //    ): Call<AccommodationResponse>
+
 
 }
