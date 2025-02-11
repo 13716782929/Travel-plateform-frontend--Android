@@ -102,6 +102,7 @@ class HotelDetailActivity : AppCompatActivity() {
         reviewTextView = findViewById(R.id.txt_reviews)
 
         sessionManager = SessionManager(this)
+        userApiService = UserApiService.create()
 
         // 设置返回按钮的点击事件
         val backButton: ImageButton = findViewById(R.id.button_back)
@@ -169,11 +170,6 @@ class HotelDetailActivity : AppCompatActivity() {
                             typeTextView.text = hotelData.type ?: "Nothing"
                             temporarilyClosedTextView.text = hotelData.temporarilyClosed ?: "Nothing"
 
-
-//                            val firstImageUuid = hotelData.thumbnails?.firstOrNull()?.uuid
-//                            if (firstImageUuid != null) {
-//                                fetchHotelImage(firstImageUuid)
-//                            }
 
                             // 加载景点图片，最多加载 5 张
                             val imageUrls = hotelData.images?.take(5)?.map { image ->
@@ -298,7 +294,7 @@ class HotelDetailActivity : AppCompatActivity() {
     }
 
     private fun showRoomTypeSelection(checkInDate: Long, checkOutDate: Long) {
-        val roomTypes = arrayOf("标准房", "大房")
+        val roomTypes = arrayOf("标准间", "豪华间", "套房")
         var selectedRoomType = roomTypes[0] // 默认选择标准房
 
         val builder = AlertDialog.Builder(this)
@@ -326,9 +322,15 @@ class HotelDetailActivity : AppCompatActivity() {
         builder.setView(input)
 
         builder.setPositiveButton("确认预订") { _, _ ->
-            val guests = input.text.toString().toIntOrNull() ?: 1
+            val guestsInput = input.text.toString()
+            if (guestsInput.isBlank()) {
+                Toast.makeText(this, "请输入正确的入住人数", Toast.LENGTH_SHORT).show()
+                return@setPositiveButton
+            }
+            val guests = guestsInput.toIntOrNull() ?: 1
             sendBookingRequest(checkInDate, checkOutDate, roomType, guests)
         }
+
         builder.setNegativeButton("取消") { dialog, _ -> dialog.dismiss() }
 
         builder.create().show()
@@ -349,12 +351,13 @@ class HotelDetailActivity : AppCompatActivity() {
         val formattedCheckOut = formatDateToBackendFormat(checkOutDate)
 
         val request = HotelBookingRequest(
-            hotelUuid = hotelUuid,
-            userId = userId,
+            uuid = hotelUuid,
+            userId = userId.toInt(),
             checkInDate = formattedCheckIn,
             checkOutDate = formattedCheckOut,
             roomType = roomType,
-            numberOfGuests = guests,
+            guests = guests,
+            price = "66.66"
         )
 
         println("📌 Booking Request: $request")
