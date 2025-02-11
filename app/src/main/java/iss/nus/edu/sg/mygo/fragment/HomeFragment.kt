@@ -1,5 +1,6 @@
 package iss.nus.edu.sg.mygo.fragment
 
+import android.content.Context
 import android.content.Intent
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -19,6 +20,7 @@ import iss.nus.edu.sg.mygo.api.models.AttractionData
 import iss.nus.edu.sg.mygo.api.service.AccommodationApiService
 import iss.nus.edu.sg.mygo.api.service.HotelApiService
 import iss.nus.edu.sg.mygo.api.service.MediaApiService
+import iss.nus.edu.sg.mygo.api.service.RecommendationApiService
 import iss.nus.edu.sg.mygo.databinding.ActivityAttractionDetailBinding
 import iss.nus.edu.sg.mygo.databinding.HomeFragmentBinding
 import iss.nus.edu.sg.mygo.home.AttractionDetailActivity
@@ -41,6 +43,7 @@ class HomeFragment : Fragment(R.layout.home_fragment) {
 
     private lateinit var hotelAdapter: HotelAdapter2
     private lateinit var apiService2: HotelApiService // 使用 HotelApiService 获取酒店数据
+    private lateinit var recommendationApiService: RecommendationApiService // ✅ 添加推荐 API Service
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -49,12 +52,14 @@ class HomeFragment : Fragment(R.layout.home_fragment) {
         apiService = AttractionApiService.create()
         apiService2 = HotelApiService.create()
         mediaApiService = MediaApiService.create()
+        recommendationApiService = RecommendationApiService.create() // ✅ 初始化推荐 API
         _binding = HomeFragmentBinding.bind(view) // ✅ 启用 ViewBinding
 
         setupRecyclerView()  // 初始化 RecyclerView
         setupClickListeners() // ✅ 统一管理点击事件
-        fetchAttractions()    // 调用 API 获取数据
+//        fetchAttractions()    // 调用 API 获取数据
         fetchHotels()
+        fetchRecommendedAttractions() // ✅ 获取推荐的景点
     }
 
     /**
@@ -191,6 +196,85 @@ class HomeFragment : Fragment(R.layout.home_fragment) {
             )
         }
     }
+
+    /**
+     * ✅ 获取推荐的景点
+     */
+    private fun fetchRecommendedAttractions() {
+        val userId = getUserIdFromLocalStorage()?.toIntOrNull() // ✅ 从本地存储获取 userId
+        Log.e("HomeFragment", "Fetched user ID: $userId")  // 🛠️ 日志跟踪用户 ID
+
+        if (userId == null) {
+            Log.e("HomeFragment", "❌ User ID not found in local storage")  // 🛠️ 日志跟踪失败情况
+            return
+        }
+
+        val apiKey = "6IBB6PFfArqu7dvgOJaXFZKyqAN9uJAC" // 替换为你的 API Key
+        val contentLanguage = "en"
+
+        lifecycleScope.launch {
+            try {
+                Log.e("HomeFragment", "📡 Requesting recommended attractions for user ID: $userId")
+                val recommendationResponse = recommendationApiService.fetchPersonalizedAttractions(userId)
+
+                if (recommendationResponse.isSuccessful) {
+                    val recommendationList = recommendationResponse.body() ?: emptyList()
+                    Log.e("HomeFragment", "✅ Successfully fetched recommendations. Count: ${recommendationList.size}")
+
+                    // ✅ 过滤重复 UUID
+                    val uniqueUuids = recommendationList.mapNotNull { it.uuid }.distinct()
+                    Log.e("HomeFragment", "🔍 Extracted unique UUIDs from recommendations: $uniqueUuids")
+
+                    if (uniqueUuids.isEmpty()) {
+                        Log.e("HomeFragment", "❌ No recommended attractions found (UUIDs list is empty)")
+                        return@launch
+                    }
+
+                    // 3. 获取每个景点的详细信息
+                    val attractionDataList = mutableListOf<AttractionData>()
+                    for (uuid in uniqueUuids) {
+                        Log.e("HomeFragment", "📡 Fetching details for attraction UUID: $uuid")
+                        val attractionResponse = apiService.fetchAttractionByUUID(uuid = uuid, apiKey = apiKey, contentLanguage = contentLanguage)
+
+                        if (attractionResponse.isSuccessful) {
+                            attractionResponse.body()?.data?.let {
+                                attractionDataList.addAll(it)
+                                Log.e("HomeFragment", "✅ Successfully fetched attraction details for UUID: $uuid")
+                            }
+                        } else {
+                            Log.e("HomeFragment", "❌ Failed to fetch attraction details for UUID: $uuid, Response Code: ${attractionResponse.code()}")
+                        }
+                    }
+
+                    // 4. 转换数据
+                    Log.e("HomeFragment", "🔄 Mapping attraction data to list...")
+                    val attractionList = mapAttractionDataToAttractionList(attractionDataList)
+                    Log.e("HomeFragment", "✅ Mapped attraction data. Count: ${attractionList.size}")
+
+                    // 5. 更新 RecyclerView 适配器
+                    adapter.updateData(attractionList)
+                    Log.e("HomeFragment", "✅ Adapter updated with new attraction data.")
+
+                } else {
+                    Log.e("HomeFragment", "❌ Failed to fetch recommendations. Error: ${recommendationResponse.errorBody()?.string()}")
+                }
+
+            } catch (e: Exception) {
+                Log.e("HomeFragment", "❌ Error fetching recommendations: ${e.message}", e)
+            }
+        }
+    }
+
+    /**
+     * ✅ 获取本地存储的 userId
+     */
+    private fun getUserIdFromLocalStorage(): String? {
+        val sharedPreferences = requireContext().getSharedPreferences("UserPrefs", Context.MODE_PRIVATE)
+        val userId = sharedPreferences.getString("user_id", null)
+        Log.e("HomeFragment", "📂 Retrieved user ID from storage: $userId")  // 🛠️ 日志跟踪获取本地存储的 user_id
+        return userId
+    }
+
 
     /**
      * ✅ `dp` 转 `px`
