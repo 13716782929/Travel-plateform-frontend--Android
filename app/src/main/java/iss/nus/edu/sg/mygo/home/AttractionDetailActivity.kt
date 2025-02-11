@@ -1,5 +1,14 @@
 package iss.nus.edu.sg.mygo.home
 
+/*
+Class name: AttractionDetailActivity
+Author: Siti Alifah Binte Yahya
+StudentID: A0295324B
+Date: 5 Feb 2025
+Version
+*/
+
+
 import android.app.TimePickerDialog
 import android.content.Context
 import android.content.Intent
@@ -54,7 +63,7 @@ class AttractionDetailActivity : AppCompatActivity() {
     private lateinit var bookButton: Button
     private  lateinit var sessionManager: SessionManager
 
-    // 用于存储 BusinessHour 数据
+    //  BusinessHour
     private var businessHours: List<BusinessHour> = emptyList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -318,7 +327,7 @@ class AttractionDetailActivity : AppCompatActivity() {
                 showTimePickerDialog("$dayOfMonth-${month + 1}-$year")
             } else {
                 Toast.makeText(this, "This date is not available", Toast.LENGTH_SHORT).show()
-                datePicker.date = lastValidDate // ❌ 立即回滚
+                datePicker.date = lastValidDate // 立即回滚
             }
         }
 

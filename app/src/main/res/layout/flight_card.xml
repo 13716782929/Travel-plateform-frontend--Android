@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+Class Name: flight_card
+Author: Siti Alifah Binte Yahya
+StudentID: A0295324B
+Date: 11 Feb 2025
+Version: 1.0
+-->
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginLeft="0dp"
+    android:layout_marginTop="0dp"
+    android:background="@drawable/rectangle_9"
+    android:elevation="13dp"
+    android:clipToOutline="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:padding="8dp">
+
+        <!-- Flight Image -->
+        <ImageView
+            android:id="@+id/iv_flight_image"
+            android:layout_width="162dp"
+            android:layout_height="170dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+
+            android:scaleType="centerCrop"
+            android:src="@drawable/flight_placeholder_image" />
+
+        <!-- Airlines -->
+
+
+        <!-- Date and Duration -->
+        <TextView
+            android:id="@+id/flightDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nonstop • 4 hrs 50 Min"
+            android:textColor="@color/light_gray"
+            android:textSize="14sp" />
+
+        <!-- Price -->
+        <TextView
+            android:id="@+id/tv_flight_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="10dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/inter_18pt_medium"
+            android:gravity="top"
+            android:maxWidth="80dp"
+            android:maxLines="1"
+            android:text="¥2641.046"
+            android:textColor="#336749" />
+
+        <Button
+            android:id="@+id/bookButton"
+            android:layout_width="72dp"
+            android:layout_height="48dp"
+            android:background="@drawable/rounded_button"
+            android:text="Book"
+            android:textColor="#FFFFFF"
+            android:textSize="10sp"
+            app:backgroundTint="#4D63F2" />
+
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
+    
+
+    

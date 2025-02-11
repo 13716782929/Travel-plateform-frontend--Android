@@ -7,11 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import iss.nus.edu.sg.mygo.R
+import iss.nus.edu.sg.mygo.api.service.UserApiService
 import iss.nus.edu.sg.mygo.home.LoginActivity
 import iss.nus.edu.sg.mygo.sessions.SessionManager
 
 class ProfileFragment : Fragment() {
 
+    private val apiService = UserApiService.
     private lateinit var sessionManager: SessionManager
 
     override fun onCreateView(

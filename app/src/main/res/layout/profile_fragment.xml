@@ -1,4 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<!--
+Class Name: profile_fragment
+Author: Siti Alifah Binte Yahya
+StudentID: A0295324B
+Date: 11 Feb 2025
+Version: 1.0
+
+-->
+
+
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"

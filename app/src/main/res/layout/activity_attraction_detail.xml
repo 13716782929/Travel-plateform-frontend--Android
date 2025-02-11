@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
+    <!--
+    Class Name: activity_attraction_detail
+    Author: Siti Alifah Binte Yahya
+    StudentID: A0295324B
+    Date: 7 Feb 2025
+    Version: 2.0
+    -->
 
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -9,7 +16,7 @@
     android:background="@drawable/hotel_container_hotel"
     android:fillViewport="true">
 
-    <!-- 返回按钮 -->
+
     <ImageButton
         android:id="@+id/button_back"
         android:layout_width="24dp"

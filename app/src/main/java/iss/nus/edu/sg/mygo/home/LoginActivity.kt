@@ -14,6 +14,13 @@ import iss.nus.edu.sg.mygo.databinding.LoginActivityBinding
 import iss.nus.edu.sg.mygo.sessions.SessionManager
 import kotlinx.coroutines.launch
 
+/*
+Author: Siti Alifah Binte Yahya
+StudentID: A0295324B
+Date: 28 Jan 2025
+Versio: 2.0
+*/
+
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding: LoginActivityBinding

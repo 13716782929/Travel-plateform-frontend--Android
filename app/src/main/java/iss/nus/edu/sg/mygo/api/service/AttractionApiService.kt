@@ -1,5 +1,6 @@
 package iss.nus.edu.sg.mygo.api.service
 
+
 import iss.nus.edu.sg.mygo.api.models.AccommodationResponse
 import iss.nus.edu.sg.mygo.api.models.AttractionResponse
 import iss.nus.edu.sg.mygo.models.Attraction
