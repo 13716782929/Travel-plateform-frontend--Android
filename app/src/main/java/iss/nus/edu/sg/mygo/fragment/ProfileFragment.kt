@@ -13,7 +13,7 @@ class ProfileFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // 直接显示 ProfileFragment，不再进行登录检查
+        // 直接显示 ProfileFragment，不再进行登录检查 direct shows the profile fragment but not checked if the user is log in!
         return inflater.inflate(R.layout.profile_fragment, container, false)
     }
 }
