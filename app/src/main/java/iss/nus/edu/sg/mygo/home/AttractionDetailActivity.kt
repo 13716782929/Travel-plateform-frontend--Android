@@ -68,17 +68,17 @@ class AttractionDetailActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()  // 启用全屏显示
+        enableEdgeToEdge()  // Enable full-screen display
         setContentView(R.layout.activity_attraction_detail)
 
-        // 处理窗口的系统栏（状态栏、导航栏）内边距
+        // Handle window system bars (status bar, navigation bar) insets
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.container_hoteldetail)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
 
-        // 获取 UI 组件
+        // Initialize UI components
         attractionNameTextView = findViewById(R.id.txt_hotel_name)
         attractionDescriptionTextView = findViewById(R.id.txt_attraction_info_description)
         attractionImageView = findViewById(R.id.container_attraction_image)
@@ -89,23 +89,23 @@ class AttractionDetailActivity : AppCompatActivity() {
         // 获取 Calendar UI 组件
         containerCta = findViewById(R.id.container_cta)
 
-        // 初始化 API Service
+        // Initialize API Service
         apiService = AttractionApiService.create()
         userApiService = UserApiService.create()
         sessionManager = SessionManager(this)
 
-        // 设置点击事件显示日历
+        // Set click event to display calendar
         containerCta.setOnClickListener {
             // todo check user login?
             if(!sessionManager.isLoggedIn()){
                 startActivity(Intent(this, LoginActivity::class.java))
                 finish()
             }
-            // 弹出日期选择器
+            // Show date picker dialog
             showDatePickerDialog()
         }
 
-        // 获取从 Intent 传递的 UUID
+        // Get UUID from Intent
         val attractionUuid = intent.getStringExtra("attraction_uuid")
         if (attractionUuid != null) {
             fetchAttractionDetails(attractionUuid)
@@ -113,7 +113,7 @@ class AttractionDetailActivity : AppCompatActivity() {
 
         val backButton: ImageButton = findViewById(R.id.button_back)
         backButton.setOnClickListener {
-            // 关闭 Activity
+            // close Activity
             finish()
         }
 
@@ -121,7 +121,7 @@ class AttractionDetailActivity : AppCompatActivity() {
 
 
     private fun fetchAttractionDetails(uuid: String) {
-        val apiKey = "6IBB6PFfArqu7dvgOJaXFZKyqAN9uJAC" // 替换为你的 API Key
+        val apiKey = "6IBB6PFfArqu7dvgOJaXFZKyqAN9uJAC" //  API Key
         val contentLanguage = "en"
 
         CoroutineScope(Dispatchers.IO).launch {
@@ -140,18 +140,18 @@ class AttractionDetailActivity : AppCompatActivity() {
                             attractionAddressTextView.text = attractionData.address.formattedAddress()
                             attractionPriceTextView.text = attractionData.pricing?.others ?: "Price not available"
 
-                            // 加载景点图片，最多加载 5 张
+                            //  Load attraction images, up to 5 images
                             val imageUrls = attractionData.images?.take(5)?.map { image ->
                                 "http://10.0.2.2:8080/proxy/media/${image.uuid}"
                             } ?: emptyList()
 
-                            // 设置图片切换功能
+                            // Set up image slideshow feature
                             startImageSlideshow(imageUrls)
 
-                            // 清空已有的设施列表，防止重复添加
+                            // Clear the existing facility list to prevent duplicate additions
                             wordListContainer.removeAllViews()
 
-                            // 添加 "Tags" 标题
+                            // Add 'Tags' title
                             val tagsTitle = TextView(this@AttractionDetailActivity).apply {
                                 text = "Tags"
                                 textSize = 18f
@@ -160,7 +160,7 @@ class AttractionDetailActivity : AppCompatActivity() {
                             }
                             wordListContainer.addView(tagsTitle)
 
-                            // 解析标签并动态添加
+                            // Parse tags and add dynamically
                             attractionData.tags?.forEach { tag ->
                                 val wordTextView = TextView(this@AttractionDetailActivity).apply {
                                     text = "· $tag"
@@ -170,7 +170,7 @@ class AttractionDetailActivity : AppCompatActivity() {
                                 wordListContainer.addView(wordTextView)
                             }
 
-                            // 添加 "Business Hours" 标题
+                            // Add Business Hours
                             val businessHoursTitle = TextView(this@AttractionDetailActivity).apply {
                                 text = "Business Hours"
                                 textSize = 18f
@@ -179,32 +179,32 @@ class AttractionDetailActivity : AppCompatActivity() {
                             }
                             wordListContainer.addView(businessHoursTitle)
 
-                            // 获取Business Hour
+                            // Get Business Hour
                             businessHours = attractionData.businessHour ?: emptyList()
 
-                            // 显示 Business Hour 相关内容
+                            //Display Business Hour
                             displayBusinessHours()
 
-                            // 解析并动态显示 Business Hour 信息
+                            // Parse and dynamically display Business Hour information
                             attractionData.businessHour?.forEach { businessHour ->
                                 val businessInfo = StringBuilder()
 
-                                // 显示 day (可以是 daily, monday, public_holiday 等)
+                                // Display day (can be daily, Monday, public_holiday, etc.)
                                 businessInfo.append("Day: ${businessHour.day.replaceFirstChar {
                                     if (it.isLowerCase()) it.titlecase(
                                         Locale.ROOT
                                     ) else it.toString()
                                 }}\n")
 
-                                // 显示开放时间和关闭时间
+                                // Display opening and closing hours
                                 businessInfo.append("Hours: ${businessHour.openTime} - ${businessHour.closeTime}\n")
 
-                                // 如果有描述（如特殊活动），则显示
+                                // If there is a description (e.g., special events), display it
                                 if (!businessHour.description.isNullOrEmpty()) {
                                     businessInfo.append("Description: ${businessHour.description}\n")
                                 }
 
-                                // 创建 TextView 显示 Business Hour 信息
+                                // Create a TextView to display Business Hour information
                                 val businessTextView = TextView(this@AttractionDetailActivity).apply {
                                     text = businessInfo.toString()
                                     textSize = 16f
@@ -233,50 +233,50 @@ class AttractionDetailActivity : AppCompatActivity() {
     private var imageUrls: List<String> = emptyList()
 
     // image switching
-    private val handler = Handler(Looper.getMainLooper()) // ✅ 只用一个 handler 进行管理
+    private val handler = Handler(Looper.getMainLooper()) // Use only one handler for management
 
     private fun startImageSlideshow(urls: List<String>) {
         imageUrls = urls
         if (imageUrls.isNotEmpty()) {
-            // 确保 Activity 仍然存活
+            // Ensure the Activity is still alive
             if (!isDestroyed && !isFinishing) {
-                // 初始加载第一张图片，保持当前图片
+                //  Initially load the first image, keeping the current image
                 Glide.with(this)
                     .load(imageUrls[currentImageIndex])
-                    .diskCacheStrategy(DiskCacheStrategy.ALL)  // 启用缓存
-                    .placeholder(R.drawable.attraction_placeholder_image)  // 初始加载时显示占位符
-                    .error(R.drawable.attraction_placeholder_image)  // 加载失败显示占位符
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)  // Enable caching
+                    .placeholder(R.drawable.attraction_placeholder_image)  // Show a placeholder during the initial loading
+                    .error(R.drawable.attraction_placeholder_image)  // Show a placeholder if loading fails
                     .into(attractionImageView)
             }
 
-            // 启动定时器切换图片
+            // tart a timer to switch images
             handler.postDelayed(object : Runnable {
                 override fun run() {
                     if (!isDestroyed && !isFinishing && imageUrls.isNotEmpty()) {
-                        // 计算下一张图片的索引
+                        // Calculate the index of the next image
                         val nextImageIndex = (currentImageIndex + 1) % imageUrls.size
 
-                        // 先加载下一张图片（保持当前图片不变，直到新图片加载完成）
+                        //  Load the next image first (keep the current image unchanged until the new image is fully loaded)
                         Glide.with(this@AttractionDetailActivity)
                             .load(imageUrls[nextImageIndex])
                             .diskCacheStrategy(DiskCacheStrategy.ALL)
-                            .into(attractionImageView)  // 只在图片加载完成后切换
+                            .into(attractionImageView)  // Switch only after the image has finished loading
 
-                        // 更新 currentImageIndex 为下一张图片
+                        // Update currentImageIndex to the next image
                         currentImageIndex = nextImageIndex
 
-                        // 设置延迟时间，继续切换
+                        // Set a delay time and continue switching
                         handler.postDelayed(this, 2000)
                     }
                 }
-            }, 2000) // 延迟启动
+            }, 2000) // Delayed start
         }
     }
 
     /**
-     * 弹出日期选择器 Dialog
+     * Pop up a date picker dialog
      */
-    // 显示 Business Hours 信息
+    // Display Business Hours information
     private fun displayBusinessHours() {
         wordListContainer.removeAllViews()
 
@@ -314,8 +314,8 @@ class AttractionDetailActivity : AppCompatActivity() {
         builder.setTitle("Select Date for Booking")
         builder.setView(datePicker)
 
-        datePicker.minDate = System.currentTimeMillis() // 最小日期：今天
-        datePicker.maxDate = System.currentTimeMillis() + (60L * 24 * 60 * 60 * 1000) // **最大日期：今天 + 60 天**
+        datePicker.minDate = System.currentTimeMillis() // Minimum date: Today
+        datePicker.maxDate = System.currentTimeMillis() + (60L * 24 * 60 * 60 * 1000) // Maximum date: Today + 60 days
 
         var lastValidDate = System.currentTimeMillis()
 
@@ -367,7 +367,7 @@ class AttractionDetailActivity : AppCompatActivity() {
             }
         }
 
-        // ✅ Debug 打印
+        // Debug print
         availableDates.forEach {
             val debugDate = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(it)
             println("Available Date: $debugDate ($it)")
@@ -520,20 +520,20 @@ class AttractionDetailActivity : AppCompatActivity() {
             return
         }
 
-        // ✅ 修正 visitTime 格式
+        // Fix the visitTime format
         val formattedDate = formatDateToBackendFormat(selectedDate)
-        val formattedTime = formatTimeToBackendFormat(selectedDate, selectedTime) // 👈 新增转换
+        val formattedTime = formatTimeToBackendFormat(selectedDate, selectedTime) // Newly added conversion
 
         val request = AttractionBookingRequest(
             uuid = attractionUuid,
             userId = userId,
             visitDate = formattedDate,
-            visitTime = formattedTime, // ✅ 传递修正格式
+            visitTime = formattedTime, //  Pass the corrected format
             numberOfTickets = numberOfTickets,
             price = "66.66"
         )
 
-        println("📌 Booking Request: $request") // ✅ 打印请求参数
+        println("📌 Booking Request: $request") // Pass the corrected format
 
         CoroutineScope(Dispatchers.IO).launch {
             try {
