@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
     id("org.jetbrains.kotlin.kapt")
+    id("io.gitlab.arturbosch.detekt") // ✅ 添加 detekt 插件
 }
 
 android {
@@ -74,10 +75,16 @@ dependencies {
     implementation(libs.retrofit.gson)
     implementation(libs.okhttp.logging)
     implementation(libs.glide)
-    annotationProcessor(libs.compiler.v4120)
+    kapt(libs.compiler.v4120)
     kapt(libs.glide.compiler)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+}
+
+detekt {
+    toolVersion = "1.23.1"
+    config = files("$rootDir/config/detekt/detekt.yml") // ✅ 确保 `detekt.yml` 存在
+    buildUponDefaultConfig = true // ✅ 允许覆盖默认规则
 }
