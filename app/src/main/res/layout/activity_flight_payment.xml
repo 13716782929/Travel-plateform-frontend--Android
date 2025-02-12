@@ -1,0 +1,416 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container_flights"
+    android:layout_width="match_parent"
+    android:layout_height="823dp"
+    android:background="@drawable/hotel_container_hotel">
+
+
+
+        <TextView
+            android:id="@+id/txt_total"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="76dp"
+            android:layout_marginTop="275dp"
+            android:layout_gravity="top|left"
+            android:gravity="left|center_vertical"
+            android:includeFontPadding="false"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:textStyle="bold"
+            android:text="Total"
+            android:textColor="#FF000000"
+            android:textSize="18dp" />
+
+        <TextView
+            android:id="@+id/txt_p_k_r"
+            android:layout_width="91dp"
+            android:layout_height="21dp"
+            android:layout_marginLeft="251dp"
+            android:layout_marginTop="275dp"
+            android:layout_marginBottom="-2dp"
+            android:layout_gravity="top|left"
+            android:gravity="left|center_vertical"
+            android:includeFontPadding="false"
+            android:textStyle="bold"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:text="$15,000"
+            android:textColor="#FF4C76EB"
+            android:textSize="18dp" />
+
+        <TextView
+            android:id="@+id/txt_card_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="72dp"
+            android:layout_marginTop="334.5dp"
+            android:layout_marginBottom="-1.5dp"
+            android:layout_gravity="top|left"
+            android:gravity="left|center_vertical"
+            android:includeFontPadding="false"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:textStyle="bold"
+            android:text="Card Number"
+            android:textColor="#FF000000"
+            android:textSize="18dp" />
+
+        <TextView
+            android:id="@+id/txt_card_holder_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="72dp"
+            android:layout_marginTop="425.5dp"
+            android:layout_marginBottom="-1.5dp"
+            android:layout_gravity="top|left"
+            android:gravity="left|center_vertical"
+            android:includeFontPadding="false"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:textStyle="bold"
+            android:text="Card Holder Name"
+            android:textColor="#FF000000"
+            android:textSize="18dp"/>
+
+        <TextView
+            android:id="@+id/txt_c_v_v"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="72dp"
+            android:layout_marginTop="512.5dp"
+            android:layout_marginBottom="-1.5dp"
+            android:layout_gravity="top|left"
+            android:gravity="left|center_vertical"
+            android:includeFontPadding="false"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:textStyle="bold"
+            android:text="CVV"
+            android:textColor="#FF000000"
+            android:textSize="18dp" />
+
+        <TextView
+            android:id="@+id/txt_expiry_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="228dp"
+            android:layout_marginTop="512.5dp"
+            android:layout_marginBottom="-1.5dp"
+            android:layout_gravity="top|left"
+            android:gravity="left|center_vertical"
+            android:includeFontPadding="false"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:textStyle="bold"
+            android:text="Expiry Date"
+            android:textColor="#FF000000"
+            android:textSize="18dp" />
+
+    <ImageView
+        android:id="@+id/image_rectangle_from2"
+        android:layout_width="300dp"
+        android:layout_height="30dp"
+        android:layout_alignParentEnd="true"
+        android:layout_gravity="left"
+        android:layout_marginTop="362.64dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="0dp"
+        android:background="@drawable/flight_image_rectangle_class"
+        android:scaleType="centerCrop" />
+
+    <ImageView
+        android:id="@+id/image_rectangle_from3"
+        android:layout_width="100dp"
+        android:layout_height="30dp"
+        android:layout_alignParentEnd="true"
+        android:layout_gravity="left"
+        android:layout_marginTop="452.64dp"
+        android:layout_marginEnd="250dp"
+        android:layout_marginBottom="0dp"
+        android:background="@drawable/flight_image_rectangle_class"
+        android:scaleType="centerCrop" />
+
+
+    <ImageView
+        android:id="@+id/image_rectangle_from1"
+        android:layout_width="100dp"
+        android:layout_height="30dp"
+        android:layout_alignParentEnd="true"
+        android:layout_gravity="left"
+        android:layout_marginTop="532.64dp"
+        android:layout_marginEnd="250dp"
+        android:layout_marginBottom="0dp"
+        android:background="@drawable/flight_image_rectangle_class"
+        android:scaleType="centerCrop" />
+
+
+    <ImageView
+        android:id="@+id/image_rectangle_from"
+        android:layout_width="100dp"
+        android:layout_height="30dp"
+        android:layout_alignParentEnd="true"
+        android:layout_gravity="left"
+        android:layout_marginTop="532.64dp"
+        android:layout_marginEnd="90dp"
+        android:layout_marginBottom="0dp"
+        android:background="@drawable/flight_image_rectangle_class"
+        android:scaleType="centerCrop" />
+
+    <EditText
+            android:id="@+id/txt_card_number_digits"
+            android:layout_width="184dp"
+            android:layout_height="23dp"
+            android:layout_marginLeft="72dp"
+            android:layout_marginTop="365.5dp"
+            android:layout_marginBottom="-1.5dp"
+            android:layout_gravity="top|left"
+            android:gravity="left|center_vertical"
+            android:includeFontPadding="false"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:textColor="#FF000000"
+            android:textSize="18dp"
+            android:background="@null"/>
+
+        <EditText
+            android:id="@+id/txt_card_holder_name_value"
+            android:layout_width="184dp"
+            android:layout_height="23dp"
+            android:layout_marginLeft="72dp"
+            android:layout_marginTop="453.5dp"
+            android:layout_marginBottom="-1.5dp"
+            android:layout_gravity="top|left"
+            android:gravity="left|center_vertical"
+            android:includeFontPadding="false"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:textColor="#FF000000"
+            android:background="@null"
+            android:textSize="18dp" />
+
+        <EditText
+            android:id="@+id/txt_c_v_v_value"
+            android:layout_width="90dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="72dp"
+            android:layout_marginTop="535.5dp"
+            android:layout_marginBottom="-1.5dp"
+            android:layout_gravity="top|left"
+            android:gravity="left|center_vertical"
+            android:includeFontPadding="false"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:textColor="#FF000000"
+            android:background="@null"
+            android:textSize="18dp" />
+
+        <EditText
+            android:id="@+id/txt_expiry_date_value"
+            android:layout_width="57dp"
+            android:layout_height="23dp"
+            android:layout_marginLeft="230dp"
+            android:layout_marginTop="535.5dp"
+            android:layout_marginBottom="-1.5dp"
+            android:layout_gravity="top|left"
+            android:gravity="left|center_vertical"
+            android:includeFontPadding="false"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:textColor="#FF000000"
+            android:background="@null"
+            android:textSize="18dp" />
+
+        <ImageView
+            android:id="@+id/img_paypal"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_marginLeft="170dp"
+            android:layout_marginTop="582dp"
+            android:layout_gravity="top|left"
+            android:scaleType="centerInside"
+            android:clickable="true"
+            android:focusable="true"
+            android:src="@drawable/flight_img_paypal" />
+
+        <ImageView
+            android:id="@+id/img_visa"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_marginLeft="111dp"
+            android:layout_marginTop="582dp"
+            android:layout_gravity="top|left"
+            android:scaleType="centerInside"
+            android:clickable="true"
+            android:focusable="true"
+            android:src="@drawable/flight_img_visa" />
+
+        <ImageView
+            android:id="@+id/img_mastercard"
+            android:layout_width="36dp"
+            android:layout_height="26dp"
+            android:layout_marginLeft="72dp"
+            android:layout_marginTop="592dp"
+            android:layout_gravity="top|left"
+            android:scaleType="centerInside"
+            android:clickable="true"
+            android:focusable="true"
+            android:src="@drawable/flight_img_mastercard" />
+
+        <ImageView
+            android:id="@+id/img_rectangle1"
+            android:layout_width="270dp"
+            android:layout_height="48dp"
+            android:layout_marginLeft="0.5dp"
+            android:layout_marginTop="649dp"
+            android:layout_gravity="top|center_horizontal"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/flight_img_rectangle1"
+            android:scaleType="centerInside"
+            android:clickable="true"
+            android:focusable="true" />
+
+        <ImageView
+            android:id="@+id/img_rectangle2"
+            android:layout_width="270dp"
+            android:layout_height="48dp"
+            android:layout_marginLeft="0.5dp"
+            android:layout_marginTop="713dp"
+            android:layout_gravity="top|center_horizontal"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/flight_img_rectangle2"
+            android:scaleType="centerInside"
+            android:clickable="true"
+            android:focusable="true" />
+
+        <TextView
+            android:id="@+id/txt_confirm"
+            android:layout_width="64dp"
+            android:layout_height="21dp"
+            android:layout_marginLeft="0.5dp"
+            android:layout_marginTop="661.5dp"
+            android:layout_marginBottom="-1.5dp"
+            android:layout_gravity="center_horizontal"
+            android:gravity="left|center_vertical"
+            android:layout_centerHorizontal="true"
+            android:includeFontPadding="false"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:textStyle="bold"
+            android:text="Confirm"
+            android:textColor="#FFFFFFFF"
+            android:textSize="16dp" />
+
+        <TextView
+            android:id="@+id/txt_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="21dp"
+            android:layout_marginLeft="0.5dp"
+            android:layout_marginTop="724.5dp"
+            android:layout_marginBottom="-1.5dp"
+            android:layout_gravity="center_horizontal"
+            android:gravity="left|center_vertical"
+            android:layout_centerHorizontal="true"
+            android:includeFontPadding="false"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:textStyle="bold"
+            android:text="Cancle"
+            android:textColor="#FF4C76EB"
+            android:textSize="16dp" />
+
+        <ImageView
+            android:id="@+id/img_image"
+            android:layout_width="202dp"
+            android:layout_height="154dp"
+            android:layout_marginLeft="106dp"
+            android:layout_marginTop="100dp"
+            android:layout_gravity="top|left"
+            android:scaleType="centerInside"
+            android:src="@drawable/flight_img_image" />
+
+
+    <ImageView
+        android:id="@+id/container_section_content"
+        android:layout_width="350dp"
+        android:layout_height="700dp"
+        android:layout_marginTop="97dp"
+        android:background="@drawable/flight_container_flights"
+        android:gravity="left|top"
+        android:elevation="-1dp"
+        android:layout_centerHorizontal="true"
+        android:paddingBottom="16dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="16dp"/>
+
+    <RelativeLayout
+        android:id="@+id/container_main_head"
+        android:layout_width="411dp"
+        android:layout_height="270dp"
+        android:layout_gravity="top|left"
+        android:elevation="-2dp"
+        android:background="@drawable/main_head">
+
+        <ImageView
+            android:id="@+id/img_main_head1"
+            android:layout_width="251.91dp"
+            android:layout_height="226.6dp"
+            android:layout_marginLeft="232dp"
+            android:layout_marginTop="-127dp"
+            android:layout_gravity="top|left"
+            android:scaleType="centerInside"
+            android:src="@drawable/hotel_image_main_head" />
+
+        <ImageView
+            android:id="@+id/img_main_head2"
+            android:layout_width="185.65dp"
+            android:layout_height="166.55dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="-104dp"
+            android:layout_gravity="top|left"
+            android:scaleType="centerInside"
+            android:src="@drawable/hotel_image_main_head1" />
+        <RelativeLayout
+            android:id="@+id/container_group"
+            android:layout_width="204dp"
+            android:layout_height="83dp"
+            android:layout_marginLeft="155dp"
+            android:layout_marginTop="48dp"
+            android:layout_gravity="top|left">
+
+            <TextView
+                android:id="@+id/txt_payment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:layout_marginBottom="-4dp"
+                android:layout_gravity="top"
+                android:gravity="center_horizontal|center_vertical"
+                android:includeFontPadding="false"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:text="Payment"
+                android:textColor="#FFFFFFFF"
+                android:textSize="24dp"
+                android:fontFamily="@font/joti_one_regular"/>
+
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/container_arrow"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="51dp"
+            android:layout_gravity="top|left"
+            android:scaleType="centerInside"
+            android:src="@drawable/hotel_ic_arrow_back" />
+    </RelativeLayout>
+
+</RelativeLayout>
