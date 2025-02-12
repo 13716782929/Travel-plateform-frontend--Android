@@ -51,6 +51,12 @@ interface UserApiService {
     @GET("/api/hotels/bookings/{userId}")
     suspend fun getUserHotelBookings(@Path("userId") userId: Int): Response<List<HotelBooking>>
 
+    @GET("/api/attractions/{uuid}/reviews")
+    suspend fun getAttractionReviews(@Path("uuid") uuid: String): Response<List<Review>>
+
+    @GET("/api/hotels/{uuid}/reviews")
+    suspend fun getHotelReviews(@Path("uuid") uuid: String): Response<List<Review>>
+
     companion object {
         private const val BASE_URL = "http://10.0.2.2:8080/"
 

@@ -41,12 +41,6 @@ interface AttractionApiService {
     @POST("/api/attractions") // ✅ 直接调用 JPA 默认 `save()` 方法
     suspend fun saveAttraction(@Body attraction: Attraction): Response<Void>
 
-    @GET("/api/attractions/{uuid}/reviews")
-    suspend fun getAttractionReviews(@Path("uuid") uuid: String): Response<List<Review>>
-
-    @GET("/api/hotels/{uuid}/reviews")
-    suspend fun getHotelReviews(@Path("uuid") uuid: String): Response<List<Review>>
-
     //    @POST("api/attractions/save")
 //    suspend fun sendTransformedAttractionData(
 //        @Body attractions: List<Attraction>
@@ -58,7 +52,6 @@ interface AttractionApiService {
 //    ): Response<BookingResponse>
     companion object {
         private const val BASE_URL = "https://api.stb.gov.sg" // 确保这个 URL 正确
-
         fun create(): AttractionApiService {
             val retrofit = Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -67,5 +60,7 @@ interface AttractionApiService {
 
             return retrofit.create(AttractionApiService::class.java)
         }
+
+
     }
 }

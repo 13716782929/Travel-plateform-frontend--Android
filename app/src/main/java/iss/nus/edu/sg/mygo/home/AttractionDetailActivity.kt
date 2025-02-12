@@ -65,7 +65,6 @@ class AttractionDetailActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAttractionDetailBinding
     private lateinit var reviewAdapter: ReviewAdapter
     private val reviews = mutableListOf<Review>()
-    private val attractionApiService = AttractionApiService.create()
 
     // 用于存储 BusinessHour 数据
     private var businessHours: List<BusinessHour> = emptyList()
@@ -257,7 +256,7 @@ class AttractionDetailActivity : AppCompatActivity() {
     private fun fetchReviews(attractionUuid: String) {
         lifecycleScope.launch(Dispatchers.IO) {
             try {
-                val response = attractionApiService.getAttractionReviews(attractionUuid)
+                val response = userApiService.getAttractionReviews(attractionUuid)
                 Log.d("AttractionDetail", "Raw Review Response: ${response.body()}")
 
                 if (response.isSuccessful) {
