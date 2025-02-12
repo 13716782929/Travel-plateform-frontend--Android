@@ -161,7 +161,7 @@ class FlightDetailActivity : AppCompatActivity() {
         flightApiService.bookFlight(request).enqueue(object : Callback<Void> {
             override fun onResponse(call: Call<Void>, response: Response<Void>) {
                 if (response.isSuccessful) {
-                    val intent = Intent(this@FlightDetailActivity, PaymentActivity::class.java)
+                    val intent = Intent(this@FlightDetailActivity, FlightPaymentActivity::class.java)
                     intent.putExtra("totalPrice", totalPrice)
                     startActivity(intent)
                 } else {
