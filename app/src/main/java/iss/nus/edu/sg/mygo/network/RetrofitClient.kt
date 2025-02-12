@@ -1,5 +1,14 @@
 package iss.nus.edu.sg.mygo.network
 
+/*
+Class name: RetrofitClient
+Author: Yao Yiyang, Siti Alifah Binte Yahya
+StudentID: A0294873L, A0295324B
+Date: 11 Feb 2025
+Version
+*/
+
+
 import iss.nus.edu.sg.mygo.api.service.AccommodationApiService
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -10,6 +19,13 @@ import java.util.concurrent.TimeUnit
 object RetrofitClient {
     private const val BASE_URL = "https://api.stb.gov.sg/"  // API 基础 URL
     private const val BACKEND_URL = "http://10.0.2.2:8080"
+
+    val instance: Retrofit by lazy {
+        Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+    }
 
     // 添加日志拦截器（可选）
     private val loggingInterceptor = HttpLoggingInterceptor().apply {

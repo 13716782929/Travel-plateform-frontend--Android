@@ -1,5 +1,13 @@
 package iss.nus.edu.sg.mygo.api.models
 
+/*
+Class name:  AttractionRespons
+Author: Siti Alifah Binte Yahya
+StudentID: A0295324B
+Date: 6 Feb 2025
+Version
+*/
+
 import com.google.gson.annotations.SerializedName
 
 data class AttractionResponse(

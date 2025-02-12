@@ -1,5 +1,7 @@
 package iss.nus.edu.sg.mygo.api.models
 
+
+
 import com.google.gson.annotations.SerializedName
 
 data class AttractionBookingRequest(

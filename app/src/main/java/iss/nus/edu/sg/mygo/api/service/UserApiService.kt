@@ -11,6 +11,7 @@ import iss.nus.edu.sg.mygo.models.AttractionBooking
 import iss.nus.edu.sg.mygo.models.Booking
 import iss.nus.edu.sg.mygo.models.HotelBooking
 import iss.nus.edu.sg.mygo.models.Review
+import iss.nus.edu.sg.mygo.models.User
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -20,6 +21,7 @@ import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.POST
 import retrofit2.http.Path
+import retrofit2.http.PUT
 
 interface UserApiService {
 
@@ -68,5 +70,4 @@ interface UserApiService {
                 .create(UserApiService::class.java)
         }
     }
-
 }

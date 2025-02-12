@@ -56,4 +56,9 @@
     <string name="me">Me</string>
     <string name="huang">Huang</string>
     <string name="attraction_name">Attraction Name</string>
+    <string name="upcoming_booking">Upcoming Booking</string>
+    <string name="travel_history">Travel History</string>
+    <string name="itineraries">Itineraries</string>
+    <string name="recent">Recent</string>
+    <string name="log_out">Log out</string>
 </resources>

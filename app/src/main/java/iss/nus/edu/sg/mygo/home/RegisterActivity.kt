@@ -1,5 +1,12 @@
 package iss.nus.edu.sg.mygo.home
 
+/*
+Author: Siti Alifah Binte Yahya
+StudentID: A0295324B
+Date: 29 Jan 2025
+Version: 2.0
+*/
+
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -23,7 +30,6 @@ class RegisterActivity : AppCompatActivity() {
 
         userApiService = UserApiService.create()
 
-        // 处理注册按钮点击
         binding.registerButton.setOnClickListener {
             val username = binding.usernameField.text.toString().trim()
             val email = binding.emailField.text.toString().trim()
@@ -41,7 +47,7 @@ class RegisterActivity : AppCompatActivity() {
             }
         }
 
-        // 处理登录按钮点击（返回登录页）
+
         binding.loginToggle.setOnClickListener {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
@@ -59,11 +65,11 @@ class RegisterActivity : AppCompatActivity() {
                     finish()
                 } else {
                     val errorBody = response.errorBody()?.string()
-                    Log.e("RegisterError", "Registration Failed: $errorBody") //
+                    Log.e("RegisterError", "Registration Failed: $errorBody")
                     Toast.makeText(this@RegisterActivity, "Registration Failed", Toast.LENGTH_SHORT).show()
                 }
             } catch (e: Exception) {
-                Log.e("RegisterError", "Network Error: ${e.message}") // 打印网络错误
+                Log.e("RegisterError", "Network Error: ${e.message}")
                 Toast.makeText(this@RegisterActivity, "Network Error: ${e.message}", Toast.LENGTH_SHORT).show()
             }
         }
