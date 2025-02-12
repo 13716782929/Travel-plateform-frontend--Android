@@ -81,6 +81,21 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+    // JUnit 4（单元测试）
+    testImplementation(libs.junit)
+
+    // Mockito（模拟对象）
+    testImplementation(libs.mockito.core)
+
+    // 协程测试（用于运行挂起函数）
+    testImplementation(libs.kotlinx.coroutines.test)
+
+    // OkHttp3（用于测试 Retrofit）
+    testImplementation(libs.okhttp.v493)
+
+    // MockWebServer（用于模拟 API 响应）
+    testImplementation(libs.mockwebserver)
 }
 
 detekt {
