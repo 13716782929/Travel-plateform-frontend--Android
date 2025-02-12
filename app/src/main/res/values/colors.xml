@@ -17,4 +17,5 @@
     <color name="red_notification">#DB0000</color>
     <color name="orange_notification">#FFBC2A</color>
     <color name="green_notification">#38D300</color>
+    <color name="transparent">#00000000</color>  <!-- 等价于 Color.TRANSPARENT -->
 </resources>
