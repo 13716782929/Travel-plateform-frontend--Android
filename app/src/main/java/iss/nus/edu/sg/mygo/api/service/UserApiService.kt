@@ -35,7 +35,6 @@ interface UserApiService {
     suspend fun getUserProfile(@Header("Authorisation") token: String): User
 
     companion object {
-        val private: Any = TODO()
         private const val BASE_URL = "http://10.0.2.2:8080/"
 
         fun create(): UserApiService {
