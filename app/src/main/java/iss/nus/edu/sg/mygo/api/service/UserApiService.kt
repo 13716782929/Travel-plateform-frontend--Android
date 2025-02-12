@@ -19,6 +19,8 @@ import retrofit2.http.Body
 import retrofit2.http.Header
 import retrofit2.http.POST
 import retrofit2.http.GET
+import retrofit2.http.PUT
+import retrofit2.http.Path
 
 interface UserApiService {
 
@@ -31,8 +33,15 @@ interface UserApiService {
     @POST("/api/attractions/booking")
     suspend fun createAttractionBooking(@Body request: AttractionBookingRequest): Response<AttractionBookingRequest>
 
-    @GET("/api/user/profile")
-    suspend fun getUserProfile(@Header("Authorisation") token: String): User
+//    @GET("/api/preferences/{userId}")
+//    suspend fun getUserPreference(@Path("userId") userId: Int): Response<Preference>
+//
+//    @PUT("/api/preferences/{userId}")
+//    suspend fun updateUserPreference(
+//        @Path("userId") userId: Int,
+//        @Body updatedPreference: Preference
+//    ): Response<Preference>
+
 
     companion object {
         private const val BASE_URL = "http://10.0.2.2:8080/"
