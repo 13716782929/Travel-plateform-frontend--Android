@@ -18,7 +18,6 @@ import iss.nus.edu.sg.mygo.R
 
 class FlightPaymentActivity : AppCompatActivity() {
 
-    private var selectedPaymentMethod: ImageView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,15 +50,18 @@ class FlightPaymentActivity : AppCompatActivity() {
         val imgMastercard: ImageView = findViewById(R.id.img_mastercard)
 
         // 选择支付方式的点击事件
+        var selectedImageView: ImageView? = null // 记录当前选中的 ImageView
         val paymentMethods = listOf(imgPaypal, imgVisa, imgMastercard)
         paymentMethods.forEach { imageView ->
             imageView.setOnClickListener {
-                // 设置选中的支付方式背景
+                // 取消之前选中的背景色
+                selectedImageView?.setBackgroundColor(getColor(R.color.transparent))
+
+                // 设置新选中的背景色
                 imageView.setBackgroundColor(getColor(R.color.light_gray))
 
-                // 取消选中时恢复透明
-                imageView.setBackgroundColor(getColor(R.color.transparent))
-
+                // 更新选中项
+                selectedImageView = imageView
             }
         }
 
@@ -87,7 +89,6 @@ class FlightPaymentActivity : AppCompatActivity() {
             editCardHolder.text.clear()
             editCVV.text.clear()
             editExpiryDate.text.clear()
-            selectedPaymentMethod = null
         }
 
 
