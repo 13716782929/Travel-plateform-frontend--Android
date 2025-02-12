@@ -1,0 +1,467 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/hotel_container_hotel"
+    android:fillViewport="true">
+
+    <RelativeLayout
+        android:id="@+id/container_main_head"
+        android:layout_width="411dp"
+        android:layout_height="100dp"
+        android:background="@drawable/main_head">
+
+        <ImageView
+            android:id="@+id/image_main_head"
+            android:layout_width="251.91dp"
+            android:layout_height="226.6dp"
+            android:layout_gravity="top|left"
+            android:layout_marginLeft="232dp"
+            android:layout_marginTop="-127dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/hotel_image_main_head" />
+
+        <ImageView
+            android:id="@+id/image_main_head1"
+            android:layout_width="185.65dp"
+            android:layout_height="166.55dp"
+            android:layout_gravity="top|left"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="-104dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/hotel_image_main_head1" />
+
+
+        <TextView
+            android:id="@+id/flight_detail_title"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_gravity="top|center"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="-4dp"
+            android:gravity="center_horizontal|center_vertical"
+            android:includeFontPadding="false"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:fontFamily="@font/joti_one_regular"
+            android:text="Flight Detail"
+            android:textColor="#FFFFFFFF"
+            android:textSize="24dp" />
+
+    </RelativeLayout>
+
+        <ImageButton
+        android:id="@+id/button_back"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="30dp"
+        android:layout_gravity="top|left"
+        app:srcCompat="@drawable/hotel_ic_arrow_back"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:scaleType="centerInside"/>
+
+    <RelativeLayout
+        android:id="@+id/scroll_renge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="60dp"
+        android:layout_above="@+id/container_book">
+        <ScrollView
+            android:id="@+id/scroll_flight_detail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+            <RelativeLayout
+                android:id="@+id/container_flight_detail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+
+                <RelativeLayout
+                    android:id="@+id/container_product_info"
+                    android:layout_width="380dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="30dp">
+
+                    <ImageView
+                        android:id="@+id/img_heart_icon"
+                        android:layout_width="52dp"
+                        android:layout_height="45dp"
+                        android:layout_marginStart="300dp"
+                        android:layout_marginTop="40dp"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/hotel_img_heart_icon" />
+
+                    <TextView
+                        android:id="@+id/detail_flight_txt_arrivalCity"
+                        android:layout_width="wrap_content"
+                        android:maxWidth="250dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="3dp"
+                        android:includeFontPadding="false"
+                        android:maxLines="2"
+                        android:text="To: Arrival City"
+                        android:fontFamily="@font/joti_one_regular"
+                        android:textColor="#FF232323"
+                        android:textSize="24sp" />
+
+                    <TextView
+                        android:id="@+id/price"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_below="@+id/detail_flight_txt_arrivalCity"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/inter_18pt_semibold"
+                        android:includeFontPadding="false"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:text="Airline Name"
+                        android:textColor="#FF606060"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/detail_flight_txt_airline"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_below="@+id/detail_flight_txt_arrivalCity"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/inter_18pt_semibold"
+                        android:includeFontPadding="false"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:text="Airline Name"
+                        android:textColor="#FF606060"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/detail_flight_title_duration"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:includeFontPadding="false"
+                        android:lineHeight="21dp"
+                        android:text="Duration"
+                        android:textColor="#FF232323"
+                        android:textSize="24sp"
+                        android:fontFamily="@font/joti_one_regular"
+                        android:layout_below="@id/detail_flight_txt_airline"/>
+
+                    <TextView
+                        android:id="@+id/detail_flight_txt_duration"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+
+                        android:includeFontPadding="false"
+                        android:lineHeight="21dp"
+                        android:layout_marginStart="20dp"
+                        android:text="5 h 30 min"
+                        android:textColor="#FF3A544F"
+                        android:textSize="18sp"
+                        android:fontFamily="@font/inter_18pt_semibold"
+                        android:layout_below="@id/detail_flight_title_duration"/>
+
+                    <TextView
+                        android:id="@+id/detail_flight_title_status"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:includeFontPadding="false"
+                        android:text="Duration"
+                        android:textColor="#FF232323"
+                        android:textSize="24sp"
+                        android:fontFamily="@font/joti_one_regular"
+                        android:layout_below="@id/detail_flight_txt_duration"/>
+
+                    <TextView
+                        android:id="@+id/detail_flight_txt_status"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:includeFontPadding="false"
+                        android:lineHeight="21dp"
+                        android:layout_marginStart="20dp"
+                        android:text="Scheduled"
+                        android:textColor="#FF3A544F"
+                        android:textSize="18sp"
+                        android:fontFamily="@font/inter_18pt_semibold"
+                        android:layout_below="@id/detail_flight_title_status"/>
+
+                    <RelativeLayout
+                        android:id="@+id/detail_flight_group_1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginStart="28.dp"
+                        android:layout_marginEnd="28dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_below="@+id/detail_flight_txt_status">
+
+                        <TextView
+                            android:id="@+id/detail_flight_on_date"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Date: November 10, 2023"
+                            android:textSize="18sp"
+                            android:textColor="#1E1E1E"
+                            android:fontFamily="@font/joti_one_regular"
+                            android:gravity="top"
+                            />
+                        <RelativeLayout
+                            android:id="@+id/flight_detail_departure_container"
+                            android:layout_marginTop="10dp"
+                            android:layout_below="@+id/detail_flight_on_date"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:gravity="center_horizontal">
+
+                                <TextView
+                                    android:id="@+id/fligh_detail_departure_time"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="14:20"
+                                    android:textSize="12sp"
+                                    android:textColor="#1E1E1E"
+                                    android:fontFamily="@font/joti_one_regular"
+                                    android:gravity="center" />
+
+                                <ImageView
+                                    android:id="@+id/flight_dot1"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:background="@drawable/flight_dot"
+                                    android:layout_marginTop="5dp" />
+
+                                <TextView
+                                    android:id="@+id/fligh_detail_departure_city"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="DepartureCity"
+                                    android:textSize="12sp"
+                                    android:textColor="#1E1E1E"
+                                    android:layout_marginTop="5dp"
+                                    android:fontFamily="@font/inter_18pt_semibold"
+                                    android:gravity="center" />
+
+                                <TextView
+                                    android:id="@+id/fligh_detail_departure_airport"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="DepartureAirport"
+                                    android:textSize="12sp"
+                                    android:textColor="#1E1E1E"
+                                    android:layout_marginTop="5dp"
+                                    android:fontFamily="@font/inter_18pt_regular"
+                                    android:gravity="center" />
+                            </LinearLayout>
+                        </RelativeLayout>
+
+                        <ImageView
+                            android:id="@+id/flight_detail_air_line"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/air_line"
+                            android:layout_below="@+id/detail_flight_on_date"
+                            android:layout_marginTop="36dp"
+                            android:layout_toEndOf="@+id/flight_detail_departure_container"
+                            android:layout_marginStart="-20dp"
+                            android:layout_toStartOf="@+id/flight_detail_arrival_container"
+                            android:layout_marginEnd="-20dp"
+                            />
+
+                        <ImageView
+                            android:id="@+id/flight_detail_airplane"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/detail_flight_on_date"
+                            android:layout_alignParentStart="true"
+                            android:layout_marginStart="143dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginEnd="143dp"
+                            android:layout_marginTop="22dp"
+                            android:background="@drawable/flight_airplane" />
+
+                        <RelativeLayout
+                            android:id="@+id/flight_detail_arrival_container"
+                            android:layout_marginTop="10dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_below="@+id/detail_flight_on_date"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:gravity="center_horizontal">
+
+                                <TextView
+                                    android:id="@+id/fligh_detail_arrival_time"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="18:50"
+                                    android:textSize="12sp"
+                                    android:textColor="#1E1E1E"
+                                    android:fontFamily="@font/joti_one_regular"
+                                    android:gravity="center" />
+
+                                <ImageView
+                                    android:id="@+id/flight_dot2"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:background="@drawable/flight_dot"
+                                    android:layout_marginTop="5dp" />
+
+                                <TextView
+                                    android:id="@+id/fligh_detail_arrival_city"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="ArrivalCity"
+                                    android:textSize="12sp"
+                                    android:textColor="#1E1E1E"
+                                    android:layout_marginTop="5dp"
+                                    android:fontFamily="@font/inter_18pt_semibold"
+                                    android:gravity="center" />
+
+                                <TextView
+                                    android:id="@+id/fligh_detail_arrival_airport"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="ArrivalAirport"
+                                    android:textSize="12sp"
+                                    android:textColor="#1E1E1E"
+                                    android:layout_marginTop="5dp"
+                                    android:fontFamily="@font/inter_18pt_regular"
+                                    android:gravity="center" />
+                            </LinearLayout>
+
+                        </RelativeLayout>
+
+
+                    </RelativeLayout>
+
+
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:id="@+id/container_info"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:orientation="vertical"
+                    android:padding="10dp"
+                    android:gravity="start"
+                    android:layout_below="@id/container_product_info">
+
+                    <LinearLayout
+                        android:id="@+id/word_list_container"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginTop="5dp"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/review_section"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/container_info"
+                    android:orientation="vertical"
+                    android:visibility="gone"> <!-- 初始隐藏，动态控制显示 -->
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Reviews"
+                        android:textSize="18sp"
+                        android:fontFamily="@font/joti_one_regular"
+                        android:paddingTop="8dp"
+                        android:paddingBottom="4dp"/>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/review_recycler_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:nestedScrollingEnabled="false"/>
+                </LinearLayout>
+
+            </RelativeLayout>
+        </ScrollView>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/container_book"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_margin="10dp"
+        android:layout_marginBottom="0dp"
+        android:background="@drawable/hotel_container_book"
+        android:layout_alignParentBottom="true">
+
+        <RelativeLayout
+            android:id="@+id/container_price_group"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp">
+
+            <TextView
+                android:id="@+id/txt_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-3dp"
+                android:text="Price"
+                android:textColor="#FF232323"
+                android:textSize="18dp" />
+
+
+            <TextView
+                android:id="@+id/txt_price_value"
+                android:layout_width="wrap_content"
+                android:maxWidth="160dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="18.5dp"
+                android:text="$199"
+                android:textColor="#FF2DD7A4"
+                android:textSize="24dp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/container_cta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/hotel_container_cta"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="20dp"
+            android:layout_toEndOf="@+id/container_price_group"
+            android:layout_marginStart="30dp"
+            android:orientation="horizontal"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/txt_cta_book_now"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="-5dp"
+                android:text="Book"
+                android:fontFamily="@font/joti_one_regular"
+                android:textColor="#FFFFFFFF"
+                android:textSize="24sp" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+</RelativeLayout>
