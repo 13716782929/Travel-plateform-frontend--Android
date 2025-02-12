@@ -3,10 +3,10 @@ name: Android CI
 on:
   push:
     branches:
-      - v1.4_merge
+      - v1.4_merge_ci_test
   pull_request:
     branches:
-      - v1.4_merge
+      - v1.4_merge_ci_test
 
 jobs:
   build:
