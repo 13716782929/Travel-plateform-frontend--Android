@@ -8,6 +8,8 @@ import android.graphics.Typeface
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
+import android.view.View
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ImageView
@@ -30,10 +32,17 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.Locale
 import androidx.appcompat.app.AlertDialog
+import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
+import iss.nus.edu.sg.mygo.adapter.ReviewAdapter
 import iss.nus.edu.sg.mygo.api.models.AttractionBookingRequest
 import iss.nus.edu.sg.mygo.api.models.BusinessHour
 import iss.nus.edu.sg.mygo.api.service.UserApiService
+import iss.nus.edu.sg.mygo.databinding.ActivityAttractionDetailBinding
+import iss.nus.edu.sg.mygo.models.Review
+import iss.nus.edu.sg.mygo.models.ReviewStatus
 import iss.nus.edu.sg.mygo.sessions.SessionManager
+import kotlinx.coroutines.withContext
 import java.text.SimpleDateFormat
 import java.util.Calendar
 
@@ -53,6 +62,10 @@ class AttractionDetailActivity : AppCompatActivity() {
     private lateinit var bookButtonText: TextView
     private lateinit var bookButton: Button
     private  lateinit var sessionManager: SessionManager
+    private lateinit var binding: ActivityAttractionDetailBinding
+    private lateinit var reviewAdapter: ReviewAdapter
+    private val reviews = mutableListOf<Review>()
+    private val attractionApiService = AttractionApiService.create()
 
     // 用于存储 BusinessHour 数据
     private var businessHours: List<BusinessHour> = emptyList()
@@ -60,7 +73,8 @@ class AttractionDetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()  // 启用全屏显示
-        setContentView(R.layout.activity_attraction_detail)
+        binding = ActivityAttractionDetailBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         // 处理窗口的系统栏（状态栏、导航栏）内边距
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.container_hoteldetail)) { v, insets ->
@@ -98,10 +112,14 @@ class AttractionDetailActivity : AppCompatActivity() {
             showDatePickerDialog()
         }
 
-        // 获取从 Intent 传递的 UUID
+        setupRecyclerView()
         val attractionUuid = intent.getStringExtra("attraction_uuid")
+        Log.d("AttractionDetail", "Fetching reviews for attractionUuid: $attractionUuid")
         if (attractionUuid != null) {
             fetchAttractionDetails(attractionUuid)
+            fetchReviews(attractionUuid)
+        }else{
+            showToast("Attraction UUID is missing")
         }
 
         val backButton: ImageButton = findViewById(R.id.button_back)
@@ -110,6 +128,13 @@ class AttractionDetailActivity : AppCompatActivity() {
             finish()
         }
 
+    }
+
+
+    private fun showToast(message: String) {
+        runOnUiThread {
+            Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -229,6 +254,38 @@ class AttractionDetailActivity : AppCompatActivity() {
         }
     }
 
+    private fun fetchReviews(attractionUuid: String) {
+        lifecycleScope.launch(Dispatchers.IO) {
+            try {
+                val response = attractionApiService.getAttractionReviews(attractionUuid)
+                Log.d("AttractionDetail", "Raw Review Response: ${response.body()}")
+
+                if (response.isSuccessful) {
+                    val fetchedReviews = response.body()?.filter { it.status == ReviewStatus.SHOW } ?: emptyList()
+                    withContext(Dispatchers.Main) {
+                        if (fetchedReviews.isNotEmpty()) {
+                            reviews.clear()
+                            reviews.addAll(fetchedReviews)
+                            reviewAdapter.notifyDataSetChanged()
+                            binding.reviewSection.visibility = View.VISIBLE
+                        } else {
+                            binding.reviewSection.visibility = View.GONE
+                        }
+                    }
+                } else {
+                    Log.e("AttractionDetail", "Failed to fetch reviews: ${response.code()}")
+                }
+            } catch (e: Exception) {
+                Log.e("AttractionDetail", "Error fetching reviews", e)
+            }
+        }
+    }
+
+    private fun setupRecyclerView() {
+        reviewAdapter = ReviewAdapter(reviews)
+        binding.reviewRecyclerView.layoutManager = LinearLayoutManager(this)
+        binding.reviewRecyclerView.adapter = reviewAdapter
+    }
 
     private var currentImageIndex = 0
     private var imageUrls: List<String> = emptyList()
@@ -583,7 +640,6 @@ class AttractionDetailActivity : AppCompatActivity() {
         val parsedDate = inputFormat.parse(date)
         return outputFormat.format(parsedDate!!)
     }
-
 
     override fun onDestroy() {
         super.onDestroy()

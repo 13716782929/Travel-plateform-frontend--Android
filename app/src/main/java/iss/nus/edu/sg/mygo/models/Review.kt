@@ -1,17 +1,38 @@
 package iss.nus.edu.sg.mygo.models
 
+import java.math.BigDecimal
+import com.google.gson.annotations.SerializedName
+
 data class Review(
-    val reviewId: Int,         // 评论ID
-    val userId: Int,     // 用户ID
-    val itemId: Int,     // 关联的景点/酒店/航班ID
-    val itemType: String, // 评论类型，例如 "ATTRACTION"
-    val rating: Float,   // 评分 (1.0 - 5.0)
-    val comment: String, // 评论内容
-    var status: ReviewStatus = ReviewStatus.SHOW,
-    val createdAt: String // 创建时间
+    val reviewId: Int,
+    val userId: Int,
+    val itemType: ItemType,
+    val itemId: Int,
+    val bookingId: Int,
+    val rating: BigDecimal,
+    val comment: String,
+    val status: ReviewStatus,
+    val createdAt: String,  // ✅ 确保 Gson 正确解析时间
+    val updatedAt: String   // ✅ 确保 Gson 正确解析时间
 )
 
-enum class ReviewStatus(val displayName: String){
-    HIDE("hide"),
-    SHOW("show"),
+enum class ItemType {
+    @SerializedName("Flight") Flight,
+    @SerializedName("Hotel") Hotel,
+    @SerializedName("Attraction") Attraction
+}
+
+enum class ReviewStatus {
+    @SerializedName("hide") HIDE,
+    @SerializedName("show") SHOW;
+
+    companion object {
+        fun fromString(value: String): ReviewStatus {
+            return when (value.lowercase()) {
+                "hide" -> HIDE
+                "show" -> SHOW
+                else -> throw IllegalArgumentException("Unknown ReviewStatus: $value")
+            }
+        }
+    }
 }

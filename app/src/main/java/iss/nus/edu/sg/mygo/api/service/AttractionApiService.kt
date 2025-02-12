@@ -3,6 +3,7 @@ package iss.nus.edu.sg.mygo.api.service
 import iss.nus.edu.sg.mygo.api.models.AccommodationResponse
 import iss.nus.edu.sg.mygo.api.models.AttractionResponse
 import iss.nus.edu.sg.mygo.models.Attraction
+import iss.nus.edu.sg.mygo.models.Review
 import retrofit2.Call
 import retrofit2.Response
 import retrofit2.Retrofit
@@ -40,6 +41,11 @@ interface AttractionApiService {
     @POST("/api/attractions") // ✅ 直接调用 JPA 默认 `save()` 方法
     suspend fun saveAttraction(@Body attraction: Attraction): Response<Void>
 
+    @GET("/api/attractions/{uuid}/reviews")
+    suspend fun getAttractionReviews(@Path("uuid") uuid: String): Response<List<Review>>
+
+    @GET("/api/hotels/{uuid}/reviews")
+    suspend fun getHotelReviews(@Path("uuid") uuid: String): Response<List<Review>>
 
     //    @POST("api/attractions/save")
 //    suspend fun sendTransformedAttractionData(

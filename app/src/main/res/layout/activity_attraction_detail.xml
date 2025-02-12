@@ -148,6 +148,31 @@
                         android:orientation="vertical"
                         android:layout_marginTop="5dp"/>
                 </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/review_section"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/container_info"
+                    android:orientation="vertical"
+                    android:visibility="gone"> <!-- 初始隐藏，动态控制显示 -->
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Reviews"
+                        android:textSize="18sp"
+                        android:fontFamily="@font/joti_one_regular"
+                        android:paddingTop="8dp"
+                        android:paddingBottom="4dp"/>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/review_recycler_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:nestedScrollingEnabled="false"/>
+                </LinearLayout>
+
                 <ImageView
                     android:id="@+id/img_heart_icon"
                     android:layout_width="52dp"
