@@ -87,4 +87,10 @@ detekt {
     toolVersion = "1.23.1"
     config = files("$rootDir/config/detekt/detekt.yml") // ✅ 确保 `detekt.yml` 存在
     buildUponDefaultConfig = true // ✅ 允许覆盖默认规则
+    reports {
+        html.required.set(true)  // 生成 HTML 格式报告
+        xml.required.set(true)   // 生成 XML 格式报告
+        txt.required.set(false)  // 关闭 TXT 格式
+    }
+    // 报错结果存储位置：C:\Users\Lenovo\Documents\SA\AD Project\MyGo\front_android\app\build\reports\detekt
 }
