@@ -173,12 +173,13 @@ class FlightDetailActivity : AppCompatActivity() {
                     intent.putExtra("totalPrice", totalPrice)
                     startActivity(intent)
                 } else {
-                    Toast.makeText(this@FlightDetailActivity, "预订失败，请重试", Toast.LENGTH_LONG).show()
+                    Log.e("FlightDetailActivity","Booking failed with response: ${response}")
+                    Toast.makeText(this@FlightDetailActivity, "Booking failed", Toast.LENGTH_LONG).show()
                 }
             }
 
             override fun onFailure(call: Call<Void>, t: Throwable) {
-                Toast.makeText(this@FlightDetailActivity, "网络错误: ${t.message}", Toast.LENGTH_LONG).show()
+                Toast.makeText(this@FlightDetailActivity, "Network error: ${t.message}", Toast.LENGTH_LONG).show()
             }
         })
     }
