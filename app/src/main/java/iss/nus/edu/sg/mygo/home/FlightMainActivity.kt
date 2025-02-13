@@ -38,12 +38,9 @@ class FlightMainActivity : AppCompatActivity() {
 
         // 监听搜索按钮
         findViewById<LinearLayout>(R.id.container_search_button).setOnClickListener {
-            val destination = destinationInput.text.toString()
 
             // 创建 Intent 传递数据到 HotelSearchActivity
-            val intent = Intent(this, HotelSearchActivity::class.java).apply {
-                putExtra("destination", destination)
-            }
+            val intent = Intent(this, FlightDetailActivity::class.java)
             startActivity(intent)
         }
 

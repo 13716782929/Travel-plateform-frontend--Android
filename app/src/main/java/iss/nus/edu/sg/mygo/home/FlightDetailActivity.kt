@@ -1,8 +1,9 @@
-package iss.nus.edu.sg.mygo.ui
+package iss.nus.edu.sg.mygo.home
 
 import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import iss.nus.edu.sg.mygo.R
@@ -13,6 +14,8 @@ import iss.nus.edu.sg.mygo.models.FlightBookingRequest
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.math.BigDecimal
+import java.math.RoundingMode
 import kotlin.random.Random
 
 class FlightDetailActivity : AppCompatActivity() {
@@ -29,7 +32,7 @@ class FlightDetailActivity : AppCompatActivity() {
     private lateinit var arrivalCityDetailTextView: TextView
     private lateinit var arrivalAirportTextView: TextView
     private lateinit var priceTextView: TextView
-    private lateinit var bookButton: Button
+    private lateinit var bookTextView: TextView
 
     private var flightId: Int = -1
     private val flightApiService = FlightApiService.create()
@@ -51,10 +54,11 @@ class FlightDetailActivity : AppCompatActivity() {
         arrivalCityDetailTextView = findViewById(R.id.fligh_detail_arrival_city)
         arrivalAirportTextView = findViewById(R.id.fligh_detail_arrival_airport)
         priceTextView = findViewById(R.id.txt_price_value)
-        bookButton = findViewById(R.id.txt_cta_book_now)
+        bookTextView = findViewById(R.id.txt_cta_book_now)
 
         // 获取上一个页面传递的 flightId
-        flightId = intent.getStringExtra("flightId")?.toIntOrNull() ?: -1
+//        flightId = intent.getStringExtra("flightId")?.toIntOrNull() ?: -1
+        flightId = 1
 
         if (flightId != -1) {
             fetchFlightDetails(flightId)
@@ -64,7 +68,7 @@ class FlightDetailActivity : AppCompatActivity() {
             finish()
         }
 
-        bookButton.setOnClickListener {
+        bookTextView.setOnClickListener {
             showBookingDialog()
         }
     }
@@ -75,11 +79,13 @@ class FlightDetailActivity : AppCompatActivity() {
     private fun fetchFlightDetails(flightId: Int) {
         flightApiService.getFlightById(flightId).enqueue(object : Callback<Flight> {
             override fun onResponse(call: Call<Flight>, response: Response<Flight>) {
+                Log.e("FlightDetailActivity","${response.body()}")
                 if (response.isSuccessful) {
                     response.body()?.let { flight ->
                         updateUI(flight)
                     }
                 } else {
+                    Log.e("FlightDetailActivity","${response}")
                     Toast.makeText(this@FlightDetailActivity, "获取航班信息失败", Toast.LENGTH_LONG).show()
                 }
             }
@@ -112,16 +118,17 @@ class FlightDetailActivity : AppCompatActivity() {
      */
     private fun generateRandomPrice() {
         val randomPrice = Random.nextDouble(200.00,1200.00)
-        priceTextView.text = "$$randomPrice"
+        val formattedPrice = BigDecimal(randomPrice).setScale(2, RoundingMode.HALF_EVEN)
+        priceTextView.text = "$$formattedPrice"
     }
 
     /**
      * 显示选择座位类型和购买数量的对话框
      */
     private fun showBookingDialog() {
-        val seatTypes = arrayOf("头等舱", "商务舱", "经济舱")
+        val seatTypes = arrayOf("First", "Suite", "Economy")
         val builder = AlertDialog.Builder(this)
-        builder.setTitle("选择座位类型")
+        builder.setTitle("Please select seat type:")
             .setItems(seatTypes) { _, which ->
                 val seatType = seatTypes[which]
                 showSeatCountDialog(seatType)
@@ -136,14 +143,14 @@ class FlightDetailActivity : AppCompatActivity() {
         val input = EditText(this)
         input.inputType = android.text.InputType.TYPE_CLASS_NUMBER
         val builder = AlertDialog.Builder(this)
-        builder.setTitle("选择购买数量")
+        builder.setTitle("Purchase Number:")
             .setView(input)
-            .setPositiveButton("确定") { _, _ ->
+            .setPositiveButton("Confirm") { _, _ ->
                 val count = input.text.toString().toIntOrNull() ?: 1
                 val totalPrice = count * (priceTextView.text.toString().replace("$", "").toDouble())
                 bookFlight(seatType, count, totalPrice)
             }
-            .setNegativeButton("取消", null)
+            .setNegativeButton("Cancel", null)
         builder.create().show()
     }
 
