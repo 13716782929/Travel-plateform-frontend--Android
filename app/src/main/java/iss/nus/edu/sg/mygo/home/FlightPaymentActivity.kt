@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import iss.nus.edu.sg.mygo.R
+import iss.nus.edu.sg.mygo.ui.FlightDetailActivity
 
 class FlightPaymentActivity : AppCompatActivity() {
 

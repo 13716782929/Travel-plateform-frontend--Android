@@ -7,6 +7,7 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import iss.nus.edu.sg.mygo.R
 import iss.nus.edu.sg.mygo.api.service.FlightApiService
+import iss.nus.edu.sg.mygo.home.FlightPaymentActivity
 import iss.nus.edu.sg.mygo.models.Flight
 import iss.nus.edu.sg.mygo.models.FlightBookingRequest
 import retrofit2.Call
@@ -110,7 +111,7 @@ class FlightDetailActivity : AppCompatActivity() {
      * 生成 500 - 1500 之间的随机价格
      */
     private fun generateRandomPrice() {
-        val randomPrice = Random.nextInt(500, 1501)
+        val randomPrice = Random.nextDouble(200.00,1200.00)
         priceTextView.text = "$$randomPrice"
     }
 
