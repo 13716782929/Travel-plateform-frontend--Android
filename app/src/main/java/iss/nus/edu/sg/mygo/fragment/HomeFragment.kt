@@ -31,7 +31,14 @@ import iss.nus.edu.sg.mygo.home.HotelMainActivity
 import iss.nus.edu.sg.mygo.models.Attraction
 import iss.nus.edu.sg.mygo.models.Hotel
 import kotlinx.coroutines.launch
-
+/**
+ * @ClassName HomeFragment
+ * @Description
+ * @Author Wang Chang
+ * @StudentID A0310544R
+ * @Date 2025/1/28
+ * @Version 1.3
+ */
 class HomeFragment : Fragment(R.layout.home_fragment) {
 
     private var _binding: HomeFragmentBinding? = null

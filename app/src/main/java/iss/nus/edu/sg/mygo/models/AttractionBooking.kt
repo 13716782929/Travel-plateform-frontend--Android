@@ -1,5 +1,14 @@
 package iss.nus.edu.sg.mygo.models
 
+/**
+ * @ClassName AttractionBooking
+ * @Description
+ * @Author Wang Chang
+ * @StudentID A0310544R
+ * @Date 2025/1/7
+ * @Version 1.3
+ */
+
 data class AttractionBooking(
     val attractionBookingId: Int,
     val bookingId: Int,

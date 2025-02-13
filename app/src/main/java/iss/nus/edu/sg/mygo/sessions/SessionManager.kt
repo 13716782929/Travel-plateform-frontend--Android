@@ -5,6 +5,15 @@ import android.content.SharedPreferences
 import android.util.Base64
 import org.json.JSONObject
 
+/**
+ * @ClassName SessionActivity
+ * @Description
+ * @Author Wang Chang
+ * @StudentID A0310544R
+ * @Date 2025/2/7
+ * @Version 1.3
+ */
+
 class SessionManager(context: Context) {
 
     private val sharedPreferences: SharedPreferences =

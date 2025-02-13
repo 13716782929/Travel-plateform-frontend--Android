@@ -14,6 +14,16 @@ import iss.nus.edu.sg.mygo.fragment.ProfileFragment
 import iss.nus.edu.sg.mygo.fragment.SearchFragment
 import iss.nus.edu.sg.mygo.fragment.ScheduleFragment
 
+/**
+ * @ClassName MainActivity
+ * @Description
+ * @Author Wang Chang
+ * @StudentID A0310544R
+ * @Date 2025/1/25
+ * @Version 1.3
+ */
+
+
 class MainActivity : AppCompatActivity() {
 
     private lateinit var sharedPreferences: SharedPreferences

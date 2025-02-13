@@ -10,6 +10,15 @@ import androidx.appcompat.app.AppCompatActivity
 import iss.nus.edu.sg.mygo.R
 import iss.nus.edu.sg.mygo.sessions.SessionManager
 
+/**
+ * @ClassName MyGoGreeting
+ * @Description
+ * @Author Wang Chang
+ * @StudentID A0310544R
+ * @Date 2025/1/25
+ * @Version 1.3
+ */
+
 class MyGoGreeting : AppCompatActivity() {
 
     private lateinit var welcomeTextView: TextView

@@ -10,6 +10,15 @@ import androidx.fragment.app.Fragment
 import iss.nus.edu.sg.mygo.R
 import iss.nus.edu.sg.mygo.home.HotelMainActivity
 
+/**
+ * @ClassName SearchFragment
+ * @Description
+ * @Author Wang Chang
+ * @StudentID A0310544R
+ * @Date 2025/1/28
+ * @Version 1.0
+ */
+
 class SearchFragment : Fragment() {
 
     override fun onCreateView(

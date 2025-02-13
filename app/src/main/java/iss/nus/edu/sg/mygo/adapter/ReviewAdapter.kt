@@ -9,6 +9,15 @@ import androidx.recyclerview.widget.RecyclerView
 import iss.nus.edu.sg.mygo.R
 import iss.nus.edu.sg.mygo.models.Review
 
+/**
+ * @ClassName ReviewAdapter
+ * @Description
+ * @Author Wang Chang
+ * @StudentID A0310544R
+ * @Date 2025/2/11
+ * @Version 1.3
+ */
+
 class ReviewAdapter(private val reviews: List<Review>) :
     RecyclerView.Adapter<ReviewAdapter.ReviewViewHolder>() {
 

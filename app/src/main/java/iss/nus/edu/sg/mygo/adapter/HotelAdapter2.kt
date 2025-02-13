@@ -17,10 +17,14 @@ import iss.nus.edu.sg.mygo.R
 import iss.nus.edu.sg.mygo.home.HotelDetailActivity
 import iss.nus.edu.sg.mygo.models.Attraction
 import iss.nus.edu.sg.mygo.models.Hotel
-/***
- * author: Wang Chang
- * date: 25\2-9
- * */
+/**
+ * @ClassName HotelAdapter2
+ * @Description
+ * @Author Wang Chang
+ * @StudentID A0310544R
+ * @Date 2025/2/9
+ * @Version 1.3
+ */
 class HotelAdapter2(
     private var hotels: MutableList<Hotel>,
     private val onItemClick: (Int) -> Unit // 点击事件

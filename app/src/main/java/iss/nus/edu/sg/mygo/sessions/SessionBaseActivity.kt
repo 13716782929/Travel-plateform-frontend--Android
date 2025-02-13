@@ -1,11 +1,16 @@
 package iss.nus.edu.sg.mygo.sessions
 
-/**
- * Class Name: SessionBaseActivity
- * func: Activities can inherit this class to set session check
- *      if user doesn't login then Activities will be redirected to LoginActivity
- */
 
+/**
+ * @ClassName SessionBaseActivity
+ * @Description
+ * Activities can inherit this class to set session check
+ *   if user doesn't login then Activities will be redirected to LoginActivity
+ * @Author Wang Chang
+ * @StudentID A0310544R
+ * @Date 2025/2/7
+ * @Version 1.3
+ */
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

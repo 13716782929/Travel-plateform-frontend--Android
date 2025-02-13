@@ -23,6 +23,15 @@ import retrofit2.http.POST
 import retrofit2.http.Path
 import retrofit2.http.PUT
 
+/**
+ * @ClassName UserApiService
+ * @Description
+ * @Author Wang Chang
+ * @StudentID A0310544R
+ * @Date 2025/2/12
+ * @Version 1.3
+ */
+
 interface UserApiService {
 
     @POST("api/auth/register")

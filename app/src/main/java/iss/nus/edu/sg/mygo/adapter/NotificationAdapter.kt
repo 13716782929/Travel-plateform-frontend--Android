@@ -9,10 +9,14 @@ import iss.nus.edu.sg.mygo.R
 import iss.nus.edu.sg.mygo.adapter.NotificationAdapter
 import iss.nus.edu.sg.mygo.models.Notification
 
-/***
- * author: Wang Chang
- * date: 5/2/25
- * */
+/**
+ * @ClassName NotificationAdapter
+ * @Description
+ * @Author Wang Chang
+ * @StudentID A0310544R
+ * @Date 2025/2/5
+ * @Version 1.3
+ */
 class NotificationAdapter(
     private val notifications: List<Notification>,
     private val onItemClick: (Int) -> Unit // 点击事件

@@ -1,5 +1,13 @@
 package iss.nus.edu.sg.mygo.api.models
 
+/**
+ * @ClassName AttractionBookingRequest
+ * @Description
+ * @Author Wang Chang
+ * @StudentID A0310544R
+ * @Date 2025/2/5
+ * @Version 1.3
+ */
 
 
 import com.google.gson.annotations.SerializedName

@@ -16,6 +16,14 @@ import iss.nus.edu.sg.mygo.R
 import java.text.SimpleDateFormat
 import java.util.Locale
 
+/**
+ * @ClassName BookingAdapter
+ * @Description
+ * @Author Wang Chang
+ * @StudentID A0310544R
+ * @Date 2025/2/10
+ * @Version 1.3
+ */
 
 class BookingAdapter(
     private var bookings: List<BookingItem>,

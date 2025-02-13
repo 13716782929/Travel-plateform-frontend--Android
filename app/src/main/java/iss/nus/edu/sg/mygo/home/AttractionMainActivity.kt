@@ -26,9 +26,9 @@ import kotlinx.coroutines.launch
  * @ClassName AttractionMainActivity
  * @Description
  * @Author WANG CHANG & YAO YIYANG
- * @StudentID A0294873L
+ * @StudentID A0310544R & A0294873L
  * @Date 2025/2/11
- * @Version 1.0
+ * @Version 1.3
  */
 
 class AttractionMainActivity : AppCompatActivity() {
