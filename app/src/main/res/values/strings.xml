@@ -61,4 +61,23 @@
     <string name="itineraries">Itineraries</string>
     <string name="recent">Recent</string>
     <string name="log_out">Log out</string>
+
+    <string name="passengers">Passengers</string>
+    <string name="economy">Economy</string>
+
+    <string-array name="passenger_options">
+        <item>1 Passenger</item>
+        <item>2 Passengers</item>
+        <item>3 Passengers</item>
+        <item>4 Passengers</item>
+        <item>5 Passengers</item>
+    </string-array>
+
+    <string-array name="class_options">
+        <item>Economy</item>
+        <item>Premium Economy</item>
+        <item>Business</item>
+        <item>First Class</item>
+    </string-array>
+
 </resources>
