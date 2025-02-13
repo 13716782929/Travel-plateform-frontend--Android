@@ -7,6 +7,7 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import iss.nus.edu.sg.mygo.R
 import iss.nus.edu.sg.mygo.api.service.FlightApiService
+import iss.nus.edu.sg.mygo.home.FlightPaymentActivity
 import iss.nus.edu.sg.mygo.models.Flight
 import iss.nus.edu.sg.mygo.models.FlightBookingRequest
 import retrofit2.Call
