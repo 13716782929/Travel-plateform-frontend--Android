@@ -87,6 +87,12 @@
             android:theme="@style/Material3.Theme.MyGo">
         </activity>
 
+        <activity
+            android:name=".home.FlightPaymentActivity"
+            android:exported="true"
+            android:theme="@style/Material3.Theme.MyGo">
+        </activity>
+
     </application>
 
 </manifest>
