@@ -1,5 +1,13 @@
 package iss.nus.edu.sg.mygo.api.service
 
+/*
+Class Name: ProfileFragment
+Author: Siti Alifah Binte Yahya and Wang Chang
+StudentID: A0295324B and A0310544R
+Date: 10 Feb 2025
+Version: 2.0
+*/
+
 import iss.nus.edu.sg.mygo.api.models.AttractionBookingRequest
 import iss.nus.edu.sg.mygo.api.models.HotelBookingRequest
 import iss.nus.edu.sg.mygo.api.models.LoginRequest
@@ -71,11 +79,9 @@ interface UserApiService {
     @GET("/api/hotels/{uuid}/reviews")
     suspend fun getHotelReviews(@Path("uuid") uuid: String): Response<List<Review>>
 
-
-
-
+    //Android app to successfully connect to  backend
     companion object {
-        private const val BASE_URL = "http://10.0.2.2:8080/"
+        private const val BASE_URL = "http://10.0.2.2:5174/"
 
         fun create(): UserApiService {
             return Retrofit.Builder()

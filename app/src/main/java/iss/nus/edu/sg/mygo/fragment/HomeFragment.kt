@@ -26,6 +26,7 @@ import iss.nus.edu.sg.mygo.databinding.HomeFragmentBinding
 import iss.nus.edu.sg.mygo.home.AttractionDetailActivity
 import iss.nus.edu.sg.mygo.home.AttractionMainActivity
 import iss.nus.edu.sg.mygo.home.FlightMainActivity
+import iss.nus.edu.sg.mygo.home.FlightSearchActivity
 import iss.nus.edu.sg.mygo.home.HotelDetailActivity
 import iss.nus.edu.sg.mygo.home.HotelMainActivity
 import iss.nus.edu.sg.mygo.models.Attraction
@@ -44,11 +45,11 @@ class HomeFragment : Fragment(R.layout.home_fragment) {
     private var _binding: HomeFragmentBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var adapter: AttractionAdapter
+    private  var adapter: AttractionAdapter? = null
     private lateinit var apiService: AttractionApiService  // 使用 AttractionApiService
     private lateinit var mediaApiService: MediaApiService  // 使用 MediaApiService 获取图片
 
-    private lateinit var hotelAdapter: HotelAdapter2
+    private  var hotelAdapter: HotelAdapter2? = null
     private lateinit var apiService2: HotelApiService // 使用 HotelApiService 获取酒店数据
     private lateinit var recommendationApiService: RecommendationApiService // ✅ 添加推荐 API Service
 
@@ -114,7 +115,8 @@ class HomeFragment : Fragment(R.layout.home_fragment) {
             startActivity(Intent(requireContext(), AttractionMainActivity::class.java))
         }
         binding.flight.setOnClickListener{
-            startActivity(Intent(requireContext(), FlightMainActivity::class.java))
+            val intent = Intent(requireContext(), FlightSearchActivity::class.java)
+            startActivity(intent)
         }
     }
 
@@ -132,7 +134,7 @@ class HomeFragment : Fragment(R.layout.home_fragment) {
                     val attractionResponse = response.body()
                     attractionResponse?.let {
                         val attractionList = mapAttractionDataToAttractionList(it.data)
-                        adapter.updateData(attractionList)  // ✅ 更新 Adapter 数据
+                        adapter?.updateData(attractionList)  // ✅ 更新 Adapter 数据
                     }
                 } else {
                     Toast.makeText(requireContext(), "Failed to load attractions", Toast.LENGTH_SHORT).show()
@@ -152,7 +154,7 @@ class HomeFragment : Fragment(R.layout.home_fragment) {
 
         lifecycleScope.launch {
             try {
-                val response = apiService2.fetchHotel(0, 17, "accommodation", apiKey, contentLanguage)
+                val response = apiService2.fetchHotel(0, 7, "accommodation", apiKey, contentLanguage)
                 if (response.isSuccessful) {
                     val hotelResponse = response.body()
                     hotelResponse?.let {
@@ -180,7 +182,6 @@ class HomeFragment : Fragment(R.layout.home_fragment) {
             }
         }
     }
-
 
 
     /**
@@ -272,7 +273,7 @@ class HomeFragment : Fragment(R.layout.home_fragment) {
                     Log.e("HomeFragment", "✅ Mapped attraction data. Count: ${attractionList.size}")
 
                     // 5. 更新 RecyclerView 适配器
-                    adapter.updateData(attractionList)
+                    adapter?.updateData(attractionList)
                     Log.e("HomeFragment", "✅ Adapter updated with new attraction data.")
 
                 } else {
@@ -302,4 +303,12 @@ class HomeFragment : Fragment(R.layout.home_fragment) {
     private fun dpToPx(dp: Int): Int {
         return (dp * resources.displayMetrics.density).toInt()
     }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+        adapter = null
+        hotelAdapter = null
+    }
+
 }

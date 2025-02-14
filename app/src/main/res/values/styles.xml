@@ -1,40 +1,50 @@
 <resources>
 
+    <!-- Base App Theme -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@android:color/white</item>
+    </style>
+
+    <!-- Flight Search Theme -->
+    <style name="FlightSearchTheme" parent="AppTheme">
+        <item name="android:windowBackground">@android:color/background_light</item>
+    </style>
+
+    <!-- Action Bar Style -->
     <style name="Widget.Theme.MyGo.ActionBar.Fullscreen" parent="Widget.AppCompat.ActionBar">
         <item name="android:background">@color/black_overlay</item>
     </style>
 
-    <style name="Widget.Theme.MyGo.ButtonBar.Fullscreen" parent="">
+    <!--  (select_item) -->
+    <style name="select_item">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">#000000</item>
+        <item name="android:padding">4dp</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <!-- Button Bar Style -->
+
+    <style name="Widget.Theme.MyGo.ButtonBar" parent="Widget.AppCompat.ButtonBar">
         <item name="android:background">@color/black_overlay</item>
         <item name="android:buttonBarStyle">?android:attr/buttonBarStyle</item>
     </style>
 
+
+    <!-- Typography Styles -->
     <style name="joti_one_regular">
         <item name="android:fontFamily">@font/joti_one_regular</item>
     </style>
 
-    
     <style name="anek_gurmukhi_regular">
         <item name="android:fontFamily">@font/anek_gurmukhi_regular</item>
-    </style>
-
-    <style name="anek_gurmukhi_medium">
-        <item name="android:fontFamily">@font/anek_gurmukhi_medium</item>
     </style>
 
     <style name="anek_gurmukhi_bold">
         <item name="android:fontFamily">@font/anek_gurmukhi_bold</item>
     </style>
 
-    <style name="StatisticText">
-        <item name="android:textSize">18sp</item>
-        <item name="android:textColor">#000000</item> <!-- Black text -->
-        <item name="android:textStyle">bold</item>
-        <item name="android:fontFamily">sans-serif</item>
-        <item name="android:gravity">center</item>
-    </style>
-
-
+    <!-- Custom Text Styles -->
     <style name="welcome">
         <item name="android:textSize">40sp</item>
         <item name="android:textColor">#FFFFFF</item>
@@ -47,11 +57,6 @@
         <item name="android:fontFamily">@font/joti_one_regular</item>
     </style>
 
-    <style name="select_item">
-        <item name="android:textSize">14sp</item>
-        <item name="android:textColor">#000000</item>
-    </style>
-
     <style name="Recommend_font">
         <item name="android:textSize">16sp</item>
         <item name="android:textColor">#1B3681</item>
@@ -62,16 +67,8 @@
         <item name="android:fontFamily">@font/inter_18pt_medium</item>
     </style>
 
-    <style name="inter_thin">
-        <item name="android:fontFamily">@font/inter_18pt_thin</item>
-    </style>
-
     <style name="inter_regular">
         <item name="android:fontFamily">@font/inter_18pt_regular</item>
-    </style>
-
-    <style name="inter_semibold">
-        <item name="android:fontFamily">@font/inter_18pt_semibold</item>
     </style>
 
 </resources>

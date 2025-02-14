@@ -69,6 +69,10 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    implementation("com.github.bumptech.glide:glide:4.12.0")
+    implementation("androidx.appcompat:appcompat:1.6.1")
+    annotationProcessor("com.github.bumptech.glide:compiler:4.12.0")
+
 
     implementation(libs.retrofit)
     implementation(libs.retrofit.gson)
