@@ -1,5 +1,6 @@
 package iss.nus.edu.sg.mygo.fragment
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -22,8 +23,8 @@ import kotlinx.coroutines.launch
  * @Description
  * @Author Wang Chang
  * @StudentID A0310544R
- * @Date 2025/1/28
- * @Version 1.3
+ * @Date 2025/2/14
+ * @Version 1.5
  */
 
 class NotificationFragment : Fragment() {
@@ -58,7 +59,7 @@ class NotificationFragment : Fragment() {
             adapter.notifyDataSetChanged()
 
             if (notifications.any { it.title.contains("Canceled") }) {
-                showUrgentNotification()
+                hideUrgentNotification() // don't use
             } else {
                 hideUrgentNotification()
             }
@@ -70,7 +71,13 @@ class NotificationFragment : Fragment() {
     // **获取用户 ID**
     private fun getUserIdFromSession(): Int {
         // 这里应该从 SharedPreferences 或者 SessionManager 获取当前用户 ID
-        return 1 // 假设返回用户 ID 1，实际应用需改成真实的逻辑
+        val sharedPreferences = requireContext().getSharedPreferences("UserPrefs", Context.MODE_PRIVATE)
+
+        val userIdString = sharedPreferences.getString("user_id", null)
+        if (userIdString != null) {
+            return userIdString.toInt()
+        } // 假设返回用户 ID 1，实际应用需改成真实的逻辑
+        else return -1
     }
 
     // **获取用户所有 AttractionBooking 和 HotelBooking，并生成通知**
@@ -80,14 +87,17 @@ class NotificationFragment : Fragment() {
         val attractionBookings = getUserAttractionBookings(userId)
         val hotelBookings = getUserHotelBookings(userId)
 
+        // todo: use Uuid to get Name
         for (booking in attractionBookings) {
+            val attractionTime = booking.visitTime
             val attractionName = booking.attractionUuid ?: booking.attractionName
-            notifications.add(createAttractionNotification(booking, attractionName))
+            notifications.add(createAttractionNotification(booking, attractionName,attractionTime))
         }
 
         for (booking in hotelBookings) {
+            val checkinDate = booking.checkInDate
             val hotelName = booking.hotelUuid ?: booking.hotelName
-            notifications.add(createHotelNotification(booking, hotelName))
+            notifications.add(createHotelNotification(booking, hotelName, checkinDate))
         }
 
         return notifications
@@ -116,7 +126,7 @@ class NotificationFragment : Fragment() {
     }
 
     // **生成 Attraction 预订通知**
-    private fun createAttractionNotification(booking: AttractionBooking, attractionName: String): Notification {
+    private fun createAttractionNotification(booking: AttractionBooking, attractionName: String, attractionTime: String): Notification {
         val title = when (booking.status) {
             "Confirmed" -> "Upcoming Attraction Visit"
             "Canceled" -> "Canceled Attraction Booking"
@@ -131,11 +141,18 @@ class NotificationFragment : Fragment() {
             else -> ""
         }
 
-        return Notification(title, getColorByName("orange_notification"), message)
+        val color = when(booking.status) {
+            "Confirmed" -> "green_notification"
+            "Canceled" -> "red_notification"
+            "Pending" -> "orange_notification"
+            else -> "orange_notification"
+        }
+
+        return Notification(title, getColorByName(color), message, attractionTime)
     }
 
     // **生成 Hotel 预订通知**
-    private fun createHotelNotification(booking: HotelBooking, hotelName: String): Notification {
+    private fun createHotelNotification(booking: HotelBooking, hotelName: String, checkinDate: String): Notification {
         val title = when (booking.status) {
             "Confirmed" -> "Upcoming Hotel Stay"
             "Canceled" -> "Canceled Hotel Booking"
@@ -150,7 +167,8 @@ class NotificationFragment : Fragment() {
             else -> ""
         }
 
-        return Notification(title, getColorByName("green_notification"), message)
+
+        return Notification(title, getColorByName("green_notification"), message, checkinDate)
     }
 
     // **显示紧急通知**

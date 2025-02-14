@@ -1,4 +1,7 @@
 package iss.nus.edu.sg.mygo.models
+
+import java.time.LocalDateTime
+
 /**
  * @ClassName Notification
  * @Description
@@ -11,5 +14,6 @@ package iss.nus.edu.sg.mygo.models
 data class Notification(
     val title: String,
     val color: Int,
-    val content: String
+    val content: String,
+    val time: String
 )

@@ -14,8 +14,8 @@ import iss.nus.edu.sg.mygo.models.Notification
  * @Description
  * @Author Wang Chang
  * @StudentID A0310544R
- * @Date 2025/2/5
- * @Version 1.3
+ * @Date 2025/2/14
+ * @Version 1.5
  */
 class NotificationAdapter(
     private val notifications: List<Notification>,
@@ -33,6 +33,7 @@ class NotificationAdapter(
         holder.titleTextView.text = notification.title
         holder.titleTextView.setTextColor(notification.color)
         holder.contentTextView.text = notification.content
+        holder.timeTextView.text = notification.time
         holder.itemView.setOnClickListener {
             onItemClick(position)
         }
@@ -46,5 +47,6 @@ class NotificationAdapter(
     class NotificationViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val titleTextView: TextView = itemView.findViewById(R.id.notificationTitle)
         val contentTextView: TextView = itemView.findViewById(R.id.notificationContent)
+        val timeTextView: TextView = itemView.findViewById(R.id.notification_time)
     }
 }

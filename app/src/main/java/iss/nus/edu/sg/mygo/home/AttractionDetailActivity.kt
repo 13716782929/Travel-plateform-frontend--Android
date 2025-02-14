@@ -414,20 +414,24 @@ class AttractionDetailActivity : AppCompatActivity() {
 
         businessHours.forEach { businessHour ->
             val dayOfWeek = getDayOfWeek(businessHour.day)
-            if (dayOfWeek != -1) {
-                for (i in 0..60) { // **只计算未来 60 天**
-                    calendar.timeInMillis = today.timeInMillis
-                    calendar.add(Calendar.DAY_OF_YEAR, i)
 
-                    if (calendar.get(Calendar.DAY_OF_WEEK) == dayOfWeek) {
-                        calendar.set(Calendar.HOUR_OF_DAY, 0)
-                        calendar.set(Calendar.MINUTE, 0)
-                        calendar.set(Calendar.SECOND, 0)
-                        calendar.set(Calendar.MILLISECOND, 0) // 归零，确保匹配
+            for (i in 0..60) { // **只计算未来 60 天**
+                calendar.timeInMillis = today.timeInMillis
+                calendar.add(Calendar.DAY_OF_YEAR, i)
 
-                        if (calendar.timeInMillis <= maxDate.timeInMillis) {
-                            availableDates.add(calendar.timeInMillis)
-                        }
+                val formattedDate = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(calendar.time)
+
+                // 处理 daily（适用于所有天）
+                if (dayOfWeek == 0 || dayOfWeek == calendar.get(Calendar.DAY_OF_WEEK) ||
+                    (dayOfWeek == -2 && isPublicHoliday(formattedDate))) {
+
+                    calendar.set(Calendar.HOUR_OF_DAY, 0)
+                    calendar.set(Calendar.MINUTE, 0)
+                    calendar.set(Calendar.SECOND, 0)
+                    calendar.set(Calendar.MILLISECOND, 0) // 归零，确保匹配
+
+                    if (calendar.timeInMillis <= maxDate.timeInMillis) {
+                        availableDates.add(calendar.timeInMillis)
                     }
                 }
             }
@@ -465,6 +469,19 @@ class AttractionDetailActivity : AppCompatActivity() {
     }
 
     /**
+     * 判断某一天是否为 `public_holiday`
+     */
+    private fun isPublicHoliday(date: String): Boolean {
+        val publicHolidays = getPublicHolidays()
+        val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+
+        return publicHolidays.any { holidayTimestamp ->
+            val holidayDate = dateFormat.format(holidayTimestamp)
+            holidayDate == date
+        }
+    }
+
+    /**
      * 获取 `day` 对应的 `Calendar.DAY_OF_WEEK`
      */
     private fun getDayOfWeek(day: String): Int {
@@ -476,10 +493,12 @@ class AttractionDetailActivity : AppCompatActivity() {
             "friday" -> Calendar.FRIDAY
             "saturday" -> Calendar.SATURDAY
             "sunday" -> Calendar.SUNDAY
-            "public_holiday" -> -1
+            "daily" -> 0 // `daily` 适用于所有日期
+            "public_holiday" -> -2 // 需要手动查询
             else -> -1
         }
     }
+
 
     /**
      * 显示时间选择器，仅允许 `openTime - closeTime`
