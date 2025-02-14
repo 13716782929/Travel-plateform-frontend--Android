@@ -1,0 +1,153 @@
+<?xml version="1.0" ?>
+<SmellBaseline>
+  <ManuallySuppressedIssues></ManuallySuppressedIssues>
+  <CurrentIssues>
+    <ID>ClassNaming:flightViewModel.kt$flightViewModel : ViewModel</ID>
+    <ID>ComplexCondition:AttractionDetailActivity.kt$AttractionDetailActivity$dayOfWeek == 0 || dayOfWeek == calendar.get(Calendar.DAY_OF_WEEK) || (dayOfWeek == -2 &amp;&amp; isPublicHoliday(formattedDate))</ID>
+    <ID>ComplexCondition:FlightPaymentActivity.kt$FlightPaymentActivity$cardNumber.isEmpty() || cardHolder.isEmpty() || cvv.isEmpty() || expiryDate.isEmpty()</ID>
+    <ID>ComplexCondition:RegisterActivity.kt$RegisterActivity$username.isEmpty() || email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()</ID>
+    <ID>CyclomaticComplexMethod:AttractionDetailActivity.kt$AttractionDetailActivity$private fun fetchAttractionDetails(uuid: String)</ID>
+    <ID>EmptyFunctionBlock:AttractionMainActivity.kt$AttractionMainActivity.&lt;no name provided&gt;${}</ID>
+    <ID>EmptyKtFile:AccommodationImageResponse.kt$.AccommodationImageResponse.kt</ID>
+    <ID>FunctionNaming:Theme.kt$@Composable fun MyGoTheme( darkTheme: Boolean = isSystemInDarkTheme(), // Dynamic color is available on Android 12+ dynamicColor: Boolean = true, content: @Composable () -&gt; Unit )</ID>
+    <ID>ImplicitDefaultLocale:AttractionAdapter.kt$AttractionAdapter$String.format("%.1f", attraction.rate)</ID>
+    <ID>ImplicitDefaultLocale:AttractionDetailActivity.kt$AttractionDetailActivity$String.format("%02d:%02d", hourOfDay, minute)</ID>
+    <ID>ImplicitDefaultLocale:FlightSearchActivity.kt$FlightSearchActivity$String.format("%04d-%02d-%02d", year, month + 1, dayOfMonth)</ID>
+    <ID>ImplicitDefaultLocale:ScheduleFragment.kt$ScheduleFragment$String.format("%04d-%02d-%02d", year, month + 1, dayOfMonth)</ID>
+    <ID>ImplicitDefaultLocale:ScheduleFragment.kt$ScheduleFragment$String.format("%04d-%02d-%02d", year, month, day)</ID>
+    <ID>LongMethod:AttractionDetailActivity.kt$AttractionDetailActivity$private fun fetchAttractionDetails(uuid: String)</ID>
+    <ID>LongParameterList:AttractionApiService.kt$AttractionApiService$( @Query("keyword") keyword: String, @Query("dataset") dataset: String = "attractions", // 默认查询 attractions 数据集 @Query("offset") offset: Int = 0, // 用于分页 @Query("limit") limit: Int = 7, // 每次加载条目数量 @Header("X-API-Key") apiKey: String, @Header("X-Content-Language") contentLanguage: String = "en" )</ID>
+    <ID>LongParameterList:AttractionDetailActivity.kt$AttractionDetailActivity$(selectedHour: Int, selectedMinute: Int, openHour: Int, openMinute: Int, closeHour: Int, closeMinute: Int)</ID>
+    <ID>LongParameterList:HotelApiService.kt$HotelApiService$( @Query("keyword") keyword: String, @Query("dataset") dataset: String = "accommodation", // 默认查询 accommodation 数据集 @Query("offset") offset: Int = 0, // 用于分页 @Query("limit") limit: Int = 7, // 每次加载条目数量 @Header("X-API-Key") apiKey: String, @Header("X-Content-Language") contentLanguage: String = "en" )</ID>
+    <ID>LongParameterList:User.kt$User$( val userId: Int? = null, val name: String, val email: String, val phone: String, val status: String? = null, val gender: String? = null, val countryOfOrigin: String? = null, val dateOfBirth: String? = null, val createTime: String? = null )</ID>
+    <ID>MagicNumber:AttractionDetailActivity.kt$AttractionDetailActivity$10</ID>
+    <ID>MagicNumber:AttractionDetailActivity.kt$AttractionDetailActivity$1000</ID>
+    <ID>MagicNumber:AttractionDetailActivity.kt$AttractionDetailActivity$1001</ID>
+    <ID>MagicNumber:AttractionDetailActivity.kt$AttractionDetailActivity$16f</ID>
+    <ID>MagicNumber:AttractionDetailActivity.kt$AttractionDetailActivity$18f</ID>
+    <ID>MagicNumber:AttractionDetailActivity.kt$AttractionDetailActivity$2</ID>
+    <ID>MagicNumber:AttractionDetailActivity.kt$AttractionDetailActivity$2000</ID>
+    <ID>MagicNumber:AttractionDetailActivity.kt$AttractionDetailActivity$24</ID>
+    <ID>MagicNumber:AttractionDetailActivity.kt$AttractionDetailActivity$5</ID>
+    <ID>MagicNumber:AttractionDetailActivity.kt$AttractionDetailActivity$60</ID>
+    <ID>MagicNumber:AttractionDetailActivity.kt$AttractionDetailActivity$60L</ID>
+    <ID>MagicNumber:AttractionDetailActivity.kt$AttractionDetailActivity.&lt;no name provided&gt;$2000</ID>
+    <ID>MagicNumber:AttractionMainActivity.kt$AttractionMainActivity$7</ID>
+    <ID>MagicNumber:AttractionMainActivity.kt$AttractionMainActivity$8</ID>
+    <ID>MagicNumber:Color.kt$0xFF625b71</ID>
+    <ID>MagicNumber:Color.kt$0xFF6650a4</ID>
+    <ID>MagicNumber:Color.kt$0xFF7D5260</ID>
+    <ID>MagicNumber:Color.kt$0xFFCCC2DC</ID>
+    <ID>MagicNumber:Color.kt$0xFFD0BCFF</ID>
+    <ID>MagicNumber:Color.kt$0xFFEFB8C8</ID>
+    <ID>MagicNumber:FlightDetailActivity.kt$FlightDetailActivity$1001</ID>
+    <ID>MagicNumber:FlightDetailActivity.kt$FlightDetailActivity$1200.00</ID>
+    <ID>MagicNumber:FlightDetailActivity.kt$FlightDetailActivity$200.00</ID>
+    <ID>MagicNumber:FlightDetailActivity.kt$FlightDetailActivity$30</ID>
+    <ID>MagicNumber:FlightPaymentActivity.kt$FlightPaymentActivity$1000</ID>
+    <ID>MagicNumber:HomeFragment.kt$HomeFragment$10</ID>
+    <ID>MagicNumber:HomeFragment.kt$HomeFragment$17</ID>
+    <ID>MagicNumber:HomeFragment.kt$HomeFragment$7</ID>
+    <ID>MagicNumber:HotelDetailActivity.kt$HotelDetailActivity$1000</ID>
+    <ID>MagicNumber:HotelDetailActivity.kt$HotelDetailActivity$1001</ID>
+    <ID>MagicNumber:HotelDetailActivity.kt$HotelDetailActivity$2000</ID>
+    <ID>MagicNumber:HotelDetailActivity.kt$HotelDetailActivity$24</ID>
+    <ID>MagicNumber:HotelDetailActivity.kt$HotelDetailActivity$60</ID>
+    <ID>MagicNumber:HotelDetailActivity.kt$HotelDetailActivity.&lt;no name provided&gt;$16f</ID>
+    <ID>MagicNumber:HotelDetailActivity.kt$HotelDetailActivity.&lt;no name provided&gt;$18f</ID>
+    <ID>MagicNumber:HotelDetailActivity.kt$HotelDetailActivity.&lt;no name provided&gt;$2000</ID>
+    <ID>MagicNumber:HotelDetailActivity.kt$HotelDetailActivity.&lt;no name provided&gt;$5</ID>
+    <ID>MagicNumber:HotelSearchActivity.kt$HotelSearchActivity$20</ID>
+    <ID>MagicNumber:MyGoGreeting.kt$MyGoGreeting$1500</ID>
+    <ID>MagicNumber:RetrofitClient.kt$RetrofitClient$30</ID>
+    <ID>MagicNumber:ReviewAdapter.kt$ReviewAdapter$0.5f</ID>
+    <ID>MagicNumber:ReviewAdapter.kt$ReviewAdapter$5</ID>
+    <ID>MagicNumber:SessionManager.kt$SessionManager$1000</ID>
+    <ID>MaxLineLength:AttractionDetailActivity.kt$AttractionDetailActivity$.</ID>
+    <ID>MaxLineLength:AttractionDetailActivity.kt$AttractionDetailActivity$Toast.makeText(this@AttractionDetailActivity, "Booking Failed: $errorBody", Toast.LENGTH_SHORT).show()</ID>
+    <ID>MaxLineLength:AttractionDetailActivity.kt$AttractionDetailActivity$Toast.makeText(this@AttractionDetailActivity, "Failed to load attraction details", Toast.LENGTH_SHORT).show()</ID>
+    <ID>MaxLineLength:AttractionDetailActivity.kt$AttractionDetailActivity$Toast.makeText(this@AttractionDetailActivity, "Network Error: ${e.message}", Toast.LENGTH_SHORT).show()</ID>
+    <ID>MaxLineLength:AttractionDetailActivity.kt$AttractionDetailActivity$val response = apiService.fetchAttractionByUUID(uuid = uuid, apiKey = apiKey, contentLanguage = contentLanguage)</ID>
+    <ID>MaxLineLength:AttractionDetailActivity.kt$AttractionDetailActivity.&lt;no name provided&gt;$// Load the next image first (keep the current image unchanged until the new image is fully loaded)</ID>
+    <ID>MaxLineLength:BookingAdapter.kt$BookingAdapter$is BookingItem.AttractionBookingItem -&gt; (holder as AttractionViewHolder).bind(bookingItem, onDeleteClick, onCommentClick)</ID>
+    <ID>MaxLineLength:BookingAdapter.kt$BookingAdapter$is BookingItem.HotelBookingItem -&gt; (holder as HotelViewHolder).bind(bookingItem, onDeleteClick, onCommentClick)</ID>
+    <ID>MaxLineLength:FlightDetailActivity.kt$FlightDetailActivity$Toast.makeText(this@FlightDetailActivity, "Booking Failed: $errorBody", Toast.LENGTH_SHORT).show()</ID>
+    <ID>MaxLineLength:HomeFragment.kt$HomeFragment$Log.e("HomeFragment", "❌ Failed to fetch attraction details for UUID: $uuid, Response Code: ${attractionResponse.code()}")</ID>
+    <ID>MaxLineLength:HomeFragment.kt$HomeFragment$Log.e("HomeFragment", "❌ Failed to fetch recommendations. Error: ${recommendationResponse.errorBody()?.string()}")</ID>
+    <ID>MaxLineLength:HomeFragment.kt$HomeFragment$binding.recyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)</ID>
+    <ID>MaxLineLength:HomeFragment.kt$HomeFragment$binding.recyclerViewHotels.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL,false)</ID>
+    <ID>MaxLineLength:HomeFragment.kt$HomeFragment$val attractionResponse = apiService.fetchAttractionByUUID(uuid = uuid, apiKey = apiKey, contentLanguage = contentLanguage)</ID>
+    <ID>MaxLineLength:HotelDetailActivity.kt$HotelDetailActivity$private</ID>
+    <ID>MaxLineLength:HotelDetailActivity.kt$HotelDetailActivity.&lt;no name provided&gt;$hotelRatingTextView.text = if (hotelData.rating == 0.0) "No Rating" else hotelData.rating.toString()</ID>
+    <ID>MaxLineLength:HotelSearchActivity.kt$HotelSearchActivity$val inputMethodManager = getSystemService(android.content.Context.INPUT_METHOD_SERVICE) as android.view.inputmethod.InputMethodManager</ID>
+    <ID>MaxLineLength:NotificationFragment.kt$NotificationFragment$"Confirmed" -&gt; "Your hotel booking at $hotelName (Room: ${booking.roomType}) is confirmed!\nCheck-in: ${booking.checkInDate}\nCheck-out: ${booking.checkOutDate}\nTotal: $${booking.totalAmount}"</ID>
+    <ID>MaxLineLength:NotificationFragment.kt$NotificationFragment$"Confirmed" -&gt; "Your visit to $attractionName is confirmed!\nDate: ${booking.visitDate}\nTime: ${booking.visitTime}\nTickets: ${booking.numberOfTickets}"</ID>
+    <ID>MaxLineLength:NotificationFragment.kt$NotificationFragment$private</ID>
+    <ID>MaxLineLength:ScheduleFragment.kt$ScheduleFragment$val attractionBookings = fetchAttractionBookings(userId).filter { it.attractionBooking.status != "Canceled" }</ID>
+    <ID>MaxLineLength:SpaceItemDecoration.kt$//class SpaceItemDecoration(private val space_l: Int,private val space_r: Int,private val space_t: Int,private val space_b: Int) : RecyclerView.ItemDecoration() {</ID>
+    <ID>NestedBlockDepth:AttractionDetailActivity.kt$AttractionDetailActivity$private fun parseAvailableDates(): Set&lt;Long&gt;</ID>
+    <ID>NewLineAtEndOfFile:AttractionApiService.kt$iss.nus.edu.sg.mygo.api.service.AttractionApiService.kt</ID>
+    <ID>NewLineAtEndOfFile:BookingAdapter.kt$iss.nus.edu.sg.mygo.adapter.BookingAdapter.kt</ID>
+    <ID>NewLineAtEndOfFile:Color.kt$iss.nus.edu.sg.mygo.ui.theme.Color.kt</ID>
+    <ID>NewLineAtEndOfFile:DuplicateDataStructure.kt$iss.nus.edu.sg.mygo.api.models.DuplicateDataStructure.kt</ID>
+    <ID>NewLineAtEndOfFile:FlightApiService.kt$iss.nus.edu.sg.mygo.api.service.FlightApiService.kt</ID>
+    <ID>NewLineAtEndOfFile:FlightBooking.kt$iss.nus.edu.sg.mygo.models.FlightBooking.kt</ID>
+    <ID>NewLineAtEndOfFile:FlightMainActivity.kt$iss.nus.edu.sg.mygo.home.FlightMainActivity.kt</ID>
+    <ID>NewLineAtEndOfFile:FlightSearchActivity.kt$iss.nus.edu.sg.mygo.home.FlightSearchActivity.kt</ID>
+    <ID>NewLineAtEndOfFile:HotelApiService.kt$iss.nus.edu.sg.mygo.api.service.HotelApiService.kt</ID>
+    <ID>NewLineAtEndOfFile:HotelBooking.kt$iss.nus.edu.sg.mygo.models.HotelBooking.kt</ID>
+    <ID>NewLineAtEndOfFile:HotelBookingRequest.kt$iss.nus.edu.sg.mygo.api.models.HotelBookingRequest.kt</ID>
+    <ID>NewLineAtEndOfFile:HotelDetailActivity.kt$iss.nus.edu.sg.mygo.home.HotelDetailActivity.kt</ID>
+    <ID>NewLineAtEndOfFile:LoginRequest.kt$iss.nus.edu.sg.mygo.models.LoginRequest.kt</ID>
+    <ID>NewLineAtEndOfFile:Notification.kt$iss.nus.edu.sg.mygo.models.Notification.kt</ID>
+    <ID>NewLineAtEndOfFile:ReviewRequest.kt$iss.nus.edu.sg.mygo.api.models.ReviewRequest.kt</ID>
+    <ID>NewLineAtEndOfFile:RoomType.kt$iss.nus.edu.sg.mygo.enum.RoomType.kt</ID>
+    <ID>NewLineAtEndOfFile:SessionBaseActivity.kt$iss.nus.edu.sg.mygo.sessions.SessionBaseActivity.kt</ID>
+    <ID>NewLineAtEndOfFile:Theme.kt$iss.nus.edu.sg.mygo.ui.theme.Theme.kt</ID>
+    <ID>NewLineAtEndOfFile:TicketType.kt$iss.nus.edu.sg.mygo.enum.TicketType.kt</ID>
+    <ID>NewLineAtEndOfFile:Type.kt$iss.nus.edu.sg.mygo.ui.theme.Type.kt</ID>
+    <ID>NewLineAtEndOfFile:User.kt$iss.nus.edu.sg.mygo.api.models.User.kt</ID>
+    <ID>NewLineAtEndOfFile:User.kt$iss.nus.edu.sg.mygo.models.User.kt</ID>
+    <ID>NewLineAtEndOfFile:UserApiService.kt$iss.nus.edu.sg.mygo.api.service.UserApiService.kt</ID>
+    <ID>NewLineAtEndOfFile:flightViewModel.kt$iss.nus.edu.sg.mygo.viewmodel.flightViewModel.kt</ID>
+    <ID>PrintStackTrace:NotificationFragment.kt$NotificationFragment$e</ID>
+    <ID>ReturnCount:ScheduleFragment.kt$ScheduleFragment$private suspend fun fetchAttraction(uuid: String?): Attraction?</ID>
+    <ID>ReturnCount:ScheduleFragment.kt$ScheduleFragment$private suspend fun fetchHotel(uuid: String?): Hotel?</ID>
+    <ID>SwallowedException:BookingAdapter.kt$BookingAdapter.AttractionViewHolder$e: Exception</ID>
+    <ID>SwallowedException:ScheduleFragment.kt$ScheduleFragment$e: Exception</ID>
+    <ID>SwallowedException:SessionManager.kt$SessionManager$e: Exception</ID>
+    <ID>TooGenericExceptionCaught:AttractionDetailActivity.kt$AttractionDetailActivity$e: Exception</ID>
+    <ID>TooGenericExceptionCaught:AttractionMainActivity.kt$AttractionMainActivity$e: Exception</ID>
+    <ID>TooGenericExceptionCaught:BookingAdapter.kt$BookingAdapter.AttractionViewHolder$e: Exception</ID>
+    <ID>TooGenericExceptionCaught:FlightDetailActivity.kt$FlightDetailActivity$e: Exception</ID>
+    <ID>TooGenericExceptionCaught:HomeFragment.kt$HomeFragment$e: Exception</ID>
+    <ID>TooGenericExceptionCaught:HotelDetailActivity.kt$HotelDetailActivity$e: Exception</ID>
+    <ID>TooGenericExceptionCaught:LoginActivity.kt$LoginActivity$e: Exception</ID>
+    <ID>TooGenericExceptionCaught:NotificationFragment.kt$NotificationFragment$e: Exception</ID>
+    <ID>TooGenericExceptionCaught:RegisterActivity.kt$RegisterActivity$e: Exception</ID>
+    <ID>TooGenericExceptionCaught:ScheduleFragment.kt$ScheduleFragment$e: Exception</ID>
+    <ID>TooGenericExceptionCaught:SessionManager.kt$SessionManager$e: Exception</ID>
+    <ID>TooGenericExceptionCaught:flightViewModel.kt$flightViewModel$e: Exception</ID>
+    <ID>TooManyFunctions:AttractionDetailActivity.kt$AttractionDetailActivity : AppCompatActivity</ID>
+    <ID>TooManyFunctions:HotelDetailActivity.kt$HotelDetailActivity : AppCompatActivity</ID>
+    <ID>TooManyFunctions:NotificationFragment.kt$NotificationFragment : Fragment</ID>
+    <ID>TooManyFunctions:ScheduleFragment.kt$ScheduleFragment : Fragment</ID>
+    <ID>TooManyFunctions:UserApiService.kt$UserApiService</ID>
+    <ID>UnusedParameter:RegisterActivity.kt$RegisterActivity$username: String</ID>
+    <ID>UnusedPrivateMember:HomeFragment.kt$HomeFragment$private fun fetchAttractions()</ID>
+    <ID>UnusedPrivateMember:MainActivity.kt$MainActivity$private fun isUserLoggedIn(): Boolean</ID>
+    <ID>UnusedPrivateMember:MainActivity.kt$MainActivity$private fun navigateToLoginActivity()</ID>
+    <ID>UnusedPrivateProperty:AttractionDetailActivity.kt$AttractionDetailActivity$private lateinit var bookButton: Button</ID>
+    <ID>UnusedPrivateProperty:AttractionDetailActivity.kt$AttractionDetailActivity$private lateinit var bookButtonText: TextView</ID>
+    <ID>UnusedPrivateProperty:BookingAdapter.kt$BookingAdapter.Companion$private const val TYPE_FLIGHT = 3</ID>
+    <ID>UnusedPrivateProperty:FlightAdapter.kt$FlightAdapter$private val onBookClick: (FlightInfo) -&gt; Unit</ID>
+    <ID>UnusedPrivateProperty:FlightMainActivity.kt$FlightMainActivity$val destinationInput = findViewById&lt;EditText&gt;(R.id.text_lahore)</ID>
+    <ID>UnusedPrivateProperty:HotelAdapter2.kt$HotelAdapter2$private val onItemClick: (Int) -&gt; Unit // 点击事件</ID>
+    <ID>UnusedPrivateProperty:LoginActivity.kt$LoginActivity$private val sessionManager by lazy { SessionManager(this) } // using SessionManager doing authentication</ID>
+    <ID>UnusedPrivateProperty:RetrofitClient.kt$RetrofitClient$private val mediaRetrofit: Retrofit by lazy { Retrofit.Builder() .baseUrl(BACKEND_URL) .client(client) .addConverterFactory(GsonConverterFactory.create()) .build() }</ID>
+    <ID>VariableNaming:HotelAdapter.kt$HotelAdapter.HotelViewHolder$val ImageView: ImageView = itemView.findViewById(R.id.container_mask_group)</ID>
+    <ID>VariableNaming:HotelAdapter2.kt$HotelAdapter2.HotelViewHolder2$val ImageView: ImageView = itemView.findViewById(R.id.container_mask_group)</ID>
+    <ID>WildcardImport:AttractionApiService.kt$import retrofit2.http.*</ID>
+    <ID>WildcardImport:FlightDetailActivity.kt$import android.widget.*</ID>
+  </CurrentIssues>
+</SmellBaseline>
