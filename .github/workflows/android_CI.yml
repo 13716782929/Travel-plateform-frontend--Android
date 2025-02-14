@@ -34,6 +34,19 @@ jobs:
       - name: 运行 Detekt（Kotlin 代码质量检查）
         run: ./gradlew detekt
 
+      - name: Archive Detekt Report
+        uses: actions/upload-artifact@v3
+        with:
+          name: detekt-report
+          path: app/build/reports/detekt/
+
+      - name: 归档 Detekt Baseline
+        uses: actions/upload-artifact@v3
+        with:
+          name: detekt-baseline
+          path: app/baseline.xml
+
+
       - name: 运行单元测试
         run: ./gradlew testDebugUnitTest
 
