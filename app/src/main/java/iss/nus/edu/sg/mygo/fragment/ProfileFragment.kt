@@ -1,5 +1,13 @@
 package iss.nus.edu.sg.mygo.fragment
 
+/*
+Class Name: ProfileFragment
+Author: Siti Alifah Binte Yahya and Wang Chang
+StudentID: A0295324B and A0310544R
+Date: 10 Feb 2025
+Version: 2.0
+*/
+
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater

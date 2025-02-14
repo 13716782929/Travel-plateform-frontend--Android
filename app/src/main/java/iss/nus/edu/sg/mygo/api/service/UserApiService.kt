@@ -1,5 +1,13 @@
 package iss.nus.edu.sg.mygo.api.service
 
+/*
+Class Name: ProfileFragment
+Author: Siti Alifah Binte Yahya and Wang Chang
+StudentID: A0295324B and A0310544R
+Date: 10 Feb 2025
+Version: 2.0
+*/
+
 import iss.nus.edu.sg.mygo.api.models.AttractionBookingRequest
 import iss.nus.edu.sg.mygo.api.models.HotelBookingRequest
 import iss.nus.edu.sg.mygo.api.models.LoginRequest
