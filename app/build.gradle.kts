@@ -99,14 +99,18 @@ dependencies {
 }
 
 detekt {
-    baseline = file("$rootDir/app/baseline.xml")  // 让 detekt 使用 baseline 文件
+    baseline = file("$rootDir/app/baseline.xml")  // ✅ 让 detekt 使用 baseline 文件
     toolVersion = "1.23.1"
-    config = files("$rootDir/config/detekt/detekt.yml") // ✅ 确保 `detekt.yml` 存在
+    config.setFrom(files("$rootDir/config/detekt/detekt.yml")) // ✅ 使用 `setFrom()` 替换 `config = files(...)`
     buildUponDefaultConfig = true // ✅ 允许覆盖默认规则
+}
+
+// ✅ 兼容 Gradle 9.0 的 `reports` 配置
+tasks.withType<io.gitlab.arturbosch.detekt.Detekt>().configureEach {
     reports {
         html.required.set(true)  // 生成 HTML 格式报告
         xml.required.set(true)   // 生成 XML 格式报告
         txt.required.set(false)  // 关闭 TXT 格式
     }
-    // 报错结果存储位置：C:\Users\Lenovo\Documents\SA\AD Project\MyGo\front_android\app\build\reports\detekt
 }
+    // 报错结果存储位置：C:\Users\Lenovo\Documents\SA\AD Project\MyGo\front_android\app\build\reports\detekt
