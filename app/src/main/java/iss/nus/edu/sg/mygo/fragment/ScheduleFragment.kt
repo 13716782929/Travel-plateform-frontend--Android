@@ -21,6 +21,7 @@ import iss.nus.edu.sg.mygo.adapter.BookingAdapter
 import iss.nus.edu.sg.mygo.api.models.AttractionData
 import iss.nus.edu.sg.mygo.api.models.ReviewRequest
 import iss.nus.edu.sg.mygo.api.service.AttractionApiService
+import iss.nus.edu.sg.mygo.api.service.FlightApiService
 import iss.nus.edu.sg.mygo.api.service.HotelApiService
 import iss.nus.edu.sg.mygo.api.service.UserApiService
 import iss.nus.edu.sg.mygo.enum.RoomType
@@ -57,6 +58,9 @@ class ScheduleFragment : Fragment() {
     private val sessionManager by lazy { SessionManager(requireContext()) }
     private val attractionApiService = AttractionApiService.create()
     private val hotelApiService = HotelApiService.create()
+    private val flightApiService = FlightApiService.create()
+
+
 
     private var selectedDate: String = ""
     private var allBookings: List<BookingItem> = emptyList() // 用户所有booking的信息

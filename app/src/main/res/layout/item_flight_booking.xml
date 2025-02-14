@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/item_flight_booking_card"
+    android:layout_width="380dp"
+    android:layout_height="150dp"
+    android:clickable="true"
+    android:focusable="true">
+
+    <ImageView
+        android:id="@+id/flight_booking_icon"
+        android:layout_width="159dp"
+        android:layout_height="87dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:clipToOutline="true"
+        android:scaleType="centerCrop"
+        android:src="@drawable/flight_image_rectangle" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/flight_booking_icon"
+        android:orientation="vertical"
+        android:layout_marginStart="10dp">
+
+        <TextView
+            android:id="@+id/text_flight_booking_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Flight Booking ID: "
+            android:textSize="14sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/text_booking_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Booking ID: "
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/text_flight_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Flight ID: "
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/text_passenger_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Passenger Name: "
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/text_seat_class"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Seat Class: "
+            android:textSize="14sp" />
+    </LinearLayout>
+</RelativeLayout>
