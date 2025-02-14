@@ -87,7 +87,6 @@ class NotificationFragment : Fragment() {
         val attractionBookings = getUserAttractionBookings(userId)
         val hotelBookings = getUserHotelBookings(userId)
 
-        // todo: use Uuid to get Name
         for (booking in attractionBookings) {
             val attractionTime = booking.visitTime
             val attractionName = booking.attractionUuid ?: booking.attractionName
