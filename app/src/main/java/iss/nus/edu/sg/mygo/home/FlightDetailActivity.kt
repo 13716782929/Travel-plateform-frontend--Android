@@ -69,7 +69,8 @@ class FlightDetailActivity : AppCompatActivity() {
         backButton = findViewById(R.id.button_back)
 
         // 获取上一个页面传递的 flightId
-        flightId = intent.getIntExtra("flightId",-1)
+//        flightId = intent.getStringExtra("flightId")?.toIntOrNull() ?: -1
+        flightId = 1
 
         if (flightId != -1) {
             fetchFlightDetails(flightId)
@@ -78,10 +79,7 @@ class FlightDetailActivity : AppCompatActivity() {
             Toast.makeText(this, "无效的 Flight ID", Toast.LENGTH_LONG).show()
             finish()
         }
-        backButton.setOnClickListener{
-            // close Activity
-            finish()
-        }
+
         bookTextView.setOnClickListener {
             showBookingDialog()
         }
@@ -145,7 +143,6 @@ class FlightDetailActivity : AppCompatActivity() {
         arrivalAirportTextView.text = flight.arrivalAirport
     }
 
-
     /**
      * 生成 500 - 1500 之间的随机价格
      */
@@ -203,7 +200,7 @@ class FlightDetailActivity : AppCompatActivity() {
             userId = userId,
             selectedSeats = seatClass,
             id = flightId,
-            type = seatClass,
+            type = "Flight",
             totalPrice = totalPrice
         )
 
@@ -267,5 +264,4 @@ class FlightDetailActivity : AppCompatActivity() {
 
         return assignedSeats.joinToString(",") // ✅ 生成 "3A,4B" 格式
     }
-
 }
