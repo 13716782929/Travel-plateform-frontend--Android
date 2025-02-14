@@ -1,0 +1,50 @@
+name: Android CI
+
+on:
+  push:
+    branches:
+      - v1.5_merge_CI_test
+  pull_request:
+    branches:
+      - v1.5_merge_CI_test
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v3
+
+      - name: 设置 JDK
+        uses: actions/setup-java@v2
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: 设置 Gradle 缓存
+        uses: gradle/gradle-build-action@v2
+
+      - name: 设置 Gradle 可执行权限
+        run: chmod +x gradlew
+
+      - name: 运行 Lint（代码检查）
+        run: ./gradlew lint
+
+      - name: 运行 Detekt（Kotlin 代码质量检查）
+        run: ./gradlew detekt
+
+      - name: 运行单元测试
+        run: ./gradlew testDebugUnitTest
+
+      - name: 构建 Debug APK
+        run: ./gradlew assembleDebug
+
+      - name: 构建 Release APK（未签名）
+        run: ./gradlew assembleRelease
+
+      - name: 保存构建产物
+        uses: actions/upload-artifact@v4
+        with:
+          name: apk-build
+          path: app/build/outputs/apk/
