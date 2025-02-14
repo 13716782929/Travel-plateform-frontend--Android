@@ -98,6 +98,12 @@
             android:name=".home.FlightDetailActivity"
             android:exported="true"
             android:theme="@style/Material3.Theme.MyGo">
+        </activity>
+
+        <activity
+            android:name=".home.FlightSearchActivity"
+            android:exported="true"
+            android:theme="@style/Material3.Theme.MyGo">
 
         </activity>
     </application>

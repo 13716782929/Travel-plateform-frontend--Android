@@ -1,6 +1,7 @@
 package iss.nus.edu.sg.mygo.home
 
 import android.app.AlertDialog
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -10,12 +11,15 @@ import iss.nus.edu.sg.mygo.R
 import iss.nus.edu.sg.mygo.api.service.FlightApiService
 import iss.nus.edu.sg.mygo.home.FlightPaymentActivity
 import iss.nus.edu.sg.mygo.models.Flight
+import iss.nus.edu.sg.mygo.models.FlightBooking
 import iss.nus.edu.sg.mygo.models.FlightBookingRequest
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.math.BigDecimal
 import java.math.RoundingMode
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 import kotlin.random.Random
 
 class FlightDetailActivity : AppCompatActivity() {
@@ -33,6 +37,7 @@ class FlightDetailActivity : AppCompatActivity() {
     private lateinit var arrivalAirportTextView: TextView
     private lateinit var priceTextView: TextView
     private lateinit var bookTextView: TextView
+    private lateinit var durationDate: TextView
 
     private var flightId: Int = -1
     private val flightApiService = FlightApiService.create()
@@ -47,6 +52,7 @@ class FlightDetailActivity : AppCompatActivity() {
         airlineTextView = findViewById(R.id.detail_flight_txt_airline)
         durationTextView = findViewById(R.id.detail_flight_txt_duration)
         statusTextView = findViewById(R.id.detail_flight_txt_status)
+        durationDate = findViewById(R.id.detail_flight_on_date)
         departureTimeTextView = findViewById(R.id.fligh_detail_departure_time)
         departureCityTextView = findViewById(R.id.fligh_detail_departure_city)
         departureAirportTextView = findViewById(R.id.fligh_detail_departure_airport)
@@ -57,8 +63,7 @@ class FlightDetailActivity : AppCompatActivity() {
         bookTextView = findViewById(R.id.txt_cta_book_now)
 
         // 获取上一个页面传递的 flightId
-//        flightId = intent.getStringExtra("flightId")?.toIntOrNull() ?: -1
-        flightId = 1
+        flightId = intent.getIntExtra("flightId",-1)
 
         if (flightId != -1) {
             fetchFlightDetails(flightId)
@@ -100,18 +105,37 @@ class FlightDetailActivity : AppCompatActivity() {
      * 将航班数据填充到 UI
      */
     private fun updateUI(flight: Flight) {
+        // 解析日期时间
+        val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss")
+        val timeFormatter = DateTimeFormatter.ofPattern("HH:mm") // 只提取时间
+        val dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd") // 只提取日期
+
+        val departureDateTime = LocalDateTime.parse(flight.departureTime, formatter)
+        val arrivalDateTime = LocalDateTime.parse(flight.arrivalTime, formatter)
+
+        val departureTime = departureDateTime.format(timeFormatter) // "22:17"
+        val arrivalTime = arrivalDateTime.format(timeFormatter) // "11:17"
+
+        val departureDate = departureDateTime.format(dateFormatter) // "2025-03-07"
+        val arrivalDate = arrivalDateTime.format(dateFormatter) // "2025-03-08"
+
+        // 设置 UI
         titleTextView.text = "Flight Detail"
         arrivalCityTextView.text = "To: ${flight.arrivalCity}"
         airlineTextView.text = flight.airline
         durationTextView.text = flight.duration
         statusTextView.text = flight.flightStatus
-        departureTimeTextView.text = flight.departureTime
+
+        durationDate.text = "$departureDate → $arrivalDate" // 设置日期格式
+        departureTimeTextView.text = departureTime // 只显示时间
+        arrivalTimeTextView.text = arrivalTime // 只显示时间
+
         departureCityTextView.text = flight.departureCity
         departureAirportTextView.text = flight.departureAirport
-        arrivalTimeTextView.text = flight.arrivalTime
         arrivalCityDetailTextView.text = flight.arrivalCity
         arrivalAirportTextView.text = flight.arrivalAirport
     }
+
 
     /**
      * 生成 500 - 1500 之间的随机价格
@@ -157,29 +181,74 @@ class FlightDetailActivity : AppCompatActivity() {
     /**
      * 调用 API 进行航班预订
      */
-    private fun bookFlight(seatType: String, seatCount: Int, totalPrice: Double) {
+    private fun bookFlight(seatClass: String, passengerCount: Int, totalPrice: Double) {
+        val userId = getUserId()
+        if (userId == -1L) {
+            Toast.makeText(this, "请先登录", Toast.LENGTH_LONG).show()
+            return
+        }
+
+        val selectedSeats = generateRandomSeats(passengerCount)
+
         val request = FlightBookingRequest(
-            userId = 1L,
-            selectedSeats = "$seatType-$seatCount",
+            userId = userId,
+            selectedSeats = selectedSeats,
             id = flightId,
-            type = seatType,
+            type = seatClass,
             totalPrice = totalPrice
         )
+        Log.e("FlightBookingRequest","${request}")
 
-        flightApiService.bookFlight(request).enqueue(object : Callback<Void> {
-            override fun onResponse(call: Call<Void>, response: Response<Void>) {
+        flightApiService.bookFlight(request).enqueue(object : Callback<FlightBooking> {
+            override fun onResponse(call: Call<FlightBooking>, response: Response<FlightBooking>) {
                 if (response.isSuccessful) {
+                    val booking = response.body()
+                    Toast.makeText(this@FlightDetailActivity, "预订成功！", Toast.LENGTH_LONG).show()
+
                     val intent = Intent(this@FlightDetailActivity, FlightPaymentActivity::class.java)
                     intent.putExtra("totalPrice", totalPrice)
+                    intent.putExtra("bookingId", booking?.flightBookingId)
                     startActivity(intent)
                 } else {
                     Toast.makeText(this@FlightDetailActivity, "预订失败，请重试", Toast.LENGTH_LONG).show()
+                    Log.e("BOOKING_ERROR", "Response Code: ${response.code()}, Error Body: ${response.errorBody()?.string()}")
                 }
             }
 
-            override fun onFailure(call: Call<Void>, t: Throwable) {
+            override fun onFailure(call: Call<FlightBooking>, t: Throwable) {
                 Toast.makeText(this@FlightDetailActivity, "网络错误: ${t.message}", Toast.LENGTH_LONG).show()
             }
         })
     }
+
+
+    /**
+     * get UserId from sharedPrefs
+     */
+    private fun getUserId(): Long {
+        val sharedPreferences = getSharedPreferences("UserPrefs", Context.MODE_PRIVATE)
+        val userIdString = sharedPreferences.getString("user_id", null)
+        Log.e("UserId","${userIdString}")
+        Log.e("UserId","${userIdString?.toLongOrNull() ?: -1L}")
+
+        return userIdString?.toLongOrNull() ?: -1L // 如果解析失败，返回 -1
+    }
+
+    /**
+     * generate random seats based on passengerNum
+     */
+    private fun generateRandomSeats(passengerCount: Int): String {
+        val rows = (1..30).toList() // 1-30 排
+        val seats = listOf("A", "B", "C", "D", "E", "F") // 6 个座位
+        val assignedSeats = mutableSetOf<String>() // ✅ 用 Set 避免重复
+
+        while (assignedSeats.size < passengerCount) {
+            val row = rows.random()
+            val seat = seats.random()
+            assignedSeats.add("$row$seat") // ✅ 确保唯一性
+        }
+
+        return assignedSeats.joinToString(",") // ✅ 生成 "3A,4B" 格式
+    }
+
 }

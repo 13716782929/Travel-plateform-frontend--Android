@@ -12,6 +12,7 @@ import iss.nus.edu.sg.mygo.api.models.FlightSearchRequest
 import iss.nus.edu.sg.mygo.models.FlightInfo
 import iss.nus.edu.sg.mygo.models.FlightBookingRequest
 import iss.nus.edu.sg.mygo.models.Flight
+import iss.nus.edu.sg.mygo.models.FlightBooking
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -30,7 +31,7 @@ interface FlightApiService {
     fun getFlightById(@Path("id") flightId: Int): Call<Flight>
 
     @POST("api/flights/booking")
-    fun bookFlight(@Body request: FlightBookingRequest): Call<Void>
+    fun bookFlight(@Body request: FlightBookingRequest): Call<FlightBooking>
 
     @POST("api/flights")
     suspend fun getFlights(@Body request: FlightSearchRequest): List<FlightInfo>

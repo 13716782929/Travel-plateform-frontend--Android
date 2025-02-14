@@ -1,15 +1,7 @@
 package iss.nus.edu.sg.mygo.adapter
 
-/**
- * @ClassName FlightAdapter
- * @Description
- * @Author Siti Alifah Binte Yahya
- * @StudentID A0295324B
- * @Date 13 Feb 2025
- * @Version 1.0
- */
-
-
+import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,8 +13,9 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import iss.nus.edu.sg.mygo.R
 import iss.nus.edu.sg.mygo.models.FlightInfo
+import iss.nus.edu.sg.mygo.home.FlightDetailActivity
 
-//Purpose: To display flight results
+// Purpose: To display flight results
 // FlightAdapter using ListAdapter for efficient list updates
 
 class FlightAdapter(private val onBookClick: (FlightInfo) -> Unit) :
@@ -36,9 +29,17 @@ class FlightAdapter(private val onBookClick: (FlightInfo) -> Unit) :
     override fun onBindViewHolder(holder: FlightViewHolder, position: Int) {
         val flight = getItem(position)
         holder.bind(flight)
-        holder.bookButton.setOnClickListener { onBookClick(flight) }
-    }
 
+        // 让 bookButton 点击时跳转到 FlightDetailActivity，并传递 flightId
+        holder.bookButton.setOnClickListener {
+            val context = it.context
+            val intent = Intent(context, FlightDetailActivity::class.java).apply {
+                putExtra("flightId", flight.flightId) // 传递 flightId
+                Log.e("FightId","${flight.flightId}")
+            }
+            context.startActivity(intent)
+        }
+    }
 
     class FlightViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val flightImage: ImageView = itemView.findViewById(R.id.iv_flight_image)
@@ -50,10 +51,10 @@ class FlightAdapter(private val onBookClick: (FlightInfo) -> Unit) :
 
         fun bind(flight: FlightInfo) {
             airlineName.text = flight.airlineName
-            flightDate.text = flight.flightDate
+            flightDate.text = flight.departureTime
             flightDuration.text = flight.duration
-            flightPrice.text = flight.price
-            flightImage.setImageResource(R.drawable.flight_placeholder_image) //
+            flightPrice.text = "see in detail"
+            flightImage.setImageResource(R.drawable.flight_placeholder_image)
         }
     }
 }
@@ -61,7 +62,7 @@ class FlightAdapter(private val onBookClick: (FlightInfo) -> Unit) :
 // DiffUtil for efficient RecyclerView updates
 class FlightDiffCallback : DiffUtil.ItemCallback<FlightInfo>() {
     override fun areItemsTheSame(oldItem: FlightInfo, newItem: FlightInfo): Boolean {
-        return oldItem.flightDate == newItem.flightDate && oldItem.airlineName == newItem.airlineName
+        return oldItem.departureTime == newItem.departureTime && oldItem.airlineName == newItem.airlineName
     }
 
     override fun areContentsTheSame(oldItem: FlightInfo, newItem: FlightInfo): Boolean {

@@ -18,6 +18,7 @@ import android.widget.ImageButton
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import android.app.DatePickerDialog
+import android.util.Log
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.ProgressBar
@@ -91,7 +92,7 @@ class FlightSearchActivity : AppCompatActivity() {
             R.array.passenger_options,
             android.R.layout.simple_spinner_dropdown_item
         )
-        // spinnerPassengers.adapter = passengerAdapter
+         spinnerPassengers.adapter = passengerAdapter
 
         // Setup Class Spinner
         val classAdapter = ArrayAdapter.createFromResource(
@@ -99,7 +100,7 @@ class FlightSearchActivity : AppCompatActivity() {
             R.array.class_options,
             android.R.layout.simple_spinner_dropdown_item
         )
-        // spinnerClass.adapter = classAdapter
+         spinnerClass.adapter = classAdapter
 
         dateEditText.setOnClickListener {
             showDatePicker()
@@ -114,8 +115,6 @@ class FlightSearchActivity : AppCompatActivity() {
             //Toast.makeText(this, "Booking ${flight.airlineName}", Toast.LENGTH_SHORT).show()
         //}
 
-
-
         // Hide results section initially
         progressBar.visibility = View.VISIBLE
         flightRecyclerView.visibility = View.GONE
@@ -123,26 +122,29 @@ class FlightSearchActivity : AppCompatActivity() {
 
         // Observe ViewModel for flight results and update RecyclerView
         flightViewModel.flights.observe(this) { flights ->
+            Log.d("API_RESPONSE", "Received Flights: ${flights}")
+
             progressBar.visibility = View.GONE
             if (flights.isNotEmpty()) {
                 flightRecyclerView.visibility = View.VISIBLE
                 noResultsText.visibility = View.GONE
-                // flightAdapter.submitList(flights)
-            } else {
                 flightAdapter.submitList(flights)
-                flightRecyclerView.visibility = View.VISIBLE
-                noResultsText.visibility = View.GONE
+            } else {
+                flightRecyclerView.visibility = View.GONE
+                noResultsText.visibility = View.VISIBLE
             }
         }
+
     }
 
     private fun showDatePicker() {
         val calendar = Calendar.getInstance()
-        val datePickerDialog = android.app.DatePickerDialog(
+        val datePickerDialog = DatePickerDialog(
             this,
             { _, year, month, dayOfMonth ->
-                val date = "$year-${month + 1}-$dayOfMonth"
-                dateEditText.setText(date)
+                // 格式化为 yyyy-MM-dd，确保月和日始终为两位数
+                val formattedDate = String.format("%04d-%02d-%02d", year, month + 1, dayOfMonth)
+                dateEditText.setText(formattedDate)
             },
             calendar.get(Calendar.YEAR),
             calendar.get(Calendar.MONTH),
@@ -151,13 +153,15 @@ class FlightSearchActivity : AppCompatActivity() {
         datePickerDialog.show()
     }
 
+
     //Performing API Calls and  Retrieves user input from the text fields.
     private fun searchFlights() {
         // collect input from UI
         val departure = departureEditText.text.toString().trim()
         val destination = destinationEditText.text.toString().trim()
         val date = dateEditText.text.toString().trim()
-        val passengers = spinnerPassengers.selectedItem.toString().toInt()
+        val passengers = spinnerPassengers.selectedItem.toString().filter { it.isDigit() }.toIntOrNull() ?: 1
+
 
         if (departure.isBlank() || destination.isBlank() || date.isBlank()) {
             Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show()

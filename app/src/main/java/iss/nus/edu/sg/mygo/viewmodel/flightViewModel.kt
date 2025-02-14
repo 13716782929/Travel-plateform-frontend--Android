@@ -7,6 +7,7 @@ package iss.nus.edu.sg.mygo.viewmodel
  * @Date 13 Feb 2025
  * @Version 1.0
  */
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -46,6 +47,8 @@ class flightViewModel : ViewModel() {
                 )
                 // Call the API using the instance, not the class name
                 val response = flightApiService.getFlights(request)
+
+                Log.d("API_RAW_RESPONSE", "Raw Response: $response")  // 打印完整数据
                 _flights.postValue(response)
             } catch (e: Exception) {
                 e.printStackTrace()

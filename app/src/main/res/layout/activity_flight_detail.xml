@@ -114,21 +114,6 @@
                         android:textSize="24sp" />
 
                     <TextView
-                        android:id="@+id/price"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
-                        android:layout_below="@+id/detail_flight_txt_arrivalCity"
-                        android:layout_marginTop="10dp"
-                        android:fontFamily="@font/inter_18pt_semibold"
-                        android:includeFontPadding="false"
-                        android:maxLines="1"
-                        android:singleLine="true"
-                        android:text="Airline Name"
-                        android:textColor="#FF606060"
-                        android:textSize="18sp" />
-
-                    <TextView
                         android:id="@+id/detail_flight_txt_airline"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -255,18 +240,29 @@
                                     android:textColor="#1E1E1E"
                                     android:layout_marginTop="5dp"
                                     android:fontFamily="@font/inter_18pt_semibold"
-                                    android:gravity="center" />
+                                    android:gravity="center"
+                                    android:maxLines="1"
+                                    android:minLines="1"
+                                    android:ellipsize="end"
+                                    android:maxWidth="250dp"/>
 
                                 <TextView
                                     android:id="@+id/fligh_detail_departure_airport"
-                                    android:layout_width="wrap_content"
+                                    android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:text="DepartureAirport"
                                     android:textSize="12sp"
                                     android:textColor="#1E1E1E"
                                     android:layout_marginTop="5dp"
                                     android:fontFamily="@font/inter_18pt_regular"
-                                    android:gravity="center" />
+                                    android:gravity="center"
+
+                                    android:maxLines="3"
+                                    android:minLines="1"
+                                    android:ellipsize="end"
+                                    android:maxWidth="250dp"
+                                />
+
                             </LinearLayout>
                         </RelativeLayout>
 
@@ -278,9 +274,9 @@
                             android:layout_below="@+id/detail_flight_on_date"
                             android:layout_marginTop="36dp"
                             android:layout_toEndOf="@+id/flight_detail_departure_container"
-                            android:layout_marginStart="-20dp"
+                            android:layout_marginStart="-40dp"
                             android:layout_toStartOf="@+id/flight_detail_arrival_container"
-                            android:layout_marginEnd="-20dp"
+                            android:layout_marginEnd="-40dp"
                             />
 
                         <ImageView
@@ -334,7 +330,11 @@
                                     android:textColor="#1E1E1E"
                                     android:layout_marginTop="5dp"
                                     android:fontFamily="@font/inter_18pt_semibold"
-                                    android:gravity="center" />
+                                    android:gravity="center"
+                                    android:maxLines="1"
+                                    android:minLines="1"
+                                    android:ellipsize="end"
+                                    android:maxWidth="250dp"/>
 
                                 <TextView
                                     android:id="@+id/fligh_detail_arrival_airport"
@@ -345,7 +345,11 @@
                                     android:textColor="#1E1E1E"
                                     android:layout_marginTop="5dp"
                                     android:fontFamily="@font/inter_18pt_regular"
-                                    android:gravity="center" />
+                                    android:gravity="center"
+                                    android:maxLines="3"
+                                    android:minLines="1"
+                                    android:ellipsize="end"
+                                    android:maxWidth="250dp"/>
                             </LinearLayout>
 
                         </RelativeLayout>
