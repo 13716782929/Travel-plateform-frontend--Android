@@ -100,7 +100,6 @@ class HotelDetailActivity : AppCompatActivity() {
         companyTextView = findViewById(R.id.txt_company)
         typeTextView = findViewById(R.id.txt_type)
         temporarilyClosedTextView = findViewById(R.id.txt_temporarily_closed)
-        reviewTextView = findViewById(R.id.txt_reviews)
 
         sessionManager = SessionManager(this)
         userApiService = UserApiService.create()
