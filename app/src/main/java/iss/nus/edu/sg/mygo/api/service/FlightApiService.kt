@@ -18,6 +18,7 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.POST
 import retrofit2.Call
+import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -30,8 +31,11 @@ interface FlightApiService {
     @GET("api/flights/{id}")
     fun getFlightById(@Path("id") flightId: Int): Call<Flight>
 
+//    @POST("api/flights/booking")
+//    fun bookFlight(@Body request: FlightBookingRequest): Call<FlightBooking>
     @POST("api/flights/booking")
-    fun bookFlight(@Body request: FlightBookingRequest): Call<FlightBooking>
+    suspend fun bookFlight(@Body request: FlightBookingRequest): Response<FlightBooking>
+
 
     @POST("api/flights")
     suspend fun getFlights(@Body request: FlightSearchRequest): List<FlightInfo>

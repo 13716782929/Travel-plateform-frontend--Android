@@ -13,6 +13,10 @@ import iss.nus.edu.sg.mygo.home.FlightPaymentActivity
 import iss.nus.edu.sg.mygo.models.Flight
 import iss.nus.edu.sg.mygo.models.FlightBooking
 import iss.nus.edu.sg.mygo.models.FlightBookingRequest
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -150,7 +154,7 @@ class FlightDetailActivity : AppCompatActivity() {
      * 显示选择座位类型和购买数量的对话框
      */
     private fun showBookingDialog() {
-        val seatTypes = arrayOf("First", "Suite", "Economy")
+        val seatTypes = arrayOf("First", "Business", "Economy")
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Please select seat type:")
             .setItems(seatTypes) { _, which ->
@@ -183,7 +187,7 @@ class FlightDetailActivity : AppCompatActivity() {
      */
     private fun bookFlight(seatClass: String, passengerCount: Int, totalPrice: Double) {
         val userId = getUserId()
-        if (userId == -1L) {
+        if (userId == null) {
             Toast.makeText(this, "请先登录", Toast.LENGTH_LONG).show()
             return
         }
@@ -192,46 +196,49 @@ class FlightDetailActivity : AppCompatActivity() {
 
         val request = FlightBookingRequest(
             userId = userId,
-            selectedSeats = selectedSeats,
+            selectedSeats = seatClass,
             id = flightId,
             type = seatClass,
             totalPrice = totalPrice
         )
-        Log.e("FlightBookingRequest","${request}")
 
-        flightApiService.bookFlight(request).enqueue(object : Callback<FlightBooking> {
-            override fun onResponse(call: Call<FlightBooking>, response: Response<FlightBooking>) {
-                if (response.isSuccessful) {
-                    val booking = response.body()
-                    Toast.makeText(this@FlightDetailActivity, "预订成功！", Toast.LENGTH_LONG).show()
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                val response = flightApiService.bookFlight(request)
 
-                    val intent = Intent(this@FlightDetailActivity, FlightPaymentActivity::class.java)
-                    intent.putExtra("totalPrice", totalPrice)
-                    intent.putExtra("bookingId", booking?.flightBookingId)
-                    startActivity(intent)
-                } else {
-                    Toast.makeText(this@FlightDetailActivity, "预订失败，请重试", Toast.LENGTH_LONG).show()
-                    Log.e("BOOKING_ERROR", "Response Code: ${response.code()}, Error Body: ${response.errorBody()?.string()}")
+                withContext(Dispatchers.Main) {
+                    if (response.isSuccessful) {
+                        val bookingResponse = response.body()
+
+                        Log.d("BOOKING_SUCCESS", "Booking Successful: $bookingResponse")
+                        Toast.makeText(this@FlightDetailActivity, "Booking Successful!", Toast.LENGTH_SHORT).show()
+                    } else {
+                        val errorBody = response.errorBody()?.string()
+                        Log.e("BOOKING_ERROR", "Response Code: ${response.code()}, Error Body: $errorBody")
+                        Toast.makeText(this@FlightDetailActivity, "Booking Failed: $errorBody", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            } catch (e: Exception) {
+                Log.e("BOOKING_EXCEPTION", "Network Error: ${e.message}")
+                withContext(Dispatchers.Main) {
+                    Toast.makeText(this@FlightDetailActivity, "Network Error: ${e.message}", Toast.LENGTH_SHORT).show()
                 }
             }
-
-            override fun onFailure(call: Call<FlightBooking>, t: Throwable) {
-                Toast.makeText(this@FlightDetailActivity, "网络错误: ${t.message}", Toast.LENGTH_LONG).show()
-            }
-        })
+        }
     }
+
 
 
     /**
      * get UserId from sharedPrefs
      */
-    private fun getUserId(): Long {
+    private fun getUserId(): Long? {
         val sharedPreferences = getSharedPreferences("UserPrefs", Context.MODE_PRIVATE)
         val userIdString = sharedPreferences.getString("user_id", null)
         Log.e("UserId","${userIdString}")
-        Log.e("UserId","${userIdString?.toLongOrNull() ?: -1L}")
+        Log.e("UserId","${userIdString?.toLongOrNull()}")
 
-        return userIdString?.toLongOrNull() ?: -1L // 如果解析失败，返回 -1
+        return userIdString?.toLongOrNull() // 如果解析失败，返回 -1
     }
 
     /**
