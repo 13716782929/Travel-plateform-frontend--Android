@@ -20,6 +20,7 @@ data class AttractionBooking(
     val visitDate: String,
     val visitTime: String,
     val numberOfTickets: Int,
-    val attractionImageUuid: String
+    val attractionImageUuid: String,
+    val status: String
 )
 

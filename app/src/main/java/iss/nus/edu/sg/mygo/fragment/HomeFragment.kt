@@ -153,11 +153,23 @@ class HomeFragment : Fragment(R.layout.home_fragment) {
 
         lifecycleScope.launch {
             try {
-                val response = apiService2.fetchHotel(0, 7, "accommodation", apiKey, contentLanguage)
+                val response = apiService2.fetchHotel(0, 17, "accommodation", apiKey, contentLanguage)
                 if (response.isSuccessful) {
                     val hotelResponse = response.body()
                     hotelResponse?.let {
                         val hotelList = mapAccommoationDataToHotelList(it.data)
+                            .filter { hotel ->
+                                if (hotel.imageUrl.isNullOrEmpty()) {
+                                    Log.d("FILTER", "过滤无图片的酒店: ${hotel.name}")
+                                    return@filter false
+                                }
+                                if (hotel.price.isNullOrEmpty() || hotel.price == "价格不可用") {
+                                    Log.d("FILTER", "过滤无价格的酒店: ${hotel.name}")
+                                    return@filter false
+                                }
+                                true
+                            }
+
                         hotelAdapter.updateData(hotelList)  // ✅ 更新 Adapter 数据
                     }
                 } else {
@@ -169,6 +181,7 @@ class HomeFragment : Fragment(R.layout.home_fragment) {
             }
         }
     }
+
 
 
     /**

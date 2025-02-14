@@ -9,6 +9,8 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.text.InputType
+import android.util.Log
+import android.view.View
 import android.widget.CalendarView
 import android.widget.EditText
 import android.widget.ImageButton
@@ -21,6 +23,8 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import iss.nus.edu.sg.mygo.R
 import iss.nus.edu.sg.mygo.api.service.AccommodationApiService
@@ -39,6 +43,12 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.Calendar
 import java.util.Date
 import java.util.Locale
+import iss.nus.edu.sg.mygo.adapter.ReviewAdapter
+import iss.nus.edu.sg.mygo.models.Review
+import iss.nus.edu.sg.mygo.models.ReviewStatus
+import kotlinx.coroutines.withContext
+import iss.nus.edu.sg.mygo.databinding.ActivityHotelDetailBinding
+
 
 /**
  * @ClassName HotelDetailActivity
@@ -65,17 +75,21 @@ class HotelDetailActivity : AppCompatActivity() {
     private lateinit var companyTextView: TextView
     private lateinit var typeTextView: TextView
     private lateinit var temporarilyClosedTextView: TextView
-    private lateinit var reviewTextView: TextView
+    private lateinit var binding: ActivityHotelDetailBinding
 
     private lateinit var userApiService: UserApiService
     private  lateinit var sessionManager: SessionManager
     private var leadInPrice: String? = null
+    private lateinit var reviewAdapter: ReviewAdapter
+    private val reviews = mutableListOf<Review>()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()  // 启用全屏显示
         setContentView(R.layout.activity_hotel_detail)
+        binding = ActivityHotelDetailBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         // 处理窗口的系统栏（状态栏、导航栏）内边距
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.container_hoteldetail)) { v, insets ->
@@ -100,7 +114,7 @@ class HotelDetailActivity : AppCompatActivity() {
         companyTextView = findViewById(R.id.txt_company)
         typeTextView = findViewById(R.id.txt_type)
         temporarilyClosedTextView = findViewById(R.id.txt_temporarily_closed)
-        reviewTextView = findViewById(R.id.txt_reviews)
+        hotelRatingTextView = findViewById(R.id.txt_review_count)
 
         sessionManager = SessionManager(this)
         userApiService = UserApiService.create()
@@ -117,18 +131,24 @@ class HotelDetailActivity : AppCompatActivity() {
         bookButton.setOnClickListener {
             // todo check user login?
             if(!sessionManager.isLoggedIn()){
-                startActivity(Intent(this, LoginActivity::class.java))
-                finish()
+                val intent = Intent(this, LoginActivity::class.java)
+                intent.putExtra("from_activity", true) // 让 LoginActivity 知道是从哪里来的
+                startActivityForResult(intent, 1001)
+
+            }else {
+                // 弹出日期选择器
+                showCheckInDatePicker()
             }
-            // 弹出日期选择器
-            showCheckInDatePicker()
         }
 
 
         // 获取从 Intent 传递的 UUID
+        setupRecyclerView()
         val hotelUuid = intent.getStringExtra("hotel_uuid")
+        Log.d("HotelDetail", "Fetching reviews for hotelUuid: $hotelUuid")
         if (hotelUuid != null) {
             fetchHotelDetails(hotelUuid)
+            fetchReviews(hotelUuid)
         }
     }
 
@@ -436,6 +456,39 @@ class HotelDetailActivity : AppCompatActivity() {
         println("Selected Date Timestamp: $debugDate ($timestamp)")
 
         return timestamp
+    }
+
+    private fun fetchReviews(hotelUuid: String) {
+        lifecycleScope.launch(Dispatchers.IO) {
+            try {
+                val response = userApiService.getHotelReviews(hotelUuid)
+                Log.d("HotelDetail", "Raw Review Response: ${response.body()}")
+
+                if (response.isSuccessful) {
+                    val fetchedReviews = response.body()?.filter { it.status == ReviewStatus.SHOW } ?: emptyList()
+                    withContext(Dispatchers.Main) {
+                        if (fetchedReviews.isNotEmpty()) {
+                            reviews.clear()
+                            reviews.addAll(fetchedReviews)
+                            reviewAdapter.notifyDataSetChanged()
+                            binding.reviewSection.visibility = View.VISIBLE
+                        } else {
+                            binding.reviewSection.visibility = View.GONE
+                        }
+                    }
+                } else {
+                    Log.e("HotelDetail", "Failed to fetch reviews: ${response.code()}")
+                }
+            } catch (e: Exception) {
+                Log.e("HotelDetail", "Error fetching reviews", e)
+            }
+        }
+    }
+
+    private fun setupRecyclerView() {
+        reviewAdapter = ReviewAdapter(reviews)
+        binding.reviewRecyclerView.layoutManager = LinearLayoutManager(this)
+        binding.reviewRecyclerView.adapter = reviewAdapter
     }
 
 

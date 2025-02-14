@@ -14,5 +14,6 @@ data class HotelBooking(
     val guests: Int,
     val roomType: String,
     val totalAmount: Double, // ✅ 添加 totalAmount
-    val hotelImageUuid: String
+    val hotelImageUuid: String,
+    val status: String
 )

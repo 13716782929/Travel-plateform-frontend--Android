@@ -84,43 +84,47 @@ class HotelSearchActivity : AppCompatActivity() {
                 if (response.isSuccessful && response.body() != null) {
                     val accommodations = response.body()?.data ?: emptyList()
                     val hotels = mutableListOf<Hotel>()
+                    var processedCount = 0
 
                     accommodations.forEach { accommodation ->
-                        val firstImageUuid = accommodation.thumbnails?.firstOrNull()?.uuid
-                        if (firstImageUuid.isNullOrEmpty()) {
-                            Log.d("FILTER", "过滤无图片的酒店: ${accommodation.name}")
-                            return@forEach
-                        }
-
                         if (accommodation.leadInRoomRates == null) {
                             Log.d("FILTER", "过滤无价格的酒店: ${accommodation.name}")
+                            processedCount++
+                            if (processedCount == accommodations.size) {
+                                runOnUiThread { updateUI(hotels) }
+                            }
                             return@forEach
                         }
 
-                        val addressParts = listOfNotNull(
-                            accommodation.address.block,
-                            accommodation.address.streetName,
-                            accommodation.address.floorNumber?.let { floor ->
-                                accommodation.address.unitNumber?.let { unit -> "$floor-$unit" } ?: floor
-                            },
-                            accommodation.address.buildingName,
-                            accommodation.address.postalCode
-                        )
-
+                        val firstImageUuid = accommodation.thumbnails?.firstOrNull()?.uuid
 
                         getImageUrl(firstImageUuid) { imageUrl ->
-                            val hotel = Hotel(
-                                uuid = accommodation.uuid,
-                                name = accommodation.name,
-                                address = addressParts.joinToString(" "),
-                                rating = accommodation.rating.toString(),
-                                price = accommodation.leadInRoomRates ?: "价格不可用",
-                                imageUrl = imageUrl
-                            )
+                            if (imageUrl.isNullOrEmpty()) {
+                                Log.d("FILTER", "过滤无图片的酒店: ${accommodation.name}")
+                            } else {
+                                val addressParts = listOfNotNull(
+                                    accommodation.address.block,
+                                    accommodation.address.streetName,
+                                    accommodation.address.floorNumber?.let { floor ->
+                                        accommodation.address.unitNumber?.let { unit -> "$floor-$unit" } ?: floor
+                                    },
+                                    accommodation.address.buildingName,
+                                    accommodation.address.postalCode
+                                )
 
-                            hotels.add(hotel)
+                                val hotel = Hotel(
+                                    uuid = accommodation.uuid,
+                                    name = accommodation.name,
+                                    address = addressParts.joinToString(" "),
+                                    rating = accommodation.rating.toString(),
+                                    price = accommodation.leadInRoomRates ?: "价格不可用",
+                                    imageUrl = imageUrl
+                                )
 
-                            if (hotels.size == accommodations.size) {
+                                hotels.add(hotel)
+                            }
+                            processedCount++
+                            if (processedCount == accommodations.size) {
                                 runOnUiThread { updateUI(hotels) }
                             }
                         }
@@ -135,6 +139,7 @@ class HotelSearchActivity : AppCompatActivity() {
             }
         })
     }
+
 
     //        imageUrl = "http://10.0.2.2:8080/proxy/media/{uuid}?fileType=Small%20Thumbnail"
 

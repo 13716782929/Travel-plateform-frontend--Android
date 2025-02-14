@@ -116,8 +116,8 @@ class ScheduleFragment : Fragment() {
     private fun fetchUserBookings(userId: Int) {
         lifecycleScope.launch(Dispatchers.IO) {
             try {
-                val attractionBookings = fetchAttractionBookings(userId)
-                val hotelBookings = fetchHotelBookings(userId)
+                val attractionBookings = fetchAttractionBookings(userId).filter { it.attractionBooking.status != "Canceled" }
+                val hotelBookings = fetchHotelBookings(userId).filter { it.hotelBooking.status != "Canceled" }
                 Log.d("ScheduleFragment", "Fetched Hotel Bookings: $hotelBookings") // ✅ 这里检查 HotelBooking 是否有数据
 
 
@@ -192,7 +192,8 @@ class ScheduleFragment : Fragment() {
                             guests = booking.guests,
                             totalAmount = booking.totalAmount,
                             hotelImageUuid = hotel?.imageUrl ?: "",
-                            hotelId = booking.hotelId
+                            hotelId = booking.hotelId,
+                            status = booking.status
                         )
                     )
                 }
@@ -294,25 +295,39 @@ class ScheduleFragment : Fragment() {
         val bookingId = when (bookingItem) {
             is BookingItem.AttractionBookingItem -> bookingItem.attractionBooking.bookingId
             is BookingItem.HotelBookingItem -> bookingItem.hotelBooking.bookingId
-            else -> {}
+            else -> return
         }
-        lifecycleScope.launch(Dispatchers.Main) {
-            allBookings = allBookings.filterNot {
-                when (it) {
-                    is BookingItem.AttractionBookingItem -> it.attractionBooking.bookingId == bookingId
-                    is BookingItem.HotelBookingItem -> it.hotelBooking.bookingId == bookingId
-                    else -> false
+
+        lifecycleScope.launch(Dispatchers.IO) {
+            try {
+                val response = when (bookingItem) {
+                    is BookingItem.AttractionBookingItem -> apiService.deleteAttractionBooking(bookingId)
+                    is BookingItem.HotelBookingItem -> apiService.deleteHotelBooking(bookingId)
+                    else -> return@launch
+                }
+
+                withContext(Dispatchers.Main) {
+                    if (response.isSuccessful) {
+                        showToast("Booking deleted successfully! Refreshing bookings...")
+
+                        // 重新获取用户预订数据
+                        val userId = sessionManager.getUserIdFromPrefs()?.toIntOrNull()
+                        if (userId != null) {
+                            fetchUserBookings(userId)
+                        }
+                    } else {
+                        showToast("Failed to delete booking. Error: ${response.code()}")
+                    }
+                }
+            } catch (e: Exception) {
+                withContext(Dispatchers.Main) {
+                    showToast("Error deleting booking: ${e.message}")
                 }
             }
-
-            filterBookingsByDate(selectedDate)
-            bookingAdapter.updateBookings(filteredBookings)
-            recyclerView.post {
-                bookingAdapter.notifyDataSetChanged()
-            }
-            showToast("Booking removed!")
         }
     }
+
+
 
 
     /**
