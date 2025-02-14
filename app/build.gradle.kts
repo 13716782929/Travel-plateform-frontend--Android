@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
     id("org.jetbrains.kotlin.kapt")
+    id("io.gitlab.arturbosch.detekt") // ✅ 添加 detekt 插件
 }
 
 android {
@@ -74,10 +75,37 @@ dependencies {
     implementation(libs.retrofit.gson)
     implementation(libs.okhttp.logging)
     implementation(libs.glide)
-    annotationProcessor(libs.compiler.v4120)
+    kapt(libs.compiler.v4120)
     kapt(libs.glide.compiler)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+    // JUnit 4（单元测试）
+    testImplementation(libs.junit)
+
+    // Mockito（模拟对象）
+    testImplementation(libs.mockito.core)
+
+    // 协程测试（用于运行挂起函数）
+    testImplementation(libs.kotlinx.coroutines.test)
+
+    // OkHttp3（用于测试 Retrofit）
+    testImplementation(libs.okhttp.v493)
+
+    // MockWebServer（用于模拟 API 响应）
+    testImplementation(libs.mockwebserver)
+}
+
+detekt {
+    toolVersion = "1.23.1"
+    config = files("$rootDir/config/detekt/detekt.yml") // ✅ 确保 `detekt.yml` 存在
+    buildUponDefaultConfig = true // ✅ 允许覆盖默认规则
+    reports {
+        html.required.set(true)  // 生成 HTML 格式报告
+        xml.required.set(true)   // 生成 XML 格式报告
+        txt.required.set(false)  // 关闭 TXT 格式
+    }
+    // 报错结果存储位置：C:\Users\Lenovo\Documents\SA\AD Project\MyGo\front_android\app\build\reports\detekt
 }
