@@ -109,7 +109,7 @@ class AttractionDetailActivity : AppCompatActivity() {
 
         // Set click event to display calendar
         containerCta.setOnClickListener {
-            // todo check user login?
+
             if(!sessionManager.isLoggedIn()){
                 val intent = Intent(this, LoginActivity::class.java)
                 intent.putExtra("from_activity", true) // 让 LoginActivity 知道是从哪里来的

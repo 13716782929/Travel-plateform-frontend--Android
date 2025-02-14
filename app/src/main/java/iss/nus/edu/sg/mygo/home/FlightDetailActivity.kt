@@ -42,6 +42,7 @@ class FlightDetailActivity : AppCompatActivity() {
     private lateinit var priceTextView: TextView
     private lateinit var bookTextView: TextView
     private lateinit var durationDate: TextView
+    private lateinit var backButton: ImageButton
 
     private var flightId: Int = -1
     private val flightApiService = FlightApiService.create()
@@ -65,6 +66,7 @@ class FlightDetailActivity : AppCompatActivity() {
         arrivalAirportTextView = findViewById(R.id.fligh_detail_arrival_airport)
         priceTextView = findViewById(R.id.txt_price_value)
         bookTextView = findViewById(R.id.txt_cta_book_now)
+        backButton = findViewById(R.id.button_back)
 
         // 获取上一个页面传递的 flightId
         flightId = intent.getIntExtra("flightId",-1)
@@ -76,7 +78,10 @@ class FlightDetailActivity : AppCompatActivity() {
             Toast.makeText(this, "无效的 Flight ID", Toast.LENGTH_LONG).show()
             finish()
         }
-
+        backButton.setOnClickListener{
+            // close Activity
+            finish()
+        }
         bookTextView.setOnClickListener {
             showBookingDialog()
         }
@@ -209,6 +214,11 @@ class FlightDetailActivity : AppCompatActivity() {
                 withContext(Dispatchers.Main) {
                     if (response.isSuccessful) {
                         val bookingResponse = response.body()
+
+                        // ✅ 预订成功后跳转到 FlightPaymentActivity，并传递 totalAmount
+                        val intent = Intent(this@FlightDetailActivity, FlightPaymentActivity::class.java)
+                        intent.putExtra("totalPrice", totalPrice)
+                        startActivity(intent)
 
                         Log.d("BOOKING_SUCCESS", "Booking Successful: $bookingResponse")
                         Toast.makeText(this@FlightDetailActivity, "Booking Successful!", Toast.LENGTH_SHORT).show()

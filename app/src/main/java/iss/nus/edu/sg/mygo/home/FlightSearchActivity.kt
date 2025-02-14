@@ -21,6 +21,7 @@ import android.app.DatePickerDialog
 import android.util.Log
 import android.view.View
 import android.widget.ArrayAdapter
+import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.Spinner
 import android.widget.TextView
@@ -55,6 +56,7 @@ class FlightSearchActivity : AppCompatActivity() {
     private lateinit var flightRecyclerView: RecyclerView
     private lateinit var noResultsText: TextView
     private lateinit var progressBar: ProgressBar
+    private lateinit var backButton: ImageView
 
     private val flightViewModel: flightViewModel by viewModels()
     private lateinit var flightAdapter: FlightAdapter
@@ -74,6 +76,7 @@ class FlightSearchActivity : AppCompatActivity() {
         flightRecyclerView = findViewById(R.id.recyclerView_FlightResults)
         noResultsText = findViewById(R.id.noResultsText)
         progressBar = findViewById(R.id.progressBar)
+        backButton = findViewById(R.id.backArrow)
 
         // Initialize FlightAdapter without passing a list directly
         flightAdapter = FlightAdapter { flight ->
@@ -104,6 +107,11 @@ class FlightSearchActivity : AppCompatActivity() {
 
         dateEditText.setOnClickListener {
             showDatePicker()
+        }
+
+        backButton.setOnClickListener{
+            // close Activity
+            finish()
         }
 
         searchButton.setOnClickListener {
