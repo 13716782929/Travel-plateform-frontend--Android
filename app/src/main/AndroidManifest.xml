@@ -8,6 +8,7 @@
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
 
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -18,7 +19,8 @@
         android:supportsRtl="true"
         android:usesCleartextTraffic="true"
         android:networkSecurityConfig="@xml/network_security_config"
-        tools:targetApi="31">
+        tools:targetApi="31"
+        android:theme="@style/AppTheme">
 
         <!-- Default Activity (Main) -->
         <activity
@@ -75,6 +77,14 @@
             android:theme="@style/Material3.Theme.MyGo"
             >
         </activity>
+        <!--flight_search_detail-->
+
+        <activity
+            android:name=".home.FlightSearchActivity"
+            android:exported="true"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+
+
 
         <activity android:name=".home.AttractionDetailActivity"
             android:theme="@style/Material3.Theme.MyGo"/>
@@ -87,6 +97,9 @@
             android:exported="true"
             android:theme="@style/Material3.Theme.MyGo">
         </activity>
+
+
+
 
     </application>
 

@@ -74,11 +74,10 @@ class FlightSearchActivity : AppCompatActivity() {
         noResultsText = findViewById(R.id.noResultsText)
         progressBar = findViewById(R.id.progressBar)
 
-        // Initialize FlightAdapter without passing a list directly
+        // Initialize FlightAdapter
         flightAdapter = FlightAdapter { flight ->
             Toast.makeText(this, "Booking ${flight.airlineName}", Toast.LENGTH_SHORT).show()
         }
-
 
 
         flightRecyclerView.layoutManager = LinearLayoutManager(this)
@@ -91,7 +90,7 @@ class FlightSearchActivity : AppCompatActivity() {
             R.array.passenger_options,
             android.R.layout.simple_spinner_dropdown_item
         )
-        // spinnerPassengers.adapter = passengerAdapter
+        spinnerPassengers.adapter = passengerAdapter
 
         // Setup Class Spinner
         val classAdapter = ArrayAdapter.createFromResource(
@@ -99,7 +98,7 @@ class FlightSearchActivity : AppCompatActivity() {
             R.array.class_options,
             android.R.layout.simple_spinner_dropdown_item
         )
-        // spinnerClass.adapter = classAdapter
+        spinnerClass.adapter = classAdapter
 
         dateEditText.setOnClickListener {
             showDatePicker()
@@ -127,9 +126,8 @@ class FlightSearchActivity : AppCompatActivity() {
             if (flights.isNotEmpty()) {
                 flightRecyclerView.visibility = View.VISIBLE
                 noResultsText.visibility = View.GONE
-                // flightAdapter.submitList(flights)
-            } else {
                 flightAdapter.submitList(flights)
+            } else {
                 flightRecyclerView.visibility = View.VISIBLE
                 noResultsText.visibility = View.GONE
             }

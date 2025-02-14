@@ -67,8 +67,9 @@ interface UserApiService {
     @GET("/api/hotels/{uuid}/reviews")
     suspend fun getHotelReviews(@Path("uuid") uuid: String): Response<List<Review>>
 
+    //Android app to successfully connect to  backend
     companion object {
-        private const val BASE_URL = "http://10.0.2.2:8080/"
+        private const val BASE_URL = "http://10.0.2.2:5174/"
 
         fun create(): UserApiService {
             return Retrofit.Builder()

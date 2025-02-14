@@ -26,7 +26,7 @@ interface FlightApiService {
 
     //create a retrofit instance
     companion object {
-        private const val BASE_URL = "http://localhost:5174/"
+        private const val BASE_URL = "http://10.0.2.2:5174/"
 
         fun create(): FlightApiService {
             return Retrofit.Builder()
