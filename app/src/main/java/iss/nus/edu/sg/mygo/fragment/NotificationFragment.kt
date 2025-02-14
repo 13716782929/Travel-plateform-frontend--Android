@@ -104,42 +104,14 @@ class NotificationFragment : Fragment() {
         val hotelBookings = getUserHotelBookings(userId)
 
         for (booking in attractionBookings) {
-            val attractionName = booking.attractionUuid?.let { fetchAttractionNameByUuid(it) } ?: booking.attractionName
-            notifications.add(createAttractionNotification(booking, attractionName))
-        }
-
-        for (booking in hotelBookings) {
-            val hotelName = booking.hotelUuid?.let { fetchHotelNameByUuid(it) } ?: booking.hotelName
-            notifications.add(createHotelNotification(booking, hotelName))
-        }
-    // **获取用户 ID**
-    private fun getUserIdFromSession(): Int {
-        // 这里应该从 SharedPreferences 或者 SessionManager 获取当前用户 ID
-        val sharedPreferences = requireContext().getSharedPreferences("UserPrefs", Context.MODE_PRIVATE)
-
-        val userIdString = sharedPreferences.getString("user_id", null)
-        if (userIdString != null) {
-            return userIdString.toInt()
-        } // 假设返回用户 ID 1，实际应用需改成真实的逻辑
-        else return -1
-    }
-
-    // **获取用户所有 AttractionBooking 和 HotelBooking，并生成通知**
-    private suspend fun generateNotifications(userId: Int): List<Notification> {
-        val notifications = mutableListOf<Notification>()
-
-        val attractionBookings = getUserAttractionBookings(userId)
-        val hotelBookings = getUserHotelBookings(userId)
-
-        for (booking in attractionBookings) {
             val attractionTime = booking.visitTime
-            val attractionName = booking.attractionUuid ?: booking.attractionName
-            notifications.add(createAttractionNotification(booking, attractionName,attractionTime))
+            val attractionName = booking.attractionUuid?.let { fetchAttractionNameByUuid(it) } ?: booking.attractionName
+            notifications.add(createAttractionNotification(booking, attractionName, attractionTime))
         }
 
         for (booking in hotelBookings) {
             val checkinDate = booking.checkInDate
-            val hotelName = booking.hotelUuid ?: booking.hotelName
+            val hotelName = booking.hotelUuid?.let { fetchHotelNameByUuid(it) } ?: booking.hotelName
             notifications.add(createHotelNotification(booking, hotelName, checkinDate))
         }
 
@@ -194,32 +166,6 @@ class NotificationFragment : Fragment() {
         return Notification(title, getColorByName(color), message, attractionTime)
     }
 
-        return notifications
-    }
-
-
-    // **从 API 获取用户的 AttractionBooking**
-    private suspend fun getUserAttractionBookings(userId: Int): List<AttractionBooking> {
-        return try {
-            val response = UserApiService.create().getUserAttractionBookings(userId)
-            if (response.isSuccessful) response.body() ?: emptyList() else emptyList()
-        } catch (e: Exception) {
-            e.printStackTrace()
-            emptyList()
-        }
-    }
-
-    // **从 API 获取用户的 HotelBooking**
-    private suspend fun getUserHotelBookings(userId: Int): List<HotelBooking> {
-        return try {
-            val response = UserApiService.create().getUserHotelBookings(userId)
-            if (response.isSuccessful) response.body() ?: emptyList() else emptyList()
-        } catch (e: Exception) {
-            e.printStackTrace()
-            emptyList()
-        }
-    }
-
     private suspend fun fetchHotelNameByUuid(uuid: String): String {
         return try {
             val retrofit = Retrofit.Builder()
@@ -262,48 +208,6 @@ class NotificationFragment : Fragment() {
             e.printStackTrace()
             "Unknown Attraction"
         }
-    }
-
-
-
-
-
-    // **生成 Attraction 预订通知**
-    private fun createAttractionNotification(booking: AttractionBooking, attractionName: String): Notification {
-        val title = when (booking.status) {
-            "Confirmed" -> "Upcoming Attraction Visit"
-            "Canceled" -> "Canceled Attraction Booking"
-            "Pending" -> "Pending Attraction Approval"
-            else -> "Attraction Notification"
-        }
-
-        val message = when (booking.status) {
-            "Confirmed" -> "Your visit to $attractionName is confirmed!\nDate: ${booking.visitDate}\nTime: ${booking.visitTime}\nTickets: ${booking.numberOfTickets}"
-            "Canceled" -> "Your attraction visit to $attractionName has been canceled."
-            "Pending" -> "Your booking for $attractionName is pending approval."
-            else -> ""
-        }
-
-        return Notification(title, getColorByName("orange_notification"), message)
-    }
-
-    // **生成 Hotel 预订通知**
-    private fun createHotelNotification(booking: HotelBooking, hotelName: String): Notification {
-        val title = when (booking.status) {
-            "Confirmed" -> "Upcoming Hotel Stay"
-            "Canceled" -> "Canceled Hotel Booking"
-            "Pending" -> "Pending Hotel Approval"
-            else -> "Hotel Notification"
-        }
-
-        val message = when (booking.status) {
-            "Confirmed" -> "Your hotel booking at $hotelName (Room: ${booking.roomType}) is confirmed!\nCheck-in: ${booking.checkInDate}\nCheck-out: ${booking.checkOutDate}\nTotal: $${booking.totalAmount}"
-            "Canceled" -> "Your hotel booking at $hotelName has been canceled."
-            "Pending" -> "Your hotel booking at $hotelName is pending approval."
-            else -> ""
-        }
-
-        return Notification(title, getColorByName("green_notification"), message)
     }
 
     // **显示紧急通知**
