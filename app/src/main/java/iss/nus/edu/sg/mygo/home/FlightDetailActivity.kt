@@ -13,6 +13,7 @@ import iss.nus.edu.sg.mygo.home.FlightPaymentActivity
 import iss.nus.edu.sg.mygo.models.Flight
 import iss.nus.edu.sg.mygo.models.FlightBooking
 import iss.nus.edu.sg.mygo.models.FlightBookingRequest
+import iss.nus.edu.sg.mygo.sessions.SessionManager
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -43,6 +44,7 @@ class FlightDetailActivity : AppCompatActivity() {
     private lateinit var bookTextView: TextView
     private lateinit var durationDate: TextView
     private lateinit var backButton: ImageButton
+    private  lateinit var sessionManager: SessionManager
 
     private var flightId: Int = -1
     private val flightApiService = FlightApiService.create()
@@ -79,8 +81,15 @@ class FlightDetailActivity : AppCompatActivity() {
             Toast.makeText(this, "无效的 Flight ID", Toast.LENGTH_LONG).show()
             finish()
         }
+        sessionManager = SessionManager(this)
 
         bookTextView.setOnClickListener {
+            if(!sessionManager.isLoggedIn()){
+                val intent = Intent(this, LoginActivity::class.java)
+                intent.putExtra("from_activity", true) // 让 LoginActivity 知道是从哪里来的
+                startActivityForResult(intent, 1001)
+
+            }
             showBookingDialog()
         }
     }
