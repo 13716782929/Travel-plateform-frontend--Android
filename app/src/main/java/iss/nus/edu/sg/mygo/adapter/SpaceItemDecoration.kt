@@ -3,6 +3,14 @@ package iss.nus.edu.sg.mygo.adapter
 import android.graphics.Rect
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
+/**
+ * @ClassName SpaceItemDecoration
+ * @Description
+ * @Author Wang Chang
+ * @StudentID A0310544R
+ * @Date 2025/1/25
+ * @Version 1.3
+ */
 
 class SpaceItemDecoration(private val space: Int) : RecyclerView.ItemDecoration() {
     override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {

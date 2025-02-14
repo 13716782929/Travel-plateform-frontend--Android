@@ -11,10 +11,14 @@ import com.bumptech.glide.Glide
 import iss.nus.edu.sg.mygo.R
 import iss.nus.edu.sg.mygo.models.Attraction
 
-/***
- * author: Wang Chang
- * date: 25\1-25
- * */
+/**
+ * @ClassName AttractionAdapter
+ * @Description
+ * @Author Wang Chang
+ * @StudentID A0310544R
+ * @Date 2025/1/25
+ * @Version 1.3
+ */
 class AttractionAdapter(
     private var attractions: MutableList<Attraction>,
     private val onItemClick: (Int) -> Unit // 点击事件

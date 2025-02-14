@@ -11,6 +11,15 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.*
 
+/**
+ * @ClassName AttractionApiService
+ * @Description
+ * @Author Wang Chang
+ * @StudentID A0310544R
+ * @Date 2025/1/29
+ * @Version 1.3
+ */
+
 interface AttractionApiService {
     @GET("content/common/v2/search")
     suspend fun fetchAttraction(

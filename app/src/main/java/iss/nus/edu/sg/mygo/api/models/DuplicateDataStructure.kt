@@ -2,6 +2,15 @@ package iss.nus.edu.sg.mygo.api.models
 
 import com.google.gson.annotations.SerializedName
 
+/**
+ * @ClassName DuplicateDataStructure
+ * @Description
+ * @Author Wang Chang
+ * @StudentID A0310544R
+ * @Date 2025/1/25
+ * @Version 1.3
+ */
+
 data class Status(
     @SerializedName("code") val code: Int,
     @SerializedName("name") val name: String,

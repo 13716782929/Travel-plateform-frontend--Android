@@ -12,6 +12,15 @@ import iss.nus.edu.sg.mygo.R
 import iss.nus.edu.sg.mygo.adapter.NotificationAdapter
 import iss.nus.edu.sg.mygo.models.Notification
 
+/**
+ * @ClassName NotificationFragment
+ * @Description
+ * @Author Wang Chang
+ * @StudentID A0310544R
+ * @Date 2025/1/28
+ * @Version 1.3
+ */
+
 class NotificationFragment : Fragment() {
 
     private lateinit var urgentNotificationLayout: View

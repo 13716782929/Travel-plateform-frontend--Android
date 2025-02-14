@@ -38,6 +38,14 @@ import kotlinx.coroutines.selects.select
 import kotlinx.coroutines.withContext
 import java.math.BigDecimal
 
+/**
+ * @ClassName ScheduleFragment
+ * @Description
+ * @Author Wang Chang
+ * @StudentID A0310544R
+ * @Date 2025/2/10
+ * @Version 1.3
+ */
 
 class ScheduleFragment : Fragment() {
 

@@ -2,7 +2,14 @@ package iss.nus.edu.sg.mygo.models
 
 import java.math.BigDecimal
 import com.google.gson.annotations.SerializedName
-
+/**
+ * @ClassName Review
+ * @Description
+ * @Author Wang Chang
+ * @StudentID A0310544R
+ * @Date 2025/1/25
+ * @Version 1.3
+ */
 data class Review(
     val reviewId: Int,
     val userId: Int,
