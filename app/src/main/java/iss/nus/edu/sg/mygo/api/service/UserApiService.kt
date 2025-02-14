@@ -51,9 +51,12 @@ interface UserApiService {
     @POST("/api/reviews")
     suspend fun postReview(@Body request: ReviewRequest): Response<Review>
 
-//    // 删除预约
-//    @DELETE("/api/attractions/bookings/{bookingId}")
-//    suspend fun deleteBooking(@Path("bookingId") bookingId: Int): Response<Unit>
+    @DELETE("/api/attractions/booking/{bookingId}")
+    suspend fun deleteAttractionBooking(@Path("bookingId") bookingId: Int): Response<Unit>
+
+    @DELETE("/api/hotels/booking/{bookingId}")
+    suspend fun deleteHotelBooking(@Path("bookingId") bookingId: Int): Response<Unit>
+
 
     // hotel booking
     @POST("/api/hotels/booking")
@@ -67,6 +70,9 @@ interface UserApiService {
 
     @GET("/api/hotels/{uuid}/reviews")
     suspend fun getHotelReviews(@Path("uuid") uuid: String): Response<List<Review>>
+
+
+
 
     companion object {
         private const val BASE_URL = "http://10.0.2.2:8080/"

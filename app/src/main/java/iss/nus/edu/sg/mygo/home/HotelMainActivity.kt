@@ -48,25 +48,6 @@ class HotelMainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-
-        // 监听 hotel_container_frame（Explore Aspen）点击事件
-        findViewById<LinearLayout>(R.id.container_frame).setOnClickListener {
-            val intent = Intent(this, HotelDetailActivity::class.java).apply {
-                putExtra("hotelName", "Explore Aspen")
-                putExtra("hotelImage", R.drawable.hotel_image_rectangle)
-            }
-            startActivity(intent)
-        }
-
-        // 监听 hotel_container_frame4（Luxurious Aspen）点击事件
-        findViewById<LinearLayout>(R.id.container_frame4).setOnClickListener {
-            val intent = Intent(this, HotelDetailActivity::class.java).apply {
-                putExtra("hotelName", "Luxurious Aspen")
-                putExtra("hotelImage", R.drawable.hotel_image_rectangle1)
-            }
-            startActivity(intent)
-        }
-
         // 监听返回按钮点击事件
         backButton.setOnClickListener {
             finish()
