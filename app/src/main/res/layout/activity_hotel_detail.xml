@@ -268,6 +268,7 @@
 
                     <!-- 额外信息 -->
                     <LinearLayout
+                        android:id="@+id/additional_message"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
@@ -356,32 +357,39 @@
 
                     <!-- 评论区 -->
                     <LinearLayout
+                        android:id="@+id/review_section"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_below="@+id/additional_message"
                         android:orientation="vertical"
-                        android:paddingTop="10dp">
+                        android:visibility="gone"> <!-- 初始隐藏，动态控制显示 -->
 
                         <TextView
-                            android:id="@+id/recent_reviews"
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Recent Reviews"
-                            android:textColor="#FF232323"
-                            android:textSize="16dp"
-                            android:textStyle="bold"
-                            android:layout_marginTop="30dp"/>
+                            android:text="Reviews"
+                            android:textSize="18sp"
+                            android:fontFamily="@font/joti_one_regular"
+                            android:paddingTop="8dp"
+                            android:paddingBottom="4dp"/>
 
-                        <TextView
-                            android:id="@+id/txt_reviews"
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/review_recycler_view"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="No Reviews"
-                            android:textColor="#FF3A544F"
-                            android:textSize="14dp"/>
+                            android:nestedScrollingEnabled="false"/>
                     </LinearLayout>
-
                 </LinearLayout>
+
             </LinearLayout>
+        <ImageView
+            android:id="@+id/img_heart_icon"
+            android:layout_width="52dp"
+            android:layout_height="45dp"
+            android:layout_marginLeft="343dp"
+            android:layout_marginTop="353dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/hotel_img_heart_icon" />
 
     </RelativeLayout>
     </ScrollView>
@@ -449,17 +457,6 @@
                     android:textSize="16dp" />
             </LinearLayout>
         </RelativeLayout>
-
-
-        <ImageView
-            android:id="@+id/img_heart_icon"
-            android:layout_width="52dp"
-            android:layout_height="45dp"
-            android:layout_marginLeft="343dp"
-            android:layout_marginTop="353dp"
-            android:scaleType="centerInside"
-            android:src="@drawable/hotel_img_heart_icon" />
-
 
 
 </RelativeLayout>
