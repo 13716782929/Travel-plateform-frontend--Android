@@ -3,7 +3,7 @@
     <!-- Background Image -->
     <item>
         <bitmap
-            android:src="@drawable/singapore_background"
+            android:src="@drawable/attraction_placeholder_image"
             android:tileMode="disabled"
             android:gravity="center"/>
     </item>
