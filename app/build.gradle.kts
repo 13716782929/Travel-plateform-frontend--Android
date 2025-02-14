@@ -99,6 +99,7 @@ dependencies {
 }
 
 detekt {
+    baseline = file("$rootDir/app/baseline.xml")  // 让 detekt 使用 baseline 文件
     toolVersion = "1.23.1"
     config = files("$rootDir/config/detekt/detekt.yml") // ✅ 确保 `detekt.yml` 存在
     buildUponDefaultConfig = true // ✅ 允许覆盖默认规则
