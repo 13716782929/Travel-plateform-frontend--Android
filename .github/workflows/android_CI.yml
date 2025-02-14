@@ -21,15 +21,15 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: '17'
-
+          
+      - name: 设置 Gradle 可执行权限
+        run: chmod +x gradlew
+        
       - name: 设置 Gradle 缓存
         uses: gradle/gradle-build-action@v2
         with:
           cache-read-only: false
           arguments: build
-
-      - name: 设置 Gradle 可执行权限
-        run: chmod +x gradlew
 
       - name: 运行 Lint & Detekt（代码检查）
         run: ./gradlew lint detekt
