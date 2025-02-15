@@ -216,6 +216,7 @@ class FlightDetailActivity : AppCompatActivity() {
         CoroutineScope(Dispatchers.IO).launch {
             try {
                 val response = flightApiService.bookFlight(request)
+                Log.e("BookingFlightRequest","Request =${request}")
 
                 withContext(Dispatchers.Main) {
                     if (response.isSuccessful) {

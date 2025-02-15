@@ -179,7 +179,7 @@ Version: 1.0
                         android:layout_marginEnd="8dp"
                         android:contentDescription="Universal Studios Singapore"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/flight_placeholder_image" />
+                        android:src="@drawable/main1_hotel_3" />
 
                     <ImageView
                         android:layout_width="80dp"
@@ -187,7 +187,7 @@ Version: 1.0
                         android:layout_marginEnd="8dp"
                         android:contentDescription="SEA Aquarium Singapore"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/attraction_placeholder_image" />
+                        android:src="@drawable/main1_hotel_2" />
 
                     <ImageView
                         android:layout_width="80dp"
@@ -195,7 +195,7 @@ Version: 1.0
                         android:layout_marginEnd="8dp"
                         android:contentDescription="Skyline Luge Sentosa"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/flight_placeholder_image" />
+                        android:src="@drawable/main1_hotel_1" />
                 </LinearLayout>
             </HorizontalScrollView>
 
@@ -224,12 +224,27 @@ Version: 1.0
                     android:padding="16dp">
 
                     <TextView
+                        android:id="@+id/text1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="My Account"
+                        android:textColor="#000000"
                         android:textSize="18sp"
                         android:textStyle="bold"
-                        android:textColor="#000000"/>
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/text2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:text="My Account"
+                        android:textColor="#000000"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toEndOf="@id/text1"
+                        app:layout_constraintTop_toTopOf="@id/text1" />
 
                     <View
                         android:layout_width="match_parent"
