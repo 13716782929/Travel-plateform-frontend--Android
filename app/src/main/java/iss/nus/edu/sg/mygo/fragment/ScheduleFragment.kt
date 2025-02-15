@@ -1,5 +1,13 @@
 package iss.nus.edu.sg.mygo.fragment
 
+/**
+ * @Description
+ * @Author Wang Chang and Yao Yiyang
+ * @StudentID A0310544R & A0294873L
+ * @Date 2025/2/14
+ * @Version 1.5
+ */
+
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle

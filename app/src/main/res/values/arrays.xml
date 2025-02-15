@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 旅行类型数组 -->
+    <string-array name="travel_types">
+        <item>Simple</item>
+        <item>Couple</item>
+        <item>Family</item>
+    </string-array>
+
+    <!-- 语言数组 -->
+    <string-array name="languages">
+        <item>English</item>
+        <item>Chinese</item>
+        <item>French</item>
+    </string-array>
+</resources>

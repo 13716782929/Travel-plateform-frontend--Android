@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 
+<!--
+Class Name: profile_fragment
+Author: Yao Yiyang
+StudentID: A0294873L
+Date: 11 Feb 2025
+Version: 1.0
+
+-->
+
+
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"

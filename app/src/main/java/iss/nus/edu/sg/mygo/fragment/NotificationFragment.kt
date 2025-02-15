@@ -30,8 +30,8 @@ import retrofit2.converter.gson.GsonConverterFactory
 /**
  * @ClassName NotificationFragment
  * @Description
- * @Author Wang Chang
- * @StudentID A0310544R
+ * @Author Wang Chang and Yao Yiyang
+ * @StudentID A0310544R & A0294873L
  * @Date 2025/2/14
  * @Version 1.5
  */

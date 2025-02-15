@@ -1,5 +1,13 @@
 package iss.nus.edu.sg.mygo.api.service
 
+/**
+ * @Description
+ * @Author YAO YIYANG
+ * @StudentID A0294873L
+ * @Date 2025/2/11
+ * @Version 1.0
+ */
+
 import iss.nus.edu.sg.mygo.api.models.AttractionRecommendation
 import iss.nus.edu.sg.mygo.models.Attraction
 import retrofit2.Response

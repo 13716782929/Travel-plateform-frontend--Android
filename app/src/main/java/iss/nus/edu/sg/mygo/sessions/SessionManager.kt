@@ -8,8 +8,8 @@ import org.json.JSONObject
 /**
  * @ClassName SessionActivity
  * @Description
- * @Author Wang Chang
- * @StudentID A0310544R
+ * @Author Wang Chang and Yao Yiyang
+ * @StudentID A0310544R & A0294873L
  * @Date 2025/2/7
  * @Version 1.3
  */
@@ -39,6 +39,15 @@ class SessionManager(context: Context) {
     fun getUserIdFromPrefs(): String? {
         return sharedPreferences.getString("user_id", null)
     }
+
+    fun saveUserId(userId: Int) {
+        sharedPreferences.edit().putInt("user_id", userId).apply()
+    }
+
+    fun getUserId(): Int {
+        return sharedPreferences.getInt("user_id", -1)
+    }
+
 
 
     private fun isTokenExpired(token: String): Boolean {

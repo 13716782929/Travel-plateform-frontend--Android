@@ -1,5 +1,7 @@
 package iss.nus.edu.sg.mygo.models
 
+
+
 data class Hotel(
     val uuid: String? = null,
     val name: String,

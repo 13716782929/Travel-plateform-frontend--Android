@@ -1,5 +1,14 @@
 package iss.nus.edu.sg.mygo.home
 
+/**
+ * @ClassName HotelApiService
+ * @Description
+ * @Author YAO YIYANG
+ * @StudentID A0294873L
+ * @Date 2025/2/11
+ * @Version 1.0
+ */
+
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle

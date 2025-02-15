@@ -2,8 +2,8 @@ package iss.nus.edu.sg.mygo.api.service
 
 /*
 Class Name: ProfileFragment
-Author: Siti Alifah Binte Yahya and Wang Chang
-StudentID: A0295324B and A0310544R
+Author: Siti Alifah Binte Yahya and Wang Chang and Yao Yiyang
+StudentID: A0295324B and A0310544R and A0294873L
 Date: 10 Feb 2025
 Version: 2.0
 */
@@ -12,8 +12,10 @@ import iss.nus.edu.sg.mygo.api.models.AttractionBookingRequest
 import iss.nus.edu.sg.mygo.api.models.HotelBookingRequest
 import iss.nus.edu.sg.mygo.api.models.LoginRequest
 import iss.nus.edu.sg.mygo.api.models.LoginResponse
+import iss.nus.edu.sg.mygo.api.models.Preference
 import iss.nus.edu.sg.mygo.api.models.RegisterRequest
 import iss.nus.edu.sg.mygo.api.models.ReviewRequest
+import iss.nus.edu.sg.mygo.api.models.UserProfile
 import iss.nus.edu.sg.mygo.models.Attraction
 import iss.nus.edu.sg.mygo.models.AttractionBooking
 import iss.nus.edu.sg.mygo.models.Booking
@@ -47,6 +49,14 @@ interface UserApiService {
 
     @POST("api/auth/login")
     suspend fun login(@Body request: LoginRequest): Response<LoginResponse>
+
+    @GET("api/auth/{userId}")
+    suspend fun getUserProfile(@Path("userId") userId: Int): Response<UserProfile>
+
+    @PUT("api/auth/{userId}/preferences")
+    suspend fun updateUserPreferences(@Path("userId") userId: Int, @Body preferences: Preference): Response<Preference>
+
+
 
     // attraction booking
     @POST("/api/attractions/booking")
