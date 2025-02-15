@@ -17,11 +17,11 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 
 interface RecommendationApiService {
-    @GET("/recommendations/personalized/{userId}")
+    @GET("/api/recommendations/personalized/{userId}")
     suspend fun fetchPersonalizedAttractions(@Path("userId") userId: Int): Response<List<AttractionRecommendation>>
 
     companion object {
-        private const val BASE_URL = "http://10.0.2.2:8080/api/"  // 本地服务器地址
+        private const val BASE_URL = "http://10.0.2.2:8080/"  // 本地服务器地址
 
         fun create(): RecommendationApiService {
             val retrofit = Retrofit.Builder()
