@@ -40,6 +40,9 @@ interface FlightApiService {
     @POST("api/flights")
     suspend fun getFlights(@Body request: FlightSearchRequest): List<FlightInfo>
 
+    @GET("api/flights/bookings/{userId}")
+    suspend fun getFlightsByUserId(@Path("userId") userId: Int): List<FlightBooking>
+
     //create a retrofit instance
     companion object {
         private const val BASE_URL = "http://10.0.2.2:8080/"

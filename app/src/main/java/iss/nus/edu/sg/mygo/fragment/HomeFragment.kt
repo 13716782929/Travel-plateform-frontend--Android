@@ -32,6 +32,17 @@ import iss.nus.edu.sg.mygo.home.HotelMainActivity
 import iss.nus.edu.sg.mygo.models.Attraction
 import iss.nus.edu.sg.mygo.models.Hotel
 import kotlinx.coroutines.launch
+import androidx.fragment.app.viewModels
+import iss.nus.edu.sg.mygo.api.service.FlightApiService
+import iss.nus.edu.sg.mygo.home.FlightDetailActivity
+import iss.nus.edu.sg.mygo.models.Flight
+import iss.nus.edu.sg.mygo.models.FlightBooking
+import iss.nus.edu.sg.mygo.models.FlightTicketViewModel
+import iss.nus.edu.sg.mygo.sessions.SessionManager
+import kotlinx.coroutines.flow.collectLatest
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+
 /**
  * @ClassName HomeFragment
  * @Description
@@ -49,9 +60,16 @@ class HomeFragment : Fragment(R.layout.home_fragment) {
     private lateinit var apiService: AttractionApiService  // 使用 AttractionApiService
     private lateinit var mediaApiService: MediaApiService  // 使用 MediaApiService 获取图片
 
+    private lateinit var sessionManager: SessionManager // 添加 SessionManager 变量
     private lateinit var hotelAdapter: HotelAdapter2
     private lateinit var apiService2: HotelApiService // 使用 HotelApiService 获取酒店数据
-    private lateinit var recommendationApiService: RecommendationApiService // ✅ 添加推荐 API Service
+    private lateinit var recommendationApiService: RecommendationApiService // 添加推荐 API Service
+
+    // ✅ 创建 FlightTicketViewModel 实例
+    private val flightViewModel: FlightTicketViewModel by viewModels {
+        FlightTicketViewModel.FlightViewModelFactory(FlightApiService.create())
+    }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -63,11 +81,29 @@ class HomeFragment : Fragment(R.layout.home_fragment) {
         recommendationApiService = RecommendationApiService.create() // ✅ 初始化推荐 API
         _binding = HomeFragmentBinding.bind(view) // ✅ 启用 ViewBinding
 
+        sessionManager = SessionManager(requireContext()) // ✅ 初始化 SessionManager
+        checkUserLoginStatus() // ✅ 检查用户是否已登录
+
         setupRecyclerView()  // 初始化 RecyclerView
         setupClickListeners() // ✅ 统一管理点击事件
 //        fetchAttractions()    // 调用 API 获取数据
         fetchHotels()
         fetchRecommendedAttractions() // ✅ 获取推荐的景点
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
+    private fun checkUserLoginStatus() {
+        if (!sessionManager.isLoggedIn()) {
+            // ❌ 用户未登录，隐藏机票视图
+            binding.layoutControllerTickets.visibility = View.GONE
+        } else {
+            fetchUserFlights()  // ✅ 获取用户的航班预订数据
+            observeFlightData() // ✅ 监听 `FlightBooking` 数据
+        }
     }
 
     /**
@@ -182,8 +218,6 @@ class HomeFragment : Fragment(R.layout.home_fragment) {
         }
     }
 
-
-
     /**
      * ✅ 将 API `AttractionData` 转换为 `Attraction`
      */
@@ -296,6 +330,86 @@ class HomeFragment : Fragment(R.layout.home_fragment) {
         return userId
     }
 
+    /**
+     * ✅ 1. 获取用户的航班预订信息
+     */
+    private fun fetchUserFlights() {
+        val userId = getUserIdFromLocalStorage()?.toIntOrNull()
+        if (userId != null) {
+            flightViewModel.getUserFlightBookings(userId)
+        } else {
+            Log.e("HomeFragment-Flight", "❌ User ID not found in local storage")
+        }
+    }
+
+    /**
+     * ✅ 2. 监听 Flight 数据并更新 UI
+     */
+    private fun observeFlightData() {
+        lifecycleScope.launch {
+            flightViewModel.flightBookings.collectLatest { bookings ->
+                if (bookings.isNotEmpty()) {
+                    val booking = bookings.first() // 只展示第一个航班预订
+                    updateFlightBookingUI(booking)
+
+                    booking.flightId?.let { flightId ->
+
+                        // ✅ 点击机票，跳转到 FlightDetailActivity
+                        binding.layoutControllerTickets.setOnClickListener {
+                            val intent = Intent(requireContext(), FlightDetailActivity::class.java).apply {
+                                putExtra("flightId", flightId) // ✅ 传递 flightId
+                            }
+                            startActivity(intent)
+                        }
+                    }
+                } else {
+                    binding.layoutControllerTickets.visibility = View.GONE // 隐藏 UI
+                }
+            }
+        }
+
+        lifecycleScope.launch {
+            flightViewModel.flights.collectLatest { flights ->
+                if (flights.isNotEmpty()) {
+                    val flight = flights.first() // 获取第一个航班详情
+                    updateFlightDetailsUI(flight)
+                }
+            }
+        }
+    }
+
+    /**
+     * ✅ 3. 更新 `FlightBooking` 相关 UI
+     */
+    private fun updateFlightBookingUI(flightBooking: FlightBooking) {
+        binding.bookingID.text = flightBooking.bookingId?.toString() ?: "N/A"
+        binding.layoutControllerTickets.visibility = View.VISIBLE
+    }
+
+    /**
+     * ✅ 4. 更新 `Flight` 详情 UI
+     */
+    private fun updateFlightDetailsUI(flight: Flight) {
+        val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss")
+        val timeFormatter = DateTimeFormatter.ofPattern("HH:mm") // 只提取时间
+        val dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd") // 只提取日期
+
+        val departureDateTime = LocalDateTime.parse(flight.departureTime, formatter)
+        val arrivalDateTime = LocalDateTime.parse(flight.arrivalTime, formatter)
+
+        val departureTime = departureDateTime.format(timeFormatter) // "22:17"
+        val arrivalTime = arrivalDateTime.format(timeFormatter) // "11:17"
+
+        val departureDate = departureDateTime.format(dateFormatter) // "2025-03-07"
+        val arrivalDate = arrivalDateTime.format(dateFormatter) // "2025-03-08"
+
+        binding.upcomingTime.text = departureDate
+        binding.departureLocation.text = flight.departureCity
+        binding.departureTime.text = departureTime
+        binding.arrivalLocation.text = flight.arrivalCity
+        binding.arrivalTime.text = arrivalTime
+        binding.adFlight.text = flight.airline
+    }
 
     /**
      * ✅ `dp` 转 `px`

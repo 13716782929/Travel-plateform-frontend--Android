@@ -71,8 +71,7 @@ class FlightDetailActivity : AppCompatActivity() {
         backButton = findViewById(R.id.button_back)
 
         // 获取上一个页面传递的 flightId
-//        flightId = intent.getStringExtra("flightId")?.toIntOrNull() ?: -1
-        flightId = 1
+        flightId = intent.getIntExtra("flightId",-1)
 
         if (flightId != -1) {
             fetchFlightDetails(flightId)
@@ -92,7 +91,12 @@ class FlightDetailActivity : AppCompatActivity() {
             }
             showBookingDialog()
         }
+
+        backButton.setOnClickListener{
+            finish()
+        }
     }
+
 
     /**
      * 通过 API 获取航班详情
@@ -216,6 +220,7 @@ class FlightDetailActivity : AppCompatActivity() {
         CoroutineScope(Dispatchers.IO).launch {
             try {
                 val response = flightApiService.bookFlight(request)
+                Log.e("BookingFlightRequest","Request =${request}")
 
                 withContext(Dispatchers.Main) {
                     if (response.isSuccessful) {
@@ -227,7 +232,6 @@ class FlightDetailActivity : AppCompatActivity() {
                         startActivity(intent)
 
                         Log.d("BOOKING_SUCCESS", "Booking Successful: $bookingResponse")
-                        Toast.makeText(this@FlightDetailActivity, "Booking Successful!", Toast.LENGTH_SHORT).show()
                     } else {
                         val errorBody = response.errorBody()?.string()
                         Log.e("BOOKING_ERROR", "Response Code: ${response.code()}, Error Body: $errorBody")
@@ -242,8 +246,6 @@ class FlightDetailActivity : AppCompatActivity() {
             }
         }
     }
-
-
 
     /**
      * get UserId from sharedPrefs

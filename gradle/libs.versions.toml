@@ -3,6 +3,7 @@
 detekt = "1.23.1"
 agp = "8.7.3"
 compiler = "4.12.0"
+fragmentKtx = "1.8.6"
 googleMaterial = "1.6.0"
 kotlin = "2.0.0"
 androidsvg = "1.4"
@@ -38,6 +39,8 @@ squareupOkhttp = "4.9.3"
 androidsvg = { module = "com.caverock:androidsvg", version.ref = "androidsvg" }
 androidx-constraintlayout-v204 = { module = "androidx.constraintlayout:constraintlayout", version.ref = "androidxConstraintlayout" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+androidx-fragment-ktx = { module = "androidx.fragment:fragment-ktx", version.ref = "fragmentKtx" }
+androidx-lifecycle-viewmodel-ktx = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycleRuntimeKtx" }
 androidx-recyclerview = { module = "androidx.recyclerview:recyclerview", version.ref = "recyclerview" }
 compiler-v4120 = { module = "com.github.bumptech.glide:compiler", version.ref = "compiler" }
 google-gson = { module = "com.google.code.gson:gson", version.ref = "gsonVersion" }

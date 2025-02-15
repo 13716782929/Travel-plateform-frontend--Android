@@ -90,8 +90,6 @@ interface UserApiService {
     suspend fun getHotelReviews(@Path("uuid") uuid: String): Response<List<Review>>
 
 
-
-
     companion object {
         private const val BASE_URL = "http://10.0.2.2:8080/"
 
