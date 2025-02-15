@@ -76,7 +76,7 @@ class FlightPaymentActivity : AppCompatActivity() {
             if (cardNumber.isEmpty() || cardHolder.isEmpty() || cvv.isEmpty() || expiryDate.isEmpty()) {
                 Toast.makeText(this, "Payment failed, please try again", Toast.LENGTH_SHORT).show()
             } else {
-                Toast.makeText(this, "Payment is successful!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Payment is done! Booking Successful!", Toast.LENGTH_SHORT).show()
                 Handler(Looper.getMainLooper()).postDelayed({
                     val intent = Intent(this, FlightDetailActivity::class.java)
                     startActivity(intent)

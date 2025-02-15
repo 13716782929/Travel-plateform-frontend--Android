@@ -4,6 +4,7 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -13,6 +14,7 @@ import iss.nus.edu.sg.mygo.fragment.NotificationFragment
 import iss.nus.edu.sg.mygo.fragment.ProfileFragment
 import iss.nus.edu.sg.mygo.fragment.SearchFragment
 import iss.nus.edu.sg.mygo.fragment.ScheduleFragment
+import iss.nus.edu.sg.mygo.models.FlightTicketViewModel
 
 /**
  * @ClassName MainActivity
