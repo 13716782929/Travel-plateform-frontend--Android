@@ -272,7 +272,7 @@ class HotelDetailActivity : AppCompatActivity() {
         val datePicker = CalendarView(this)
 
         val builder = AlertDialog.Builder(this)
-        builder.setTitle("选择入住日期")
+        builder.setTitle("Select check in date:")
         builder.setView(datePicker)
 
         datePicker.minDate = System.currentTimeMillis() // 不能选择过去的日期
@@ -283,10 +283,10 @@ class HotelDetailActivity : AppCompatActivity() {
             selectedCheckInDate = parseDateToTimestamp(year, month, dayOfMonth)
         }
 
-        builder.setPositiveButton("下一步") { _, _ ->
+        builder.setPositiveButton("Next") { _, _ ->
             showCheckOutDatePicker(selectedCheckInDate)
         }
-        builder.setNegativeButton("取消") { dialog, _ -> dialog.dismiss() }
+        builder.setNegativeButton("Cancel") { dialog, _ -> dialog.dismiss() }
 
         builder.create().show()
     }
@@ -295,7 +295,7 @@ class HotelDetailActivity : AppCompatActivity() {
         val datePicker = CalendarView(this)
 
         val builder = AlertDialog.Builder(this)
-        builder.setTitle("选择退房日期")
+        builder.setTitle("Select check out date:")
         builder.setView(datePicker)
 
         datePicker.minDate = checkInDate + (24 * 60 * 60 * 1000) // 退房日期必须大于入住日期
@@ -306,31 +306,31 @@ class HotelDetailActivity : AppCompatActivity() {
             selectedCheckOutDate = parseDateToTimestamp(year, month, dayOfMonth)
         }
 
-        builder.setPositiveButton("下一步") { _, _ ->
+        builder.setPositiveButton("Next") { _, _ ->
             showRoomTypeSelection(checkInDate, selectedCheckOutDate)
         }
-        builder.setNegativeButton("取消") { dialog, _ -> dialog.dismiss() }
+        builder.setNegativeButton("Cancel") { dialog, _ -> dialog.dismiss() }
 
         builder.create().show()
     }
 
     private fun showRoomTypeSelection(checkInDate: Long, checkOutDate: Long) {
-        val roomTypes = arrayOf("标准间", "豪华间", "套房")
+        val roomTypes = arrayOf("Standard", "Supreme", "Suite")
         var selectedRoomType = roomTypes[0] // 默认选择标准房
 
         val builder = AlertDialog.Builder(this)
-        builder.setTitle("选择房型")
+        builder.setTitle("Select room type:")
 
         builder.setSingleChoiceItems(roomTypes, 0) { _, which ->
             selectedRoomType = roomTypes[which]
         }
 
-        builder.setPositiveButton("下一步") { _, _ ->
+        builder.setPositiveButton("Next") { _, _ ->
             val calculatedPrice = calculatePrice(selectedRoomType)
-            Toast.makeText(this, "已选择${selectedRoomType}, 价格: $calculatedPrice", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "Selected ${selectedRoomType}, Price: $calculatedPrice", Toast.LENGTH_LONG).show()
             showGuestNumberInput(checkInDate, checkOutDate, selectedRoomType, calculatedPrice)
         }
-        builder.setNegativeButton("取消") { dialog, _ -> dialog.dismiss() }
+        builder.setNegativeButton("Cancel") { dialog, _ -> dialog.dismiss() }
 
         builder.create().show()
     }
@@ -338,35 +338,35 @@ class HotelDetailActivity : AppCompatActivity() {
     private fun showGuestNumberInput(checkInDate: Long, checkOutDate: Long, roomType: String, calculatedPrice: String) {
         val input = EditText(this)
         input.inputType = InputType.TYPE_CLASS_NUMBER
-        input.hint = "输入入住人数"
+        input.hint = "Input number of customer"
 
         val builder = AlertDialog.Builder(this)
-        builder.setTitle("输入入住人数")
+        builder.setTitle("Number of customer")
         builder.setView(input)
 
-        builder.setPositiveButton("确认预订") { _, _ ->
+        builder.setPositiveButton("Confirm booking") { _, _ ->
             val guestsInput = input.text.toString()
             if (guestsInput.isBlank()) {
-                Toast.makeText(this, "请输入正确的入住人数", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Please input correct number:", Toast.LENGTH_SHORT).show()
                 return@setPositiveButton
             }
             val guests = guestsInput.toIntOrNull() ?: 1
             sendBookingRequest(checkInDate, checkOutDate, roomType, guests, calculatedPrice)
         }
 
-        builder.setNegativeButton("取消") { dialog, _ -> dialog.dismiss() }
+        builder.setNegativeButton("Cancel") { dialog, _ -> dialog.dismiss() }
 
         builder.create().show()
     }
 
     private fun sendBookingRequest(checkInDate: Long, checkOutDate: Long, roomType: String, guests: Int, calculatedPrice: String) {
         val userId = getUserId() ?: run {
-            Toast.makeText(this, "请先登录", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Please log in.", Toast.LENGTH_SHORT).show()
             return
         }
 
         val hotelUuid = intent.getStringExtra("hotel_uuid") ?: run {
-            Toast.makeText(this, "缺少酒店信息", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Lack of information of Hotel", Toast.LENGTH_SHORT).show()
             return
         }
 
@@ -394,14 +394,14 @@ class HotelDetailActivity : AppCompatActivity() {
                     println("✅ 预订成功: $bookingResponse")
 
                     runOnUiThread {
-                        Toast.makeText(this@HotelDetailActivity, "预订成功！", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@HotelDetailActivity, "Booking Successfully！", Toast.LENGTH_SHORT).show()
                     }
                 } else {
                     val errorBody = response.errorBody()?.string()
                     println("🚨 预订失败: ${response.code()} - $errorBody")
 
                     runOnUiThread {
-                        Toast.makeText(this@HotelDetailActivity, "预订失败: $errorBody", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@HotelDetailActivity, "Booking failed: $errorBody", Toast.LENGTH_SHORT).show()
                     }
                 }
             } catch (e: Exception) {
@@ -423,15 +423,15 @@ class HotelDetailActivity : AppCompatActivity() {
                     val minPrice = priceNumbers[0]!!
                     val maxPrice = priceNumbers[1]!!
                     when (roomType) {
-                        "标准间" -> "$minPrice"
-                        "豪华间" -> "${(minPrice + maxPrice) / 2}"
-                        "套房" -> "$maxPrice"
-                        else -> "价格不可用"
+                        "Standard" -> "$minPrice"
+                        "Supreme" -> "${(minPrice + maxPrice) / 2}"
+                        "Suite"  -> "$maxPrice"
+                        else -> "Price cannot adapt"
                     }
                 }
-                else -> "价格不可用"
+                else -> "Price cannot adapt"
             }
-        } ?: return "价格不可用"
+        } ?: return "Price cannot adapt"
     }
 
     private fun formatDateToBackendFormat(timestamp: Long): String {
