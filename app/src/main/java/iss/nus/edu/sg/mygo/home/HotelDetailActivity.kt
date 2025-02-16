@@ -391,24 +391,24 @@ class HotelDetailActivity : AppCompatActivity() {
 
                 if (response.isSuccessful) {
                     val bookingResponse = response.body()
-                    println("✅ 预订成功: $bookingResponse")
+                    println("✅ Booking Succeed: $bookingResponse")
 
                     runOnUiThread {
                         Toast.makeText(this@HotelDetailActivity, "Booking Successfully！", Toast.LENGTH_SHORT).show()
                     }
                 } else {
                     val errorBody = response.errorBody()?.string()
-                    println("🚨 预订失败: ${response.code()} - $errorBody")
+                    println("🚨 Booking failed: ${response.code()} - $errorBody")
 
                     runOnUiThread {
                         Toast.makeText(this@HotelDetailActivity, "Booking failed: $errorBody", Toast.LENGTH_SHORT).show()
                     }
                 }
             } catch (e: Exception) {
-                println("🚨 预订异常: ${e.message}")
+                println("🚨 Booking exception: ${e.message}")
 
                 runOnUiThread {
-                    Toast.makeText(this@HotelDetailActivity, "网络错误: ${e.message}", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@HotelDetailActivity, "NetWork Error: ${e.message}", Toast.LENGTH_SHORT).show()
                 }
             }
         }
