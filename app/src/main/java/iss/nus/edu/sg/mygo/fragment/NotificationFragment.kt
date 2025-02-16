@@ -78,7 +78,7 @@ class NotificationFragment : Fragment() {
         lifecycleScope.launch {
             val userId = sessionManager.getUserIdFromPrefs()?.toInt() // 获取当前用户 ID
             if (userId==null) {
-                Toast.makeText(requireContext(), "User not logged in!", Toast.LENGTH_SHORT).show()
+                //Toast.makeText(requireContext(), "User not logged in!", Toast.LENGTH_SHORT).show()
             } else {
                 val notifications = generateNotifications(userId)
                 notificationList.clear()

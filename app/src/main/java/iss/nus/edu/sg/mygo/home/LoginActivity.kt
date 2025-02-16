@@ -90,10 +90,10 @@ class LoginActivity : AppCompatActivity() {
                         }
                     }
                 } else {
-                    Toast.makeText(this@LoginActivity, "Login Failed: Invalid credentials", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@LoginActivity, "Login Failed: The email has already registered.", Toast.LENGTH_SHORT).show()
                 }
             } catch (e: Exception) {
-                Toast.makeText(this@LoginActivity, "Network Error: ${e.message}", Toast.LENGTH_SHORT).show()
+                //Toast.makeText(this@LoginActivity, "Network Error: ${e.message}", Toast.LENGTH_SHORT).show()
             }
         }
     }

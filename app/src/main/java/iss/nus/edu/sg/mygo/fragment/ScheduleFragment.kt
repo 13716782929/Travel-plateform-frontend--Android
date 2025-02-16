@@ -316,7 +316,7 @@ class ScheduleFragment : Fragment() {
 
                 withContext(Dispatchers.Main) {
                     if (response.isSuccessful) {
-                        showToast("Booking deleted successfully! Refreshing bookings...")
+                        //showToast("Booking deleted successfully! Refreshing bookings...")
 
                         // 重新获取用户预订数据
                         val userId = sessionManager.getUserIdFromPrefs()?.toIntOrNull()
@@ -389,7 +389,7 @@ class ScheduleFragment : Fragment() {
     private fun submitReview(itemId: Int, bookingId: Int, itemType: String, commentText: String, rating: Float) {
         val userId = sessionManager.getUserIdFromPrefs()?.toIntOrNull()
         if (userId == null) {
-            showToast("User not logged in!")
+            //showToast("User not logged in!")
             return
         }
 
@@ -409,7 +409,7 @@ class ScheduleFragment : Fragment() {
                 val response = apiService.postReview(reviewRequest)
                 withContext(Dispatchers.Main) {
                     if (response.isSuccessful) {
-                        showToast("Review submitted successfully!")
+                       // showToast("Review submitted successfully!")
                         Log.d("SubmitReview", "Review submitted successfully!")
                     } else {
                         val errorBody = response.errorBody()?.string() ?: "Unknown error"

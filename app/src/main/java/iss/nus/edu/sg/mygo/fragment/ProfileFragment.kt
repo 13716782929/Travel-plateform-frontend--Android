@@ -129,7 +129,7 @@ class ProfileFragment : Fragment() {
         // **清空 Session**
         sessionManager.logout()
 
-        Toast.makeText(requireContext(), "Logged out successfully!", Toast.LENGTH_SHORT).show()
+        //Toast.makeText(requireContext(), "Logged out successfully!", Toast.LENGTH_SHORT).show()
 
         // ** 跳转到 LoginActivity**
         val intent = Intent(requireContext(), LoginActivity::class.java)
