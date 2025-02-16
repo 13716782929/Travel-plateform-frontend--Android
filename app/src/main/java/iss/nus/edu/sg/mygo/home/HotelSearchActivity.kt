@@ -149,7 +149,7 @@ class HotelSearchActivity : AppCompatActivity() {
             return
         }
 
-        val imageUrl = "http://10.0.2.2:8080/proxy/media/$uuid?fileType=Small%20Thumbnail"
+        val imageUrl = "http://18.138.251.86/proxy/media/$uuid?fileType=Small%20Thumbnail"
         // 直接生成本地代理服务器的 URL，替换 {uuid} 为实际的 uuid
 
         callback(imageUrl)

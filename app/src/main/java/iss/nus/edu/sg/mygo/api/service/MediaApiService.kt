@@ -10,7 +10,7 @@ interface MediaApiService {
     suspend fun getImageUrl(@Path("uuid") uuid: String): String
 
     companion object {
-        private const val BASE_URL = "http://10.0.2.2:8080/" // 本机后端地址
+        private const val BASE_URL = "http://18.138.251.86:8080/" // 本机后端地址
 
         fun create(): MediaApiService {
             return Retrofit.Builder()

@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -70,6 +71,7 @@ class LoginActivity : AppCompatActivity() {
         lifecycleScope.launch {
             try {
                 val response = apiService.login(LoginRequest(email, password))
+                Log.e("LoginResponse","${response}")
                 if (response.isSuccessful) {
                     val loginResponse = response.body()
                     loginResponse?.let {
@@ -93,6 +95,7 @@ class LoginActivity : AppCompatActivity() {
                     Toast.makeText(this@LoginActivity, "Login Failed: Invalid credentials", Toast.LENGTH_SHORT).show()
                 }
             } catch (e: Exception) {
+                Log.e("1","${e.message}")
                 Toast.makeText(this@LoginActivity, "Network Error: ${e.message}", Toast.LENGTH_SHORT).show()
             }
         }

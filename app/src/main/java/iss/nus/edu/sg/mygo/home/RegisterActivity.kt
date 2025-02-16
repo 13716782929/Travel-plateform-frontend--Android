@@ -70,7 +70,6 @@ class RegisterActivity : AppCompatActivity() {
                 }
             } catch (e: Exception) {
                 Log.e("RegisterError", "Network Error: ${e.message}")
-                Toast.makeText(this@RegisterActivity, "Network Error: ${e.message}", Toast.LENGTH_SHORT).show()
             }
         }
     }
