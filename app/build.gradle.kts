@@ -16,8 +16,10 @@ android {
         targetSdk = 35
         versionCode = 1
         versionName = "1.0"
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        // ✅ 读取 gradle.properties 里的 BASE_URL
+        val baseUrl = providers.gradleProperty("BASE_URL").getOrElse("http://default-url.com")
+        buildConfigField("String", "BASE_URL", "\"$baseUrl\"")
     }
 
     buildTypes {
@@ -41,6 +43,7 @@ android {
     buildFeatures {
         compose = true
         viewBinding = true
+        buildConfig = true
     }
 }
 

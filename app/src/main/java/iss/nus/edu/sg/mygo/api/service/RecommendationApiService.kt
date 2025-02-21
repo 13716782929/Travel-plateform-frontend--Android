@@ -8,6 +8,7 @@ package iss.nus.edu.sg.mygo.api.service
  * @Version 1.0
  */
 
+import iss.nus.edu.sg.mygo.BuildConfig
 import iss.nus.edu.sg.mygo.api.models.AttractionRecommendation
 import iss.nus.edu.sg.mygo.models.Attraction
 import retrofit2.Response
@@ -21,7 +22,7 @@ interface RecommendationApiService {
     suspend fun fetchPersonalizedAttractions(@Path("userId") userId: Int): Response<List<AttractionRecommendation>>
 
     companion object {
-        private const val BASE_URL = "http://10.0.2.2:8080/"  // 本地服务器地址
+        private const val BASE_URL = BuildConfig.BASE_URL  // 本地服务器地址
 
         fun create(): RecommendationApiService {
             val retrofit = Retrofit.Builder()

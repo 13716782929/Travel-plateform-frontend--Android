@@ -32,6 +32,8 @@ import retrofit2.http.Header
 import retrofit2.http.POST
 import retrofit2.http.Path
 import retrofit2.http.PUT
+import iss.nus.edu.sg.mygo.BuildConfig
+
 
 /**
  * @ClassName UserApiService
@@ -91,7 +93,7 @@ interface UserApiService {
 
 
     companion object {
-        private const val BASE_URL = "http://10.0.2.2:8080/"
+        private const val BASE_URL = BuildConfig.BASE_URL
 
         fun create(): UserApiService {
             return Retrofit.Builder()

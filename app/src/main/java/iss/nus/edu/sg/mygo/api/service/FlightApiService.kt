@@ -8,6 +8,7 @@ package iss.nus.edu.sg.mygo.api.service
  * @Date 13 Feb 2025
  * @Version 1.0
  */
+import iss.nus.edu.sg.mygo.BuildConfig
 import iss.nus.edu.sg.mygo.api.models.FlightSearchRequest
 import iss.nus.edu.sg.mygo.models.FlightInfo
 import iss.nus.edu.sg.mygo.models.FlightBookingRequest
@@ -45,7 +46,7 @@ interface FlightApiService {
 
     //create a retrofit instance
     companion object {
-        private const val BASE_URL = "http://10.0.2.2:8080/"
+        private const val BASE_URL = BuildConfig.BASE_URL
 
         fun create(): FlightApiService {
             return Retrofit.Builder()
