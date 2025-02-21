@@ -13,6 +13,7 @@ import android.widget.TextView
 import android.widget.Toast
 import com.bumptech.glide.Glide
 import iss.nus.edu.sg.mygo.R
+import java.security.PrivateKey
 import java.text.SimpleDateFormat
 import java.util.Locale
 
@@ -28,7 +29,8 @@ import java.util.Locale
 class BookingAdapter(
     private var bookings: List<BookingItem>,
     private val onDeleteClick: (BookingItem) -> Unit,
-    private val onCommentClick: (BookingItem) -> Unit
+    private val onCommentClick: (BookingItem) -> Unit,
+    private val onItemClick: (BookingItem) -> Unit
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     companion object {
@@ -70,8 +72,8 @@ class BookingAdapter(
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (val bookingItem = bookings[position]) {
-            is BookingItem.AttractionBookingItem -> (holder as AttractionViewHolder).bind(bookingItem, onDeleteClick, onCommentClick)
-            is BookingItem.HotelBookingItem -> (holder as HotelViewHolder).bind(bookingItem, onDeleteClick, onCommentClick)
+            is BookingItem.AttractionBookingItem -> (holder as AttractionViewHolder).bind(bookingItem, onDeleteClick, onCommentClick, onItemClick)
+            is BookingItem.HotelBookingItem -> (holder as HotelViewHolder).bind(bookingItem, onDeleteClick, onCommentClick, onItemClick)
             else -> {}
         }
     }
@@ -103,7 +105,8 @@ class BookingAdapter(
         fun bind(
             bookingItem: BookingItem.HotelBookingItem,
             onDeleteClick: (BookingItem) -> Unit,
-            onCommentClick: (BookingItem) -> Unit
+            onCommentClick: (BookingItem) -> Unit,
+            onItemClick: (BookingItem) -> Unit
         ) {
             hotelName.text = bookingItem.hotelBooking.hotelName
             location.text = "Location: ${bookingItem.hotelBooking.location}"
@@ -121,6 +124,11 @@ class BookingAdapter(
 
             deleteButton.setOnClickListener { onDeleteClick(bookingItem) }
             commentButton.setOnClickListener { onCommentClick(bookingItem) }
+            // 🔥 绑定点击事件
+            itemView.setOnClickListener {
+                Log.d("BookingAdapter", "Attraction item clicked: ${bookingItem.hotelBooking.hotelName}")
+                onItemClick(bookingItem)
+            }
         }
     }
 
@@ -131,20 +139,18 @@ class BookingAdapter(
         itemView: View
     ) : RecyclerView.ViewHolder(itemView) {
         private val deleteButton: Button = itemView.findViewById(R.id.btn_delete_attraction_booking)
-        private val commentButton: Button =
-            itemView.findViewById(R.id.btn_review_attraction_booking)
+        private val commentButton: Button = itemView.findViewById(R.id.btn_review_attraction_booking)
         private val attractionName: TextView = itemView.findViewById(R.id.text_attraction_name)
-        private val visitDate: TextView =
-            itemView.findViewById(R.id.item_attraction_booking_visit_date)
-        private val visitTime: TextView =
-            itemView.findViewById(R.id.item_attraction_booking_visit_time)
+        private val visitDate: TextView = itemView.findViewById(R.id.item_attraction_booking_visit_date)
+        private val visitTime: TextView = itemView.findViewById(R.id.item_attraction_booking_visit_time)
         private val location: TextView = itemView.findViewById(R.id.text_location)
         private val attractionImage: ImageView = itemView.findViewById(R.id.attraction_booking_container_mask_group)
 
         fun bind(
             bookingItem: BookingItem.AttractionBookingItem,
             onDeleteClick: (BookingItem.AttractionBookingItem) -> Unit,
-            onCommentClick: (BookingItem.AttractionBookingItem) -> Unit
+            onCommentClick: (BookingItem.AttractionBookingItem) -> Unit,
+            onItemClick: (BookingItem) -> Unit
         ) {
             attractionName.text = bookingItem.attractionBooking.attractionName
             visitDate.text = "Date: ${bookingItem.attractionBooking.visitDate}"
@@ -180,6 +186,12 @@ class BookingAdapter(
                     "Comment on ${bookingItem.attractionBooking.attractionName}",
                     Toast.LENGTH_SHORT
                 ).show()
+            }
+
+            // 🔥 绑定点击事件
+            itemView.setOnClickListener {
+                Log.d("BookingAdapter", "Attraction item clicked: ${bookingItem.attractionBooking.attractionName}")
+                onItemClick(bookingItem)
             }
         }
 

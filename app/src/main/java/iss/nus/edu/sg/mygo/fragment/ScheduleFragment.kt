@@ -32,6 +32,8 @@ import iss.nus.edu.sg.mygo.api.service.AttractionApiService
 import iss.nus.edu.sg.mygo.api.service.HotelApiService
 import iss.nus.edu.sg.mygo.api.service.UserApiService
 import iss.nus.edu.sg.mygo.enum.RoomType
+import iss.nus.edu.sg.mygo.home.AttractionDetailActivity
+import iss.nus.edu.sg.mygo.home.HotelDetailActivity
 import iss.nus.edu.sg.mygo.home.LoginActivity
 import iss.nus.edu.sg.mygo.models.Attraction
 import iss.nus.edu.sg.mygo.models.AttractionBooking
@@ -74,6 +76,7 @@ class ScheduleFragment : Fragment() {
     private val attractionCache = mutableMapOf<String, Attraction>()
     private val hotelCache = mutableMapOf<String, Hotel>()
 
+    @SuppressLint("DefaultLocale")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -114,7 +117,8 @@ class ScheduleFragment : Fragment() {
         bookingAdapter = BookingAdapter(
             bookings = emptyList(),
             onDeleteClick = { bookingItem -> deleteBooking(bookingItem) },
-            onCommentClick = { bookingItem -> postReview(bookingItem) }
+            onCommentClick = { bookingItem -> postReview(bookingItem) },
+            onItemClick = { bookingItem -> openDetailPage(bookingItem)}
         )
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         recyclerView.adapter = bookingAdapter
@@ -196,7 +200,7 @@ class ScheduleFragment : Fragment() {
                             location = hotel?.address ?: "Unknown Location",
                             checkInDate = booking.checkInDate,
                             checkOutDate = booking.checkOutDate,
-                            roomType = booking.roomType ?: "未知房型",
+                            roomType = booking.roomType,
                             guests = booking.guests,
                             totalAmount = booking.totalAmount,
                             hotelImageUuid = hotel?.imageUrl ?: "",
@@ -236,8 +240,8 @@ class ScheduleFragment : Fragment() {
                 val attraction = attractionDataList.firstOrNull()?.let { attractionData ->
                     Attraction(
                         uuid = attractionData.uuid,
-                        name = attractionData.name ?: "Unknown Attraction",
-                        address = attractionData.address?.formattedAddress() ?: "Unknown Location",
+                        name = attractionData.name,
+                        address = attractionData.address.formattedAddress(),
                         description = "",
                         rate = 0.0,
                         price = "",
@@ -272,8 +276,8 @@ class ScheduleFragment : Fragment() {
                 val hotel = hotelDataList.firstOrNull()?.let { hotelData ->
                     Hotel(
                         uuid = hotelData.uuid,
-                        name = hotelData.name ?: "Unknown Attraction",
-                        address = hotelData.address?.formattedAddress() ?: "Unknown Location",
+                        name = hotelData.name,
+                        address = hotelData.address.formattedAddress(),
                         description = "",
                         rating = 0.0.toString(),
                         price = "",
@@ -336,13 +340,11 @@ class ScheduleFragment : Fragment() {
     }
 
 
-
-
     /**
      * 💬 处理提交评论
      */
     private fun showReviewDialog(bookingItem: BookingItem) {
-        val userId = sessionManager.getUserIdFromPrefs()?.toInt() ?: return
+        sessionManager.getUserIdFromPrefs()?.toInt() ?: return
 
         val dialogView = LayoutInflater.from(requireContext()).inflate(R.layout.dialog_review, null)
         val ratingBar = dialogView.findViewById<RatingBar>(R.id.review_rating_bar)
@@ -448,6 +450,7 @@ class ScheduleFragment : Fragment() {
         }
     }
 
+    @SuppressLint("DefaultLocale")
     private fun getSelectedCalendarDate(): String {
         val calendar = java.util.Calendar.getInstance()
         val year = calendar.get(java.util.Calendar.YEAR)
@@ -457,5 +460,26 @@ class ScheduleFragment : Fragment() {
         return String.format("%04d-%02d-%02d", year, month, day)
     }
 
+    /**
+     * 跳转详情页面
+     */
+    private fun openDetailPage(bookingItem: BookingItem){
+        val context = requireContext()
+
+        when(bookingItem){
+            is BookingItem.AttractionBookingItem -> {
+                val intent = Intent(context, AttractionDetailActivity::class.java)
+                intent.putExtra("attraction_uuid",bookingItem.attractionBooking.attractionUuid)
+                startActivity(intent)
+            }
+            is BookingItem.HotelBookingItem -> {
+                val intent = Intent(context, HotelDetailActivity::class.java).apply {
+                    putExtra("hotel_uuid",bookingItem.hotelBooking.hotelUuid)
+                }
+                startActivity(intent)
+            }
+            else -> {} // we put flight to HomeFragment
+        }
+    }
 
 }

@@ -9,6 +9,7 @@ Version
 */
 
 
+import android.annotation.SuppressLint
 import android.app.TimePickerDialog
 import android.content.Context
 import android.content.Intent
@@ -54,6 +55,7 @@ import iss.nus.edu.sg.mygo.sessions.SessionManager
 import kotlinx.coroutines.withContext
 import java.text.SimpleDateFormat
 import java.util.Calendar
+import java.util.Date
 
 
 class AttractionDetailActivity : AppCompatActivity() {
@@ -68,8 +70,6 @@ class AttractionDetailActivity : AppCompatActivity() {
     private lateinit var apiService: AttractionApiService
     private lateinit var userApiService: UserApiService
     private lateinit var containerCta: LinearLayout
-    private lateinit var bookButtonText: TextView
-    private lateinit var bookButton: Button
     private  lateinit var sessionManager: SessionManager
     private lateinit var binding: ActivityAttractionDetailBinding
     private lateinit var reviewAdapter: ReviewAdapter
@@ -154,6 +154,7 @@ class AttractionDetailActivity : AppCompatActivity() {
     }
 
 
+    @SuppressLint("SetTextI18n")
     private fun fetchAttractionDetails(uuid: String) {
         val apiKey = "6IBB6PFfArqu7dvgOJaXFZKyqAN9uJAC" //  API Key
         val contentLanguage = "en"
@@ -195,7 +196,7 @@ class AttractionDetailActivity : AppCompatActivity() {
                             wordListContainer.addView(tagsTitle)
 
                             // Parse tags and add dynamically
-                            attractionData.tags?.forEach { tag ->
+                            attractionData.tags.forEach { tag ->
                                 val wordTextView = TextView(this@AttractionDetailActivity).apply {
                                     text = "· $tag"
                                     textSize = 16f
@@ -220,7 +221,7 @@ class AttractionDetailActivity : AppCompatActivity() {
                             displayBusinessHours()
 
                             // Parse and dynamically display Business Hour information
-                            attractionData.businessHour?.forEach { businessHour ->
+                            attractionData.businessHour.forEach { businessHour ->
                                 val businessInfo = StringBuilder()
 
                                 // Display day (can be daily, Monday, public_holiday, etc.)
@@ -234,7 +235,7 @@ class AttractionDetailActivity : AppCompatActivity() {
                                 businessInfo.append("Hours: ${businessHour.openTime} - ${businessHour.closeTime}\n")
 
                                 // If there is a description (e.g., special events), display it
-                                if (!businessHour.description.isNullOrEmpty()) {
+                                if (businessHour.description.isNotEmpty()) {
                                     businessInfo.append("Description: ${businessHour.description}\n")
                                 }
 
@@ -262,6 +263,7 @@ class AttractionDetailActivity : AppCompatActivity() {
         }
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     private fun fetchReviews(attractionUuid: String) {
         lifecycleScope.launch(Dispatchers.IO) {
             try {
@@ -397,7 +399,16 @@ class AttractionDetailActivity : AppCompatActivity() {
             }
         }
 
-        builder.setPositiveButton("Confirm") { dialog, _ -> dialog.dismiss() }
+        builder.setPositiveButton("Confirm") { dialog, _ ->
+            if (lastValidDate != System.currentTimeMillis()) {
+                val selectedDate = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(Date(lastValidDate))
+                showTimePickerDialog(selectedDate) // 🚀 传递选中的日期
+            } else {
+                Toast.makeText(this, "Please select a valid date", Toast.LENGTH_SHORT).show()
+            }
+            dialog.dismiss()
+        }
+
         builder.setNegativeButton("Cancel") { dialog, _ -> dialog.dismiss() }
         builder.create().show()
     }
